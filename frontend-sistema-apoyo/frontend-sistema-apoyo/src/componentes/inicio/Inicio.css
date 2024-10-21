@@ -16,92 +16,105 @@ html, body {
     width: 100vw; 
     min-height: 100vh;
     background-color: #bfeede;
-    padding-top: 400px; /* Añadir espacio en la parte superior para la barra de navegación */
+    padding-top: 700px; /* Añadir espacio en la parte superior para la barra de navegación */
 }
 
 .header {
     position: fixed; /* Mantiene la barra en la parte superior */
     top: 0; /* Se asegura de que esté en la parte superior */
-    left: 0; /* Se asegura de que esté alineada a la izquierda */
+    left: 0pxs; /* Se asegura de que esté alineada a la izquierda */
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Espaciado uniforme */
     align-items: center;
     width: 100%; /* Ancho completo */
     height: 400px; /* Ajusta la altura de la barra de navegación */
     background-color: #5f9ea0;
-    padding: 0 20px; /* Elimina el padding superior e inferior para igualar con la altura */
+    padding: 0; /* Elimina el padding superior e inferior para igualar con la altura */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 150px 150px; /* Ajusta las esquinas */
 }
 
 .logo-img {
-    width: 300px; /* Ajusta el ancho */
-    height: 350px; /* Ajusta el alto si es necesario */
-    margin-right: 1000px; /* Añadir espacio a la derecha del logo */
-}s
+    width: 600px; /* Ajusta el ancho */
+    height: 400px; /* Ajusta el alto si es necesario */
+    margin-right: 100px; /* Ajusta este margen */
+}
+
+
 
 
 .left-container {
     display: flex;
     align-items: center;
     justify-content: flex-start; /* Alineación a la izquierda */
-    flex-grow: 1; /* Ocupa todo el espacio disponible a la izquierda */
+    flex-grow: 0; /* Ocupa todo el espacio disponible a la izquierda */
 }
 
 .navigation ul {
     list-style: none;
     display: flex;
-    gap: 250px; /* Espacio entre los elementos de navegación */
     margin: 0;
+    gap: 750px; /* Espacio entre los elementos de navegación */
     padding: 0; /* Eliminar padding y márgenes por defecto */
+    justify-content: flex-end; /* Cambiar a 'flex-start' para alinearlos a la izquierda o 'flex-end' para la derecha */
+}
+
+.navigation li {
+    margin-right: 290px; /* Espacio entre los elementos de navegación */
 }
 
 .navigation a {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    font-size: 4.0em; /* Aumenta el tamaño de la letra */
-    margin-left: 0sem; /* Añadir margen a la izquierda para separar de la barra */
+    font-size: 5.0em; /* Aumenta el tamaño de la letra */
+    margin-right: 300spx; /* Añadir margen a la izquierda para separar de la barra */
 }
 
 .auth-buttons {
-    display: flex;
-    gap: -1000px; /* Espacio entre los botones */
-    margin-left: autos; /* Eliminar margen izquierdo para mover los botones a la izquierda */
-    justify-content: flex-start; /* Asegura que los botones estén alineados a la izquierda */
+    display: flex;         /* Utiliza Flexbox para la alineación */
+    gap: 20px;               /* Sin separación entre los botones */
+    justify-content: flex-start; /* Alineación a la izquierda */
+    padding: 0;          /* Asegúrate de que no haya padding en el contenedor */
+    margin-left: 10px; /* Añadir margen izquierdo para separar de la navegación */
 }
 
-.auth-buttons button { /* Cambiar a 'button' para mayor accesibilidad */
-    height: 100%; /* Asegura que el botón tenga la misma altura que la barra */
-    padding: 0 40px; /* Ajusta el padding lateral */
-    background-color: #e88670;
-    color: white;
-    border-radius: 5px;
-    border: none; /* Remover borde */
-    font-size: 5.2em; /* Aumentar tamaño de letra de botones */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.auth-buttons .login-button,
+.auth-buttons .register-button {
+    height: 100%;        /* Asegura que ambos botones tengan la misma altura */
+    padding: 20px 20px; /* Ajusta el padding según sea necesario */
+    background-color: #e88670; /* Color de fondo de los botones */
+    color: white;       /* Color del texto */
+    border-radius: 100px; /* Esquinas redondeadas */
+    border: none;       /* Sin borde */
+    font-size: 4.0em;   /* Tamaño de letra */
+    cursor: pointer;    /* Cursor de puntero al pasar el mouse */
+    text-decoration: none; /* Sin subrayado en los enlaces */
+    margin: 0 5px;         /* Sin margen para evitar separación */
+    transition: background-color 0.3s ease; /* Efecto de transición */
 }
 
-.auth-buttons button:hover {
-    background-color: #d75c47;
+.auth-buttons .login-button:hover,
+.auth-buttons .register-button:hover {
+    background-color: #d75c47; /* Cambia el color al pasar el mouse */
 }
+
 
 .search-container {
-    margin: 100px 0; /* Ajustar el margen superior para evitar la barra de navegación */
+    margin: 600px 0; /* Ajustar el margen superior para evitar la barra de navegación */
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 50px;
     width: 100%;
 }
 
 .search-input {
     padding: 25px; /* Aumentar padding */
     width: 1500px;
-    border: 6px solid #5f9ea0;
-    border-radius: 150px;
-    font-size: 3.2em; /* Aumentar tamaño de letra del input */
+    border: 10px solid #5f9ea0;
+    border-radius: 60px;
+    font-size: 4.2em; /* Aumentar tamaño de letra del input */
 }
 
 
@@ -111,12 +124,25 @@ html, body {
 }
 
 .intro {
-    font-size: 2.5em; /* Aumentar tamaño del texto de introducción */
+    font-size: 4.5em; /* Aumentar tamaño del texto de introducción */
     max-width: 1500px;
     text-align: center;
     color: #333;
-    margin-bottom: 30px; /* Ajuste del margen inferior */
+    margin-right: 100pxs;
+    margin-bottom: 200px; /* Ajuste del margen inferior */
 }
+
+.intro-top {
+    font-size: 5.5em; /* Aumentar tamaño de texto */
+    max-width: 1500px; /* Ancho máximo */
+    text-align: center; /* Centrar el texto */
+    color: #333; /* Color del texto */
+    margin-bottom: -500px; /* Espacio inferior */
+    padding: 20px; /* Espacio interior */
+    margin-right: 100px;
+    
+}
+
 
 @media (max-width: 768px) {
     .logo-img {

@@ -18,9 +18,14 @@ export const Inicio = () => {
                 </nav>
                 <div className="auth-buttons">
                 <Link to="/login" className="login-button">Login</Link> 
-                    <Link to="/registrarse" className="register-button">Registrate</Link> 
+                <Link to="/registrarse" className="register-button">Registrate</Link> 
                 </div>
             </header>
+           
+            <section className="intro-top">
+                <h1>Aprende Inglés Gratis</h1>
+                <p>Aquí encontrarás todos los contenidos necesarios para aprender la lengua inglesa a tu ritmo.</p>
+            </section>
             <div className="search-container">
                 <input type="text" placeholder="Buscar..." className="search-input" />
                 <button className="search-button">Buscar</button>
@@ -28,6 +33,7 @@ export const Inicio = () => {
             <section className="intro">
                 <p>Estos son nuestros cursos de inglés listos para que empieces a aprender.</p>
             </section>
+
         </div>
     );
 };

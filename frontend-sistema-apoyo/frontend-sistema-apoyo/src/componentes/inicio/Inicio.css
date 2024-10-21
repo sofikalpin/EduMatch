@@ -1,0 +1,164 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; 
+    width: 100%;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+}
+
+.inicio-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    width: 100vw; 
+    min-height: 100vh;
+    background-color: #bfeede;
+    padding-top: 400px; /* Añadir espacio en la parte superior para la barra de navegación */
+}
+
+.header {
+    position: fixed; /* Mantiene la barra en la parte superior */
+    top: 0; /* Se asegura de que esté en la parte superior */
+    left: 0; /* Se asegura de que esté alineada a la izquierda */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Ancho completo */
+    height: 400px; /* Ajusta la altura de la barra de navegación */
+    background-color: #5f9ea0;
+    padding: 0 20px; /* Elimina el padding superior e inferior para igualar con la altura */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 150px 150px; /* Ajusta las esquinas */
+}
+
+.logo-img {
+    width: 300px; /* Ajusta el ancho */
+    height: 350px; /* Ajusta el alto si es necesario */
+    margin-right: 1000px; /* Añadir espacio a la derecha del logo */
+}s
+
+
+.left-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Alineación a la izquierda */
+    flex-grow: 1; /* Ocupa todo el espacio disponible a la izquierda */
+}
+
+.navigation ul {
+    list-style: none;
+    display: flex;
+    gap: 250px; /* Espacio entre los elementos de navegación */
+    margin: 0;
+    padding: 0; /* Eliminar padding y márgenes por defecto */
+}
+
+.navigation a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 4.0em; /* Aumenta el tamaño de la letra */
+    margin-left: 0sem; /* Añadir margen a la izquierda para separar de la barra */
+}
+
+.auth-buttons {
+    display: flex;
+    gap: -1000px; /* Espacio entre los botones */
+    margin-left: autos; /* Eliminar margen izquierdo para mover los botones a la izquierda */
+    justify-content: flex-start; /* Asegura que los botones estén alineados a la izquierda */
+}
+
+.auth-buttons button { /* Cambiar a 'button' para mayor accesibilidad */
+    height: 100%; /* Asegura que el botón tenga la misma altura que la barra */
+    padding: 0 40px; /* Ajusta el padding lateral */
+    background-color: #e88670;
+    color: white;
+    border-radius: 5px;
+    border: none; /* Remover borde */
+    font-size: 5.2em; /* Aumentar tamaño de letra de botones */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.auth-buttons button:hover {
+    background-color: #d75c47;
+}
+
+.search-container {
+    margin: 100px 0; /* Ajustar el margen superior para evitar la barra de navegación */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.search-input {
+    padding: 25px; /* Aumentar padding */
+    width: 1500px;
+    border: 6px solid #5f9ea0;
+    border-radius: 150px;
+    font-size: 3.2em; /* Aumentar tamaño de letra del input */
+}
+
+
+
+.search-button:hover {
+    background-color: #d75c47;
+}
+
+.intro {
+    font-size: 2.5em; /* Aumentar tamaño del texto de introducción */
+    max-width: 1500px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px; /* Ajuste del margen inferior */
+}
+
+@media (max-width: 768px) {
+    .logo-img {
+        width: 30vw; /* Ajuste para pantallas pequeñas */
+    }
+
+    .search-input {
+        width: 150%; /* Aumenta el tamaño del input en pantallas pequeñas */
+    }
+
+    .auth-buttons button {
+        padding: 10px 20px; /* Ajusta el padding para pantallas pequeñas */
+        font-size: 1em; /* Ajustar tamaño de letra */
+    }
+
+    .intro {
+        font-size: 4vw; /* Ajustar el tamaño del texto en pantallas pequeñas */
+    }
+}
+
+.auth-buttons a {
+    margin-left: 400px;
+    padding: 40px 100px;
+    background-color: rgb(232, 134, 112);
+    color: white;
+    border-radius: 60px;
+    text-decoration: none;
+    font-size: 3.0em;
+}
+
+.search-button {
+    padding: 40px 90px;
+    background-color: rgb(232, 134, 112);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    margin-left: 0px;
+    font-size: 4.0em;
+    cursor: pointer;
+}
+
+.navigation {
+    margin-left: 0; /* Alineación a la izquierda sin márgenes adicionales */
+}
+

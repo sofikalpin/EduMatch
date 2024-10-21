@@ -24,22 +24,30 @@ html, body {
     top: 0; /* Se asegura de que esté en la parte superior */
     left: 0pxs; /* Se asegura de que esté alineada a la izquierda */
     display: flex;
-    justify-content: space-between; /* Espaciado uniforme */
+    justify-content:space-between; /* Espaciado uniforme */
     align-items: center;
     width: 100%; /* Ancho completo */
     height: 400px; /* Ajusta la altura de la barra de navegación */
     background-color: #5f9ea0;
-    padding: 0; /* Elimina el padding superior e inferior para igualar con la altura */
+    padding: 0 50px; /* Elimina el padding superior e inferior para igualar con la altura */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 150px 150px; /* Ajusta las esquinas */
+    gap:0px; /* Ajusta este valor según el espacio deseado */  
+}
+
+.logo-img {
+    width: 500px; /* Ajusta el ancho */
+    height: 300px; /* Ajusta el alto si es necesario */
+    margin-left: 20px; /* Ajusta este margen */
 }
 
 .logo-img {
     width: 600px; /* Ajusta el ancho */
-    height: 400px; /* Ajusta el alto si es necesario */
-    margin-right: 100px; /* Ajusta este margen */
+    height: 450px; /* Ajusta el alto si es necesario */
+    margin-right: 20px; /* Ajusta este margen */
+    margin-left: 50px ;
+    margin-top: 10px;
 }
-
 
 
 
@@ -47,36 +55,49 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: flex-start; /* Alineación a la izquierda */
-    flex-grow: 0; /* Ocupa todo el espacio disponible a la izquierda */
+    flex-grow: 0s; /* Ocupa todo el espacio disponible a la izquierda */
+}
+
+.navigation {
+    display: flex;
+    gap: 200px; /* Espacio entre los elementos de navegación */
+    margin-left: 150px; /* Alinea cerca del logo */
+    flex-grow: 1; /* Ocupa el espacio disponible a la izquierda */
+    justify-content: flex-start; /* Alinea elementos a la izquierda */
 }
 
 .navigation ul {
     list-style: none;
     display: flex;
     margin: 0;
-    gap: 750px; /* Espacio entre los elementos de navegación */
+    gap: 150px; /* Espacio entre los elementos de navegación */
     padding: 0; /* Eliminar padding y márgenes por defecto */
-    justify-content: flex-end; /* Cambiar a 'flex-start' para alinearlos a la izquierda o 'flex-end' para la derecha */
 }
 
 .navigation li {
-    margin-right: 290px; /* Espacio entre los elementos de navegación */
+    margin: 0px; /* Espacio entre los elementos de navegación */
 }
+
+.navigation li:last-child {  
+    margin-right:20px; /* Sin margen en el último elemento */  
+   }  
 
 .navigation a {
     color: white;
     text-decoration: none;
     font-weight: bold;
     font-size: 5.0em; /* Aumenta el tamaño de la letra */
-    margin-right: 300spx; /* Añadir margen a la izquierda para separar de la barra */
+    margin-right: 0px; /* Añadir margen a la izquierda para separar de la barra */
+   
 }
+
 
 .auth-buttons {
     display: flex;         /* Utiliza Flexbox para la alineación */
     gap: 20px;               /* Sin separación entre los botones */
-    justify-content: flex-start; /* Alineación a la izquierda */
+    justify-content: flex-end; /* Alineación a la derecha*/
     padding: 0;          /* Asegúrate de que no haya padding en el contenedor */
-    margin-left: 10px; /* Añadir margen izquierdo para separar de la navegación */
+    margin-right: 20px; /* Añadir margen izquierdo para separar de la navegación */
 }
 
 .auth-buttons .login-button,
@@ -184,7 +205,5 @@ html, body {
     cursor: pointer;
 }
 
-.navigation {
-    margin-left: 0; /* Alineación a la izquierda sin márgenes adicionales */
-}
 
+ 

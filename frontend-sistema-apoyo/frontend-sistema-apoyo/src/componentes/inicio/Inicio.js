@@ -1,6 +1,6 @@
 import React from 'react';
 import './Inicio.css'; 
-import logo from '../../logo/LogoFinal.png';
+import logo from '../../logo/LogoInicio.png';
 import { Link } from 'react-router-dom'; 
 import { Login } from './../login/Login';
 

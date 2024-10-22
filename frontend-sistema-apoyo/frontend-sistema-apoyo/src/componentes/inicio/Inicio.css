@@ -1,0 +1,209 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; 
+    width: 100%;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+}
+
+.inicio-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    width: 100vw; 
+    min-height: 100vh;
+    background-color: #bfeede;
+    padding-top: 700px; /* Añadir espacio en la parte superior para la barra de navegación */
+}
+
+.header {
+    position: fixed; /* Mantiene la barra en la parte superior */
+    top: 0; /* Se asegura de que esté en la parte superior */
+    left: 0pxs; /* Se asegura de que esté alineada a la izquierda */
+    display: flex;
+    justify-content:space-between; /* Espaciado uniforme */
+    align-items: center;
+    width: 100%; /* Ancho completo */
+    height: 400px; /* Ajusta la altura de la barra de navegación */
+    background-color: #5f9ea0;
+    padding: 0 50px; /* Elimina el padding superior e inferior para igualar con la altura */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 150px 150px; /* Ajusta las esquinas */
+    gap:0px; /* Ajusta este valor según el espacio deseado */  
+}
+
+.logo-img {
+    width: 500px; /* Ajusta el ancho */
+    height: 300px; /* Ajusta el alto si es necesario */
+    margin-left: 20px; /* Ajusta este margen */
+}
+
+.logo-img {
+    width: 600px; /* Ajusta el ancho */
+    height: 450px; /* Ajusta el alto si es necesario */
+    margin-right: 20px; /* Ajusta este margen */
+    margin-left: 50px ;
+    margin-top: 10px;
+}
+
+
+
+.left-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Alineación a la izquierda */
+    flex-grow: 0s; /* Ocupa todo el espacio disponible a la izquierda */
+}
+
+.navigation {
+    display: flex;
+    gap: 200px; /* Espacio entre los elementos de navegación */
+    margin-left: 150px; /* Alinea cerca del logo */
+    flex-grow: 1; /* Ocupa el espacio disponible a la izquierda */
+    justify-content: flex-start; /* Alinea elementos a la izquierda */
+}
+
+.navigation ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    gap: 150px; /* Espacio entre los elementos de navegación */
+    padding: 0; /* Eliminar padding y márgenes por defecto */
+}
+
+.navigation li {
+    margin: 0px; /* Espacio entre los elementos de navegación */
+}
+
+.navigation li:last-child {  
+    margin-right:20px; /* Sin margen en el último elemento */  
+   }  
+
+.navigation a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 5.0em; /* Aumenta el tamaño de la letra */
+    margin-right: 0px; /* Añadir margen a la izquierda para separar de la barra */
+   
+}
+
+
+.auth-buttons {
+    display: flex;         /* Utiliza Flexbox para la alineación */
+    gap: 20px;               /* Sin separación entre los botones */
+    justify-content: flex-end; /* Alineación a la derecha*/
+    padding: 0;          /* Asegúrate de que no haya padding en el contenedor */
+    margin-right: 20px; /* Añadir margen izquierdo para separar de la navegación */
+}
+
+.auth-buttons .login-button,
+.auth-buttons .register-button {
+    height: 100%;        /* Asegura que ambos botones tengan la misma altura */
+    padding: 20px 20px; /* Ajusta el padding según sea necesario */
+    background-color: #e88670; /* Color de fondo de los botones */
+    color: white;       /* Color del texto */
+    border-radius: 100px; /* Esquinas redondeadas */
+    border: none;       /* Sin borde */
+    font-size: 4.0em;   /* Tamaño de letra */
+    cursor: pointer;    /* Cursor de puntero al pasar el mouse */
+    text-decoration: none; /* Sin subrayado en los enlaces */
+    margin: 0 5px;         /* Sin margen para evitar separación */
+    transition: background-color 0.3s ease; /* Efecto de transición */
+}
+
+.auth-buttons .login-button:hover,
+.auth-buttons .register-button:hover {
+    background-color: #d75c47; /* Cambia el color al pasar el mouse */
+}
+
+
+.search-container {
+    margin: 600px 0; /* Ajustar el margen superior para evitar la barra de navegación */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+}
+
+.search-input {
+    padding: 25px; /* Aumentar padding */
+    width: 1500px;
+    border: 10px solid #5f9ea0;
+    border-radius: 60px;
+    font-size: 4.2em; /* Aumentar tamaño de letra del input */
+}
+
+
+
+.search-button:hover {
+    background-color: #d75c47;
+}
+
+.intro {
+    font-size: 4.5em; /* Aumentar tamaño del texto de introducción */
+    max-width: 1500px;
+    text-align: center;
+    color: #333;
+    margin-right: 100pxs;
+    margin-bottom: 200px; /* Ajuste del margen inferior */
+}
+
+.intro-top {
+    font-size: 5.5em; /* Aumentar tamaño de texto */
+    max-width: 1500px; /* Ancho máximo */
+    text-align: center; /* Centrar el texto */
+    color: #333; /* Color del texto */
+    margin-bottom: -500px; /* Espacio inferior */
+    padding: 20px; /* Espacio interior */
+    margin-right: 100px;
+    
+}
+
+
+@media (max-width: 768px) {
+    .logo-img {
+        width: 30vw; /* Ajuste para pantallas pequeñas */
+    }
+
+    .search-input {
+        width: 150%; /* Aumenta el tamaño del input en pantallas pequeñas */
+    }
+
+    .auth-buttons button {
+        padding: 10px 20px; /* Ajusta el padding para pantallas pequeñas */
+        font-size: 1em; /* Ajustar tamaño de letra */
+    }
+
+    .intro {
+        font-size: 4vw; /* Ajustar el tamaño del texto en pantallas pequeñas */
+    }
+}
+
+.auth-buttons a {
+    margin-left: 400px;
+    padding: 40px 100px;
+    background-color: rgb(232, 134, 112);
+    color: white;
+    border-radius: 60px;
+    text-decoration: none;
+    font-size: 3.0em;
+}
+
+.search-button {
+    padding: 40px 90px;
+    background-color: rgb(232, 134, 112);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    margin-left: 0px;
+    font-size: 4.0em;
+    cursor: pointer;
+}
+
+
+ 

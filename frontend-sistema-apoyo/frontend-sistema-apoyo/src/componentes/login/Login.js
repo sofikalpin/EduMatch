@@ -26,9 +26,9 @@ export const Login = () => {
                 <br></br>
                 <input value={clave} onChange= {(e) => setClave(e.target.value)} className="login-input" type="password" id="clave" name="clave"/>
                 <br></br>
-                <Link className="link-login" to="listarpersonas">Ingresar</Link>
+                <Link className="link-login" to="ingresar">Ingresar</Link>
                 <br></br>
-                <Link className="link-login" to="registrarse">¿No tienes cuenta? Registrate aquí</Link>
+                <Link className="link-login" to="/registrarse">¿No tienes cuenta? Registrate aquí</Link>
                 
             </form>           
             

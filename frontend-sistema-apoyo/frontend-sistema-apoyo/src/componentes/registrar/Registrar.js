@@ -14,13 +14,7 @@ export const Registrar = () => {
         e.preventDefault();
         
         // Aquí puedes agregar la lógica para manejar el registro
-        console.log({
-            usuario,
-            nombre,
-            apellido,
-            email,
-            clave,
-        });
+        console.log('Registro:', {usuario, nombre, apellido, email, clave});
     }
 
     return (

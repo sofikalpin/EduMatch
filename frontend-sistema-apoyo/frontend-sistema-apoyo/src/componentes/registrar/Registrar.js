@@ -16,10 +16,10 @@ export const Registrar = () => {
         // Aquí puedes agregar la lógica para manejar el registro
         console.log({
             usuario,
-            email,
-            clave,
             nombre,
             apellido,
+            email,
+            clave,
         });
     }
 
@@ -38,19 +38,17 @@ export const Registrar = () => {
                 <label htmlFor="usuario" className="titulo-form">Nombre de Usuario</label>
                 <input value={usuario} className="login-input" onChange={(e) => setUsuario(e.target.value)} type="text" id="usuario" name="usuario" />
 
-                <label htmlFor="email" className="titulo-form">Correo electrónico</label>
-                <input value={email} onChange={(e) => setEmail(e.target.value)} className="login-input" type="email" id="email" name="email" />
-
-                <label htmlFor="clave" className="titulo-form">Contraseña</label>
-                <input value={clave} onChange={(e) => setClave(e.target.value)} className="login-input" type="password" id="clave" name="clave" />
-
                 <label htmlFor="nombre" className="titulo-form">Nombre</label>
                 <input value={nombre} onChange={(e) => setNombre(e.target.value)} type="text" id="nombre" name="nombre" className="login-input" />
 
                 <label htmlFor="apellido" className="titulo-form">Apellido</label>
                 <input value={apellido} onChange={(e) => setApellido(e.target.value)} type="text" id="apellido" name="apellido" className="login-input" />
-
                 
+                <label htmlFor="email" className="titulo-form">Correo electrónico</label>
+                <input value={email} onChange={(e) => setEmail(e.target.value)} className="login-input" type="email" id="email" name="email" />
+
+                <label htmlFor="clave" className="titulo-form">Contraseña</label>
+                <input value={clave} onChange={(e) => setClave(e.target.value)} className="login-input" type="password" id="clave" name="clave" />
 
                 <button type="submit" className="link-registrar">Crear cuenta</button>
             </form>

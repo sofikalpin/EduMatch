@@ -1,0 +1,185 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Usuario\\Desktop\\APIEDUMATCH\\Desarrollo-de-Software-SofiKalpin\\APISistemaApoyo\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|c:\\users\\usuario\\desktop\\apiedumatch\\desarrollo-de-software-sofikalpin\\apisistemaapoyo\\sistemaapoyo.bll\\servicios\\examenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|solutionrelative:sistemaapoyo.bll\\servicios\\examenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9460B94E-E91D-42F2-9955-16CC6B649E6F}|SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj|c:\\users\\usuario\\desktop\\apiedumatch\\desarrollo-de-software-sofikalpin\\apisistemaapoyo\\sistemaapoyo.utility\\automapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9460B94E-E91D-42F2-9955-16CC6B649E6F}|SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj|solutionrelative:sistemaapoyo.utility\\automapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|c:\\users\\usuario\\desktop\\apiedumatch\\desarrollo-de-software-sofikalpin\\apisistemaapoyo\\sistemaapoyo.bll\\servicios\\profesorexamenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|solutionrelative:sistemaapoyo.bll\\servicios\\profesorexamenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE01D784-12AF-4AC9-83F8-054CE9B1B833}|SistemaApoyo.Model\\SistemaApoyo.Model.csproj|c:\\users\\usuario\\desktop\\apiedumatch\\desarrollo-de-software-sofikalpin\\apisistemaapoyo\\sistemaapoyo.model\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE01D784-12AF-4AC9-83F8-054CE9B1B833}|SistemaApoyo.Model\\SistemaApoyo.Model.csproj|solutionrelative:sistemaapoyo.model\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE01D784-12AF-4AC9-83F8-054CE9B1B833}|SistemaApoyo.Model\\SistemaApoyo.Model.csproj|c:\\users\\usuario\\desktop\\apiedumatch\\desarrollo-de-software-sofikalpin\\apisistemaapoyo\\sistemaapoyo.model\\models\\nivel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE01D784-12AF-4AC9-83F8-054CE9B1B833}|SistemaApoyo.Model\\SistemaApoyo.Model.csproj|solutionrelative:sistemaapoyo.model\\models\\nivel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE01D784-12AF-4AC9-83F8-054CE9B1B833}|SistemaApoyo.Model\\SistemaApoyo.Model.csproj|c:\\users\\usuario\\desktop\\apiedumatch\\desarrollo-de-software-sofikalpin\\apisistemaapoyo\\sistemaapoyo.model\\models\\examen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE01D784-12AF-4AC9-83F8-054CE9B1B833}|SistemaApoyo.Model\\SistemaApoyo.Model.csproj|solutionrelative:sistemaapoyo.model\\models\\examen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9C332F1-56F5-4D50-B82E-9AFDF3C33349}|SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj|c:\\users\\usuario\\desktop\\apiedumatch\\desarrollo-de-software-sofikalpin\\apisistemaapoyo\\sistemaapoyo.dal\\dbcontext\\s31grupo2aprendizajeyapoyodeinglescontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9C332F1-56F5-4D50-B82E-9AFDF3C33349}|SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj|solutionrelative:sistemaapoyo.dal\\dbcontext\\s31grupo2aprendizajeyapoyodeinglescontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9C332F1-56F5-4D50-B82E-9AFDF3C33349}|SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj|c:\\users\\usuario\\desktop\\apiedumatch\\desarrollo-de-software-sofikalpin\\apisistemaapoyo\\sistemaapoyo.dal\\repositorios\\contrato\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9C332F1-56F5-4D50-B82E-9AFDF3C33349}|SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj|solutionrelative:sistemaapoyo.dal\\repositorios\\contrato\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9C332F1-56F5-4D50-B82E-9AFDF3C33349}|SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj|c:\\users\\usuario\\desktop\\apiedumatch\\desarrollo-de-software-sofikalpin\\apisistemaapoyo\\sistemaapoyo.dal\\repositorios\\contrato\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9C332F1-56F5-4D50-B82E-9AFDF3C33349}|SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj|solutionrelative:sistemaapoyo.dal\\repositorios\\contrato\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 13,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AutoMapperProfile.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APIEDUMATCH\\Desarrollo-de-Software-SofiKalpin\\APISistemaApoyo\\SistemaApoyo.Utility\\AutoMapperProfile.cs",
+              "RelativeDocumentMoniker": "SistemaApoyo.Utility\\AutoMapperProfile.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\APIEDUMATCH\\Desarrollo-de-Software-SofiKalpin\\APISistemaApoyo\\SistemaApoyo.Utility\\AutoMapperProfile.cs",
+              "RelativeToolTip": "SistemaApoyo.Utility\\AutoMapperProfile.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAawCkAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-21T23:24:56.381Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProfesorExamenService.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APIEDUMATCH\\Desarrollo-de-Software-SofiKalpin\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\ProfesorExamenService.cs",
+              "RelativeDocumentMoniker": "SistemaApoyo.BLL\\Servicios\\ProfesorExamenService.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\APIEDUMATCH\\Desarrollo-de-Software-SofiKalpin\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\ProfesorExamenService.cs",
+              "RelativeToolTip": "SistemaApoyo.BLL\\Servicios\\ProfesorExamenService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAawBgAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-21T23:24:51.482Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APIEDUMATCH\\Desarrollo-de-Software-SofiKalpin\\APISistemaApoyo\\SistemaApoyo.Model\\Models\\Usuario.cs",
+              "RelativeDocumentMoniker": "SistemaApoyo.Model\\Models\\Usuario.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\APIEDUMATCH\\Desarrollo-de-Software-SofiKalpin\\APISistemaApoyo\\SistemaApoyo.Model\\Models\\Usuario.cs*",
+              "RelativeToolTip": "SistemaApoyo.Model\\Models\\Usuario.cs*",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAAAB8AAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-21T23:24:33.621Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Nivel.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APIEDUMATCH\\Desarrollo-de-Software-SofiKalpin\\APISistemaApoyo\\SistemaApoyo.Model\\Models\\Nivel.cs",
+              "RelativeDocumentMoniker": "SistemaApoyo.Model\\Models\\Nivel.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\APIEDUMATCH\\Desarrollo-de-Software-SofiKalpin\\APISistemaApoyo\\SistemaApoyo.Model\\Models\\Nivel.cs*",
+              "RelativeToolTip": "SistemaApoyo.Model\\Models\\Nivel.cs*",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAA8AAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-21T23:24:19.193Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "S31Grupo2AprendizajeYApoyoDeInglesContext.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APIEDUMATCH\\Desarrollo-de-Software-SofiKalpin\\APISistemaApoyo\\SistemaApoyo.DAL\\DBContext\\S31Grupo2AprendizajeYApoyoDeInglesContext.cs",
+              "RelativeDocumentMoniker": "SistemaApoyo.DAL\\DBContext\\S31Grupo2AprendizajeYApoyoDeInglesContext.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\APIEDUMATCH\\Desarrollo-de-Software-SofiKalpin\\APISistemaApoyo\\SistemaApoyo.DAL\\DBContext\\S31Grupo2AprendizajeYApoyoDeInglesContext.cs*",
+              "RelativeToolTip": "SistemaApoyo.DAL\\DBContext\\S31Grupo2AprendizajeYApoyoDeInglesContext.cs*",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAuwJoAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-21T23:21:50.451Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Examen.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APIEDUMATCH\\Desarrollo-de-Software-SofiKalpin\\APISistemaApoyo\\SistemaApoyo.Model\\Models\\Examen.cs",
+              "RelativeDocumentMoniker": "SistemaApoyo.Model\\Models\\Examen.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\APIEDUMATCH\\Desarrollo-de-Software-SofiKalpin\\APISistemaApoyo\\SistemaApoyo.Model\\Models\\Examen.cs*",
+              "RelativeToolTip": "SistemaApoyo.Model\\Models\\Examen.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-21T23:24:11.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IGenericRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APIEDUMATCH\\Desarrollo-de-Software-SofiKalpin\\APISistemaApoyo\\SistemaApoyo.DAL\\Repositorios\\Contrato\\IGenericRepository.cs",
+              "RelativeDocumentMoniker": "SistemaApoyo.DAL\\Repositorios\\Contrato\\IGenericRepository.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\APIEDUMATCH\\Desarrollo-de-Software-SofiKalpin\\APISistemaApoyo\\SistemaApoyo.DAL\\Repositorios\\Contrato\\IGenericRepository.cs",
+              "RelativeToolTip": "SistemaApoyo.DAL\\Repositorios\\Contrato\\IGenericRepository.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAawBMAAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-21T23:21:25.884Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ExamenService.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APIEDUMATCH\\Desarrollo-de-Software-SofiKalpin\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\ExamenService.cs",
+              "RelativeDocumentMoniker": "SistemaApoyo.BLL\\Servicios\\ExamenService.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\APIEDUMATCH\\Desarrollo-de-Software-SofiKalpin\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\ExamenService.cs*",
+              "RelativeToolTip": "SistemaApoyo.BLL\\Servicios\\ExamenService.cs*",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAEwA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-21T23:21:18.428Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GenericRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\APIEDUMATCH\\Desarrollo-de-Software-SofiKalpin\\APISistemaApoyo\\SistemaApoyo.DAL\\Repositorios\\Contrato\\GenericRepository.cs",
+              "RelativeDocumentMoniker": "SistemaApoyo.DAL\\Repositorios\\Contrato\\GenericRepository.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\APIEDUMATCH\\Desarrollo-de-Software-SofiKalpin\\APISistemaApoyo\\SistemaApoyo.DAL\\Repositorios\\Contrato\\GenericRepository.cs*",
+              "RelativeToolTip": "SistemaApoyo.DAL\\Repositorios\\Contrato\\GenericRepository.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-21T23:21:11.518Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

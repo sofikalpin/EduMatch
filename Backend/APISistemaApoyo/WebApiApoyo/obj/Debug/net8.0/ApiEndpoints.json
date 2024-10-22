@@ -1,0 +1,887 @@
+[
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ActividadController",
+    "Method": "ListaActividadporId",
+    "RelativePath": "API/Actividad/Actividad ID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ActividadController",
+    "Method": "ListaActividades",
+    "RelativePath": "API/Actividad/Listar Actividad",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ActividadController",
+    "Method": "ListaActividadPorNombre",
+    "RelativePath": "API/Actividad/Nombre Completo Actividad",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nombre",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SistemaApoyo.API.Controllers.ArticuloController",
+    "Method": "ListaArticuloId",
+    "RelativePath": "API/Articulo/Articulo ID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SistemaApoyo.API.Controllers.ArticuloController",
+    "Method": "ListaArticulo",
+    "RelativePath": "API/Articulo/Listar Articulo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SistemaApoyo.API.Controllers.ArticuloController",
+    "Method": "ListaArticuloPorNombre",
+    "RelativePath": "API/Articulo/Titulo Articulo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "titulo",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ChatController",
+    "Method": "ObtenerChatPorId",
+    "RelativePath": "API/Chat/Chat por ID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "chatId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ChatController",
+    "Method": "ObtenerChatsPorUsuarioId",
+    "RelativePath": "API/Chat/Chat por UsuarioID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ChatController",
+    "Method": "CrearChat",
+    "RelativePath": "API/Chat/Crear Chat",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "chatDto",
+        "Type": "SistemaApoyo.DTO.ChatDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ConsultaController",
+    "Method": "ListaConsultaPorId",
+    "RelativePath": "API/Consulta/Consulta ID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ConsultaController",
+    "Method": "CrearConsulta",
+    "RelativePath": "API/Consulta/Crear Consulta",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "consultaDto",
+        "Type": "SistemaApoyo.DTO.ConsultaDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ConsultaController",
+    "Method": "EditarConsulta",
+    "RelativePath": "API/Consulta/Editar Consulta",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "consultaDto",
+        "Type": "SistemaApoyo.DTO.ConsultaDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ConsultaController",
+    "Method": "ListaConsultas",
+    "RelativePath": "API/Consulta/Listar Consultas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ConsultaController",
+    "Method": "ListaConsultaPorTitulo",
+    "RelativePath": "API/Consulta/Titulo Consulta",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "titulo",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ExamenController",
+    "Method": "ListaExamenPorId",
+    "RelativePath": "API/Examen/Examen ID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ExamenController",
+    "Method": "ListarExamenes",
+    "RelativePath": "API/Examen/Lista Examenes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ExamenController",
+    "Method": "ListaExamenPorTitulo",
+    "RelativePath": "API/Examen/Titulo Examen",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "titulo",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ForoController",
+    "Method": "CrearForo",
+    "RelativePath": "API/Foro/Crear Foro",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "foro",
+        "Type": "SistemaApoyo.DTO.ForoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ForoController",
+    "Method": "EditarForo",
+    "RelativePath": "API/Foro/Editar por ID",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "foro",
+        "Type": "SistemaApoyo.DTO.ForoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ForoController",
+    "Method": "ListaForoPorId",
+    "RelativePath": "API/Foro/Foro ID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ForoController",
+    "Method": "ListaForos",
+    "RelativePath": "API/Foro/Listar Foros",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ForoController",
+    "Method": "ListaConsultaPorNombre",
+    "RelativePath": "API/Foro/Nombre Foro",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nombre",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.MensajeController",
+    "Method": "EditarMensaje",
+    "RelativePath": "API/Mensaje/Editar Mensaje",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "mensajeDto",
+        "Type": "SistemaApoyo.DTO.MensajeDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.MensajeController",
+    "Method": "EnviarMensaje",
+    "RelativePath": "API/Mensaje/Enviar Mensaje",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mensajeDto",
+        "Type": "SistemaApoyo.DTO.MensajeDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.MensajeController",
+    "Method": "ObtenerMensajesPorChatId",
+    "RelativePath": "API/Mensaje/Mensaje por ChatID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "chatId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MenuController",
+    "Method": "Lista",
+    "RelativePath": "API/Menu/Lista Roles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUsuario",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.NivelController",
+    "Method": "GetNiveles",
+    "RelativePath": "API/Nivel/Listar Niveles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.NivelController",
+    "Method": "ListarNivelPorDescripcion",
+    "RelativePath": "API/Nivel/Nivel Descripcion",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "descripcion",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.NivelController",
+    "Method": "ListarNivelID",
+    "RelativePath": "API/Nivel/Nivel ID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfeExamenController",
+    "Method": "CrearExamen",
+    "RelativePath": "api/ProfeExamen/Crear Examen",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "examen",
+        "Type": "SistemaApoyo.DTO.ExamenDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfeExamenController",
+    "Method": "EditarActividad",
+    "RelativePath": "api/ProfeExamen/Editar por ID",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "examen",
+        "Type": "SistemaApoyo.DTO.ExamenDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfeExamenController",
+    "Method": "EliminarExamen",
+    "RelativePath": "api/ProfeExamen/Eliminar Examen",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfeExamenController",
+    "Method": "ListaExamenPorId",
+    "RelativePath": "api/ProfeExamen/Examen ID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfeExamenController",
+    "Method": "ListarExamenes",
+    "RelativePath": "api/ProfeExamen/Lista Examenes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfeExamenController",
+    "Method": "ListaExamenPorTitulo",
+    "RelativePath": "api/ProfeExamen/Titulo Examen",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "titulo",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorActividadController",
+    "Method": "ListaActividadPorId",
+    "RelativePath": "API/ProfesorActividad/Actividad ID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorActividadController",
+    "Method": "CrearActividad",
+    "RelativePath": "API/ProfesorActividad/Crear Actividad",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "actividad",
+        "Type": "SistemaApoyo.DTO.ActividadDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorActividadController",
+    "Method": "EditarActividad",
+    "RelativePath": "API/ProfesorActividad/Editar por ID",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "actividad",
+        "Type": "SistemaApoyo.DTO.ActividadDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorActividadController",
+    "Method": "EliminarActividad",
+    "RelativePath": "API/ProfesorActividad/Eliminar Actividad",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorActividadController",
+    "Method": "ListaActividades",
+    "RelativePath": "API/ProfesorActividad/Lista Actividades",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorActividadController",
+    "Method": "ListaActividadPorNombre",
+    "RelativePath": "API/ProfesorActividad/Nombre Completo Actividad",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nombre",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorArticuloController",
+    "Method": "ListaArticuloPorId",
+    "RelativePath": "API/ProfesorArticulo/Articulo ID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorArticuloController",
+    "Method": "CrearArticulo",
+    "RelativePath": "API/ProfesorArticulo/Crear Articulo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "articulo",
+        "Type": "SistemaApoyo.DTO.ArticuloDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorArticuloController",
+    "Method": "EditarArticulo",
+    "RelativePath": "API/ProfesorArticulo/Editar por ID",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "articulo",
+        "Type": "SistemaApoyo.DTO.ArticuloDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorArticuloController",
+    "Method": "Eliminar",
+    "RelativePath": "API/ProfesorArticulo/Eliminar Articulo",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorArticuloController",
+    "Method": "ListaActividades",
+    "RelativePath": "API/ProfesorArticulo/Lista Articulo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorArticuloController",
+    "Method": "ListaActividadPorNombre",
+    "RelativePath": "API/ProfesorArticulo/Titulo Articulo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "titulo",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.RespuestaController",
+    "Method": "CrearRespuesta",
+    "RelativePath": "API/Respuesta/Crear Respuesta",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "respuesta",
+        "Type": "SistemaApoyo.DTO.RespuestaDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.RespuestaController",
+    "Method": "EditarActividad",
+    "RelativePath": "API/Respuesta/Editar por ID",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "respuesta",
+        "Type": "SistemaApoyo.DTO.RespuestaDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.RespuestaController",
+    "Method": "EliminarRespuesta",
+    "RelativePath": "API/Respuesta/Eliminar Respuesta",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.RespuestaController",
+    "Method": "ListarRespuestas",
+    "RelativePath": "API/Respuesta/Lista Respuestas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.RespuestaController",
+    "Method": "ListaRespuestaPorId",
+    "RelativePath": "API/Respuesta/Respuesta ID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RolController",
+    "Method": "Lista",
+    "RelativePath": "API/Rol/Lista Roles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
+    "Method": "Editar",
+    "RelativePath": "API/Usuario/Editar Usuario",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuario",
+        "Type": "SistemaApoyo.DTO.UsuarioDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
+    "Method": "Guardar",
+    "RelativePath": "API/Usuario/Guardar Usuario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuario",
+        "Type": "SistemaApoyo.DTO.UsuarioDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
+    "Method": "IniciarSesion",
+    "RelativePath": "API/Usuario/IniciarSesion",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login",
+        "Type": "SistemaApoyo.DTO.LoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
+    "Method": "Lista",
+    "RelativePath": "API/Usuario/Lista Usuarios",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

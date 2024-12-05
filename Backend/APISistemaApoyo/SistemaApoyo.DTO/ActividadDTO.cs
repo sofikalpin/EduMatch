@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Formats.Asn1;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace SistemaApoyo.DTO
@@ -10,9 +13,9 @@ namespace SistemaApoyo.DTO
     {
         public int Idactividad { get; set; }
 
-        public string Nombre { get; set; } = null!;
+        public string Nombre { get; set; }
 
-        public string Descripcion { get; set; } = null!;
+        public string Descripcion { get; set; }
 
         public int? Idusuario { get; set; }
 

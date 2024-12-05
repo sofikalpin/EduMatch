@@ -47,3 +47,15 @@ C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistem
 C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\refint\SistemaApoyo.DTO.dll
 C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.pdb
 C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\ref\SistemaApoyo.DTO.dll
+C:\Users\Sofia\source\repos\EduMatch-main\Backend\APISistemaApoyo\SistemaApoyo.DTO\bin\Debug\net8.0\SistemaApoyo.DTO.deps.json
+C:\Users\Sofia\source\repos\EduMatch-main\Backend\APISistemaApoyo\SistemaApoyo.DTO\bin\Debug\net8.0\SistemaApoyo.DTO.dll
+C:\Users\Sofia\source\repos\EduMatch-main\Backend\APISistemaApoyo\SistemaApoyo.DTO\bin\Debug\net8.0\SistemaApoyo.DTO.pdb
+C:\Users\Sofia\source\repos\EduMatch-main\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.csproj.AssemblyReference.cache
+C:\Users\Sofia\source\repos\EduMatch-main\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sofia\source\repos\EduMatch-main\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.AssemblyInfoInputs.cache
+C:\Users\Sofia\source\repos\EduMatch-main\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.AssemblyInfo.cs
+C:\Users\Sofia\source\repos\EduMatch-main\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.csproj.CoreCompileInputs.cache
+C:\Users\Sofia\source\repos\EduMatch-main\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.dll
+C:\Users\Sofia\source\repos\EduMatch-main\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\refint\SistemaApoyo.DTO.dll
+C:\Users\Sofia\source\repos\EduMatch-main\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.pdb
+C:\Users\Sofia\source\repos\EduMatch-main\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\ref\SistemaApoyo.DTO.dll

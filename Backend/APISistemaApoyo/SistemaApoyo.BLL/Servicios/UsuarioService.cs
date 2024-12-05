@@ -10,6 +10,7 @@ using SistemaApoyo.DTO;
 using SistemaApoyo.Model.Models;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using BotCrypt;
 
 namespace SistemaApoyo.BLL.Servicios
 {
@@ -28,7 +29,6 @@ namespace SistemaApoyo.BLL.Servicios
         {
             try
             {
-                
                 
                 var usuarioCreado = await _usuarioRepositorio.Crear(_mapper.Map<Usuario>(modelo));
                 if (usuarioCreado.Idusuario == 0)
@@ -52,6 +52,9 @@ namespace SistemaApoyo.BLL.Servicios
                 var usuarioEncontrado = await _usuarioRepositorio.Obtener(u => u.Idusuario == usuarioModelo.Idusuario);
                 if (usuarioEncontrado == null)
                     throw new TaskCanceledException("El usuario no existe");
+
+                string Llave = "ContrasenasHasheadas101";
+                string ContrasenaNueva = Crypter.EncryptString(Llave, usuarioModelo.ContraseñaHash);
 
                 usuarioEncontrado.Nombrecompleto = usuarioModelo.Nombrecompleto;
                 usuarioEncontrado.Correo = usuarioModelo.Correo;
@@ -105,28 +108,59 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        public async Task<SesionDTO> ValidarCredenciales(string correo, string contrasenaHash)
+        public async Task<UsuarioDTO> ObtenerUsuarioPorCorreo(string correo)
         {
             try
             {
-                var usuarioQuery = await _usuarioRepositorio.Consultar(u =>
-                u.Correo == correo &&
-               u.ContraseñaHash == contrasenaHash);
+                var usuarioQuery = await _usuarioRepositorio.Consultar();
+                if (!string.IsNullOrEmpty(correo))
+                {
+                    usuarioQuery = usuarioQuery.Where(v => v.Correo == correo);
+                }
 
-                if (usuarioQuery.FirstOrDefault() == null)
-                    throw new TaskCanceledException("El usuario no existe");
-
-                Usuario devolverUsuario = usuarioQuery.Include(rol => rol.IdrolNavigation).First();
-
-                return _mapper.Map<SesionDTO>(devolverUsuario);
+                var usuario = await usuarioQuery.FirstOrDefaultAsync();  // Devuelve un solo usuario o null
+                return _mapper.Map<UsuarioDTO>(usuario);
             }
-            catch 
+            catch
             {
                 throw;
             }
         }
-        
 
-        
+
+        public async Task<SesionDTO> ValidarCredenciales(string correo, string contrasena)
+        {
+            string Llave = "ContrasenasHasheadas101";
+            // Buscar al usuario por su correo
+            var usuario = await ObtenerUsuarioPorCorreo(correo);
+
+            if (usuario != null)
+            {
+                // Verificar la contraseña en texto plano contra el hash almacenado
+                string ContrasenaHasheada = usuario.ContrasenaHash;
+                string ContrasenaOriginal = Crypter.DecryptString(Llave, ContrasenaHasheada);
+
+                if (ContrasenaOriginal == contrasena)
+                {
+                    // Credenciales correctas, devolver sesión
+                    return new SesionDTO
+                    {
+                        Correo = usuario.Correo,
+                        NombreCompleto = usuario.Nombrecompleto,
+                    };
+                }
+            }
+            // Si las credenciales no son correctas, retornar null
+            return null;
+        }
+
+        public string HashearContrasena(string contrasena)
+        {
+            string Texto = contrasena;
+            string Llave = "ContrasenasHasheadas101";
+            string ContrasenaHash = Crypter.EncryptString(Llave, Texto);
+            return ContrasenaHash;
+        }
+
     }
 }

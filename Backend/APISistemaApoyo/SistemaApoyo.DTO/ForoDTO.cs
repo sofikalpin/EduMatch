@@ -16,7 +16,7 @@ namespace SistemaApoyo.DTO
 
         public int Idconsulta { get; set; }
 
-        public DateOnly Fecha { get; set; }
+        public DateTime? Fecha { get; set; }
 
         public int Idusuario { get; set; }
 

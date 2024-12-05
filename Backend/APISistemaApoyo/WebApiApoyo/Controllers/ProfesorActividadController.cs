@@ -7,7 +7,6 @@ using SistemaApoyo.BLL.Servicios;
 
 namespace WebApiApoyo.Controllers
 {
-
     [Route("API/[controller]")]
     [ApiController]
 
@@ -128,8 +127,6 @@ namespace WebApiApoyo.Controllers
             }
             return Ok(rsp);
         }
-
-
 
         [HttpDelete]
         [Route ("Eliminar Actividad")]

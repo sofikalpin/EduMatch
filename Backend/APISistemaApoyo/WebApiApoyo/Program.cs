@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using SistemaApoyo.BLL.Validaciones;
 using SistemaApoyo.IOC;
 using SistemaApoyo.BLL.Hubs;
 
@@ -10,6 +13,22 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.InyectarDependencias(builder.Configuration);
+
+
+//Agregar Fluent Validation
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<ActividadValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<ArticuloValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<ChatValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<ConsultaValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<ExamenValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<ForoValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<LoginValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<MensajeValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<RespuestaValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<SesionValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<UsuarioValidator>();
+
 
 
 builder.Services.AddCors(options =>

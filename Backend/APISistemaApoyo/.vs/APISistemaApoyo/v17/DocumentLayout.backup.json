@@ -1,7 +1,40 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Sofia\\source\\repos\\EduMatch-main\\Backend\\APISistemaApoyo\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\Usuario\\Downloads\\EduMatch-main\\Backend\\APISistemaApoyo\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\downloads\\edumatch-main\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\profesorarticulocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\profesorarticulocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\downloads\\edumatch-main\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\profesoractividadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\profesoractividadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|c:\\users\\usuario\\downloads\\edumatch-main\\backend\\apisistemaapoyo\\sistemaapoyo.bll\\servicios\\profesoractividadservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|solutionrelative:sistemaapoyo.bll\\servicios\\profesoractividadservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\downloads\\edumatch-main\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\profesorexamencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\profesorexamencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|c:\\users\\usuario\\downloads\\edumatch-main\\backend\\apisistemaapoyo\\sistemaapoyo.bll\\servicios\\profesorexamenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|solutionrelative:sistemaapoyo.bll\\servicios\\profesorexamenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\downloads\\edumatch-main\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\examencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\examencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\downloads\\edumatch-main\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|c:\\users\\usuario\\downloads\\edumatch-main\\backend\\apisistemaapoyo\\sistemaapoyo.bll\\servicios\\examenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|solutionrelative:sistemaapoyo.bll\\servicios\\examenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +42,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 62,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -20,8 +57,108 @@
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProfesorArticuloController.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\EduMatch-main\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ProfesorArticuloController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\ProfesorArticuloController.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Downloads\\EduMatch-main\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ProfesorArticuloController.cs*",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\ProfesorArticuloController.cs*",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAAAD8AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T22:16:16.783Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProfesorActividadController.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\EduMatch-main\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ProfesorActividadController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\ProfesorActividadController.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Downloads\\EduMatch-main\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ProfesorActividadController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\ProfesorActividadController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T22:14:31.557Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProfesorActividadService.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\EduMatch-main\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\ProfesorActividadService.cs",
+              "RelativeDocumentMoniker": "SistemaApoyo.BLL\\Servicios\\ProfesorActividadService.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Downloads\\EduMatch-main\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\ProfesorActividadService.cs",
+              "RelativeToolTip": "SistemaApoyo.BLL\\Servicios\\ProfesorActividadService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T22:14:26.811Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProfesorExamenService.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\EduMatch-main\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\ProfesorExamenService.cs",
+              "RelativeDocumentMoniker": "SistemaApoyo.BLL\\Servicios\\ProfesorExamenService.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Downloads\\EduMatch-main\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\ProfesorExamenService.cs",
+              "RelativeToolTip": "SistemaApoyo.BLL\\Servicios\\ProfesorExamenService.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAqwHQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T22:08:08.638Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProfesorExamenController.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\EduMatch-main\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ProfesorExamenController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\ProfesorExamenController.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Downloads\\EduMatch-main\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ProfesorExamenController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\ProfesorExamenController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJYAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T21:45:08.884Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ExamenService.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\EduMatch-main\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\ExamenService.cs",
+              "RelativeDocumentMoniker": "SistemaApoyo.BLL\\Servicios\\ExamenService.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Downloads\\EduMatch-main\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\ExamenService.cs",
+              "RelativeToolTip": "SistemaApoyo.BLL\\Servicios\\ExamenService.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAAAD8AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T21:41:35.825Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ChatController.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\EduMatch-main\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ChatController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\ChatController.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Downloads\\EduMatch-main\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ChatController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\ChatController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T21:38:46.255Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ExamenController.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\EduMatch-main\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ExamenController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\ExamenController.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Downloads\\EduMatch-main\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ExamenController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\ExamenController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T21:38:44.142Z",
+              "EditorCaption": ""
             }
           ]
         }

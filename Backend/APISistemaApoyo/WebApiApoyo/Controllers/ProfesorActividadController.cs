@@ -9,7 +9,6 @@ namespace WebApiApoyo.Controllers
 {
     [Route("API/[controller]")]
     [ApiController]
-
     public class ProfesorActividadController : ControllerBase
     {
         private readonly IProfesorActividad _profesorActividadService;
@@ -21,7 +20,8 @@ namespace WebApiApoyo.Controllers
             _logger = logger;
         }
 
-        [HttpGet("Lista Actividades")]
+        // Ruta cambiada a "ListaActividadesProfesor" para evitar conflictos
+        [HttpGet("ListaActividadesProfesor")]
         public async Task<IActionResult> ListaActividades()
         {
             var rsp = new Response<List<ActividadDTO>>();
@@ -40,12 +40,12 @@ namespace WebApiApoyo.Controllers
         }
 
         [HttpGet]
-        [Route("Nombre Completo Actividad")]
+        [Route("NombreCompletoActividad")]
         public async Task<IActionResult> ListaActividadPorNombre(string nombre)
         {
             if (string.IsNullOrWhiteSpace(nombre))
             {
-                return BadRequest("El nombre no es  válido.");
+                return BadRequest("El nombre no es válido.");
             }
 
             var rsp = new Response<List<ActividadDTO>>();
@@ -63,7 +63,7 @@ namespace WebApiApoyo.Controllers
         }
 
         [HttpGet]
-        [Route("Actividad ID")]
+        [Route("ActividadPorId")]
         public async Task<IActionResult> ListaActividadPorId(int id)
         {
             if (id <= 0)
@@ -86,7 +86,7 @@ namespace WebApiApoyo.Controllers
         }
 
         [HttpPost]
-        [Route("Crear Actividad")]
+        [Route("CrearActividad")]
         public async Task<IActionResult> CrearActividad([FromBody] ActividadDTO actividad)
         {
             var rsp = new Response<string>();
@@ -105,7 +105,7 @@ namespace WebApiApoyo.Controllers
         }
 
         [HttpPut]
-        [Route("Editar por ID")]
+        [Route("EditarActividadPorId")]
         public async Task<IActionResult> EditarActividad(int id, [FromBody] ActividadDTO actividad)
         {
             if (id != actividad.Idactividad)
@@ -129,7 +129,7 @@ namespace WebApiApoyo.Controllers
         }
 
         [HttpDelete]
-        [Route ("Eliminar Actividad")]
+        [Route("EliminarActividad")]
         public async Task<IActionResult> EliminarActividad(int id)
         {
             if (id <= 0)
@@ -143,7 +143,7 @@ namespace WebApiApoyo.Controllers
             {
                 var eli = await _profesorActividadService.EliminarActividad(id);
                 rsp.status = true;
-                rsp.value = "Se elimino la actividad con exito.";
+                rsp.value = "Se eliminó la actividad con éxito.";
             }
             catch (Exception ex)
             {

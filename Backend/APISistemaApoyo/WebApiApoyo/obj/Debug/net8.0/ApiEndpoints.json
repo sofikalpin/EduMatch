@@ -338,9 +338,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApiApoyo.Controllers.ExamenController",
+    "ContainingType": "ExamenController",
     "Method": "ListaExamenPorId",
-    "RelativePath": "API/Examen/Examen ID",
+    "RelativePath": "api/examenes/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -348,15 +348,15 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApiApoyo.Controllers.ExamenController",
+    "ContainingType": "ExamenController",
     "Method": "ListarExamenes",
-    "RelativePath": "API/Examen/Lista Examenes",
+    "RelativePath": "api/examenes/lista",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -364,9 +364,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApiApoyo.Controllers.ExamenController",
+    "ContainingType": "ExamenController",
     "Method": "ListaExamenPorTitulo",
-    "RelativePath": "API/Examen/Titulo Examen",
+    "RelativePath": "api/examenes/titulo",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -675,6 +675,101 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorExamenController",
+    "Method": "ListaExamenPorTitulo",
+    "RelativePath": "api/profesor-examen/buscar-por-titulo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "titulo",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorExamenController",
+    "Method": "CrearExamen",
+    "RelativePath": "api/profesor-examen/crear-examen",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "examen",
+        "Type": "SistemaApoyo.DTO.ExamenDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorExamenController",
+    "Method": "EditarExamen",
+    "RelativePath": "api/profesor-examen/editar-examen/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "examen",
+        "Type": "SistemaApoyo.DTO.ExamenDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorExamenController",
+    "Method": "EliminarExamen",
+    "RelativePath": "api/profesor-examen/eliminar-examen/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorExamenController",
+    "Method": "ListaExamenPorId",
+    "RelativePath": "api/profesor-examen/examen/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorExamenController",
+    "Method": "ListaExamenes",
+    "RelativePath": "api/profesor-examen/lista-examenes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfesorActividadController",
     "Method": "ListaActividadPorId",
     "RelativePath": "API/ProfesorActividad/Actividad ID",
@@ -691,9 +786,41 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorActividadController",
+    "Method": "ListaActividadPorId",
+    "RelativePath": "API/ProfesorActividad/ActividadPorId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfesorActividadController",
     "Method": "CrearActividad",
     "RelativePath": "API/ProfesorActividad/Crear Actividad",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "actividad",
+        "Type": "SistemaApoyo.DTO.ActividadDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorActividadController",
+    "Method": "CrearActividad",
+    "RelativePath": "API/ProfesorActividad/CrearActividad",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -728,9 +855,46 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorActividadController",
+    "Method": "EditarActividad",
+    "RelativePath": "API/ProfesorActividad/EditarActividadPorId",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "actividad",
+        "Type": "SistemaApoyo.DTO.ActividadDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfesorActividadController",
     "Method": "EliminarActividad",
     "RelativePath": "API/ProfesorActividad/Eliminar Actividad",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorActividadController",
+    "Method": "EliminarActividad",
+    "RelativePath": "API/ProfesorActividad/EliminarActividad",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -754,9 +918,35 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorActividadController",
+    "Method": "ListaActividades",
+    "RelativePath": "API/ProfesorActividad/ListaActividadesProfesor",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfesorActividadController",
     "Method": "ListaActividadPorNombre",
     "RelativePath": "API/ProfesorActividad/Nombre Completo Actividad",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nombre",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorActividadController",
+    "Method": "ListaActividadPorNombre",
+    "RelativePath": "API/ProfesorActividad/NombreCompletoActividad",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -786,9 +976,41 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorArticuloController",
+    "Method": "ListaArticuloPorId",
+    "RelativePath": "API/ProfesorArticulo/ArticuloPorId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfesorArticuloController",
     "Method": "CrearArticulo",
     "RelativePath": "API/ProfesorArticulo/Crear Articulo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "articulo",
+        "Type": "SistemaApoyo.DTO.ArticuloDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorArticuloController",
+    "Method": "CrearArticulo",
+    "RelativePath": "API/ProfesorArticulo/CrearArticulo",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -823,9 +1045,46 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorArticuloController",
+    "Method": "EditarArticulo",
+    "RelativePath": "API/ProfesorArticulo/EditarArticuloPorId",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "articulo",
+        "Type": "SistemaApoyo.DTO.ArticuloDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfesorArticuloController",
     "Method": "Eliminar",
     "RelativePath": "API/ProfesorArticulo/Eliminar Articulo",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorArticuloController",
+    "Method": "EliminarArticulo",
+    "RelativePath": "API/ProfesorArticulo/EliminarArticulo",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -849,9 +1108,35 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorArticuloController",
+    "Method": "ListaArticulos",
+    "RelativePath": "API/ProfesorArticulo/ListaArticulos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfesorArticuloController",
     "Method": "ListaActividadPorNombre",
     "RelativePath": "API/ProfesorArticulo/Titulo Articulo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "titulo",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ProfesorArticuloController",
+    "Method": "ListaArticuloPorTitulo",
+    "RelativePath": "API/ProfesorArticulo/TituloArticulo",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

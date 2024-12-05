@@ -38,6 +38,7 @@ namespace SistemaApoyo.BLL.Servicios
             }
 
         }
+
         public async Task<List<ActividadDTO>> ConsultarporNombre(string nombre)
         {
             try

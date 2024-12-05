@@ -40,6 +40,7 @@ namespace SistemaApoyo.IOC
             services.AddScoped<IProfesorExamen, ProfesorExamenService>();
             services.AddScoped<IProfesorArticulo, ProfesorArticuloService>();
             services.AddScoped<IMensajeService, MensajeService>();
+            services.AddScoped<IAdministrador, AdministradorService>();
             services.AddSignalR();
           
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

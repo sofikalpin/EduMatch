@@ -16,6 +16,8 @@ namespace SistemaApoyo.DTO
 
         public string ContrasenaHash { get; set; } = null!;
 
+        //public bool ProfesorAutorizado { get; set; } = false;
+
 
         public int Idnivel { get; set; }
 

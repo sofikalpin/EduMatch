@@ -5,6 +5,8 @@ namespace SistemaApoyo.Model.Models;
 
 public partial class Usuario
 {
+    //public bool ProfesorAutorizado;
+
     public int Idusuario { get; set; }
 
     public string Nombrecompleto { get; set; } = null!;

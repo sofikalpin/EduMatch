@@ -1,7 +1,7 @@
 #Edumatch
 
 Frontend
--Administrador (Sofi Raggi)
+- Administrador (Sofi Raggi)
 - Incio para los 3 (respecto al login y los tipos de menu) ( Magui Ransan)
 - Foro y mensajes ( Valen Capra)
 - Alumno (Ori Acosta)

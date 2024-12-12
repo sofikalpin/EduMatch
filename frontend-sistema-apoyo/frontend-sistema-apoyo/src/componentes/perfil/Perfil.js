@@ -9,7 +9,7 @@ export const Perfil = () => {
 
     const handleGuardarCambios = (e) => {
         e.preventDefault();
-        // Lógica para guardar los cambios llamando a la API
+       
         console.log('Cambios guardados:', { usuario, nombre, apellido, email });
     };
 

@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Configuration;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using SistemaApoyo.BLL.Validaciones;
@@ -11,11 +9,10 @@ using SistemaApoyo.BLL.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+// Inyección de dependencias
 builder.Services.InyectarDependencias(builder.Configuration);
 
-
-//Agregar Fluent Validation
+// Agregar Fluent Validation
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<ActividadValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<ArticuloValidator>();
@@ -29,14 +26,22 @@ builder.Services.AddValidatorsFromAssemblyContaining<RespuestaValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<SesionValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<UsuarioValidator>();
 
-
-
+// Configuración de CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAllOrigins",
-        builder => builder.AllowAnyOrigin()
-                          .AllowAnyMethod()
-                          .AllowAnyHeader());
+    // Política CORS específica para la aplicación React
+    options.AddPolicy("AllowReactApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:3001/") // URL del frontend
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+
+    // Política CORS general
+    options.AddPolicy("AllowAllOrigins", builder =>
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader());
 });
 
 builder.Services.AddControllers();
@@ -45,6 +50,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// Configuración en entorno de desarrollo
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -52,14 +58,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
-app.UseCors("AllowAllOrigins");
+// Aplicar política CORS (elige una según lo necesites)
+app.UseCors("AllowAllOrigins"); // O "AllowReactApp" si solo quieres permitir React
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
 
+// Configuración de SignalR (real-time chat)
 app.MapHub<ChatHub>("/chatHub");
 
 app.Run();

@@ -137,3 +137,27 @@ C:\Users\Usuario\Downloads\EduMatch-main\Backend\APISistemaApoyo\Sistema Apoyo.I
 C:\Users\Usuario\Downloads\EduMatch-main\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\refint\Sistema Apoyo.IOC.dll
 C:\Users\Usuario\Downloads\EduMatch-main\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.pdb
 C:\Users\Usuario\Downloads\EduMatch-main\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\ref\Sistema Apoyo.IOC.dll
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\Sistema Apoyo.IOC.deps.json
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\Sistema Apoyo.IOC.dll
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\Sistema Apoyo.IOC.pdb
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.BLL.dll
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.DAL.dll
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.DTO.dll
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.Model.dll
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.Utility.dll
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.BLL.pdb
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.DAL.pdb
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.Utility.pdb
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.DTO.pdb
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.Model.pdb
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.csproj.AssemblyReference.cache
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.AssemblyInfoInputs.cache
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.AssemblyInfo.cs
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.sourcelink.json
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema .5CACF472.Up2Date
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.dll
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\refint\Sistema Apoyo.IOC.dll
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.pdb
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\ref\Sistema Apoyo.IOC.dll

@@ -6,11 +6,16 @@ using FluentValidation.AspNetCore;
 using SistemaApoyo.BLL.Validaciones;
 using SistemaApoyo.IOC;
 using SistemaApoyo.BLL.Hubs;
+using Microsoft.EntityFrameworkCore.Design;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Inyección de dependencias
 builder.Services.InyectarDependencias(builder.Configuration);
+
+builder.Services.AddControllers();
+
+
 
 // Agregar Fluent Validation
 builder.Services.AddFluentValidationAutoValidation();
@@ -49,6 +54,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+
 
 // Configuración en entorno de desarrollo
 if (app.Environment.IsDevelopment())

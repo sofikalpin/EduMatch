@@ -37,7 +37,6 @@ namespace SistemaApoyo.Utility
                 
             #endregion Consulta
 
-
             #region Examen
             CreateMap<Examen, ExamenDTO>().ReverseMap();
             #endregion Examen
@@ -63,17 +62,21 @@ namespace SistemaApoyo.Utility
             #endregion Rol
 
             #region Usuario
-            CreateMap<Usuario, UsuarioDTO>(); 
+            CreateMap<Usuario, UsuarioDTO>()
+                .ForMember(dest => dest.Idusuario, opt => opt.MapFrom(src => src.Idusuario))
+                .ForMember(dest => dest.Nombrecompleto, opt => opt.MapFrom(src => src.Nombrecompleto))
+                .ForMember(dest => dest.Correo, opt => opt.MapFrom(src => src.Correo))
+                .ReverseMap();
             CreateMap<Usuario, SesionDTO>()
+                .ForMember(dest => dest.IdUsuario, opt => opt.MapFrom(src => src.Idusuario))
+                .ForMember(dest => dest.NombreCompleto, opt => opt.MapFrom(src => src.Nombrecompleto))
+                .ForMember(dest => dest.Correo, opt => opt.MapFrom(src => src.Correo))
                 .ForMember(destino => destino.RolDescripcion,
                            opt => opt.MapFrom(origen => origen.IdrolNavigation.Nombre)); 
             CreateMap<UsuarioDTO, Usuario>()
                 .ForMember(destino => destino.IdrolNavigation,
                            opt => opt.Ignore());
             #endregion Usuario
-            
-           
-
 
         }
     }

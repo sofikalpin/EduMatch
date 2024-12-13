@@ -14,17 +14,11 @@ namespace SistemaApoyo.DTO
 
         public string Correo { get; set; } = null!;
 
-        public string ContrasenaHash { get; set; } = null!;
-
-        //public bool ProfesorAutorizado { get; set; } = false;
-
+        public string ContraseñaHash { get; set; } = null!;
 
         public int Idnivel { get; set; }
 
         public int Idrol { get; set; }
-
-        public string? RolDescripcion { get; set; }
-
 
     }
 }

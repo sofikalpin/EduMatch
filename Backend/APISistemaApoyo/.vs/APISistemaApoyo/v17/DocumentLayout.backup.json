@@ -20,8 +20,46 @@
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
+<<<<<<< HEAD
               "$type": "Bookmark",
               "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+=======
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UsuarioController.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAAACoAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T19:48:22.314Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UsuarioService.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\UsuarioService.cs",
+              "RelativeDocumentMoniker": "SistemaApoyo.BLL\\Servicios\\UsuarioService.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\UsuarioService.cs",
+              "RelativeToolTip": "SistemaApoyo.BLL\\Servicios\\UsuarioService.cs",
+              "ViewState": "AgIAAGcAAAAAAAAAAAAAAJMAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T19:47:23.97Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Program.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Program.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Program.cs",
+              "RelativeToolTip": "WebApiApoyo\\Program.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAIwCIAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T02:41:25.335Z",
+              "EditorCaption": ""
+>>>>>>> 7cca39651a61b7eff90d55a229eed21324826d33
             }
           ]
         }

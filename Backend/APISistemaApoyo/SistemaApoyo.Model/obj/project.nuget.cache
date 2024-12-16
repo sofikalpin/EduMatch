@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JObqdyjTvWY=",
+  "dgSpecHash": "0WLCa+/oh4s=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usuario\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj",
+  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuario\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\8.0.8\\microsoft.aspnetcore.connections.abstractions.8.0.8.nupkg.sha512",

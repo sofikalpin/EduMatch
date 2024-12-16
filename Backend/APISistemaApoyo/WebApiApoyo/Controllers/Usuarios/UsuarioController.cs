@@ -47,9 +47,11 @@ public class UsuarioController : ControllerBase
         var rsp = new Response<SesionDTO>();
         try
         {
+            var sesion = await _usuarioService.ValidarCredenciales(login.Correo, login.ContrasenaHash);
+            if (sesion != null )
 
             rsp.status = true;
-            rsp.value = await _usuarioService.ValidarCredenciales(login.Correo, login.ContrasenaHash);
+            rsp.value = sesion;
         }
         catch (Exception ex)
         { 

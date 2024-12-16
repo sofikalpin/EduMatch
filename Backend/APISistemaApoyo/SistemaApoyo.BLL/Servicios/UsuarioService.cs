@@ -11,6 +11,10 @@ using SistemaApoyo.Model.Models;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using BotCrypt;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Microsoft.Extensions.Configuration;
 
 namespace SistemaApoyo.BLL.Servicios
 {
@@ -18,18 +22,20 @@ namespace SistemaApoyo.BLL.Servicios
     {
         private readonly IGenericRepository<Usuario> _usuarioRepositorio;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;  // Usamos IConfiguration aquí
 
-        public UsuarioService(IGenericRepository<Usuario> usuarioRepositorio, IMapper mapper)
+        // Constructor actualizado
+        public UsuarioService(IGenericRepository<Usuario> usuarioRepositorio, IMapper mapper, IConfiguration configuration)
         {
             _usuarioRepositorio = usuarioRepositorio;
             _mapper = mapper;
+            _configuration = configuration;  // Se inyecta IConfiguration
         }
 
         public async Task<UsuarioDTO> Crear(UsuarioDTO modelo)
         {
             try
             {
-                
                 var usuarioCreado = await _usuarioRepositorio.Crear(_mapper.Map<Usuario>(modelo));
                 if (usuarioCreado.Idusuario == 0)
                     _mapper.Map<Usuario>(modelo);
@@ -39,7 +45,8 @@ namespace SistemaApoyo.BLL.Servicios
 
                 return _mapper.Map<UsuarioDTO>(usuarioCreado);
             }
-            catch { 
+            catch
+            {
                 throw;
             }
         }
@@ -63,14 +70,14 @@ namespace SistemaApoyo.BLL.Servicios
                 usuarioEncontrado.Idrol = usuarioModelo.Idrol;
 
                 bool respuesta = await _usuarioRepositorio.Editar(usuarioEncontrado);
-                if( !respuesta )
+                if (!respuesta)
                     throw new TaskCanceledException("No se pudo editar");
                 return respuesta;
 
             }
-            catch 
+            catch
             {
-                throw ;
+                throw;
             }
         }
 
@@ -85,12 +92,10 @@ namespace SistemaApoyo.BLL.Servicios
                 if (!respuesta)
                     throw new TaskCanceledException("No se pudo eliminar");
                 return respuesta;
-
-                
             }
-            catch 
+            catch
             {
-                throw ;
+                throw;
             }
         }
 
@@ -102,7 +107,7 @@ namespace SistemaApoyo.BLL.Servicios
                 var listaUsuarios = usuariosQuery.Include(rol => rol.IdrolNavigation).ToList();
                 return _mapper.Map<List<UsuarioDTO>>(listaUsuarios);
             }
-            catch 
+            catch
             {
                 throw;
             }
@@ -130,29 +135,31 @@ namespace SistemaApoyo.BLL.Servicios
 
         public async Task<SesionDTO> ValidarCredenciales(string correo, string contrasena)
         {
-            string Llave = "ContrasenasHasheadas101";
-            // Buscar al usuario por su correo
+            // Buscar al usuario por correo
             var usuario = await ObtenerUsuarioPorCorreo(correo);
 
             if (usuario != null)
             {
-                // Verificar la contraseña en texto plano contra el hash almacenado
+                // Verificar la contraseña
                 string ContrasenaHasheada = usuario.ContrasenaHash;
-                string ContrasenaOriginal = Crypter.DecryptString(Llave, ContrasenaHasheada);
+                string ContrasenaOriginal = Crypter.DecryptString("ContrasenasHasheadas101", ContrasenaHasheada);
 
                 if (ContrasenaOriginal == contrasena)
                 {
-                    // Credenciales correctas, devolver sesión
+                    // Credenciales correctas, generar el token JWT
+                    var token = GenerarToken(usuario); // Llamamos al método para generar el token
                     return new SesionDTO
                     {
                         Correo = usuario.Correo,
                         NombreCompleto = usuario.Nombrecompleto,
+                        Token = token // Enviamos el token al cliente
                     };
                 }
             }
-            // Si las credenciales no son correctas, retornar null
-            return null;
+
+            return null; // Si las credenciales son incorrectas, devolvemos null
         }
+
 
         public string HashearContrasena(string contrasena)
         {
@@ -162,5 +169,29 @@ namespace SistemaApoyo.BLL.Servicios
             return ContrasenaHash;
         }
 
+        private string GenerarToken(UsuarioDTO usuario)
+        {
+            // Definir los "claims" (información) que queremos en el token
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, usuario.Nombrecompleto),
+                new Claim(ClaimTypes.Email, usuario.Correo),
+                // Puedes agregar más información si lo deseas
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:SecretKey"])); // Clave secreta
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            // Crear el token
+            var token = new JwtSecurityToken(
+                issuer: _configuration["Jwt:Issuer"],    // Emisor
+                audience: _configuration["Jwt:Audience"], // Audiencia
+                claims: claims,                           // Claims
+                expires: DateTime.Now.AddHours(1),        // El token expira en 1 hora
+                signingCredentials: creds                 // Firmado con la clave secreta
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token); // Convertimos el token a string y lo retornamos
+        }
     }
 }

@@ -1,18 +1,38 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Usuario\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\",
+  "WorkspaceRootPath": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\desktop\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\usuarios\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\usuarios\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|c:\\users\\usuario\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.bll\\servicios\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|c:\\users\\usuario\\desktop\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.bll\\servicios\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|solutionrelative:sistemaapoyo.bll\\servicios\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\usuarios\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\usuarios\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\desktop\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9C332F1-56F5-4D50-B82E-9AFDF3C33349}|SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj|c:\\users\\usuario\\desktop\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.dal\\repositorios\\contrato\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9C332F1-56F5-4D50-B82E-9AFDF3C33349}|SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj|solutionrelative:sistemaapoyo.dal\\repositorios\\contrato\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C68C8A65-928A-4797-A7DF-CD66815A4F1C}|SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj|c:\\users\\usuario\\desktop\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.dto\\sesiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C68C8A65-928A-4797-A7DF-CD66815A4F1C}|SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj|solutionrelative:sistemaapoyo.dto\\sesiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|c:\\users\\usuario\\desktop\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.bll\\servicios\\mensajeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|solutionrelative:sistemaapoyo.bll\\servicios\\mensajeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\desktop\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\desktop\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\webapiapoyo.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\webapiapoyo.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 62,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,39 +58,106 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UsuarioController.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAAACoAAAACAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "GenericRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\Repositorios\\Contrato\\GenericRepository.cs",
+              "RelativeDocumentMoniker": "SistemaApoyo.DAL\\Repositorios\\Contrato\\GenericRepository.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\Repositorios\\Contrato\\GenericRepository.cs",
+              "RelativeToolTip": "SistemaApoyo.DAL\\Repositorios\\Contrato\\GenericRepository.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T19:48:22.314Z"
+              "WhenOpened": "2024-12-16T03:51:43.515Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UsuarioController.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAEUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T03:44:56.795Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "UsuarioService.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\UsuarioService.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\UsuarioService.cs",
               "RelativeDocumentMoniker": "SistemaApoyo.BLL\\Servicios\\UsuarioService.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\UsuarioService.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\UsuarioService.cs",
               "RelativeToolTip": "SistemaApoyo.BLL\\Servicios\\UsuarioService.cs",
-              "ViewState": "AgIAAGcAAAAAAAAAAAAAAJMAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAAAKoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T19:47:23.97Z"
+              "WhenOpened": "2024-12-16T03:43:53.309Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Program.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Program.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Program.cs",
-              "RelativeToolTip": "WebApiApoyo\\Program.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAIwCIAAAAyAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\appsettings.json",
+              "RelativeDocumentMoniker": "WebApiApoyo\\appsettings.json",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\appsettings.json",
+              "RelativeToolTip": "WebApiApoyo\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-12-16T03:35:02.338Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SesionDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SesionDTO.cs",
+              "RelativeDocumentMoniker": "SistemaApoyo.DTO\\SesionDTO.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SesionDTO.cs",
+              "RelativeToolTip": "SistemaApoyo.DTO\\SesionDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-10T02:41:25.335Z",
+              "WhenOpened": "2024-12-16T03:49:33.544Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MensajeService.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\MensajeService.cs",
+              "RelativeDocumentMoniker": "SistemaApoyo.BLL\\Servicios\\MensajeService.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\MensajeService.cs",
+              "RelativeToolTip": "SistemaApoyo.BLL\\Servicios\\MensajeService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T03:44:19.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "WebApiApoyo",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\WebApiApoyo.csproj",
+              "RelativeDocumentMoniker": "WebApiApoyo\\WebApiApoyo.csproj",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\WebApiApoyo.csproj",
+              "RelativeToolTip": "WebApiApoyo\\WebApiApoyo.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-12-16T03:25:30.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Program.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Program.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Program.cs",
+              "RelativeToolTip": "WebApiApoyo\\Program.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAAADMAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T02:19:21.413Z",
               "EditorCaption": ""
             }
           ]

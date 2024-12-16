@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JhHVlGo9rB8=",
+  "dgSpecHash": "q1SSxn0eJIk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usuario\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj",
+  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\8.0.8\\microsoft.aspnetcore.connections.abstractions.8.0.8.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.aspnetcore.signalr.common\\8.0.8\\microsoft.aspnetcore.signalr.common.8.0.8.nupkg.sha512",

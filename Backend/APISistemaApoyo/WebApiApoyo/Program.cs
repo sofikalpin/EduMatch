@@ -8,16 +8,28 @@ using FluentValidation.AspNetCore;
 using SistemaApoyo.BLL.Validaciones;
 using SistemaApoyo.IOC;
 using SistemaApoyo.BLL.Hubs;
+<<<<<<< HEAD
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
+=======
+using Microsoft.EntityFrameworkCore.Design;
+>>>>>>> fe6a432d2794d8c048848fa09d19988892e8f5ec
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Inyección de dependencias personalizadas
 builder.Services.InyectarDependencias(builder.Configuration);
 
+<<<<<<< HEAD
 // Validación con FluentValidation
+=======
+builder.Services.AddControllers();
+
+
+
+// Agregar Fluent Validation
+>>>>>>> fe6a432d2794d8c048848fa09d19988892e8f5ec
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssembly(typeof(ActividadValidator).Assembly);
 
@@ -54,7 +66,13 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+<<<<<<< HEAD
 // Configuración para entornos de desarrollo
+=======
+
+
+// Configuración en entorno de desarrollo
+>>>>>>> fe6a432d2794d8c048848fa09d19988892e8f5ec
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();

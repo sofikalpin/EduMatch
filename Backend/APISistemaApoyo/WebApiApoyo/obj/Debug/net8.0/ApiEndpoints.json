@@ -1241,7 +1241,7 @@
   {
     "ContainingType": "UsuarioController",
     "Method": "Editar",
-    "RelativePath": "API/Usuario/Editar Usuario",
+    "RelativePath": "API/Usuario/EditarUsuario",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -1273,7 +1273,7 @@
   {
     "ContainingType": "UsuarioController",
     "Method": "IniciarSesion",
-    "RelativePath": "API/Usuario/IniciarSesion",
+    "RelativePath": "API/Usuario/Iniciar Sesion",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

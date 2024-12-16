@@ -20,7 +20,7 @@ namespace SistemaApoyo.BLL.Validaciones
                 .NotEmpty().WithMessage("El correo es obligatorio.")
                 .EmailAddress().WithMessage("El formato del correo no es válido.");
 
-            RuleFor(u => u.ContrasenaHash)
+            RuleFor(u => u.ContraseñaHash)
                 .NotEmpty().WithMessage("La contraseña es obligatoria.")
                 .MinimumLength(6).WithMessage("La contraseña debe tener al menos 6 caracteres.");
 
@@ -29,9 +29,6 @@ namespace SistemaApoyo.BLL.Validaciones
 
             RuleFor(u => u.Idrol)
                 .NotNull().WithMessage("El id del rol es obligatorio.");
-
-            RuleFor(u => u.RolDescripcion)
-                .NotNull().WithMessage("El rol no debe estar vacio");
         }
     }
 }

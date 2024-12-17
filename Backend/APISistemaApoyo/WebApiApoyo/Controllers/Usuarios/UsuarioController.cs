@@ -41,8 +41,7 @@ public class UsuarioController : ControllerBase
         return Ok(rsp);
     }
 
-    [HttpPost]
-    [Route("Iniciar Sesion")]
+    [HttpPost("IniciarSesion")]
     public async Task<IActionResult> IniciarSesion([FromBody] LoginDTO login)
     {
         var rsp = new Response<SesionDTO>();
@@ -50,13 +49,13 @@ public class UsuarioController : ControllerBase
         {
             var sesion = await _usuarioService.ValidarCredenciales(login.Correo, login.ContrasenaHash);
 
-            if (sesion == null) 
-            { 
+            if (sesion == null)
+            {
                 rsp.status = false;
                 rsp.msg = "Correo o contraseña incorrectos.";
-                return Unauthorized(rsp); 
+                return Unauthorized(rsp);
             }
-            
+
             rsp.status = true;
             rsp.value = sesion;
             rsp.msg = "Inicio de sesión exitoso.";
@@ -64,10 +63,12 @@ public class UsuarioController : ControllerBase
         }
         catch (Exception ex)
         {
-            rsp.status = false;
-            rsp.msg = "Error al iniciar sesión.";
             _logger.LogError(ex, "Error al iniciar sesión para correo: {Correo}", login.Correo);
-            return StatusCode(500, rsp);  // Mejor usar 500 para errores inesperados
+            return StatusCode(500, new Response<SesionDTO>
+            {
+                status = false,
+                msg = "Error interno del servidor"
+            });
         }
     }
 

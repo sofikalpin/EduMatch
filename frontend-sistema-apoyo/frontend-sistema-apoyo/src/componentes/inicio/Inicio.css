@@ -18,7 +18,7 @@ html, body {
     padding-top: 50px;
 }
 
-.header {
+header {
     margin-bottom: 20px;
     position: fixed; /* Mantiene la barra en la parte superior */
     top: 0; /* Se asegura de que esté en la parte superior */

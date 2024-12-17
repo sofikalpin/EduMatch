@@ -1273,7 +1273,7 @@
   {
     "ContainingType": "UsuarioController",
     "Method": "IniciarSesion",
-    "RelativePath": "API/Usuario/Iniciar Sesion",
+    "RelativePath": "API/Usuario/IniciarSesion",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

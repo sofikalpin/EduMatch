@@ -5,22 +5,7 @@ import Cookies from "universal-cookie";
 import './Login.css';
 import { Link, useNavigate } from "react-router-dom";
 import logo from '../../logo/LogoFinal.png';
-
-
-const login = async (username, passwordHash) => {
-    const response = await fetch("http://localhost:5228/API/Usuario/IniciarSesion", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            correo: username,
-            contrasenaHash: passwordHash,
-        }),
-    });
-    const data = await response.json();
-    return data;
-};
+import AuthService from '../../service/AuthService'; 
 
 const Login = () => {
     const cookies = new Cookies();
@@ -30,6 +15,7 @@ const Login = () => {
         password: ''
     });
     const [errorMessage, setErrorMessage] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -41,26 +27,51 @@ const Login = () => {
 
     const iniciarSesion = async (e) => {
         e.preventDefault();
-        setErrorMessage('');  
-
-        
+        setErrorMessage('');
+        setLoading(true);
+    
+        // Registra los datos exactos que estás enviando
+        console.log('Datos de login:', {
+            username: form.username,
+            passwordMD5: md5(form.password)
+        });
+    
         if (!form.username || !form.password) {
             setErrorMessage("Por favor, completa todos los campos.");
+            setLoading(false);
             return;
         }
-
+    
         try {
-            const response = await login(form.username, md5(form.password));
-            if (response && response.status === 'success') {
-                
-                cookies.set("usuario", form.username, { path: "/" });
-                cookies.set("token", response.data.token, { path: "/" }); 
-                navigate('/dashboard');  
+            const response = await AuthService.login(form.username, md5(form.password)); 
+            
+            // Registro de la respuesta completa
+            console.log('Respuesta completa del servidor:', response);
+    
+            if (response.status === true && response.value) {
+                cookies.set("usuario", form.username, { path: "/", maxAge: 3600 });
+                cookies.set("token", response.value.token, { path: "/", maxAge: 3600 });
+                navigate('/dashboard');
             } else {
-                setErrorMessage("Credenciales incorrectas");
+                // Muestra el mensaje de error exacto
+                setErrorMessage(response.msg || "Credenciales incorrectas");
             }
         } catch (error) {
-            setErrorMessage("Hubo un error al iniciar sesión.");
+            // Registro detallado del error
+            console.error('Error completo:', {
+                response: error.response,
+                data: error.response?.data,
+                message: error.message
+            });
+    
+            // Muestra el mensaje de error más informativo
+            setErrorMessage(
+                error.response?.data?.msg || 
+                error.message || 
+                "Hubo un error al iniciar sesión."
+            );
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -71,29 +82,31 @@ const Login = () => {
                 <h2>INICIAR SESIÓN</h2>
                 <label htmlFor="username" className="titulo-form">Usuario</label>
                 <br />
-                <input 
-                    value={form.username} 
-                    onChange={handleChange} 
-                    className="login-input" 
-                    type="text" 
-                    id="username" 
-                    name="username" 
-                    required 
+                <input
+                    value={form.username}
+                    onChange={handleChange}
+                    className="login-input"
+                    type="text"
+                    id="username"
+                    name="username"
+                    required
                 />
                 <br />
                 <label htmlFor="password" className="titulo-form">Contraseña</label>
                 <br />
-                <input 
-                    value={form.password} 
-                    onChange={handleChange} 
-                    className="login-input" 
-                    type="password" 
-                    id="password" 
-                    name="password" 
-                    required 
+                <input
+                    value={form.password}
+                    onChange={handleChange}
+                    className="login-input"
+                    type="password"
+                    id="password"
+                    name="password"
+                    required
                 />
                 <br />
-                <button type="submit" className="btn btn-primary">Ingresar</button>
+                <button type="submit" className="btn btn-primary" disabled={loading}>
+                    {loading ? 'Cargando...' : 'Ingresar'}
+                </button>
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
                 <br />
                 <Link className="link-login" to="/registrarse">¿No tienes cuenta? Regístrate aquí</Link>

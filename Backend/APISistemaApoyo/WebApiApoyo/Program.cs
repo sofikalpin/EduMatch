@@ -7,6 +7,7 @@ using SistemaApoyo.BLL.Validaciones;
 using SistemaApoyo.IOC;
 using SistemaApoyo.BLL.Hubs;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.AspNetCore.Cors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,7 +38,7 @@ builder.Services.AddCors(options =>
     // Política CORS específica para la aplicación React
     options.AddPolicy("AllowReactApp", policy =>
     {
-        policy.WithOrigins("http://localhost:3001/") // URL del frontend
+        policy.WithOrigins("http://localhost:3000") // URL del frontend
               .AllowAnyHeader()
               .AllowAnyMethod();
     });

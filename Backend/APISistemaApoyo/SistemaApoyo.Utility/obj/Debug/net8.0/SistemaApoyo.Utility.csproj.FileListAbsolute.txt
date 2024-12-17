@@ -139,3 +139,5 @@ C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\A
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Utility\obj\Debug\net8.0\SistemaApoyo.Utility.pdb
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Utility\obj\Debug\net8.0\SistemaApoyo.Utility.genruntimeconfig.cache
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Utility\obj\Debug\net8.0\ref\SistemaApoyo.Utility.dll
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Utility\bin\Debug\net8.0\SistemaApoyo.Utility.runtimeconfig.json
+C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Utility\obj\Debug\net8.0\SistemaApoyo.Utility.genruntimeconfig.cache

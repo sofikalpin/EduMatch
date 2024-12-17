@@ -1,0 +1,158 @@
+/* Reset de Estilos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #c7f3e7; /* Fondo suave */
+  color: #333;
+}
+
+/* Header */
+.header {
+  background-color: #00a99d;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18rem 40rem; /* Aumenté el espacio interno verticalmente */
+  width: 100%;
+  position: relative;
+  top: -186px; /* Mueve el header más arriba */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Navegación */
+.nav-links {
+  display: flex;
+  gap: 2rem; /* Espacio entre los enlaces */
+  justify-content: flex-start; /* Alineación a la izquierda */
+  margin: 0;
+  width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+  position: relative;
+  left: -550px; /* Mueve los enlaces hacia la izquierda */
+  top: 30px; /* Ajusta este valor para mover los enlaces hacia abajo */
+}
+
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ffde59; /* Color hover amarillo */
+}
+
+
+
+/* Logo Centrador */
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  flex: 10; /* Centra el logo respecto a otros elementos */
+}
+.circle {
+  width: 537.52px;         /* Ancho del círculo */
+  height: 613.85px;        /* Alto del círculo */
+  border-radius: 50%;  /* Hace que el div sea redondo */
+  background-color: #F8B31A;  /* Color de fondo */
+  position: absolute;  /* Puedes usar posición absoluta si lo quieres en un lugar específico */
+  left: -180px;             /* Para alinearlo a la izquierda */
+  top: 500px;              /* Para alinearlo arriba */
+}
+
+
+.user-menu {
+  display: flex;
+  justify-content: flex-end; /* Mueve el contenido a la derecha */
+  align-items: flex-end; /* Alinea verticalmente al final */
+  gap: 0.5rem;
+  position: relative;
+  right: -700px; /* Mueve el contenedor aún más a la derecha */
+}
+
+.user-icon {
+  background-color: #ff7f50;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.user-menu span {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;  /* Aumenta el espacio entre los elementos si lo deseas */
+  margin-top: -10rem;  /* Mueve la barra más cerca de la parte superior */
+  margin-right: -50px;
+}
+
+.search-bar input {
+  padding: 0.5rem 1rem;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  width: 700px;  /* Aumenta el largo del input */
+  height: 60x;
+  font-size: 1.5rem;
+}
+
+.search-button {
+  background-color: #ff7f50;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  width: 50px;  /* Aumenta el tamaño del botón */
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #ff6347;
+}
+
+/* Texto */
+.main-content p {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  color: #333;
+}
+
+.Edu-Match {
+  font-family: 'Alfa Slab One', sans-serif; 
+  font-size: 6rem;
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 2rem;
+}

@@ -1,0 +1,123 @@
+/* Estilos para las respuestas */
+.Respuesta-container {
+  padding: 0 20px;
+  background-color: #f9f9f9;
+}
+
+.Respuesta-item {
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-left: 30px;
+  position: relative;
+}
+
+.Respuesta-item::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 30px;
+  width: 2px;
+  height: calc(100% - 30px);
+  background-color: #e0e0e0;
+}
+
+.Respuesta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Respuesta-user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.Respuesta-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+.Respuesta-avatar.teacher {
+  background-color: #00A19B;
+}
+
+.Respuesta-avatar.student {
+  background-color: #FF9F89;
+}
+
+.Respuesta-metadata {
+  display: flex;
+  flex-direction: column;
+}
+
+.Respuesta-author {
+  font-weight: bold;
+  color: #333;
+}
+
+.Respuesta-author.teacher {
+  color: #00A19B;
+}
+
+.Respuesta-date {
+  color: #666;
+  font-size: 0.85em;
+}
+
+.Respuesta-content {
+  margin-top: 10px;
+  color: #444;
+  line-height: 1.4;
+  padding-left: 52px;
+}
+
+.Respuesta-actions {
+  margin-top: 10px;
+  padding-left: 52px;
+  display: flex;
+  gap: 15px;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9em;
+}
+
+.action-button:hover {
+  color: #00A19B;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .Respuesta-container {
+      padding: 0 10px;
+  }
+
+  .Respuesta-item {
+      margin-left: 15px;
+      padding: 10px;
+  }
+
+  .Respuesta-content,
+  .Respuesta-actions {
+      padding-left: 35px;
+  }
+
+  .Respuesta-avatar {
+      width: 30px;
+      height: 30px;
+  }
+}

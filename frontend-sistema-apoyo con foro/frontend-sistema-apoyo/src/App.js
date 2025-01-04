@@ -32,9 +32,9 @@ function App() {
         <Route path="/profesor/misalumnos" element={<MisAlumnos />} />
 
         {/* Nuevas rutas para Foro, Consulta y Respuesta */}
-        <Route path="/foro" element={<Foro />} />
-        <Route path="/consulta" element={<Consulta />} />
-        <Route path="/respuesta/:idconsulta" element={<Respuesta />} />
+        <Route path="/Foro" element={<Foro />} />
+        <Route path="/Consulta" element={<Consulta />} />
+        <Route path="/Respuesta" element={<Respuesta />} />
 
         {/* Redirigir rutas no encontradas */}
         <Route path="*" element={<Navigate to="/" />} />

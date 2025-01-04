@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axiosInstance from "../../axiosConfig"; // Sube dos niveles // Importa la configuración de axios
 import "./Respuesta.css";
 
 const Respuesta = ({ idconsulta }) => {
@@ -12,12 +11,12 @@ const Respuesta = ({ idconsulta }) => {
   });
   const [editandoRespuesta, setEditandoRespuesta] = useState(null);
   const [error, setError] = useState('');
-  const [respuestaSeleccionada, setRespuestaSeleccionada] = useState(null);  // Para almacenar la respuesta seleccionada
+  const [respuestaSeleccionada, setRespuestaSeleccionada] = useState(null);
 
   // Consultar todas las respuestas
   const consultarRespuestas = async () => {
     try {
-      const response = await fetch('API/Respuesta/ConsultarRespuesta'); // Endpoint para ConsultarRespuesta
+      const response = await fetch('API/Respuesta/ConsultarRespuesta');
       const data = await response.json();
       if (data.status) {
         const respuestasFiltradas = idconsulta 
@@ -26,6 +25,7 @@ const Respuesta = ({ idconsulta }) => {
         setRespuestas(respuestasFiltradas);
       }
     } catch (error) {
+      console.error("Error al cargar las respuestas:", error);
       setError('Error al cargar las respuestas');
     }
   };
@@ -33,8 +33,12 @@ const Respuesta = ({ idconsulta }) => {
   // Crear una nueva respuesta
   const crearRespuesta = async (e) => {
     e.preventDefault();
+    if (!nuevaRespuesta.contenido.trim()) {
+      setError("El contenido de la respuesta no puede estar vacío");
+      return;
+    }
     try {
-      const response = await fetch('API/Respuesta/CrearRespuesta', { // Cambié a CrearRespuesta
+      const response = await fetch('API/Respuesta/CrearRespuesta', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -43,13 +47,14 @@ const Respuesta = ({ idconsulta }) => {
       });
       const data = await response.json();
       if (data.status) {
-        consultarRespuestas(); // Cambié a ConsultarRespuesta
+        consultarRespuestas();
         setNuevaRespuesta({
           ...nuevaRespuesta,
           contenido: ''
         });
       }
     } catch (error) {
+      console.error("Error al crear la respuesta:", error);
       setError('Error al crear la respuesta');
     }
   };
@@ -57,7 +62,7 @@ const Respuesta = ({ idconsulta }) => {
   // Actualizar una respuesta
   const actualizarRespuesta = async (respuesta) => {
     try {
-      const response = await fetch(`API/Respuesta/ActualizarRespuesta?id=${respuesta.idrespuesta}`, { // Cambié a ActualizarRespuesta
+      const response = await fetch(`API/Respuesta/ActualizarRespuesta?id=${respuesta.idrespuesta}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -66,10 +71,11 @@ const Respuesta = ({ idconsulta }) => {
       });
       const data = await response.json();
       if (data.status) {
-        consultarRespuestas(); // Cambié a ConsultarRespuesta
+        consultarRespuestas();
         setEditandoRespuesta(null);
       }
     } catch (error) {
+      console.error("Error al actualizar la respuesta:", error);
       setError('Error al actualizar la respuesta');
     }
   };
@@ -77,16 +83,17 @@ const Respuesta = ({ idconsulta }) => {
   // Eliminar una respuesta
   const eliminarRespuesta = async (id) => {
     if (!window.confirm('¿Está seguro de eliminar esta respuesta?')) return;
-    
+
     try {
-      const response = await fetch(`API/Respuesta/EliminarRespuesta?id=${id}`, { // Cambié a EliminarRespuesta
+      const response = await fetch(`API/Respuesta/EliminarRespuesta?id=${id}`, {
         method: 'DELETE'
       });
       const data = await response.json();
       if (data.status) {
-        consultarRespuestas(); // Cambié a ConsultarRespuesta
+        consultarRespuestas();
       }
     } catch (error) {
+      console.error("Error al eliminar la respuesta:", error);
       setError('Error al eliminar la respuesta');
     }
   };
@@ -94,18 +101,19 @@ const Respuesta = ({ idconsulta }) => {
   // Obtener una respuesta por ID
   const obtenerRespuestaPorId = async (id) => {
     try {
-      const response = await fetch(`API/Respuesta/ObtenerRespuestaPorId?id=${id}`);  // Cambié a ObtenerRespuestaPorId
+      const response = await fetch(`API/Respuesta/ObtenerRespuestaPorId?id=${id}`);
       const data = await response.json();
       if (data.status) {
-        setRespuestaSeleccionada(data.value);  // Guardamos la respuesta seleccionada
+        setRespuestaSeleccionada(data.value);
       }
     } catch (error) {
+      console.error("Error al obtener la respuesta por ID:", error);
       setError('Error al obtener la respuesta por ID');
     }
   };
 
   useEffect(() => {
-    consultarRespuestas(); // Cambié a ConsultarRespuestas
+    consultarRespuestas();
   }, [idconsulta]);
 
   return (
@@ -143,7 +151,7 @@ const Respuesta = ({ idconsulta }) => {
                 />
                 <div className="flex gap-2">
                   <button
-                    onClick={() => actualizarRespuesta(editandoRespuesta)} // Cambié a actualizarRespuesta
+                    onClick={() => actualizarRespuesta(editandoRespuesta)}
                     className="bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600"
                   >
                     Guardar
@@ -169,13 +177,13 @@ const Respuesta = ({ idconsulta }) => {
                       Editar
                     </button>
                     <button
-                      onClick={() => eliminarRespuesta(respuesta.idrespuesta)} // Cambié a eliminarRespuesta
+                      onClick={() => eliminarRespuesta(respuesta.idrespuesta)}
                       className="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600"
                     >
                       Eliminar
                     </button>
                     <button
-                      onClick={() => obtenerRespuestaPorId(respuesta.idrespuesta)}  // Llamada a ObtenerRespuestaPorId
+                      onClick={() => obtenerRespuestaPorId(respuesta.idrespuesta)}
                       className="bg-yellow-500 text-white px-3 py-1 rounded text-sm hover:bg-yellow-600"
                     >
                       Ver Respuesta

@@ -1,82 +1,150 @@
-
-import React, { useState, useEffect } from "react";
-import axiosInstance from "../../axiosConfig"; // Importar la configuración de axios
 import "./Foro.css";
+import React, { useState } from 'react';
 
 const Foro = () => {
   const [foros, setForos] = useState([]);
-  const [nombre, setNombre] = useState("");
-  const [descripcion, setDescripcion] = useState("");
-  const [selectedForo, setSelectedForo] = useState(null);
+  const [nombreBusqueda, setNombreBusqueda] = useState('');
+  const [nuevoForo, setNuevoForo] = useState({
+    nombre: '',
+    descripcion: '',
+    idconsulta: 0,
+    idusuario: 0,
+    idnivel: 0,
+  });
+  const [editandoForo, setEditandoForo] = useState(null);
+  const [error, setError] = useState('');
+  const [foroPorId, setForoPorId] = useState(null);
 
-  // Listar foros
-  useEffect(() => {
-    axiosInstance
-      .get("/Foro/ListaForos") // Aquí utilizamos la URL relativa
-      .then((response) => setForos(response.data.value))
-      .catch((error) => console.error("Error al cargar los foros", error));
-  }, []);
-
-  // Crear foro
-  const crearForo = async () => {
-    try {
-      await axiosInstance.post("/Foro/CrearForo", {
-        nombre,
-        descripcion,
-      });
-      setNombre("");
-      setDescripcion("");
-      alert("Foro creado con éxito");
-    } catch (error) {
-      console.error("Error al crear foro", error);
-    }
+  // Funciones sin implementación de llamadas a la API
+  const listarForos = () => {
+    console.log('Listar foros');
   };
 
-  // Obtener foro por ID
-  const obtenerForo = (id) => {
-    axiosInstance
-      .get(`/Foro/ForoID?id=${id}`)
-      .then((response) => setSelectedForo(response.data.value))
-      .catch((error) => console.error("Error al obtener foro", error));
+  const buscarForoPorNombre = () => {
+    console.log(`Buscar foros con el nombre: ${nombreBusqueda}`);
+  };
+
+  const obtenerForoPorId = (id) => {
+    console.log(`Obtener foro por ID: ${id}`);
+  };
+
+  const crearForo = (e) => {
+    e.preventDefault();
+    console.log('Crear foro', nuevoForo);
+    setNuevoForo({
+      nombre: '',
+      descripcion: '',
+      idconsulta: 0,
+      idusuario: 0,
+      idnivel: 0,
+    });
+  };
+
+  const actualizarForo = (foro) => {
+    console.log('Actualizar foro', foro);
+    setEditandoForo(null);
   };
 
   return (
-    <div>
-      <h2>Foros</h2>
-      {/* Formulario para crear foro */}
-      <div>
+    <div className="p-4">
+      <h2 className="text-2xl font-bold mb-4">Gestión de Foros</h2>
+
+      <div className="flex gap-2 mb-4">
         <input
           type="text"
-          placeholder="Nombre del foro"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
+          className="border p-2 rounded flex-1"
+          placeholder="Buscar por nombre"
+          value={nombreBusqueda}
+          onChange={(e) => setNombreBusqueda(e.target.value)}
         />
-        <textarea
-          placeholder="Descripción del foro"
-          value={descripcion}
-          onChange={(e) => setDescripcion(e.target.value)}
-        />
-        <button onClick={crearForo}>Crear Foro</button>
+        <button
+          onClick={buscarForoPorNombre}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Buscar
+        </button>
       </div>
 
-      {/* Lista de foros */}
-      <h3>Lista de Foros</h3>
-      <ul>
-        {foros.map((foro) => (
-          <li key={foro.idforo}>
-            {foro.nombre} -{" "}
-            <button onClick={() => obtenerForo(foro.idforo)}>Ver</button>
-          </li>
-        ))}
-      </ul>
-
-      {/* Mostrar foro seleccionado */}
-      {selectedForo && (
+      <form onSubmit={crearForo} className="mb-6 space-y-4 bg-gray-50 p-4 rounded">
         <div>
-          <h3>Detalles del Foro</h3>
-          <p>Nombre: {selectedForo.nombre}</p>
-          <p>Descripción: {selectedForo.descripcion}</p>
+          <input
+            type="text"
+            className="border p-2 rounded w-full"
+            placeholder="Nombre del foro"
+            value={nuevoForo.nombre}
+            onChange={(e) =>
+              setNuevoForo({ ...nuevoForo, nombre: e.target.value })
+            }
+            required
+          />
         </div>
+        <div>
+          <textarea
+            className="border p-2 rounded w-full"
+            placeholder="Descripción"
+            value={nuevoForo.descripcion}
+            onChange={(e) =>
+              setNuevoForo({ ...nuevoForo, descripcion: e.target.value })
+            }
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+        >
+          Crear Foro
+        </button>
+      </form>
+
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="border p-2 text-left">Nombre</th>
+              <th className="border p-2 text-left">Descripción</th>
+              <th className="border p-2 text-left">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {foros.map((foro) => (
+              <tr key={foro.idforo} className="border-b hover:bg-gray-50">
+                <td className="p-2">{foro.nombre}</td>
+                <td className="p-2">{foro.descripcion}</td>
+                <td className="p-2">
+                  <button
+                    onClick={() => setEditandoForo(foro)}
+                    className="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600"
+                  >
+                    Editar
+                  </button>
+                  <button
+                    onClick={() => obtenerForoPorId(foro.idforo)}
+                    className="bg-yellow-500 text-white px-3 py-1 rounded text-sm hover:bg-yellow-600"
+                  >
+                    Ver
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {foroPorId && (
+        <div className="mt-4 p-4 bg-gray-50 rounded">
+          <h3 className="text-xl font-semibold">Detalles del Foro</h3>
+          <p>
+            <strong>Nombre:</strong> {foroPorId.nombre}
+          </p>
+          <p>
+            <strong>Descripción:</strong> {foroPorId.descripcion}
+          </p>
+        </div>
+      )}
+
+      {error && (
+        <div className="text-red-500 mt-4 p-2 bg-red-50 rounded">{error}</div>
       )}
     </div>
   );

@@ -1,0 +1,111 @@
+/* Variables de colores basadas en la imagen */
+:root {
+    --primary-color: #3A7D44; /* Verde principal */
+    --secondary-color: #FFD700; /* Amarillo dorado */
+    --background-color: #F4F4F4; /* Fondo claro */
+    --text-color: #333333; /* Texto oscuro */
+    --button-hover-color: #2F6234; /* Verde más oscuro */
+    --border-color: #CCCCCC; /* Bordes */
+  }
+  
+  .logo-img {
+    width: 150px; /* Ajusta el ancho */
+    height: auto; /* Ajusta el alto si es necesario */
+  }
+  
+  .logo-img {
+    width: 150px; /* Ajusta el ancho */
+    height: auto; /* Ajusta el alto si es necesario */
+    margin-right: 20px; /* Ajusta este margen */
+    margin-left: 50px ;
+    margin-top: 10px;
+  }
+  
+  /* Estilos generales */
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+  }
+  
+  /* Clases específicas del JS */
+  .lista {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .lista li {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .lista li:last-child {
+    border-bottom: none;
+  }
+  
+  .boton {
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    color: var(--text-color);
+    font-size: 1rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .boton:hover {
+    background-color: var(--button-hover-color);
+    color: white;
+  }
+  
+  .input {
+    width: calc(100% - 40px);
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+  }
+  
+  /* Mensajes */
+  .mensaje {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .mensaje-exito {
+    color: var(--primary-color);
+  }
+  
+  .mensaje-error {
+    color: red;
+  }
+  

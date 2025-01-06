@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "./Respuesta.css";
+import './Respuesta.css';
+import logo from '../../logo/LogoInicio.png'
 
 const Respuesta = ({ idconsulta }) => {
   const [respuestas, setRespuestas] = useState([]);
@@ -119,6 +120,7 @@ const Respuesta = ({ idconsulta }) => {
   return (
     <div className="p-4">
       {/* Formulario de nueva respuesta */}
+      <img src={logo} alt="logo" className="logo-img"/>
       <form onSubmit={crearRespuesta} className="mb-6 space-y-4 bg-gray-50 p-4 rounded">
         <textarea
           className="border p-2 rounded w-full h-24"

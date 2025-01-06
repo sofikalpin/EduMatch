@@ -15,6 +15,7 @@ import MisCursos from "./componentes/profesor/homeprofe/miscursos";
 import Foro from "./componentes/Foro/Foro";
 import Consulta from "./componentes/Consulta/Consulta";
 import Respuesta from "./componentes/Respuesta/Respuesta";
+import ForoCompleto from "./componentes/ForoCompleto/ForoCompleto";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/Foro" element={<Foro />} />
         <Route path="/Consulta" element={<Consulta />} />
         <Route path="/Respuesta" element={<Respuesta />} />
+        <Route path="/ForoCompleto" element={<ForoCompleto/>}/>
 
         {/* Redirigir rutas no encontradas */}
         <Route path="*" element={<Navigate to="/" />} />

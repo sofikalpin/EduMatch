@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "./Consulta.css";
+import './Consulta.css';
+import logo from '../../logo/LogoInicio.png';
 
 const Consulta = () => {
   const [consultas, setConsultas] = useState([]);
@@ -113,6 +114,7 @@ const Consulta = () => {
 
   return (
     <div className="p-4">
+      <img src={logo} alt="logo" className="logo-img"/>
       <h2 className="text-2xl font-bold mb-4">Consultas</h2>
       <div className="flex gap-2 mb-4">
         <input

@@ -1,6 +1,6 @@
-import "./Foro.css";
+import './Foro.css';
 import React, { useState } from 'react';
-
+import logo from '../../logo/LogoInicio.png'
 const Foro = () => {
   const [foros, setForos] = useState([]);
   const [nombreBusqueda, setNombreBusqueda] = useState('');
@@ -47,7 +47,8 @@ const Foro = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Gestión de Foros</h2>
+      <img src={logo} alt="logo" className="logo-img"/>
+      <h2 className="text-2xl font-bold mb-4"> Encontrá tu Foro</h2>
 
       <div className="flex gap-2 mb-4">
         <input

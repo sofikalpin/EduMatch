@@ -1,4 +1,64 @@
 /* Estilos para las respuestas */
+.header {
+  margin: 0; /* Elimina márgenes externos */
+  position: fixed; /* Fija el header en la parte superior */
+  top: 0; /* Posición en la parte superior */
+  left: 0; /* Asegura que empieza desde el borde izquierdo */
+  right: 0; /* Asegura que termina en el borde derecho */
+  display: flex;
+  justify-content: space-between; /* Espaciado uniforme entre logo y menú */
+  align-items: center; /* Alineación vertical centrada */
+  width: 100%; /* Ancho completo */
+  height: 100px; /* Altura fija */
+  background-color: #5f9ea0; /* Color de fondo */
+  padding: 0 20px; /* Espaciado lateral */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para diseño */
+  border-radius: 0 0 50px 50px; /* Esquinas redondeadas en la parte inferior */
+  z-index: 1000; /* Asegura que esté encima de otros elementos */
+}
+
+.logo-img {
+  height: 50px; /* Tamaño fijo para el logo */
+}
+
+.navigation ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 20px; /* Espaciado entre los elementos del menú */
+}
+
+.navigation a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+}
+
+/* Media Queries solo para ajuste lateral, sin cambios en la altura */
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0 10px; /* Reduce el padding lateral en pantallas pequeñas */
+  }
+
+  .navigation ul {
+    gap: 10px; /* Reduce el espacio entre los elementos del menú */
+  }
+
+  .navigation a {
+    font-size: 16px; /* Reduce un poco el tamaño de fuente */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    padding: 0 5px; /* Reduce aún más el padding lateral */
+  }
+
+  .navigation a {
+    font-size: 14px; /* Reduce el tamaño de fuente en pantallas muy pequeñas */
+  }
+}
 .p-4 {
   padding: 1rem;
 }

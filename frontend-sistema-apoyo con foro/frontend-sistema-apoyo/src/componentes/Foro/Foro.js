@@ -1,6 +1,8 @@
 import './Foro.css';
 import React, { useState } from 'react';
 import logo from '../../logo/LogoInicio.png'
+import { Link } from 'react-router-dom';
+
 const Foro = () => {
   const [foros, setForos] = useState([]);
   const [nombreBusqueda, setNombreBusqueda] = useState('');
@@ -47,7 +49,16 @@ const Foro = () => {
 
   return (
     <div className="p-4">
-      <img src={logo} alt="logo" className="logo-img"/>
+           <header className="header">
+                <img src={logo} alt="Logo" className="logo-img" />
+                <nav className="navigation">
+                    <ul>
+                        <li><Link to="#">Profesores</Link></li>
+                        <li><Link to="#">Programa</Link></li>
+                        <li><Link to="#">Herramientas</Link></li>
+                    </ul>
+                </nav>
+            </header>
       <h2 className="text-2xl font-bold mb-4"> Encontrá tu Foro</h2>
 
       <div className="flex gap-2 mb-4">

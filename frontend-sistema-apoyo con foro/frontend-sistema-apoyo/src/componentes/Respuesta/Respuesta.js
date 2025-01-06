@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import './Respuesta.css';
 import logo from '../../logo/LogoInicio.png'
+import { Link } from 'react-router-dom';
+
 
 const Respuesta = ({ idconsulta }) => {
   const [respuestas, setRespuestas] = useState([]);
@@ -119,8 +121,17 @@ const Respuesta = ({ idconsulta }) => {
 
   return (
     <div className="p-4">
+           <header className="header">
+                <img src={logo} alt="Logo" className="logo-img" />
+                <nav className="navigation">
+                    <ul>
+                        <li><Link to="#">Profesores</Link></li>
+                        <li><Link to="#">Programa</Link></li>
+                        <li><Link to="#">Herramientas</Link></li>
+                    </ul>
+                </nav>
+            </header>
       {/* Formulario de nueva respuesta */}
-      <img src={logo} alt="logo" className="logo-img"/>
       <form onSubmit={crearRespuesta} className="mb-6 space-y-4 bg-gray-50 p-4 rounded">
         <textarea
           className="border p-2 rounded w-full h-24"

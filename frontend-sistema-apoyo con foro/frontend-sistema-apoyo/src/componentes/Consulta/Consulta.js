@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import './Consulta.css';
 import logo from '../../logo/LogoInicio.png';
+import { Link } from 'react-router-dom';
+
 
 const Consulta = () => {
   const [consultas, setConsultas] = useState([]);
@@ -114,7 +116,16 @@ const Consulta = () => {
 
   return (
     <div className="p-4">
-      <img src={logo} alt="logo" className="logo-img"/>
+           <header className="header">
+                <img src={logo} alt="Logo" className="logo-img" />
+                <nav className="navigation">
+                    <ul>
+                        <li><Link to="#">Profesores</Link></li>
+                        <li><Link to="#">Programa</Link></li>
+                        <li><Link to="#">Herramientas</Link></li>
+                    </ul>
+                </nav>
+            </header>
       <h2 className="text-2xl font-bold mb-4">Consultas</h2>
       <div className="flex gap-2 mb-4">
         <input

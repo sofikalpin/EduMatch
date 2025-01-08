@@ -131,6 +131,7 @@ const Respuesta = ({ idconsulta }) => {
                     </ul>
                 </nav>
             </header>
+            <h2 className="text-2xl font-bold mb-4">Respuesta</h2>
       {/* Formulario de nueva respuesta */}
       <form onSubmit={crearRespuesta} className="mb-6 space-y-4 bg-gray-50 p-4 rounded">
         <textarea

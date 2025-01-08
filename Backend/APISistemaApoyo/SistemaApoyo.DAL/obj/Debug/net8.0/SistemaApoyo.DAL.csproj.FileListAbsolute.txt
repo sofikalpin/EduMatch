@@ -168,3 +168,6 @@ C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\A
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DAL\obj\Debug\net8.0\SistemaApoyo.DAL.genruntimeconfig.cache
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DAL\obj\Debug\net8.0\ref\SistemaApoyo.DAL.dll
 >>>>>>> fe6a432d2794d8c048848fa09d19988892e8f5ec
+C:\Users\valen\Desktop\eduMatch front\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DAL\obj\Debug\net8.0\SistemaApoyo.DAL.dll
+C:\Users\valen\Desktop\eduMatch front\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DAL\obj\Debug\net8.0\refint\SistemaApoyo.DAL.dll
+C:\Users\valen\Desktop\eduMatch front\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DAL\obj\Debug\net8.0\SistemaApoyo.DAL.pdb

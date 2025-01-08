@@ -115,3 +115,6 @@ C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\A
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.genruntimeconfig.cache
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\ref\SistemaApoyo.DTO.dll
 >>>>>>> fe6a432d2794d8c048848fa09d19988892e8f5ec
+C:\Users\valen\Desktop\eduMatch front\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.dll
+C:\Users\valen\Desktop\eduMatch front\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\refint\SistemaApoyo.DTO.dll
+C:\Users\valen\Desktop\eduMatch front\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.pdb

@@ -131,3 +131,6 @@ C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\A
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\obj\Debug\net8.0\SistemaApoyo.Model.genruntimeconfig.cache
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\obj\Debug\net8.0\ref\SistemaApoyo.Model.dll
 >>>>>>> fe6a432d2794d8c048848fa09d19988892e8f5ec
+C:\Users\valen\Desktop\eduMatch front\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\obj\Debug\net8.0\SistemaApoyo.Model.dll
+C:\Users\valen\Desktop\eduMatch front\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\obj\Debug\net8.0\refint\SistemaApoyo.Model.dll
+C:\Users\valen\Desktop\eduMatch front\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\obj\Debug\net8.0\SistemaApoyo.Model.pdb

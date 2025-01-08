@@ -1,111 +1,207 @@
-/* Variables de colores basadas en la imagen */
-:root {
-    --primary-color: #3A7D44; /* Verde principal */
-    --secondary-color: #FFD700; /* Amarillo dorado */
-    --background-color: #F4F4F4; /* Fondo claro */
-    --text-color: #333333; /* Texto oscuro */
-    --button-hover-color: #2F6234; /* Verde más oscuro */
-    --border-color: #CCCCCC; /* Bordes */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.header {
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  background-color: #5f9ea0;
+  padding: 0 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 50px 50px;
+  z-index: 1000;
+}
+
+.logo-img {
+  height: 50px;
+}
+
+.navigation ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 20px;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+}
+
+.foro-completo {
+  padding: 20px;
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  margin-top: 100px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.foro-header {
+  background-color: #004d40;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.foro-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.foro-content {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.foro-post {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-initial {
+  background: #f0f0f0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.post-date {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.post-content {
+  margin-bottom: 15px;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-responder {
+  background-color: #ffa726;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-nueva-consulta {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #00bfa5;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.btn-responder:hover,
+.btn-nueva-consulta:hover {
+  opacity: 0.9;
+}
+
+.logo-container {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 100px;
+  height: 100px;
+  background-color: #5f9ea0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.logo-img {
+  width: 80px;
+  height: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0 10px;
   }
-  
-  .logo-img {
-    width: 150px; /* Ajusta el ancho */
-    height: auto; /* Ajusta el alto si es necesario */
+
+  .navigation ul {
+    gap: 10px;
   }
-  
-  .logo-img {
-    width: 150px; /* Ajusta el ancho */
-    height: auto; /* Ajusta el alto si es necesario */
-    margin-right: 20px; /* Ajusta este margen */
-    margin-left: 50px ;
-    margin-top: 10px;
+
+  .navigation a {
+    font-size: 16px;
   }
-  
-  /* Estilos generales */
-  body {
-    font-family: 'Arial', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    margin: 0;
-    padding: 0;
-  }
-  
-  header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 20px;
-    text-align: center;
-    font-size: 1.5rem;
-  }
-  
-  .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--border-color);
-  }
-  
-  /* Clases específicas del JS */
-  .lista {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .lista li {
-    padding: 15px;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .lista li:last-child {
-    border-bottom: none;
-  }
-  
-  .boton {
-    background-color: var(--secondary-color);
-    border: none;
-    border-radius: 5px;
-    color: var(--text-color);
-    font-size: 1rem;
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .boton:hover {
-    background-color: var(--button-hover-color);
-    color: white;
-  }
-  
-  .input {
-    width: calc(100% - 40px);
+
+  .foro-completo {
     padding: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    margin-bottom: 15px;
-    font-size: 1rem;
   }
-  
-  /* Mensajes */
-  .mensaje {
-    font-size: 1.2rem;
-    color: var(--text-color);
-    margin-top: 20px;
-    text-align: center;
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    padding: 0 5px;
   }
-  
-  .mensaje-exito {
-    color: var(--primary-color);
+
+  .navigation a {
+    font-size: 14px;
   }
-  
-  .mensaje-error {
-    color: red;
+
+  .foro-completo {
+    padding: 5px;
   }
-  
+
+  .logo-container {
+    width: 80px;
+    height: 80px;
+  }
+
+  .logo-img {
+    width: 60px;
+  }
+}
+

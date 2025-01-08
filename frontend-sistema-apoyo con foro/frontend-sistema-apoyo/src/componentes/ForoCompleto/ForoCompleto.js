@@ -1,14 +1,38 @@
 import './ForoCompleto.css';
 import logo from '../../logo/LogoInicio.png';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { API_BASE_URL } from '../../config/api';
 
 const ForoCompleto = () => {
   const navigate = useNavigate();
+  const [consultas, setConsultas] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const handleResponder = () => {
-    navigate('/respuesta');
+  useEffect(() => {
+    const fetchConsultas = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/API/Consulta/Listar Consultas`);
+        if (response.data.status) {
+          setConsultas(response.data.value);
+        } else {
+          throw new Error('Failed to fetch consultas');
+        }
+      } catch (err) {
+        setError('Error al cargar las consultas. Por favor, intente nuevamente.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchConsultas();
+  }, []);
+
+  const handleResponder = (consultaId) => {
+    navigate('/respuesta', { state: { consultaId } });
   };
 
   const handleNuevaConsulta = () => {
@@ -17,22 +41,22 @@ const ForoCompleto = () => {
 
   return (
     <div className="foro-completo">
-                   <header className="header">
-                <img src={logo} alt="Logo" className="logo-img" />
-                <nav className="navigation">
-                    <ul>
-                        <li><Link to="#">Profesores</Link></li>
-                        <li><Link to="#">Programa</Link></li>
-                        <li><Link to="#">Herramientas</Link></li>
-                    </ul>
-                </nav>
-            </header>
+      <header className="header">
+        <img src={logo} alt="Logo" className="logo-img" />
+        <nav className="navigation">
+          <ul>
+            <li><Link to="#">Profesores</Link></li>
+            <li><Link to="#">Programa</Link></li>
+            <li><Link to="#">Herramientas</Link></li>
+          </ul>
+        </nav>
+      </header>
       <div className="foro-header">
         <h2>Foro</h2>
       </div>
       
       <div className="foro-content">
-        {/* Contenido del foro */}
+        {/* Static foro post */}
         <div className="foro-post">
           <div className="post-header">
             <div className="user-info">
@@ -47,12 +71,45 @@ const ForoCompleto = () => {
           <div className="post-actions">
             <button 
               className="btn-responder"
-              onClick={handleResponder}
+              onClick={() => handleResponder(0)}
             >
               Responder
             </button>
           </div>
         </div>
+
+        {/* Dynamic foro posts */}
+        {isLoading ? (
+          <div>Cargando consultas...</div>
+        ) : error ? (
+          <div>{error}</div>
+        ) : (
+          consultas.map((consulta) => (
+            <div key={consulta.Idconsulta} className="foro-post">
+              <div className="post-header">
+                <div className="user-info">
+                  <span className="user-initial">{consulta.Titulo[0]}</span>
+                  <span className="user-name">Usuario {consulta.Idusuario}</span>
+                </div>
+                <span className="post-date">
+                  {consulta.Fechahora ? new Date(consulta.Fechahora).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit' }) : 'Fecha desconocida'}
+                </span>
+              </div>
+              <div className="post-content">
+                <h3>{consulta.Titulo}</h3>
+                <p>{consulta.Contenido}</p>
+              </div>
+              <div className="post-actions">
+                <button 
+                  className="btn-responder"
+                  onClick={() => handleResponder(consulta.Idconsulta)}
+                >
+                  Responder
+                </button>
+              </div>
+            </div>
+          ))
+        )}
       </div>
 
       <button 
@@ -61,13 +118,9 @@ const ForoCompleto = () => {
       >
         + Nueva Consulta
       </button>
-      <div className="logo-container">
-        <img src={logo} alt="logo" className="logo-img" />
-      </div>
     </div>
   );
 };
 
 export default ForoCompleto;
 
-   

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import logo from '../../logo/LogoInicio.png'
 import { Link } from 'react-router-dom';
 
-const API_BASE_URL = 'http://localhost:5228/API'; // Update this if your API is hosted elsewhere
+const API_BASE_URL = 'http://localhost:5228/API'; // Asegúrate de que esta URL sea correcta
 
 const Foro = () => {
   const [foros, setForos] = useState([]);
@@ -18,67 +18,82 @@ const Foro = () => {
   const [editandoForo, setEditandoForo] = useState(null);
   const [error, setError] = useState('');
   const [foroPorId, setForoPorId] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     listarForos();
   }, []);
 
   const listarForos = async () => {
+    setIsLoading(true);
+    setError('');
     try {
       const response = await fetch(`${API_BASE_URL}/Foro/Listar Foros`);
       if (!response.ok) {
-        throw new Error('Error al obtener los foros');
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
       if (data.status) {
         setForos(data.value);
       } else {
-        setError('Error al cargar los foros');
+        setError('Error al cargar los foros: ' + (data.message || 'No se recibieron datos'));
       }
     } catch (error) {
-      setError('Error al cargar los foros');
-      console.error('Error:', error);
+      console.error('Error al cargar los foros:', error);
+      setError('Error al cargar los foros: ' + error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const buscarForoPorNombre = async () => {
+    setIsLoading(true);
+    setError('');
     try {
       const response = await fetch(`${API_BASE_URL}/Foro/Nombre Foro?nombre=${nombreBusqueda}`);
       if (!response.ok) {
-        throw new Error('Error al buscar foros');
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
       if (data.status) {
         setForos(data.value);
       } else {
-        setError('Error al buscar foros');
+        setError('Error al buscar foros: ' + (data.message || 'No se encontraron resultados'));
       }
     } catch (error) {
-      setError('Error al buscar foros');
-      console.error('Error:', error);
+      console.error('Error al buscar foros:', error);
+      setError('Error al buscar foros: ' + error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const obtenerForoPorId = async (id) => {
+    setIsLoading(true);
+    setError('');
     try {
       const response = await fetch(`${API_BASE_URL}/Foro/Foro ID?id=${id}`);
       if (!response.ok) {
-        throw new Error('Error al obtener el foro');
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
       if (data.status) {
         setForoPorId(data.value);
       } else {
-        setError('Error al obtener el foro');
+        setError('Error al obtener el foro: ' + (data.message || 'No se encontró el foro'));
       }
     } catch (error) {
-      setError('Error al obtener el foro');
-      console.error('Error:', error);
+      console.error('Error al obtener el foro:', error);
+      setError('Error al obtener el foro: ' + error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const crearForo = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    setError('');
     try {
       const response = await fetch(`${API_BASE_URL}/Foro/Crear Foro`, {
         method: 'POST',
@@ -88,7 +103,7 @@ const Foro = () => {
         body: JSON.stringify(nuevoForo),
       });
       if (!response.ok) {
-        throw new Error('Error al crear el foro');
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
       if (data.status) {
@@ -101,15 +116,19 @@ const Foro = () => {
           idnivel: 0,
         });
       } else {
-        setError('Error al crear el foro');
+        setError('Error al crear el foro: ' + (data.message || 'No se pudo crear el foro'));
       }
     } catch (error) {
-      setError('Error al crear el foro');
-      console.error('Error:', error);
+      console.error('Error al crear el foro:', error);
+      setError('Error al crear el foro: ' + error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const actualizarForo = async (foro) => {
+    setIsLoading(true);
+    setError('');
     try {
       const response = await fetch(`${API_BASE_URL}/Foro/Editar por ID?id=${foro.idforo}`, {
         method: 'PUT',
@@ -119,18 +138,20 @@ const Foro = () => {
         body: JSON.stringify(foro),
       });
       if (!response.ok) {
-        throw new Error('Error al actualizar el foro');
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
       if (data.status) {
         await listarForos();
         setEditandoForo(null);
       } else {
-        setError('Error al actualizar el foro');
+        setError('Error al actualizar el foro: ' + (data.message || 'No se pudo actualizar el foro'));
       }
     } catch (error) {
-      setError('Error al actualizar el foro');
-      console.error('Error:', error);
+      console.error('Error al actualizar el foro:', error);
+      setError('Error al actualizar el foro: ' + error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -159,8 +180,9 @@ const Foro = () => {
         <button
           onClick={buscarForoPorNombre}
           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          disabled={isLoading}
         >
-          Buscar
+          {isLoading ? 'Buscando...' : 'Buscar'}
         </button>
       </div>
 
@@ -191,44 +213,53 @@ const Foro = () => {
         <button
           type="submit"
           className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+          disabled={isLoading}
         >
-          Crear Foro
+          {isLoading ? 'Creando...' : 'Crear Foro'}
         </button>
       </form>
 
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr className="bg-gray-100">
-              <th className="border p-2 text-left">Nombre</th>
-              <th className="border p-2 text-left">Descripción</th>
-              <th className="border p-2 text-left">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {foros.map((foro) => (
-              <tr key={foro.idforo} className="border-b hover:bg-gray-50">
-                <td className="p-2">{foro.nombre}</td>
-                <td className="p-2">{foro.descripcion}</td>
-                <td className="p-2">
-                  <button
-                    onClick={() => setEditandoForo(foro)}
-                    className="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600 mr-2"
-                  >
-                    Editar
-                  </button>
-                  <button
-                    onClick={() => obtenerForoPorId(foro.idforo)}
-                    className="bg-yellow-500 text-white px-3 py-1 rounded text-sm hover:bg-yellow-600"
-                  >
-                    Ver
-                  </button>
-                </td>
+      {isLoading && <div className="text-center">Cargando foros...</div>}
+
+      {!isLoading && foros.length === 0 && !error && (
+        <div className="text-center">No hay foros disponibles</div>
+      )}
+
+      {!isLoading && foros.length > 0 && (
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="border p-2 text-left">Nombre</th>
+                <th className="border p-2 text-left">Descripción</th>
+                <th className="border p-2 text-left">Acciones</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {foros.map((foro) => (
+                <tr key={foro.idforo} className="border-b hover:bg-gray-50">
+                  <td className="p-2">{foro.nombre}</td>
+                  <td className="p-2">{foro.descripcion}</td>
+                  <td className="p-2">
+                    <button
+                      onClick={() => setEditandoForo(foro)}
+                      className="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600 mr-2"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      onClick={() => obtenerForoPorId(foro.idforo)}
+                      className="bg-yellow-500 text-white px-3 py-1 rounded text-sm hover:bg-yellow-600"
+                    >
+                      Ver
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
 
       {editandoForo && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" id="my-modal">
@@ -260,8 +291,9 @@ const Foro = () => {
                 <button
                   type="submit"
                   className="bg-blue-500 text-white px-4 py-2 rounded"
+                  disabled={isLoading}
                 >
-                  Guardar
+                  {isLoading ? 'Guardando...' : 'Guardar'}
                 </button>
               </div>
             </form>

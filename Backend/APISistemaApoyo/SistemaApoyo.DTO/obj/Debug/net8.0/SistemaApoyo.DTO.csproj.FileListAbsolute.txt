@@ -71,6 +71,21 @@ C:\Users\Usuario\Downloads\EduMatch-main\Backend\APISistemaApoyo\SistemaApoyo.DT
 C:\Users\Usuario\Downloads\EduMatch-main\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\refint\SistemaApoyo.DTO.dll
 C:\Users\Usuario\Downloads\EduMatch-main\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.pdb
 C:\Users\Usuario\Downloads\EduMatch-main\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\ref\SistemaApoyo.DTO.dll
+<<<<<<< HEAD
+C:\Users\Usuario\Desktop\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\bin\Debug\net8.0\SistemaApoyo.DTO.deps.json
+C:\Users\Usuario\Desktop\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\bin\Debug\net8.0\SistemaApoyo.DTO.dll
+C:\Users\Usuario\Desktop\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\bin\Debug\net8.0\SistemaApoyo.DTO.pdb
+C:\Users\Usuario\Desktop\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Desktop\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.AssemblyInfoInputs.cache
+C:\Users\Usuario\Desktop\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.AssemblyInfo.cs
+C:\Users\Usuario\Desktop\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.sourcelink.json
+C:\Users\Usuario\Desktop\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.dll
+C:\Users\Usuario\Desktop\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\refint\SistemaApoyo.DTO.dll
+C:\Users\Usuario\Desktop\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.pdb
+C:\Users\Usuario\Desktop\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\ref\SistemaApoyo.DTO.dll
+=======
 C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\bin\Debug\net8.0\SistemaApoyo.DTO.deps.json
 C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\bin\Debug\net8.0\SistemaApoyo.DTO.dll
 C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\bin\Debug\net8.0\SistemaApoyo.DTO.pdb
@@ -99,3 +114,4 @@ C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\A
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.pdb
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.genruntimeconfig.cache
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\ref\SistemaApoyo.DTO.dll
+>>>>>>> fe6a432d2794d8c048848fa09d19988892e8f5ec

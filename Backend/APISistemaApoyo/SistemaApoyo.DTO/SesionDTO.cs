@@ -15,5 +15,7 @@ namespace SistemaApoyo.DTO
         public string Correo { get; set; } = null!;
 
         public string? RolDescripcion { get; set; }
+
+        public string Token { get; set; }
     }
 }

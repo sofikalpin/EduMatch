@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DAL.Repositorios.Contrato;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,11 +19,13 @@ namespace SistemaApoyo.BLL.Servicios
     {
         private readonly IGenericRepository<Usuario> _usuarioRepositorio;
         private readonly IMapper _mapper;
+        private readonly PasswordHasher<object> _passwordHasher;
 
         public AdministradorService(IGenericRepository<Usuario> usuarioRepositorio, IMapper mapper)
         {
             _usuarioRepositorio = usuarioRepositorio;
             _mapper = mapper;
+            _passwordHasher = new PasswordHasher<object>();
         }
 
         public async Task<List<UsuarioDTO>> ListaTotal() 
@@ -43,7 +47,7 @@ namespace SistemaApoyo.BLL.Servicios
             try
             {
                 var Usuarioquery = await _usuarioRepositorio.Consultar();
-                if (numero_rol != null && numero_rol >= 1 && numero_rol <= 3)
+                if (numero_rol >= 1 && numero_rol <= 3)
                 {
                     Usuarioquery = Usuarioquery.Where(u => u.Idrol == numero_rol);
                 }
@@ -120,8 +124,14 @@ namespace SistemaApoyo.BLL.Servicios
         {
             try
             {
-                var usuario1 = _mapper.Map<Usuario>(usuario);
-                await _usuarioRepositorio.Crear(usuario1);
+                var usuarioCreado = await _usuarioRepositorio.Crear(_mapper.Map<Usuario>(usuario));
+                if (usuarioCreado.Idusuario == 0)
+                    throw new InvalidOperationException("El ID del usuario es cero, lo cual no es válido.");
+
+                var query = await _usuarioRepositorio.Consultar(u => u.Idusuario == usuarioCreado.Idusuario);
+                usuarioCreado = query.Include(rol => rol.IdrolNavigation).First();
+                usuario.ContraseñaHash = HashearContrasena(usuario.ContraseñaHash);
+
                 return true;
 
             }
@@ -141,6 +151,21 @@ namespace SistemaApoyo.BLL.Servicios
                 {
                     throw new TaskCanceledException("El usuario no existe");
                 }
+
+                if (!string.IsNullOrEmpty(usuarioModelo.ContraseñaHash))
+                {
+                    usuarioEncontrado.ContraseñaHash = HashearContrasena(usuarioModelo.ContraseñaHash);
+                }
+
+                if (usuario.Idusuario <= 0 || usuario.Idnivel <= 0)
+                {
+                    throw new ArgumentException("Datos inválidos: asegúrate de que el ID de usuario y el nivel sean válidos.");
+                }
+
+                usuarioEncontrado.Nombrecompleto = usuarioModelo.Nombrecompleto;
+                usuarioEncontrado.Correo = usuarioModelo.Correo;
+                usuarioEncontrado.Idnivel = usuarioModelo.Idnivel;
+
                 _mapper.Map(usuario, usuarioEncontrado);
                 await _usuarioRepositorio.Editar(usuarioEncontrado);
                 return true;
@@ -171,6 +196,25 @@ namespace SistemaApoyo.BLL.Servicios
         }
 
 
+
+
+
+        public async Task<List<UsuarioDTO>> ListaAutorizacion(bool tipopermiso)
+        {
+            try
+            {
+                var Usuarioquery = await _usuarioRepositorio.Consultar();
+                Usuarioquery = Usuarioquery.Where(u => (u.AutProf as bool?) == tipopermiso);
+                var listaResultado = await Usuarioquery.ToListAsync();
+                return _mapper.Map<List<UsuarioDTO>>(listaResultado);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los usuarios por si estan autorizados o no.", ex);
+            }
+        }
+
+
         public async Task<bool> AutorizarProfesor(int id) 
         {
             try
@@ -182,13 +226,73 @@ namespace SistemaApoyo.BLL.Servicios
                     throw new TaskCanceledException("El profesor no existe");
                 }
 
-                //usuarioBuscado.ProfesorAutorizado = true;
+                usuarioBuscado.AutProf = true;
                 await _usuarioRepositorio.Editar(usuarioBuscado);
                 return true;
             }
             catch 
             { 
                 throw; 
+            }
+        }
+
+
+
+        public string HashearContrasena(string contrasena)
+        {
+            if (string.IsNullOrEmpty(contrasena))
+            {
+                throw new ArgumentException("La contraseña no puede estar vacía.");
+            }
+            // Generar un salt único
+            var salt = new byte[16];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+            }
+
+            // Usar PBKDF2 para generar el hash de la contraseña
+            var iteraciones = 10000;
+            using (var pbkdf2 = new Rfc2898DeriveBytes(contrasena, salt, iteraciones, HashAlgorithmName.SHA256))
+            {
+                var hash = pbkdf2.GetBytes(32);
+
+                // Combinar el salt y el hash en un solo arreglo
+                var resultado = new byte[salt.Length + hash.Length];
+                Array.Copy(salt, 0, resultado, 0, salt.Length);
+                Array.Copy(hash, 0, resultado, salt.Length, hash.Length);
+
+                // Retornar el resultado como Base64 para almacenamiento
+                return Convert.ToBase64String(resultado);
+            }
+        }
+
+        public bool VerificarContrasena(string contrasena, string hashAlmacenado)
+        {
+            // Convertir el hash almacenado desde Base64 a un arreglo de bytes
+            var datosHash = Convert.FromBase64String(hashAlmacenado);
+
+            // Extraer el salt (primeros 16 bytes)
+            var salt = new byte[16];
+            Array.Copy(datosHash, 0, salt, 0, 16);
+
+            // Extraer el hash original (resto de los bytes)
+            var hashOriginal = new byte[32];
+            Array.Copy(datosHash, 16, hashOriginal, 0, 32);
+
+            // Recalcular el hash con la contraseña proporcionada
+            var iteraciones = 10000;
+            using (var pbkdf2 = new Rfc2898DeriveBytes(contrasena, salt, iteraciones, HashAlgorithmName.SHA256))
+            {
+                var hashRecalculado = pbkdf2.GetBytes(32);
+
+                Console.WriteLine($"Salt: {Convert.ToBase64String(salt)}");
+                Console.WriteLine($"Hash recalculado: {Convert.ToBase64String(hashRecalculado)}");
+                Console.WriteLine($"Hash original: {Convert.ToBase64String(hashOriginal)}");
+
+                // Comparar ambos hashes de manera segura
+                return hashOriginal.SequenceEqual(hashRecalculado);
+
             }
         }
     }

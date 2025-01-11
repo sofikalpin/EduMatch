@@ -349,8 +349,9 @@ namespace SistemaApoyo.DAL.DBContext
                 entity.ToTable("usuario");
 
                 entity.Property(e => e.Idusuario)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idusuario");
+                                .ValueGeneratedNever()
+                                .HasColumnName("idusuario");
+                entity.Property(e => e.AutProf).HasColumnName("autProf");
                 entity.Property(e => e.ContraseñaHash)
                     .HasColumnType("character varying")
                     .HasColumnName("contraseña_hash");

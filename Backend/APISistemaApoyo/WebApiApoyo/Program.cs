@@ -15,8 +15,6 @@ builder.Services.InyectarDependencias(builder.Configuration);
 
 builder.Services.AddControllers();
 
-
-
 // Agregar Fluent Validation
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<ActividadValidator>();
@@ -37,16 +35,17 @@ builder.Services.AddCors(options =>
     // Política CORS específica para la aplicación React
     options.AddPolicy("AllowReactApp", policy =>
     {
-        policy.WithOrigins("http://localhost:3001/") // URL del frontend
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+        policy.WithOrigins("http://localhost:3000") // URL del frontend
+              .AllowAnyMethod()
+              .AllowAnyHeader();
     });
 
     // Política CORS general
     options.AddPolicy("AllowAllOrigins", builder =>
         builder.AllowAnyOrigin()
                .AllowAnyMethod()
-               .AllowAnyHeader());
+               .AllowAnyHeader()
+    );
 });
 
 builder.Services.AddControllers();
@@ -55,22 +54,22 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-
-
 // Configuración en entorno de desarrollo
+// Aplicar política CORS (elige una según lo necesites)
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
-}
 
-// Aplicar política CORS (elige una según lo necesites)
-app.UseCors("AllowAllOrigins"); // O "AllowReactApp" si solo quieres permitir React
+    app.UseCors("AllowAllOrigins");
+}
+else { 
+    app.UseCors("AllowReactApp");
+}
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
-
 app.MapControllers();
 
 // Configuración de SignalR (real-time chat)

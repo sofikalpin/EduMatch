@@ -599,10 +599,10 @@ C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\A
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.WebApiApoyo.props
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.WebApiApoyo.props
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\staticwebassets.pack.json
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\WebApiAp.78FD0358.Up2Date
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\WebApiApoyo.dll
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\refint\WebApiApoyo.dll
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\WebApiApoyo.pdb
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\WebApiApoyo.genruntimeconfig.cache
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\ref\WebApiApoyo.dll
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

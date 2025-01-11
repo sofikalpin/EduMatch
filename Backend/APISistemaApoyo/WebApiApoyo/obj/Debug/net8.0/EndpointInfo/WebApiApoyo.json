@@ -60,7 +60,156 @@
         }
       }
     },
-    "/API/AdministradorProfesor/Lista Profesores": {
+    "/API/AdministradorAlumno/ListaAlumnos": {
+      "get": {
+        "tags": [
+          "AdministradorAlumno"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/AdministradorAlumno/BusquedaAlumnoNombre": {
+      "put": {
+        "tags": [
+          "AdministradorAlumno"
+        ],
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/AdministradorAlumno/AlumnoID": {
+      "get": {
+        "tags": [
+          "AdministradorAlumno"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/AdministradorAlumno/CrearAlumno": {
+      "post": {
+        "tags": [
+          "AdministradorAlumno"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/AdministradorAlumno/EditarporID": {
+      "put": {
+        "tags": [
+          "AdministradorAlumno"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/AdministradorAlumno/EliminarAlumno": {
+      "delete": {
+        "tags": [
+          "AdministradorAlumno"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/AdministradorProfesor/ListaProfesores": {
       "get": {
         "tags": [
           "AdministradorProfesor"
@@ -72,7 +221,31 @@
         }
       }
     },
-    "/API/AdministradorProfesor/Autorizar Profesor": {
+    "/API/AdministradorProfesor/ListaProfesoresAutorizados": {
+      "get": {
+        "tags": [
+          "AdministradorProfesor"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/AdministradorProfesor/ListaProfesoresNOAutorizados": {
+      "get": {
+        "tags": [
+          "AdministradorProfesor"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/AdministradorProfesor/AutorizarProfesor": {
       "put": {
         "tags": [
           "AdministradorProfesor"
@@ -94,7 +267,7 @@
         }
       }
     },
-    "/API/AdministradorProfesor/Busqueda Profesor Nombre": {
+    "/API/AdministradorProfesor/BusquedaProfesorNombre": {
       "get": {
         "tags": [
           "AdministradorProfesor"
@@ -115,29 +288,7 @@
         }
       }
     },
-    "/API/AdministradorProfesor/Busqueda Profesor Nivel": {
-      "get": {
-        "tags": [
-          "AdministradorProfesor"
-        ],
-        "parameters": [
-          {
-            "name": "nivel",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/AdministradorProfesor/Profesor ID": {
+    "/API/AdministradorProfesor/ProfesorID": {
       "get": {
         "tags": [
           "AdministradorProfesor"
@@ -159,7 +310,7 @@
         }
       }
     },
-    "/API/AdministradorProfesor/Crear Profesor": {
+    "/API/AdministradorProfesor/CrearProfesor": {
       "post": {
         "tags": [
           "AdministradorProfesor"
@@ -190,7 +341,7 @@
         }
       }
     },
-    "/API/AdministradorProfesor/Editar por ID": {
+    "/API/AdministradorProfesor/EditarporID": {
       "put": {
         "tags": [
           "AdministradorProfesor"
@@ -231,7 +382,7 @@
         }
       }
     },
-    "/API/AdministradorProfesor/Eliminar Profesor": {
+    "/API/AdministradorProfesor/EliminarProfesor": {
       "delete": {
         "tags": [
           "AdministradorProfesor"
@@ -2324,6 +2475,10 @@
           "idrol": {
             "type": "integer",
             "format": "int32"
+          },
+          "autProf": {
+            "type": "boolean",
+            "nullable": true
           }
         },
         "additionalProperties": false

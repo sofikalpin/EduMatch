@@ -10,17 +10,14 @@ using SistemaApoyo.DTO;
 using SistemaApoyo.Model.Models;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-<<<<<<< HEAD
 using BotCrypt;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.Extensions.Configuration;
-=======
 using Microsoft.AspNetCore.Identity;
 using System.Security.Cryptography;
 using System.Linq.Expressions;
->>>>>>> fe6a432d2794d8c048848fa09d19988892e8f5ec
 
 namespace SistemaApoyo.BLL.Servicios
 {
@@ -28,22 +25,16 @@ namespace SistemaApoyo.BLL.Servicios
     {
         private readonly IGenericRepository<Usuario> _usuarioRepositorio;
         private readonly IMapper _mapper;
-<<<<<<< HEAD
         private readonly IConfiguration _configuration;  // Usamos IConfiguration aquí
-=======
         private readonly PasswordHasher<object> _passwordHasher;
->>>>>>> fe6a432d2794d8c048848fa09d19988892e8f5ec
 
         // Constructor actualizado
         public UsuarioService(IGenericRepository<Usuario> usuarioRepositorio, IMapper mapper, IConfiguration configuration)
         {
             _usuarioRepositorio = usuarioRepositorio;
             _mapper = mapper;
-<<<<<<< HEAD
             _configuration = configuration;  // Se inyecta IConfiguration
-=======
             _passwordHasher = new PasswordHasher<object>();
->>>>>>> fe6a432d2794d8c048848fa09d19988892e8f5ec
         }
 
         public async Task<UsuarioDTO> Crear(UsuarioDTO modelo)
@@ -90,16 +81,10 @@ namespace SistemaApoyo.BLL.Servicios
                 return respuesta;
 
             }
-<<<<<<< HEAD
-            catch
-            {
-                throw;
-=======
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al editar usuario: {ex.Message}");
                 throw ;
->>>>>>> fe6a432d2794d8c048848fa09d19988892e8f5ec
             }
         }
 
@@ -158,27 +143,6 @@ namespace SistemaApoyo.BLL.Servicios
 
         public async Task<SesionDTO> ValidarCredenciales(string correo, string contrasena)
         {
-<<<<<<< HEAD
-            // Buscar al usuario por correo
-            var usuario = await ObtenerUsuarioPorCorreo(correo);
-
-            if (usuario != null)
-            {
-                // Verificar la contraseña
-                string ContrasenaHasheada = usuario.ContrasenaHash;
-                string ContrasenaOriginal = Crypter.DecryptString("ContrasenasHasheadas101", ContrasenaHasheada);
-
-                if (ContrasenaOriginal == contrasena)
-                {
-                    // Credenciales correctas, generar el token JWT
-                    var token = GenerarToken(usuario); // Llamamos al método para generar el token
-                    return new SesionDTO
-                    {
-                        Correo = usuario.Correo,
-                        NombreCompleto = usuario.Nombrecompleto,
-                        Token = token // Enviamos el token al cliente
-                    };
-=======
             try
             { 
                 // Buscar al usuario por su correo
@@ -196,7 +160,6 @@ namespace SistemaApoyo.BLL.Servicios
                             Correo = usuario.Correo
                         };
                     }
->>>>>>> fe6a432d2794d8c048848fa09d19988892e8f5ec
                 }
                 Console.WriteLine($"Usuario con correo {correo} no encontrado.");
                 throw new UnauthorizedAccessException("Credenciales inválidas");
@@ -206,11 +169,6 @@ namespace SistemaApoyo.BLL.Servicios
                 Console.WriteLine($"Error al validar credencialess: {ex.Message}");
                 throw;
             }
-<<<<<<< HEAD
-
-            return null; // Si las credenciales son incorrectas, devolvemos null
-=======
->>>>>>> fe6a432d2794d8c048848fa09d19988892e8f5ec
         }
 
 

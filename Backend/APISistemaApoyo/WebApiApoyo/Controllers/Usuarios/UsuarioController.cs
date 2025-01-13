@@ -49,10 +49,6 @@ public class UsuarioController : ControllerBase
         try
         {
             var sesion = await _usuarioService.ValidarCredenciales(login.Correo, login.ContrasenaHash);
-<<<<<<< HEAD
-            if (sesion != null )
-=======
->>>>>>> fe6a432d2794d8c048848fa09d19988892e8f5ec
 
             if (sesion == null) 
             { 
@@ -63,11 +59,8 @@ public class UsuarioController : ControllerBase
             
             rsp.status = true;
             rsp.value = sesion;
-<<<<<<< HEAD
-=======
             rsp.msg = "Inicio de sesión exitoso.";
             return Ok(rsp);
->>>>>>> fe6a432d2794d8c048848fa09d19988892e8f5ec
         }
         catch (Exception ex)
         {

@@ -243,9 +243,13 @@ namespace WebApiApoyo.Controllers.Administrador
             var rsp = new Response<string>();
             try
             {
+                usuario.AutProf = true;
+
                 var resultado = await _administradorService.ActualizarUsuario(usuario);
                 if (resultado)
                 {
+                    
+
                     return Ok(new
                     {
                         status = true,

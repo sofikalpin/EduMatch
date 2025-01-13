@@ -1,19 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj",
-        "projectName": "SistemaApoyo.DTO",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\obj\\",
-=======
     "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj": {}
   },
   "projects": {
@@ -25,7 +12,6 @@
         "projectPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj",
         "packagesPath": "C:\\Users\\Sofia\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\obj\\",
->>>>>>> fe6a432d2794d8c048848fa09d19988892e8f5ec
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -65,6 +51,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.SignalR": {
+              "target": "Package",
+              "version": "[1.0.4, )"
+            },
             "Microsoft.AspNetCore.SignalR.Common": {
               "target": "Package",
               "version": "[9.0.0, )"

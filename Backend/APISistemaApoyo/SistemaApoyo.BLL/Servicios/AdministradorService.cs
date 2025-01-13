@@ -165,6 +165,15 @@ namespace SistemaApoyo.BLL.Servicios
                 usuarioEncontrado.Nombrecompleto = usuarioModelo.Nombrecompleto;
                 usuarioEncontrado.Correo = usuarioModelo.Correo;
                 usuarioEncontrado.Idnivel = usuarioModelo.Idnivel;
+                
+                if (usuarioEncontrado.Idrol == 1)
+                {
+                    usuarioEncontrado.AutProf = true;
+                }
+                else
+                {
+                    usuarioEncontrado.AutProf = null;
+                }
 
                 _mapper.Map(usuario, usuarioEncontrado);
                 await _usuarioRepositorio.Editar(usuarioEncontrado);

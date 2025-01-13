@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './Respuesta.css';
-import logo from '../../logo/LogoInicio.png'
-import { Link } from 'react-router-dom';
-
+import logo from '../../logo/LogoInicio.png';
+import { Link, useNavigate } from 'react-router-dom'; // Importa useNavigate
 
 const Respuesta = ({ idconsulta }) => {
   const [respuestas, setRespuestas] = useState([]);
@@ -15,6 +14,7 @@ const Respuesta = ({ idconsulta }) => {
   const [editandoRespuesta, setEditandoRespuesta] = useState(null);
   const [error, setError] = useState('');
   const [respuestaSeleccionada, setRespuestaSeleccionada] = useState(null);
+  const navigate = useNavigate(); // Inicializa useNavigate aquí
 
   // Consultar todas las respuestas
   const consultarRespuestas = async () => {
@@ -118,6 +118,10 @@ const Respuesta = ({ idconsulta }) => {
   useEffect(() => {
     consultarRespuestas();
   }, [idconsulta]);
+
+  const handleForoCompleto = () => {
+    navigate('/forocompleto'); // Usa navigate correctamente
+  };
 
   return (
     <div className="p-4">
@@ -223,6 +227,12 @@ const Respuesta = ({ idconsulta }) => {
           {error}
         </div>
       )}
+              <button 
+        className="btn-button"
+        onClick={handleForoCompleto}
+      >
+        Foro Completo
+      </button>
     </div>
   );
 };

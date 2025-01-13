@@ -43,7 +43,7 @@ const ForoCompleto = () => {
   const handleNuevaConsulta = () => {
     navigate('/consulta');
   };
-
+  
   return (
     <div className="foro-completo">
       <header className="header">
@@ -124,7 +124,7 @@ const ForoCompleto = () => {
       </div>
 
       <button 
-        className="btn-nueva-consulta"
+        className="btn-button"
         onClick={handleNuevaConsulta}
       >
         + Nueva Consulta

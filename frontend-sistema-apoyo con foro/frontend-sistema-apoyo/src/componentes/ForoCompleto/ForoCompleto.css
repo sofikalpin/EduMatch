@@ -183,7 +183,7 @@ html, body {
   background-color: #e0e0e0;
 }
 
-.btn-nueva-consulta {
+.btn-button {
   position: fixed;
   bottom: 30px;
   right: 30px;
@@ -198,8 +198,8 @@ html, body {
   z-index: 1000;
 }
 
-.btn-responder:hover,
-.btn-nueva-consulta:hover {
+.btn-responder:hover.
+.btn-button:hover {
   opacity: 0.9;
 }
 
@@ -309,5 +309,20 @@ html, body {
   .logo-container .logo-img {
     max-width: 40px;
     max-height: 40px;
+  }
+
+  .btn-foro-completo{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #00bfa5;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
   }
 }

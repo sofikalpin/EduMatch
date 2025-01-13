@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './Consulta.css';
 import logo from '../../logo/LogoInicio.png';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
 
 const Consulta = () => {
   const [consultas, setConsultas] = useState([]);
@@ -16,6 +15,7 @@ const Consulta = () => {
   const [editandoConsulta, setEditandoConsulta] = useState(null);
   const [consultaSeleccionada, setConsultaSeleccionada] = useState(null);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const obtenerConsultas = async () => {
     try {
@@ -114,18 +114,22 @@ const Consulta = () => {
     obtenerConsultas();
   }, []);
 
+  const handleForoCompleto = () => {
+    navigate('/forocompleto');
+  };
+
   return (
     <div className="p-4">
-           <header className="header">
-                <img src={logo} alt="Logo" className="logo-img" />
-                <nav className="navigation">
-                    <ul>
-                        <li><Link to="#">Profesores</Link></li>
-                        <li><Link to="#">Programa</Link></li>
-                        <li><Link to="#">Herramientas</Link></li>
-                    </ul>
-                </nav>
-            </header>
+      <header className="header">
+        <img src={logo} alt="Logo" className="logo-img" />
+        <nav className="navigation">
+          <ul>
+            <li><Link to="#">Profesores</Link></li>
+            <li><Link to="#">Programa</Link></li>
+            <li><Link to="#">Herramientas</Link></li>
+          </ul>
+        </nav>
+      </header>
       <h2 className="text-2xl font-bold mb-4">Consultas</h2>
       <div className="flex gap-2 mb-4">
         <input
@@ -177,8 +181,7 @@ const Consulta = () => {
           <h3 className="text-xl font-bold">{consultaSeleccionada.titulo}</h3>
           <p className="text-gray-600">{consultaSeleccionada.contenido}</p>
           <p className="text-sm text-gray-500">
-            Fecha:{" "}
-            {new Date(consultaSeleccionada.fechahora).toLocaleDateString()}
+            Fecha: {new Date(consultaSeleccionada.fechahora).toLocaleDateString()}
           </p>
         </div>
       )}
@@ -214,6 +217,12 @@ const Consulta = () => {
       {error && (
         <div className="text-red-500 mt-4 p-2 bg-red-50 rounded">{error}</div>
       )}
+      <button 
+        className="btn-button"
+        onClick={handleForoCompleto}
+      >
+        Foro Completo
+      </button>
     </div>
   );
 };

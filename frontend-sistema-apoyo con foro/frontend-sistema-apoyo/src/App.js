@@ -16,6 +16,7 @@ import Foro from "./componentes/Foro/Foro";
 import Consulta from "./componentes/Consulta/Consulta";
 import Respuesta from "./componentes/Respuesta/Respuesta";
 import ForoCompleto from "./componentes/ForoCompleto/ForoCompleto";
+import MasRespuestas from "./componentes/MasRespuestas/MasRespuestas";  // Asegúrate de usar el punto y coma al final
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/Consulta" element={<Consulta />} />
         <Route path="/Respuesta" element={<Respuesta />} />
         <Route path="/ForoCompleto" element={<ForoCompleto/>}/>
+        <Route path="/MasRespuestas"element={<MasRespuestas/>}/>
 
         {/* Redirigir rutas no encontradas */}
         <Route path="*" element={<Navigate to="/" />} />

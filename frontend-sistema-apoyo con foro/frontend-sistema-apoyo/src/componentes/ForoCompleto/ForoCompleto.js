@@ -35,6 +35,11 @@ const ForoCompleto = () => {
     navigate('/respuesta', { state: { consultaId } });
   };
 
+  // New handler for navigating to MasRespuestas when +Respuestas is clicked
+  const handleMasRespuestas = () => {
+    navigate('/masrespuestas');
+  };
+
   const handleNuevaConsulta = () => {
     navigate('/consulta');
   };
@@ -74,6 +79,12 @@ const ForoCompleto = () => {
               onClick={() => handleResponder(0)}
             >
               Responder
+            </button>
+            <button 
+              className="btn-respuestas"
+              onClick={handleMasRespuestas}  // Added this to navigate to MasRespuestas
+            >
+              +respuestas
             </button>
           </div>
         </div>
@@ -123,4 +134,3 @@ const ForoCompleto = () => {
 };
 
 export default ForoCompleto;
-

@@ -209,6 +209,142 @@
         }
       }
     },
+    "/API/AdministradorChat/Contactos": {
+      "get": {
+        "tags": [
+          "AdministradorChat"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/AdministradorChat/ListaChats": {
+      "get": {
+        "tags": [
+          "AdministradorChat"
+        ],
+        "parameters": [
+          {
+            "name": "idUsuario",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/AdministradorChat/CrearChat": {
+      "post": {
+        "tags": [
+          "AdministradorChat"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/AdministradorChat/MensajesPorChat": {
+      "get": {
+        "tags": [
+          "AdministradorChat"
+        ],
+        "parameters": [
+          {
+            "name": "IdChat",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/AdministradorChat/EnviarMensaje": {
+      "post": {
+        "tags": [
+          "AdministradorChat"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MensajeDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MensajeDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MensajeDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/API/AdministradorProfesor/ListaProfesores": {
       "get": {
         "tags": [
@@ -459,7 +595,7 @@
         }
       }
     },
-    "/API/Chat/Chat por UsuarioID": {
+    "/API/Chat/ChatporUsuarioID": {
       "get": {
         "tags": [
           "Chat"
@@ -481,7 +617,7 @@
         }
       }
     },
-    "/API/Chat/Chat por ID": {
+    "/API/Chat/ChatporID": {
       "get": {
         "tags": [
           "Chat"
@@ -503,7 +639,7 @@
         }
       }
     },
-    "/API/Chat/Crear Chat": {
+    "/API/Chat/CrearChat": {
       "post": {
         "tags": [
           "Chat"
@@ -845,7 +981,7 @@
         }
       }
     },
-    "/API/Mensaje/Mensaje por ChatID": {
+    "/API/Mensaje/MensajeporChatID": {
       "get": {
         "tags": [
           "Mensaje"
@@ -885,7 +1021,7 @@
         }
       }
     },
-    "/API/Mensaje/Enviar Mensaje": {
+    "/API/Mensaje/EnviarMensaje": {
       "post": {
         "tags": [
           "Mensaje"
@@ -916,7 +1052,7 @@
         }
       }
     },
-    "/API/Mensaje/Editar Mensaje": {
+    "/API/Mensaje/EditarMensaje": {
       "put": {
         "tags": [
           "Mensaje"
@@ -2169,6 +2305,28 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/Usuario/BuscarUsuario": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "parameters": [
+          {
+            "name": "idUsuario",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

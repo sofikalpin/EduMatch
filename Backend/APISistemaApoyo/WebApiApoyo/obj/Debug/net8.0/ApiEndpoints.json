@@ -137,6 +137,90 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WebApiApoyo.Controllers.Administrador.AdministradorChatController",
+    "Method": "ListaContacto",
+    "RelativePath": "API/AdministradorChat/Contactos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.Administrador.AdministradorChatController",
+    "Method": "CrearChat",
+    "RelativePath": "API/AdministradorChat/CrearChat",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "chatDTO",
+        "Type": "SistemaApoyo.DTO.ChatDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.Administrador.AdministradorChatController",
+    "Method": "EnviarMensaje",
+    "RelativePath": "API/AdministradorChat/EnviarMensaje",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mensajeDTO",
+        "Type": "SistemaApoyo.DTO.MensajeDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.Administrador.AdministradorChatController",
+    "Method": "ListaChats",
+    "RelativePath": "API/AdministradorChat/ListaChats",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUsuario",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.Administrador.AdministradorChatController",
+    "Method": "MensajesPorChat",
+    "RelativePath": "API/AdministradorChat/MensajesPorChat",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdChat",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WebApiApoyo.Controllers.Administrador.AdministradorProfesorController",
     "Method": "AutorizarProfesor",
     "RelativePath": "API/AdministradorProfesor/AutorizarProfesor",
@@ -312,7 +396,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.ChatController",
     "Method": "ObtenerChatPorId",
-    "RelativePath": "API/Chat/Chat por ID",
+    "RelativePath": "API/Chat/ChatporID",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -328,7 +412,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.ChatController",
     "Method": "ObtenerChatsPorUsuarioId",
-    "RelativePath": "API/Chat/Chat por UsuarioID",
+    "RelativePath": "API/Chat/ChatporUsuarioID",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -344,7 +428,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.ChatController",
     "Method": "CrearChat",
-    "RelativePath": "API/Chat/Crear Chat",
+    "RelativePath": "API/Chat/CrearChat",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -560,7 +644,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.MensajeController",
     "Method": "EditarMensaje",
-    "RelativePath": "API/Mensaje/Editar Mensaje",
+    "RelativePath": "API/Mensaje/EditarMensaje",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -581,7 +665,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.MensajeController",
     "Method": "EnviarMensaje",
-    "RelativePath": "API/Mensaje/Enviar Mensaje",
+    "RelativePath": "API/Mensaje/EnviarMensaje",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -597,7 +681,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.MensajeController",
     "Method": "ObtenerMensajesPorChatId",
-    "RelativePath": "API/Mensaje/Mensaje por ChatID",
+    "RelativePath": "API/Mensaje/MensajeporChatID",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1335,6 +1419,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
+    "Method": "BuscarUsuarioporID",
+    "RelativePath": "API/Usuario/BuscarUsuario",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUsuario",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {

@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using SistemaApoyo.API.Utilidad;
 using SistemaApoyo.BLL.Servicios;
 using System.Text.Json.Nodes;
+using SistemaApoyo.DAL.DBContext;
+using Microsoft.EntityFrameworkCore;
 
 [Route("API/[controller]")]
 [ApiController]
@@ -15,11 +17,13 @@ public class UsuarioController : ControllerBase
 {
     private readonly IUsuarioService _usuarioService;
     private readonly ILogger<UsuarioController> _logger;
+    private readonly S31Grupo2AprendizajeYApoyoDeInglesContext _context;
 
-    public UsuarioController(IUsuarioService usuarioService, ILogger<UsuarioController> logger)
+    public UsuarioController(IUsuarioService usuarioService, ILogger<UsuarioController> logger, S31Grupo2AprendizajeYApoyoDeInglesContext context)
     {
         _usuarioService = usuarioService;
         _logger = logger;
+        _context = context;
     }
 
     [HttpGet("Lista Usuarios")]
@@ -77,6 +81,8 @@ public class UsuarioController : ControllerBase
         var rsp = new Response<UsuarioDTO>();
         try
         {
+            var idMaximo = (await _context.Usuarios.MaxAsync(c => (int?)c.Idusuario) ?? 0) + 1;
+
             _logger.LogInformation("Hashing password: {PasswordHash}", usuario.ContraseñaHash);
 
             if (string.IsNullOrEmpty(usuario.ContraseñaHash))
@@ -97,6 +103,12 @@ public class UsuarioController : ControllerBase
                 return BadRequest(rsp);
             }
 
+            usuario.Idusuario = idMaximo;
+            if (usuario.Idrol == 1)  //Los profesores tienen el atributo AutoProf en false, hasta que los autoriza el Administrador  (el restode roles lo tienen null)
+            { 
+                usuario.AutProf = false;
+            }
+            usuario.AutProf = null;
             rsp.status = true;
             rsp.value = await _usuarioService.Crear(usuario);
         }
@@ -133,6 +145,30 @@ public class UsuarioController : ControllerBase
             return StatusCode(500, rsp);  // 500 para errores internos del servidor
         }
         return Ok(rsp);
+    }
+
+    [HttpGet("BuscarUsuario")]
+    public async Task<IActionResult> BuscarUsuarioporID(int idUsuario)
+    {
+        var rsp = new Response<UsuarioDTO>();
+        try
+        {
+            var usuarioEncontrado = await _usuarioService.ObtenerUsuarioPorID(idUsuario);
+            
+            rsp.status = true;
+            rsp.value = usuarioEncontrado;
+            rsp.msg = "Usuario encontrado.";
+            return Ok(rsp);
+
+        }
+        catch (Exception ex)
+        {
+            rsp.status = false;
+            rsp.msg = "Error al buscar el usuario.";
+            _logger.LogError(ex, "Error al buscar el usuario.");
+            return StatusCode(500, rsp); 
+        }
+
     }
 
 }

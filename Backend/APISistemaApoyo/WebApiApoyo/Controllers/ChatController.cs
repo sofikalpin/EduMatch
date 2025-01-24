@@ -27,9 +27,15 @@ namespace WebApiApoyo.Controllers
         }
 
         [HttpGet]
-        [Route("Chat por UsuarioID")]
+        [Route("ChatporUsuarioID")]
         public async Task<IActionResult> ObtenerChatsPorUsuarioId(int userId)
         {
+            if (userId <= 0)
+            {
+                return BadRequest(new { status = false, msg = "El UserId debe ser un número positivo." });
+            }
+
+
             var rsp = new Response<IEnumerable<ChatDTO>>();
 
             try
@@ -44,14 +50,21 @@ namespace WebApiApoyo.Controllers
                 rsp.status = false;
                 rsp.msg = "Ocurrió un error al obtener los chats.";
                 _logger.LogError(ex, rsp.msg);
+                return StatusCode(500, rsp);
+
             }
             return Ok(rsp);
         }
 
         [HttpGet]
-        [Route("Chat por ID")]
+        [Route("ChatporID")]
         public async Task<IActionResult> ObtenerChatPorId(int chatId)
         {
+            if (chatId <= 0)
+            {
+                return BadRequest(new { status = false, msg = "El ChatId debe ser un número positivo." });
+            }
+
             var rsp = new Response<ChatDTO>();
 
             try
@@ -66,20 +79,27 @@ namespace WebApiApoyo.Controllers
                 rsp.status = false;
                 rsp.msg = "Ocurrió un error al obtener el chat.";
                 _logger.LogError(ex, rsp.msg);
+                return StatusCode(500, rsp);
             }
             return Ok(rsp);
         }
 
 
         [HttpPost]
-        [Route("Crear Chat")]
+        [Route("CrearChat")]
         public async Task<IActionResult> CrearChat(ChatDTO chatDto)
         {
+            if (chatDto == null)
+            {
+                return BadRequest(new { status = false, msg = "El objeto ChatDTO no puede ser nulo." });
+            }
+
             var rsp = new Response<bool>();
 
             try
             {
                 var chatCreado = await _chatService.CrearChat(chatDto);
+                await _chatHubContext.Clients.All.SendAsync("NuevoChat", chatDto);
                 rsp.status = true;
                 rsp.value = chatCreado;
                 return Ok(rsp);
@@ -89,6 +109,7 @@ namespace WebApiApoyo.Controllers
                 rsp.status = false;
                 rsp.msg = "Ocurrió un error al crear el chat.";
                 _logger.LogError(ex, rsp.msg);
+                return StatusCode(500, rsp);
             }
             return Ok(rsp);
         }

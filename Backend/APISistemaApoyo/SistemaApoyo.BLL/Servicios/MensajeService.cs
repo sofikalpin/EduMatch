@@ -82,6 +82,7 @@ namespace SistemaApoyo.BLL.Servicios
                     {
                         throw new Exception("El chat no existe.");
                     }
+
                     if (mensajeDto.Idusuario != chat.Idusuario1 && mensajeDto.Idusuario != chat.Idusuario2)
                     {
                         throw new Exception("El usuario no es parte de este chat.");
@@ -93,8 +94,15 @@ namespace SistemaApoyo.BLL.Servicios
                     var mensajeMapped = _mapper.Map<MensajeDTO>(mensaje);
 
                   
-                    await _hubContext.Clients.Group(chat.Idchat.ToString())
+                    try
+                    {
+                        await _hubContext.Clients.Group(chat.Idchat.ToString())
                                              .SendAsync("RecibirMensaje", mensajeMapped);
+                    } 
+                    catch (Exception ex) 
+                    {
+                        throw new Exception("Error al crear el mensaje.", ex);
+                    }
 
                     return mensajeMapped;
                 }
@@ -103,6 +111,7 @@ namespace SistemaApoyo.BLL.Servicios
                     throw new Exception("Error al enviar el mensaje.", ex);
                 }
            }
+
         public async Task<MensajeDTO> EditarMensaje(int mensajeId, MensajeDTO mensajeDto)
         {
             try

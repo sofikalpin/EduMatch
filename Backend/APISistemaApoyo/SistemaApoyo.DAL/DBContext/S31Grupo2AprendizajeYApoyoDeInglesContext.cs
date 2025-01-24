@@ -224,7 +224,7 @@ namespace SistemaApoyo.DAL.DBContext
                 entity.ToTable("mensaje");
 
                 entity.Property(e => e.Idmensaje)
-                    .ValueGeneratedNever()
+                    .HasDefaultValueSql("nextval('autoincrementoidmensaje'::regclass)")
                     .HasColumnName("idmensaje");
                 entity.Property(e => e.Contenido)
                     .HasColumnType("character varying")
@@ -375,6 +375,8 @@ namespace SistemaApoyo.DAL.DBContext
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("idrol");
             });
+
+            modelBuilder.HasSequence("autoincrementoidmensaje").StartsAt(15L);
 
             OnModelCreatingPartial(modelBuilder);
         }

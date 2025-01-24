@@ -81,6 +81,7 @@ public class UsuarioController : ControllerBase
         var rsp = new Response<UsuarioDTO>();
         try
         {
+            //Con esta funcion no es necesario cargar el valor de idUsuario, se carga automaticamente
             var idMaximo = (await _context.Usuarios.MaxAsync(c => (int?)c.Idusuario) ?? 0) + 1;
 
             _logger.LogInformation("Hashing password: {PasswordHash}", usuario.ContraseñaHash);

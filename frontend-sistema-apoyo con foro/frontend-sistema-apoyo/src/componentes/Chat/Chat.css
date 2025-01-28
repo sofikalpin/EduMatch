@@ -264,4 +264,11 @@
     height: 20px;
     color: #6b7280;
   }
-  
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #ffffff;
+    padding-top: 100px;
+}
+

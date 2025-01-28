@@ -4,6 +4,7 @@
     height: 100vh;
     background-color: #ffffff;
     padding-top: 100px; /* Espacio para el header fijo */
+    width: 90vw
   }
   
   .chat-header {
@@ -76,7 +77,7 @@
   }
   
   .chat-sidebar {
-    width: 300px;
+    width: 20%;
     border-right: 1px solid #e5e7eb;
     display: flex;
     flex-direction: column;

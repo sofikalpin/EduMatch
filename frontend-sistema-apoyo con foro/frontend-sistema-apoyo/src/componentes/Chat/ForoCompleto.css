@@ -81,6 +81,7 @@ html, body {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   justify-content: flex-start;
 }
 

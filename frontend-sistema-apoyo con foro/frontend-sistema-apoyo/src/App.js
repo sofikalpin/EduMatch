@@ -17,6 +17,7 @@ import Consulta from "./componentes/Consulta/Consulta";
 import Respuesta from "./componentes/Respuesta/Respuesta";
 import ForoCompleto from "./componentes/ForoCompleto/ForoCompleto";
 import MasRespuestas from "./componentes/MasRespuestas/MasRespuestas";  // Asegúrate de usar el punto y coma al final
+import Chat from "./componentes/Chat/Chat";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/Respuesta" element={<Respuesta />} />
         <Route path="/ForoCompleto" element={<ForoCompleto/>}/>
         <Route path="/MasRespuestas"element={<MasRespuestas/>}/>
+        <Route path="/Chat"element={<Chat/>}/>
 
         {/* Redirigir rutas no encontradas */}
         <Route path="*" element={<Navigate to="/" />} />

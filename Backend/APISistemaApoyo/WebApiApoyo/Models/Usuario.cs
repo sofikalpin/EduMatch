@@ -19,8 +19,6 @@ public partial class Usuario
 
     public int Idrol { get; set; }
 
-    public bool? AutProf { get; set; }
-
     public virtual ICollection<Actividad> Actividads { get; set; } = new List<Actividad>();
 
     public virtual ICollection<Articulo> Articulos { get; set; } = new List<Articulo>();

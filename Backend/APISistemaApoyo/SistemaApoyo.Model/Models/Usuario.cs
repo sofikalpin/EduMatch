@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 
 namespace SistemaApoyo.Model.Models;
 
@@ -20,8 +18,6 @@ public partial class Usuario
     public int Idnivel { get; set; }
 
     public int Idrol { get; set; }
-
-    public bool? AutProf { get; set; } = null;
 
     public virtual ICollection<Actividad> Actividads { get; set; } = new List<Actividad>();
 
@@ -44,5 +40,6 @@ public partial class Usuario
     public virtual ICollection<Mensaje> Mensajes { get; set; } = new List<Mensaje>();
 
     public virtual ICollection<Respuesta> Respuesta { get; set; } = new List<Respuesta>();
-
+    public string TokenRecuperacion { get; set; }
+    public DateTime TokenExpiracion { get; set; }
 }

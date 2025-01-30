@@ -223,7 +223,7 @@ public partial class S31Grupo2AprendizajeYApoyoDeInglesContext : DbContext
             entity.ToTable("mensaje");
 
             entity.Property(e => e.Idmensaje)
-                .HasDefaultValueSql("nextval('autoincrementoidmensaje'::regclass)")
+                .ValueGeneratedNever()
                 .HasColumnName("idmensaje");
             entity.Property(e => e.Contenido)
                 .HasColumnType("character varying")
@@ -350,7 +350,6 @@ public partial class S31Grupo2AprendizajeYApoyoDeInglesContext : DbContext
             entity.Property(e => e.Idusuario)
                 .ValueGeneratedNever()
                 .HasColumnName("idusuario");
-            entity.Property(e => e.AutProf).HasColumnName("autProf");
             entity.Property(e => e.ContraseñaHash)
                 .HasColumnType("character varying")
                 .HasColumnName("contraseña_hash");
@@ -374,7 +373,6 @@ public partial class S31Grupo2AprendizajeYApoyoDeInglesContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("idrol");
         });
-        modelBuilder.HasSequence("autoincrementoidmensaje").StartsAt(15L);
 
         OnModelCreatingPartial(modelBuilder);
     }

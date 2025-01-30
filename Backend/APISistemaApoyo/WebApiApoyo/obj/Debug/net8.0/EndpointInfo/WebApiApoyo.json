@@ -60,292 +60,7 @@
         }
       }
     },
-    "/API/AdministradorAlumno/ListaAlumnos": {
-      "get": {
-        "tags": [
-          "AdministradorAlumno"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/AdministradorAlumno/BusquedaAlumnoNombre": {
-      "put": {
-        "tags": [
-          "AdministradorAlumno"
-        ],
-        "parameters": [
-          {
-            "name": "nombre",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/AdministradorAlumno/AlumnoID": {
-      "get": {
-        "tags": [
-          "AdministradorAlumno"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/AdministradorAlumno/CrearAlumno": {
-      "post": {
-        "tags": [
-          "AdministradorAlumno"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UsuarioDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UsuarioDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UsuarioDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/AdministradorAlumno/EditarporID": {
-      "put": {
-        "tags": [
-          "AdministradorAlumno"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UsuarioDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UsuarioDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UsuarioDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/AdministradorAlumno/EliminarAlumno": {
-      "delete": {
-        "tags": [
-          "AdministradorAlumno"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/AdministradorChat/Contactos": {
-      "get": {
-        "tags": [
-          "AdministradorChat"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/AdministradorChat/ListaChats": {
-      "get": {
-        "tags": [
-          "AdministradorChat"
-        ],
-        "parameters": [
-          {
-            "name": "idUsuario",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/AdministradorChat/CrearChat": {
-      "post": {
-        "tags": [
-          "AdministradorChat"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ChatDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ChatDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ChatDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/AdministradorChat/MensajesPorChat": {
-      "get": {
-        "tags": [
-          "AdministradorChat"
-        ],
-        "parameters": [
-          {
-            "name": "IdChat",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageNumber",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 1
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 20
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/AdministradorChat/EnviarMensaje": {
-      "post": {
-        "tags": [
-          "AdministradorChat"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MensajeDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MensajeDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/MensajeDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/AdministradorProfesor/ListaProfesores": {
+    "/API/AdministradorProfesor/Lista Profesores": {
       "get": {
         "tags": [
           "AdministradorProfesor"
@@ -357,31 +72,7 @@
         }
       }
     },
-    "/API/AdministradorProfesor/ListaProfesoresAutorizados": {
-      "get": {
-        "tags": [
-          "AdministradorProfesor"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/AdministradorProfesor/ListaProfesoresNOAutorizados": {
-      "get": {
-        "tags": [
-          "AdministradorProfesor"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/AdministradorProfesor/AutorizarProfesor": {
+    "/API/AdministradorProfesor/Autorizar Profesor": {
       "put": {
         "tags": [
           "AdministradorProfesor"
@@ -403,7 +94,7 @@
         }
       }
     },
-    "/API/AdministradorProfesor/BusquedaProfesorNombre": {
+    "/API/AdministradorProfesor/Busqueda Profesor Nombre": {
       "get": {
         "tags": [
           "AdministradorProfesor"
@@ -424,7 +115,29 @@
         }
       }
     },
-    "/API/AdministradorProfesor/ProfesorID": {
+    "/API/AdministradorProfesor/Busqueda Profesor Nivel": {
+      "get": {
+        "tags": [
+          "AdministradorProfesor"
+        ],
+        "parameters": [
+          {
+            "name": "nivel",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/AdministradorProfesor/Profesor ID": {
       "get": {
         "tags": [
           "AdministradorProfesor"
@@ -446,7 +159,7 @@
         }
       }
     },
-    "/API/AdministradorProfesor/CrearProfesor": {
+    "/API/AdministradorProfesor/Crear Profesor": {
       "post": {
         "tags": [
           "AdministradorProfesor"
@@ -477,7 +190,7 @@
         }
       }
     },
-    "/API/AdministradorProfesor/EditarporID": {
+    "/API/AdministradorProfesor/Editar por ID": {
       "put": {
         "tags": [
           "AdministradorProfesor"
@@ -518,7 +231,7 @@
         }
       }
     },
-    "/API/AdministradorProfesor/EliminarProfesor": {
+    "/API/AdministradorProfesor/Eliminar Profesor": {
       "delete": {
         "tags": [
           "AdministradorProfesor"
@@ -595,7 +308,7 @@
         }
       }
     },
-    "/API/Chat/ChatporUsuarioID": {
+    "/API/Chat/Chat por UsuarioID": {
       "get": {
         "tags": [
           "Chat"
@@ -617,7 +330,7 @@
         }
       }
     },
-    "/API/Chat/ChatporID": {
+    "/API/Chat/Chat por ID": {
       "get": {
         "tags": [
           "Chat"
@@ -639,7 +352,7 @@
         }
       }
     },
-    "/API/Chat/CrearChat": {
+    "/API/Chat/Crear Chat": {
       "post": {
         "tags": [
           "Chat"
@@ -981,7 +694,7 @@
         }
       }
     },
-    "/API/Mensaje/MensajeporChatID": {
+    "/API/Mensaje/Mensaje por ChatID": {
       "get": {
         "tags": [
           "Mensaje"
@@ -1021,7 +734,7 @@
         }
       }
     },
-    "/API/Mensaje/EnviarMensaje": {
+    "/API/Mensaje/Enviar Mensaje": {
       "post": {
         "tags": [
           "Mensaje"
@@ -1052,7 +765,7 @@
         }
       }
     },
-    "/API/Mensaje/EditarMensaje": {
+    "/API/Mensaje/Editar Mensaje": {
       "put": {
         "tags": [
           "Mensaje"
@@ -2311,28 +2024,6 @@
           }
         }
       }
-    },
-    "/API/Usuario/BuscarUsuario": {
-      "get": {
-        "tags": [
-          "Usuario"
-        ],
-        "parameters": [
-          {
-            "name": "idUsuario",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
     }
   },
   "components": {
@@ -2633,10 +2324,6 @@
           "idrol": {
             "type": "integer",
             "format": "int32"
-          },
-          "autProf": {
-            "type": "boolean",
-            "nullable": true
           }
         },
         "additionalProperties": false

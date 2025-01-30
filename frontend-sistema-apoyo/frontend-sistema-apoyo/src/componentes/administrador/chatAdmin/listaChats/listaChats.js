@@ -53,7 +53,9 @@ const ListaChat = ({ onSelectChat }) => {
         cargarChats();
     }, []);
 
-    const openModal = () => setModalIsOpen(true);
+    const openModal = () => {
+        console.log("Abriendo modal...");
+        setModalIsOpen(true)};
     const closeModal = () => setModalIsOpen(false);
 
     const agregarChat = (nuevoChat) => {
@@ -89,16 +91,19 @@ const ListaChat = ({ onSelectChat }) => {
                 </button>
             </div>
 
-            <Modal
-                isOpen={modalIsOpen}
-                onRequestClose={closeModal}
-                contentLabel="Crear Nuevo Chat"
-                className="modal-contenido"
-                overlayClassName="modal-overlay"
-                ariaHideApp={false}
-            >
-                <CrearChat idusuario={idusuario} onChatCreado={agregarChat} onClose={closeModal} />
-            </Modal>
+            <div>
+                <Modal
+                    isOpen={modalIsOpen}
+                    onRequestClose={closeModal}
+                    contentLabel="Crear Nuevo Chat"
+                    className="modal-contenido"
+                    overlayClassName="modal-overlay"
+                    ariaHideApp={false}
+                >
+                    <CrearChat idusuario={idusuario} onChatCreado={agregarChat} onClose={closeModal} />
+                </Modal>
+            </div>
+                
             
             <label htmlFor="rol-select">Filtro por rol :</label>
             <select

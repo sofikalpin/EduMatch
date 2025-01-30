@@ -116,8 +116,8 @@ html, body {
     font-size: 1em; /* Tamaño del texto */
     margin-right: 20px; /* Espaciado a la derecha */
     border-radius: 50%; /* Forma redonda */
-    width: 30px; /* Ancho del círculo */
-    height: 30px; /* Altura del círculo */
+    width: 35px; /* Ancho del círculo */
+    height: 35px; /* Altura del círculo */
     display: flex; /* Centra el contenido */
     align-items: center; /* Centra el texto verticalmente */
     justify-content: center; /* Centra el texto horizontalmente */
@@ -234,19 +234,21 @@ html, body {
     background-color: #e6f586; /* Color de fondo del botón */
     border: none;
     border-radius: 25px; /* Bordes redondeados */
-    padding: 20px 50px;
+    padding: 25px 50px;
     font-size: 23px;
     color: #000;
     font-weight: bold;
     outline: none;
     position: relative;
-    width: 300px;
+    width: 450px;
 }
 
 .texto-boton {
     flex: 1;
     text-align: left;
     white-space: nowrap; /* Evita el salto de línea */
+    margin-left: -10px;
+    margin-right: 10px;
 }
 
 .icono {

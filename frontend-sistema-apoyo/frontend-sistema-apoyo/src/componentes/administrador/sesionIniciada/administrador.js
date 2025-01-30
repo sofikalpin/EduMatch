@@ -62,9 +62,6 @@ const Administrador = () => {
                 <div className="auth-buttons">
                 </div>
             </header>
-
-
-
                     <section className="intro-top">
                         <h1>Edu-Match</h1>
                         <h1>Administrador</h1>

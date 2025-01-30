@@ -12,6 +12,7 @@ import NivelInicial from "./componentes/inicio/Programas/NivelInicial";
 import NivelIntermedio from "./componentes/inicio/Programas/NivelIntermedio";
 import NivelAvanzado from "./componentes/inicio/Programas/NivelAvanzado";
 import Informacion from "./componentes/inicio/Informacion/Informacion";
+import Chats from "./componentes/chats/chat.js";
 
 function App() {
   return (
@@ -32,6 +33,10 @@ function App() {
 
         {/* Redirigir rutas no encontradas */}
         <Route path="*" element={<Navigate to="/" />} />
+
+        {/*Chat*/}
+        <Route path="/chats" element={<Chats/>} />
+
       </Routes>
     </div>
   );

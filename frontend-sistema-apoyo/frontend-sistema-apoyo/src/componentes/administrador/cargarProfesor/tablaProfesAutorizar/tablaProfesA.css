@@ -1,0 +1,49 @@
+.tabla-contenedor{
+  width: 100%;
+  margin: 0 ;
+  text-align: left;
+}
+
+.tabla-profesores {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+  
+.tabla-profesores tr {
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+}
+
+.tabla-profesores th{
+  font-weight: bold;
+  text-align: left; /* Hace los textos del encabezado en negrita */
+  padding: 10px 60px;
+  background-color: #2c7a7b; /* Color of header */
+  color: #ffffff; /* Header text color */
+  text-transform: uppercase; /* Convert header text to uppercase */
+}
+
+  
+.tabla-profesores thead {
+  background-color: #2c7a7b; /* Color de fondo del encabezado */
+  color: #ffffff; /* Color del texto */
+  text-transform: uppercase; /* Convierte el texto en mayúsculas */
+}
+
+.tabla-profesores tbody tr:nth-child(even) {
+  background-color: #f1f1f1; /* Color para filas pares */
+}
+
+.tabla-profesores tbody tr:nth-child(odd){
+  background-color: #e8e6e6; /*Color para filas impares*/
+}
+
+.tabla-profesores tbody tr:hover {
+  background-color: #dcf9f7; /* Cambio de color al pasar el mouse */
+  transition: background-color 0.3s ease-in-out;
+}
+
+  

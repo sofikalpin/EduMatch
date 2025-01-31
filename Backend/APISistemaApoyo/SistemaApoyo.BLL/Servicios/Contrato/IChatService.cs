@@ -6,9 +6,10 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
 {
     public interface IChatService
     {
+        Task<List<UsuarioDTO>> ListaContactos();
         Task<IEnumerable<ChatDTO>> ObtenerChatsPorUsuarioId(int userId);
         Task<bool> CrearChat(ChatDTO chat);
-       Task<ChatDTO> ObtenerChatPorId(int chatId);
+        Task<ChatDTO> ObtenerChatPorId(int chatId);
 
 
     }

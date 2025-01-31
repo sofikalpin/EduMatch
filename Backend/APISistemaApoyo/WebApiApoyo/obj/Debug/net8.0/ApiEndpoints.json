@@ -434,11 +434,21 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "chatDto",
+        "Name": "chatDTO",
         "Type": "SistemaApoyo.DTO.ChatDTO",
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ChatController",
+    "Method": "ListaContactos",
+    "RelativePath": "API/Chat/Lista_Contactos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

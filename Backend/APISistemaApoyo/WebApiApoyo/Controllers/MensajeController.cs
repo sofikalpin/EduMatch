@@ -54,11 +54,9 @@ namespace WebApiApoyo.Controllers
                 rsp.status = false;
                 rsp.msg = "Ocurrió un error al obtener los mensajes.";
                 _logger.LogError(ex, rsp.msg);
+                return StatusCode(500, rsp);
             }
-            return Ok(rsp);
         }
-
-
 
         [HttpPost]
         [Route("EnviarMensaje")]
@@ -73,14 +71,19 @@ namespace WebApiApoyo.Controllers
                 });
             }
 
+            if (mensajeDto.Idchat <= 0 || mensajeDto.Idusuario <= 0 || string.IsNullOrEmpty(mensajeDto.Contenido))
+            {
+                return BadRequest(new { status = false, msg = "Los datos del mensaje son inválidos." });
+            }
+
             var rsp = new Response<MensajeDTO>();
 
             try
             {
-                var mensajeEnviado = await _mensajeService.EnviarMensaje(mensajeDto);
+                mensajeDto.Idmensaje = 0;
                 rsp.status = true;
+                var mensajeEnviado = await _mensajeService.EnviarMensaje(mensajeDto);
                 rsp.value = mensajeEnviado;
-
                 
                 await _chatHubContext.Clients.Group(mensajeDto.Idchat.ToString()).SendAsync("RecibirMensaje", mensajeEnviado);
 

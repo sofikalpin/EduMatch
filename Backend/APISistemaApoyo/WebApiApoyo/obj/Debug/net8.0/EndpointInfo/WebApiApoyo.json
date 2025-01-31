@@ -595,6 +595,18 @@
         }
       }
     },
+    "/API/Chat/Lista_Contactos": {
+      "get": {
+        "tags": [
+          "Chat"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/API/Chat/ChatporUsuarioID": {
       "get": {
         "tags": [

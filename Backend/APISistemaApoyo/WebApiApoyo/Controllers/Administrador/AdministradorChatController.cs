@@ -191,8 +191,6 @@ namespace WebApiApoyo.Controllers.Administrador
         [Route ("EnviarMensaje")]
         public async Task<IActionResult> EnviarMensaje([FromBody] MensajeDTO mensajeDTO) 
         {
-            //var idMaximo = await _context.Mensajes.MaxAsync(c => c.Idmensaje);
-            //mensajeDTO.Idmensaje = idMaximo + 1;
 
             if (!ModelState.IsValid) 
             {

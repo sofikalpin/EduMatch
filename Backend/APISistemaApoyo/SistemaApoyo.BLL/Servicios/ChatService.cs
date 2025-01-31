@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using SistemaApoyo.BLL.Hubs;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace SistemaApoyo.BLL.Servicios
 {
@@ -20,6 +21,7 @@ namespace SistemaApoyo.BLL.Servicios
         private readonly IMapper _mapper;
         private readonly IHubContext<ChatHub> _chatHubContext; 
         private readonly ILogger _logger;
+
 
         public ChatService(IGenericRepository<SistemaApoyo.Model.Models.Chat> chatRepository,
                            IGenericRepository<Usuario> usuarioRepository,
@@ -32,6 +34,20 @@ namespace SistemaApoyo.BLL.Servicios
             _mapper = mapper;
             _chatHubContext = chatHubContext; 
             _logger = logger;
+        }
+
+        public async Task<List<UsuarioDTO>> ListaContactos()
+        {
+            try
+            {
+                var consulta = await _usuarioRepository.Consultar();
+                var listadeUsuarios = await consulta.ToListAsync();
+                return _mapper.Map<List<UsuarioDTO>>(listadeUsuarios);
+            }
+            catch (Exception ex) 
+            {
+                throw new Exception("Error al obtener los usuarios", ex);
+            }
         }
 
         public async Task<IEnumerable<ChatDTO>> ObtenerChatsPorUsuarioId(int userId)

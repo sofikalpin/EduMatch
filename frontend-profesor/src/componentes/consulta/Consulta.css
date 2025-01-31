@@ -1,0 +1,249 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #bfeede;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main Container */
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #bfeede;
+  padding: 10px;
+}
+
+/* Header Styles */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #2d3b55;
+  color: white;
+  padding: 10px 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  border-radius: 0 0 10px 10px;
+}
+
+.logo-img {
+  height: 40px;
+}
+
+.navigation ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 15px;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.navigation a:hover {
+  color: #f39c12;
+}
+
+/* Main Content Styles */
+.content {
+  width: 90%;
+  max-width: 1000px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-top: 80px;
+  transition: all 0.3s ease;
+}
+
+.content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* Consulta Styles */
+.Consulta-container {
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  margin-bottom: 15px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.Consulta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.Consulta-user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.Consulta-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #FF9F89;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.Consulta-metadata {
+  display: flex;
+  flex-direction: column;
+}
+
+.Consulta-author {
+  font-weight: bold;
+  color: #333;
+  font-size: 1em;
+}
+
+.Consulta-date {
+  color: #666;
+  font-size: 0.85em;
+}
+
+.Consulta-content {
+  color: #444;
+  font-size: 1em;
+  line-height: 1.4;
+  margin: 10px 0;
+}
+
+.Consulta-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.Consulta-stats {
+  display: flex;
+  gap: 15px;
+  color: #666;
+}
+
+.btn-CrearConsulta{
+  background-color: #ffa726;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-buscarPorTitulo{
+  background-color: #ffa726;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.responses-count {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.answer-button {
+  background-color: #FFA726;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.answer-button:hover {
+  background-color: #FF8C00;
+  transform: scale(1.05);
+}
+
+.answer-button:focus {
+  outline: none;
+}
+
+/* Table Styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 10px 18px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f4f4f4;
+}
+
+.table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Error Message Styles */
+.error-message {
+  color: red;
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #ffe6e6;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Styles */
+.btn-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #00bfa5;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.btn-button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.btn-button:focus {
+  outline: none;
+}

@@ -1,0 +1,267 @@
+/* Header styles */
+
+.respuestas-header {
+    background-color: #004d40;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .respuestas-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .header {
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 40px);
+    height: 100px;
+    background-color: #5f9ea0;
+    padding: 0 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 50px 50px;
+    z-index: 1000;
+    margin-left: 20px;
+  }
+  
+  .logo-img {
+    height: 50px;
+  }
+  
+  .navigation ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 20px;
+  }
+  
+  .navigation a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+  }
+  
+  /* Media Queries for Responsive Design */
+  @media screen and (max-width: 768px) {
+    .header {
+        padding: 0 10px;
+        margin-left: 10px;
+        width: calc(100% - 20px);
+    }
+  
+    .navigation ul {
+        gap: 10px;
+    }
+  
+    .navigation a {
+        font-size: 16px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .header {
+        padding: 0 5px;
+        margin-left: 5px;
+        width: calc(100% - 10px);
+    }
+  
+    .navigation a {
+        font-size: 14px;
+    }
+  }
+  
+  /* Main Content Container */
+  .mas-respuestas-container {
+    padding: 20px;
+    width: calc(100% - 40px);
+    height: calc(100vh - 100px);
+    margin-top: 100px;
+    margin-left: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+  
+  /* Post Styles */
+  .respuestas-content {
+    background: white;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .respuesta-post {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    width: 100%;
+  }
+  
+  .respuesta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .user-initial {
+    width: 30px;
+    height: 30px;
+    background-color: #5f9ea0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-weight: bold;
+    margin-left: 10px; /* Margen a la izquierda */
+    margin-right: 10px;
+  }
+  
+  .user-name {
+    font-size: 1rem;
+    color:black;
+  }
+  
+  .post-date {
+    font-size: 0.9rem;
+    color: #666;
+    margin-left: 10px; /* Margen a la izquierda */
+    margin-right: 10px;
+  }
+  
+  .post-content {
+    margin-top: 10px;
+    margin-left: 10px; /* Margen a la izquierda */
+    margin-right: 10px;
+  }
+  
+  .post-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .btn-responder {
+    background-color: #ffa726;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .btn-responder:hover {
+    opacity: 0.9;
+  }
+  
+  .btn-respuestas {
+    background-color: #004d40;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .btn-respuestas:hover {
+    opacity: 0.9;
+  }
+  
+  /* New Consultation Button */
+  .btn-nueva-consulta {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #00bfa5;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+  .btn-eliminar {
+    color: #333;
+    border: none;
+    padding: 8px 15px;
+    margin-right: 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+  }
+  
+  .btn-nueva-consulta:hover {
+    opacity: 0.9;
+  }
+  
+  /* Loading, Error, and No Data States */
+  .mas-respuestas-loading,
+  .mas-respuestas-error,
+  .mas-respuestas-no-data {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.1rem;
+    color: #666;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .mas-respuestas-container {
+        padding: 10px;
+        margin-left: 10px;
+    }
+  
+    .foro-post {
+        padding: 15px;
+    }
+  
+    .mas-respuestas-item {
+        padding: 15px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .mas-respuestas-container {
+        padding: 5px;
+        margin-left: 5px;
+    }
+  
+    .foro-post {
+        padding: 10px;
+    }
+  
+    .mas-respuestas-item {
+        padding: 10px;
+    }
+  
+    .mas-respuestas-volver {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+  }

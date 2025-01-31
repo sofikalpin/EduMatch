@@ -1,0 +1,85 @@
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.deps.json
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.dll
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.pdb
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.AssemblyInfoInputs.cache
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.AssemblyInfo.cs
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.dll
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\refint\SistemaApoyo.BLL.dll
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.pdb
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\ref\SistemaApoyo.BLL.dll
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DAL.dll
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DTO.dll
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Model.dll
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Utility.dll
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DAL.pdb
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DTO.pdb
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Model.pdb
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Utility.pdb
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\APIEDUMATCH\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaA.12C0A08E.Up2Date
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.deps.json
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.dll
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.pdb
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DAL.dll
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DTO.dll
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Model.dll
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Utility.dll
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DAL.pdb
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DTO.pdb
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Model.pdb
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Utility.pdb
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.csproj.AssemblyReference.cache
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.AssemblyInfoInputs.cache
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.AssemblyInfo.cs
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.sourcelink.json
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaA.12C0A08E.Up2Date
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.dll
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\refint\SistemaApoyo.BLL.dll
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.pdb
+C:\Users\Usuario\Documents\GitHub\Desarrollo-de-Software\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\ref\SistemaApoyo.BLL.dll
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.deps.json
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.dll
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.pdb
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DAL.dll
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DTO.dll
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Model.dll
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Utility.dll
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DAL.pdb
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DTO.pdb
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Model.pdb
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Utility.pdb
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.AssemblyInfoInputs.cache
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.AssemblyInfo.cs
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaA.12C0A08E.Up2Date
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.dll
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\refint\SistemaApoyo.BLL.dll
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.pdb
+C:\Users\Usuario\Desktop\Desarrollo-de-Software-SofiKalpin (1)\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\ref\SistemaApoyo.BLL.dll
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.AssemblyInfoInputs.cache
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.AssemblyInfo.cs
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.deps.json
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.dll
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.pdb
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DAL.dll
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DTO.dll
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Model.dll
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Utility.dll
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DAL.pdb
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DTO.pdb
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Model.pdb
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Utility.pdb
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaA.12C0A08E.Up2Date
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.dll
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\refint\SistemaApoyo.BLL.dll
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.pdb
+C:\Users\Usuario\Desktop\APIEDUMATCH\Desarrollo-de-Software-SofiKalpin\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\ref\SistemaApoyo.BLL.dll

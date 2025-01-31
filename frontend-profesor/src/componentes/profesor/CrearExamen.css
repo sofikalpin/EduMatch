@@ -1,0 +1,280 @@
+/* Estilos para el formulario de creación de examen */
+.crear-examen-container {
+    max-width: 1200px;
+    margin: 80px auto 0; /* Añadí 50px de margen superior */
+    padding: 20px;
+    min-height: 60vh;
+    background-color: #f5f5f5;
+    position: relative; /* Añadir esta propiedad para permitir la posición absoluta dentro */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo-img {
+    width: 120px;
+}
+
+.left-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.left-nav li {
+    display: inline;
+}
+
+.titulo-examenes {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.crear-examen-form {
+    background-color: white;
+    border-radius: 0 0 8px 8px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-left, .form-right {
+    flex: 1;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #c4c3c3;
+}
+
+input[type="text"],
+textarea,
+select,
+input[type="date"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+}
+
+.adjuntar {
+    margin-top: 1.5rem;
+}
+
+.adjuntar span {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+.adjuntar-icons button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.icon-img {
+    width: 24px;
+    height: 24px;
+}
+
+.adjuntar-icons button:hover {
+    background-color: #f0f0f0;
+}
+
+.asignar-btn {
+    background-color: #4e8a8a;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto;
+    margin-bottom: 8px;
+}
+
+.asignar-btn:hover {
+    background-color: #5f9ea0;
+}
+
+.asignar-info {
+    display: block;
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+.student-selection-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.student-selection-content {
+    background-color: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.student-selection-header {
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+}
+
+.student-search {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+}
+
+.students-list {
+    overflow-y: auto;
+    padding: 1rem;
+    max-height: 400px;
+}
+
+.select-all {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.select-all input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.student-item {
+    margin-bottom: 8px;
+}
+
+.student-item label {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.student-item:hover {
+    background-color: #f8f8f8;
+}
+
+.student-name {
+    margin-left: 8px;
+    flex-grow: 1;
+}
+
+.student-status {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    margin-left: 8px;
+}
+
+.student-status.en-línea {
+    background-color: #e6ffe6;
+    color: #006600;
+}
+
+.student-status.ausente {
+    background-color: #ffe6e6;
+    color: #660000;
+}
+
+.student-selection-footer {
+    padding: 1rem;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: flex-end;
+    background-color: white;
+    border-radius: 0 0 8px 8px;
+}
+
+.aceptar-btn {
+    background-color: #5f9ea0;
+    color: white;
+    border: none;
+    padding: 8px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.aceptar-btn:hover {
+    background-color: #4e8a8a;
+}
+
+.crear-actividad-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+.crear-btn {
+    background-color: #5f9ea0;
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.crear-btn:hover {
+    background-color: #4e8a8a;
+}
+
+.icon-img {
+    width: 30px;  /* Ajusta el tamaño que prefieras */
+    height: 30px;
+}
+
+/* Estilo para el botón de crear examen en la parte inferior derecha */
+.crear-examen-footer {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+@media (max-width: 768px) {
+    .form-grid {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .crear-examen-form {
+        padding: 1rem;
+    }
+}

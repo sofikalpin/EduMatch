@@ -21,6 +21,14 @@ body {
   z-index: 1000; /* Asegura que esté encima de otros elementos */
 }
 
+.EscribeRespuesta{
+    width: 90vw;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+}
+
 .logo-img {
   height: 50px; /* Tamaño fijo para el logo */
 }

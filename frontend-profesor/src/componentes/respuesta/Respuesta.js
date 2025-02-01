@@ -1,7 +1,11 @@
+//import React, { useState, useEffect } from "react";
+//import './Respuesta.css';
+//import logo from '../../componentes/logo/LogoInicio.png';
+//import { Link, useNavigate } from 'react-router-dom'; // Importa useNavigate
+
 import React, { useState, useEffect } from "react";
-import './Respuesta.css';
 import logo from '../../componentes/logo/LogoInicio.png';
-import { Link, useNavigate } from 'react-router-dom'; // Importa useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 
 const Respuesta = ({ idconsulta }) => {
   const [respuestas, setRespuestas] = useState([]);
@@ -14,9 +18,8 @@ const Respuesta = ({ idconsulta }) => {
   const [editandoRespuesta, setEditandoRespuesta] = useState(null);
   const [error, setError] = useState('');
   const [respuestaSeleccionada, setRespuestaSeleccionada] = useState(null);
-  const navigate = useNavigate(); // Inicializa useNavigate aquí
+  const navigate = useNavigate();
 
-  // Consultar todas las respuestas
   const consultarRespuestas = async () => {
     try {
       const response = await fetch('API/Respuesta/ConsultarRespuesta');
@@ -33,7 +36,6 @@ const Respuesta = ({ idconsulta }) => {
     }
   };
 
-  // Crear una nueva respuesta
   const crearRespuesta = async (e) => {
     e.preventDefault();
     if (!nuevaRespuesta.contenido.trim()) {
@@ -62,7 +64,6 @@ const Respuesta = ({ idconsulta }) => {
     }
   };
 
-  // Actualizar una respuesta
   const actualizarRespuesta = async (respuesta) => {
     try {
       const response = await fetch(`API/Respuesta/ActualizarRespuesta?id=${respuesta.idrespuesta}`, {
@@ -83,7 +84,6 @@ const Respuesta = ({ idconsulta }) => {
     }
   };
 
-  // Eliminar una respuesta
   const eliminarRespuesta = async (id) => {
     if (!window.confirm('¿Está seguro de eliminar esta respuesta?')) return;
 
@@ -101,7 +101,6 @@ const Respuesta = ({ idconsulta }) => {
     }
   };
 
-  // Obtener una respuesta por ID
   const obtenerRespuestaPorId = async (id) => {
     try {
       const response = await fetch(`API/Respuesta/ObtenerRespuestaPorId?id=${id}`);
@@ -120,26 +119,31 @@ const Respuesta = ({ idconsulta }) => {
   }, [idconsulta]);
 
   const handleForo = () => {
-    navigate('/Foro'); // Usa navigate correctamente
+    navigate('/Foro');
   };
 
   return (
-    <div className="p-4">
-           <header className="header">
-                <img src={logo} alt="Logo" className="logo-img" />
-                <nav className="navigation">
-                    <ul>
-                        <li><Link to="#">Profesores</Link></li>
-                        <li><Link to="#">Programa</Link></li>
-                        <li><Link to="#">Herramientas</Link></li>
-                    </ul>
-                </nav>
-            </header>
-            <h2 className="tituloRespuesta">Respuesta</h2>
-      {/* Formulario de nueva respuesta */}
-      <form onSubmit={crearRespuesta} className="FormCrearRespuesta">
+    <div className="p-4 pt-32">
+     <header className="fixed top-0 left-0 right-0 flex justify-between items-center w-full h-24 bg-custom-teal shadow-lg rounded-b-[50px] z-50">
+  <div className="flex items-center pl-2 bg-">
+    <img 
+      src={logo} 
+      alt="Logo" 
+      className="w-20 h-auto" // Logo más pequeño
+    />
+  </div>
+  <nav className="pr-8">
+    <ul className="flex gap-5">
+      <li><Link to="#" className="text-white text-lg">Profesores</Link></li>
+      <li><Link to="#" className="text-white text-lg">Programa</Link></li>
+      <li><Link to="#" className="text-white text-lg">Herramientas</Link></li>
+    </ul>
+  </nav>
+</header>
+      <h2 className="text-2xl font-bold mb-4">Respuesta</h2>
+      <form onSubmit={crearRespuesta} className="mb-6">
         <textarea
-          className="EscribeRespuesta"
+          className="w-full p-32 border border-gray-300 rounded-lg bg-gray-100"
           placeholder="Escribe tu respuesta..."
           value={nuevaRespuesta.contenido}
           onChange={(e) => setNuevaRespuesta({...nuevaRespuesta, contenido: e.target.value})}
@@ -147,36 +151,35 @@ const Respuesta = ({ idconsulta }) => {
         />
         <button 
           type="submit"
-          className="btn-EnviarRespuesta"
+          className="mt-2 bg-yellow-400 text-white px-4 py-2 rounded-lg font-medium"
         >
           Enviar Respuesta
         </button>
       </form>
 
-      {/* Lista de respuestas */}
-      <div className="respuestas">
+      <div className="space-y-4">
         {respuestas.map((respuesta) => (
-          <div key={respuesta.idrespuesta} className="RespuestaIDrespuesta">
+          <div key={respuesta.idrespuesta} className="p-4 border-b border-gray-200 relative">
             {editandoRespuesta?.idrespuesta === respuesta.idrespuesta ? (
-              <div className="editarRespuesta">
+              <div>
                 <textarea
-                  className="editandoRespuesta.contenido"
+                  className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100"
                   value={editandoRespuesta.contenido}
                   onChange={(e) => setEditandoRespuesta({
                     ...editandoRespuesta,
                     contenido: e.target.value
                   })}
                 />
-                <div className="actualizarRespuesta">
+                <div className="mt-2">
                   <button
                     onClick={() => actualizarRespuesta(editandoRespuesta)}
-                    className="bt-guardar"
+                    className="bg-green-500 text-white px-4 py-2 rounded-lg mr-2"
                   >
                     Guardar
                   </button>
                   <button
                     onClick={() => setEditandoRespuesta(null)}
-                    className="btn-cancelar"
+                    className="bg-gray-500 text-white px-4 py-2 rounded-lg"
                   >
                     Cancelar
                   </button>
@@ -184,25 +187,25 @@ const Respuesta = ({ idconsulta }) => {
               </div>
             ) : (
               <>
-                <p className="respuesta.contenido">{respuesta.contenido}</p>
-                <div className="respuesta.fechahora">
+                <p className="text-gray-700">{respuesta.contenido}</p>
+                <div className="text-sm text-gray-600 mt-2">
                   <span>{new Date(respuesta.fechahora).toLocaleDateString()}</span>
-                  <div className="eliminarRespuesta">
+                  <div className="mt-2">
                     <button
                       onClick={() => setEditandoRespuesta(respuesta)}
-                      className="btn-editar"
+                      className="text-blue-500 hover:text-blue-700 mr-2"
                     >
                       Editar
                     </button>
                     <button
                       onClick={() => eliminarRespuesta(respuesta.idrespuesta)}
-                      className="btn-eliminar"
+                      className="text-red-500 hover:text-red-700 mr-2"
                     >
                       Eliminar
                     </button>
                     <button
                       onClick={() => obtenerRespuestaPorId(respuesta.idrespuesta)}
-                      className="btn-verRespuesta"
+                      className="text-green-500 hover:text-green-700"
                     >
                       Ver Respuesta
                     </button>
@@ -215,24 +218,26 @@ const Respuesta = ({ idconsulta }) => {
       </div>
 
       {respuestaSeleccionada && (
-        <div className="respuestaSeleccionada">
-          <h4 className="respuestaSeleccionadaContenido">Respuesta seleccionada:</h4>
-          <p>{respuestaSeleccionada.contenido}</p>
-          <span>{new Date(respuestaSeleccionada.fechahora).toLocaleDateString()}</span>
+        <div className="mt-6 p-4 bg-gray-100 rounded-lg">
+          <h4 className="font-bold">Respuesta seleccionada:</h4>
+          <p className="text-gray-700">{respuestaSeleccionada.contenido}</p>
+          <span className="text-sm text-gray-600">{new Date(respuestaSeleccionada.fechahora).toLocaleDateString()}</span>
         </div>
       )}
 
       {error && (
-        <div className="error">
+        <div className="mt-4 text-red-500">
           {error}
         </div>
       )}
-              <button 
-        className="btn-button"
-        onClick={handleForo}
-      >
-       volver
-      </button>
+
+<button
+  className="mt-4 bg-teal-claro text-white px-6 py-3 rounded-xl fixed bottom-8 right-8 shadow-xl z-50"
+  onClick={handleForo}
+>
+  Volver
+</button>
+
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route, Navigate, Router } from "react-router-dom";
 import "./App.css";
+import './styles/tailwind.css';  // Asegúrate de que la ruta sea correcta
 
 // Importamos los componentes de las páginas
 import Inicio from "./componentes/profesor/home/Inicio";

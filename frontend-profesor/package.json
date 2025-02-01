@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tailwindcss/postcss7-compat": "^2.2.17",
     "axios": "^1.7.9",
     "cra-template": "1.2.0",
     "frontend-profesor": "file:",
@@ -10,11 +11,12 @@
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.3",
     "react-scripts": "5.0.1",
+    "tailwindcss": "^2.2.19",
     "web-vitals": "^4.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "postcss src/index.css -o dist/index.css",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -35,5 +37,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.3",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1"
   }
 }

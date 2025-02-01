@@ -1,12 +1,11 @@
 "use client"
 
-import "./Foro.css"
-import logo from "../../componentes/logo/LogoInicio.png"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 import axios from "axios"
 import { API_BASE_URL } from "../config/Api"
+import logo from "../../componentes/logo/LogoInicio.png"
 
 const Foro = () => {
   const navigate = useNavigate()
@@ -53,11 +52,9 @@ const Foro = () => {
   }
 
   const confirmDelete = () => {
-    // Aquí iría la lógica para eliminar la consulta
     console.log(`Eliminando consulta ${consultaToDelete}`)
     setShowConfirmDialog(false)
     setConsultaToDelete(null)
-    // Después de eliminar, podrías actualizar el estado de las consultas o recargar la página
   }
 
   const cancelDelete = () => {
@@ -66,48 +63,50 @@ const Foro = () => {
   }
 
   return (
-    <div className="foro-completo">
-      <header className="header">
-        <img src={logo || "/placeholder.svg"} alt="Logo" className="logo-img" />
-        <nav className="navigation">
-          <ul>
-            <li>
-              <Link to="#">Profesores</Link>
-            </li>
-            <li>
-              <Link to="#">Programa</Link>
-            </li>
-            <li>
-              <Link to="#">Herramientas</Link>
-            </li>
+    <div className="h-full flex flex-col items-center justify-start bg-teal-400">
+      <header className="fixed top-0 left-0 right-0 flex justify-between items-center w-full h-24 bg-custom-teal shadow-lg rounded-b-[50px] z-50 relative">
+        <div className="flex items-center pl-2 bg-">
+          <img 
+            src={logo} 
+            alt="Logo" 
+            className="w-20 h-auto" // Logo más pequeño
+          />
+        </div>
+        <nav className="pr-8">
+          <ul className="flex gap-5">
+            <li><Link to="#" className="text-white text-lg">Profesores</Link></li>
+            <li><Link to="#" className="text-white text-lg">Programa</Link></li>
+            <li><Link to="#" className="text-white text-lg">Herramientas</Link></li>
           </ul>
         </nav>
       </header>
-      <div className="foro-header">
-        <h2>Foro</h2>
+      
+      <div className="max-w-[1200px] w-full mx-4 px-14 py-4 bg-green-800 text-white rounded-lg mt-[200px]">
+      <h2 className="text-xl font-semibold m">Foro</h2>
+
       </div>
 
-      <div className="foro-content">
+      <div className="w-full flex flex-col items-center p-14 space-y-14 bg-white rounded-lg shadow-md mx-4">
         {/* Static foro post */}
-        <div className="foro-post">
-          <div className="post-header">
-            <div className="user-info">
-              <span className="user-initial">V</span>
-              <span className="user-name">Valentina Capra</span>
+        <div className="w-full p-24 border-b border-gray-300 mb-5">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center space-x-3">
+              <span className="bg-gray-200 rounded-full w-[30px] h-[30px] flex items-center justify-center font-bold">V</span>
+              <span className="font-semibold text-black">Valentina Capra</span>
             </div>
-            <span className="post-date">Dia 18/10</span>
+            <span className="text-gray-600 text-sm">Dia 18/10</span>
           </div>
-          <div className="post-content">
+          <div className="mt-3 text-left">
             <p>Buenas tardes! Cuando tengo que usar el past simple?</p>
           </div>
-          <div className="post-actions">
-            <button className="btn-responder" onClick={() => handleResponder(0)}>
+          <div className="mt-5 flex justify-end space-x-3">
+            <button className="bg-yellow-500 text-white px-4 py-2 rounded-md font-medium" onClick={() => handleResponder(0)}>
               Responder
             </button>
-            <button className="btn-respuestas" onClick={handleMasRespuestas}>
+            <button className="bg-green-800 text-white px-4 py-2 rounded-md font-medium" onClick={handleMasRespuestas}>
               +respuestas
             </button>
-            <button className="btn-eliminar" onClick={() => handleEliminar(0)}>
+            <button className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md" onClick={() => handleEliminar(0)}>
               eliminar
             </button>
           </div>
@@ -120,27 +119,24 @@ const Foro = () => {
           <div>{error}</div>
         ) : (
           consultas.map((consulta) => (
-            <div key={consulta.Idconsulta} className="foro-post">
-              <div className="post-header">
-                <div className="user-info">
-                  <span className="user-initial">{consulta.Titulo[0]}</span>
-                  <span className="user-name">Usuario {consulta.Idusuario}</span>
+            <div key={consulta.Idconsulta} className="w-full p-5 border-b border-gray-300 mb-5">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center space-x-3">
+                  <span className="bg-gray-200 rounded-full w-[30px] h-[30px] flex items-center justify-center font-bold">{consulta.Titulo[0]}</span>
+                  <span className="font-semibold text-black">Usuario {consulta.Idusuario}</span>
                 </div>
-                <span className="post-date">
+                <span className="text-gray-600 text-sm">
                   {consulta.Fechahora
                     ? new Date(consulta.Fechahora).toLocaleDateString("es-ES", { day: "2-digit", month: "2-digit" })
                     : "Fecha desconocida"}
                 </span>
               </div>
-              <div className="post-content">
-                <h3>{consulta.Titulo}</h3>
+              <div className="mt-3 text-left">
+                <h3 className="text-xl font-semibold">{consulta.Titulo}</h3>
                 <p>{consulta.Contenido}</p>
               </div>
-              <div className="post-actions">
-                <button className="btn-responder" onClick={() => handleResponder(consulta.Idconsulta)}>
-                  Responder
-                </button>
-                <button className="btn-eliminar" onClick={() => handleEliminar(consulta.Idconsulta)}>
+              <div className="mt-5 flex justify-end space-x-3">
+                <button className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md" onClick={() => handleEliminar(consulta.Idconsulta)}>
                   eliminar
                 </button>
               </div>
@@ -149,17 +145,21 @@ const Foro = () => {
         )}
       </div>
 
-      <button className="btn-button" onClick={handleNuevaConsulta}>
+      <button className="fixed bottom-8 right-8 bg-teal-claro text-white px-6 py-3 rounded-full shadow-lg hover:opacity-90 z-50" onClick={handleNuevaConsulta}>
         + Nueva Consulta
       </button>
 
       {showConfirmDialog && (
-        <div className="confirmarEliminar">
-          <div className="confirmardialog">
-            <p>¿Estás seguro que deseas eliminar esta consulta?</p>
-            <div className="confirm-buttons">
-              <button className="confirm-Aceptar" onClick={confirmDelete}>Aceptar</button>
-              <button className="confirm-Cancelar"onClick={cancelDelete}>Cancelar</button>
+        <div className="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-md shadow-lg">
+            <p className="text-lg">¿Estás seguro que deseas eliminar esta consulta?</p>
+            <div className="mt-4 flex space-x-4">
+              <button className="bg-green-800 text-white px-4 py-2 rounded-md font-medium" onClick={confirmDelete}>
+                Aceptar
+              </button>
+              <button className="bg-green-800 text-white px-4 py-2 rounded-md font-medium" onClick={cancelDelete}>
+                Cancelar
+              </button>
             </div>
           </div>
         </div>
@@ -169,4 +169,3 @@ const Foro = () => {
 }
 
 export default Foro
-

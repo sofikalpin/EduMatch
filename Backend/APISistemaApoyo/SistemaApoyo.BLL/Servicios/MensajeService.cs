@@ -2,7 +2,7 @@
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DAL.Repositorios.Contrato;
 using SistemaApoyo.DTO;
-using SistemaApoyo.Model.Models;
+using SistemaApoyo.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +17,12 @@ namespace SistemaApoyo.BLL.Servicios
     public class MensajeService : IMensajeService
     {
         private readonly IGenericRepository<Mensaje> _mensajeRepository;
-        private readonly IGenericRepository<SistemaApoyo.Model.Models.Chat> _chatRepository;
+        private readonly IGenericRepository<SistemaApoyo.Model.Chat> _chatRepository;
         private readonly IHubContext<ChatHub> _hubContext;
         private readonly IMapper _mapper;
 
             public MensajeService(IGenericRepository<Mensaje> mensajeRepository,
-                                  IGenericRepository<SistemaApoyo.Model.Models.Chat> chatRepository,IHubContext<ChatHub> hubContext,
+                                  IGenericRepository<SistemaApoyo.Model.Chat> chatRepository,IHubContext<ChatHub> hubContext,
                                   IMapper mapper)
             {
                 _mensajeRepository = mensajeRepository;
@@ -82,7 +82,6 @@ namespace SistemaApoyo.BLL.Servicios
                     {
                         throw new Exception("El chat no existe.");
                     }
-
                     if (mensajeDto.Idusuario != chat.Idusuario1 && mensajeDto.Idusuario != chat.Idusuario2)
                     {
                         throw new Exception("El usuario no es parte de este chat.");
@@ -94,15 +93,8 @@ namespace SistemaApoyo.BLL.Servicios
                     var mensajeMapped = _mapper.Map<MensajeDTO>(mensaje);
 
                   
-                    try
-                    {
-                        await _hubContext.Clients.Group(chat.Idchat.ToString())
+                    await _hubContext.Clients.Group(chat.Idchat.ToString())
                                              .SendAsync("RecibirMensaje", mensajeMapped);
-                    } 
-                    catch (Exception ex) 
-                    {
-                        throw new Exception("Error al crear el mensaje.", ex);
-                    }
 
                     return mensajeMapped;
                 }
@@ -111,7 +103,6 @@ namespace SistemaApoyo.BLL.Servicios
                     throw new Exception("Error al enviar el mensaje.", ex);
                 }
            }
-
         public async Task<MensajeDTO> EditarMensaje(int mensajeId, MensajeDTO mensajeDto)
         {
             try

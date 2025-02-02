@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DAL.Repositorios.Contrato;
 using SistemaApoyo.DTO;
-using SistemaApoyo.Model.Models;
+using SistemaApoyo.Model;
 using AutoMapper;
 
 namespace SistemaApoyo.BLL.Servicios

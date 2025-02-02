@@ -4,8 +4,6 @@ using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DTO;
 using Microsoft.AspNetCore.Http;
 using SistemaApoyo.BLL.Servicios;
-using SistemaApoyo.DAL.DBContext;
-using Microsoft.EntityFrameworkCore;
 
 namespace WebApiApoyo.Controllers.Administrador
 {
@@ -16,76 +14,33 @@ namespace WebApiApoyo.Controllers.Administrador
     {
         private readonly IAdministrador _administradorService;
         private readonly ILogger<AdministradorProfesorController> _logger;
-        private readonly IUsuarioService _usuarioService;
-        private readonly S31Grupo2AprendizajeYApoyoDeInglesContext _context;
 
-        public AdministradorProfesorController(IAdministrador administradorService, IUsuarioService usuarioService, ILogger<AdministradorProfesorController> logger, S31Grupo2AprendizajeYApoyoDeInglesContext context)
+        public AdministradorProfesorController(IAdministrador administradorService, ILogger<AdministradorProfesorController> logger)
         {
             _administradorService = administradorService;
-            _usuarioService = usuarioService;
             _logger = logger;
-            _context = context;
         }
 
-        [HttpGet("ListaProfesores")]
+        [HttpGet("Lista Profesores")]
         public async Task<IActionResult> ListaProfesores() 
-        {
-            var general = await _administradorService.ListaTotal();
-
-            if (general == null || !general.Any())
-            {
-               return Ok(new { status = false, msg = "No se encontraron profesores.", value = (object)null });
-            }
-
-            var profesores = general.Where(u => u.Idrol == 1).ToList();
-            if (!profesores.Any())
-            {
-                return Ok(new { status = false, msg = "No se encontraron profesores.", value = (object)null });
-            }
-
-            return Ok(new { status = true, msg = "Profesores encontrados.", value = profesores });
-        }
-
-        [HttpGet("ListaProfesoresAutorizados")]
-        public async Task<IActionResult> ListaAutorizados() 
-        {
+        { 
             var rsp = new Response<List<UsuarioDTO>>();
             try 
             {
                 rsp.status = true;
-                rsp.value = await _administradorService.ListaAutorizacion(true);
+                rsp.value = await _administradorService.ListaRol(1);
             }
             catch (Exception ex)
             {
                 rsp.status = false;
-                _logger.LogError(ex, "Error al obtener la lista de profesores autorizados.");
+                _logger.LogError(ex, "Error al obtener la lista de profesores.");
             }
 
-            // Retorna la respuesta en todos los casos
-            return Ok(rsp);
-        }
-
-        [HttpGet("ListaProfesoresNOAutorizados")]
-        public async Task<IActionResult> ListaNoAutorizados()
-        {
-            var rsp = new Response<List<UsuarioDTO>>();
-            try
-            {
-                rsp.status = true;
-                rsp.value = await _administradorService.ListaAutorizacion(false);
-            }
-            catch (Exception ex)
-            {
-                rsp.status = false;
-                _logger.LogError(ex, "Error al obtener la lista de profesores autorizados.");
-            }
-
-            // Retorna la respuesta en todos los casos
             return Ok(rsp);
         }
 
         [HttpPut]
-        [Route("AutorizarProfesor")]
+        [Route("Autorizar Profesor")]
         public async Task<IActionResult> AutorizarProfesor(int id) 
         {
             if (id <= 0)
@@ -110,7 +65,7 @@ namespace WebApiApoyo.Controllers.Administrador
         }
 
         [HttpGet]
-        [Route("BusquedaProfesorNombre")]
+        [Route("Busqueda Profesor Nombre")]
         public async Task<IActionResult> ListaProfesorPorNombre(string nombre)
         {
             if (string.IsNullOrWhiteSpace(nombre))
@@ -133,7 +88,31 @@ namespace WebApiApoyo.Controllers.Administrador
         }
 
         [HttpGet]
-        [Route("ProfesorID")]
+        [Route("Busqueda Profesor Nivel")]
+        public async Task<IActionResult> ListaProfesorPorNivel(int nivel)
+        {
+            if (nivel < 0)
+            {
+                return BadRequest("El nivel no es  válido.");
+            }
+
+            var rsp = new Response<List<UsuarioDTO>>();
+            try
+            {
+                rsp.status = true;
+                rsp.value = await _administradorService.ConsultaNivel(1, nivel);
+            }
+            catch (Exception ex)
+            {
+                rsp.status = false;
+                _logger.LogError(ex, "Error al obtener el nivel del profesor.");
+            }
+            return Ok(rsp);
+        }
+
+
+        [HttpGet]
+        [Route("Profesor ID")]
         public async Task<IActionResult> BusquedaProfesorID(int id)
         {
             if (id <= 0)
@@ -174,108 +153,51 @@ namespace WebApiApoyo.Controllers.Administrador
 
 
         [HttpPost]
-        [Route("CrearProfesor")]
+        [Route("Crear Profesor")]
         public async Task<IActionResult> CrearUsuario([FromBody] UsuarioDTO usuario)
         {
-            var idMaximo = await _context.Usuarios.MaxAsync(u => u.Idusuario);
-            usuario.Idusuario = idMaximo + 1;
-
             var rsp = new Response<string>();
             try
             {
-
-                _logger.LogInformation("Hashing password: {PasswordHash}", usuario.ContraseñaHash);
-
-                if (string.IsNullOrEmpty(usuario.ContraseñaHash))
-                {
-                    rsp.status = false;
-                    rsp.msg = "La contraseña no puede estar vacía.";
-                    return BadRequest(rsp);
-                }
-
-                // Hashear la contraseña antes de guardar
-                usuario.ContraseñaHash = _usuarioService.HashearContrasena(usuario.ContraseñaHash);
-                // Todo profesor que se cree no tendra autorizacion hasta que lo permita el administrador
-
-
-                if (string.IsNullOrEmpty(usuario.ContraseñaHash)) 
-                {
-                    rsp.status = false;
-                    rsp.msg = "Error al hashear la contraseña.";
-                    return BadRequest(rsp);
-                }
-
-                rsp.status = true;                
-                usuario.AutProf = false;                  
-                usuario.Idrol = 1;  
+                rsp.status = true;
                 var resultado = await _administradorService.CrearUsuario(usuario);
-
-
-                if (resultado)
-                {
-                    rsp.status = true;
-                    rsp.value = "Profesor creado con éxito";
-                    return Ok(rsp);
-                }
+                usuario.Idrol = 1;
+                rsp.value = "Profesor creado con éxito";
             }
             catch (Exception ex)
             {
                 rsp.status = false;
-                rsp.msg = "Ocurrió un error inesperado al intentar guardar el usuario.";
                 _logger.LogError(ex, "Error al guardar el profesor.");
             }
             return Ok(rsp);
         }
 
         [HttpPut]
-        [Route("EditarporID")]
+        [Route("Editar por ID")]
         public async Task<IActionResult> EditarUsuario(int id, [FromBody] UsuarioDTO usuario)
         {
-            _logger.LogInformation("ID de la URL: {Id}", id);
-            _logger.LogInformation("ID del usuario en el cuerpo: {IdUsuario}", usuario?.Idusuario);
-
             if (id != usuario.Idusuario)
             {
-                _logger.LogWarning("El ID de la URL no coincide con el ID del cuerpo.");
                 return BadRequest("El ID del profesor no coincide con el ID proporcionado.");
             }
 
             var rsp = new Response<string>();
             try
             {
-                usuario.AutProf = true;
-
                 var resultado = await _administradorService.ActualizarUsuario(usuario);
-                if (resultado)
-                {
-                    
-
-                    return Ok(new
-                    {
-                        status = true,
-                        message = "Profesor actualizado con éxito."
-                    });
-                }
-
-                return BadRequest(new
-                {
-                    status = false,
-                    message = "No se pudo actualizar el profesor. Verifique los datos enviados."
-                });
+                rsp.status = true;
+                rsp.value = "Profesor actualizada con éxito.";
             }
             catch (Exception ex)
             {
+                rsp.status = false;
                 _logger.LogError(ex, "Error al actualizar el profesor.");
-                return StatusCode(500, new
-                {
-                    status = false,
-                    message = "Ocurrió un error al procesar la solicitud. Intente nuevamente más tarde."
-                });
             }
+            return Ok(rsp);
         }
 
         [HttpDelete]
-        [Route("EliminarProfesor")]
+        [Route("Eliminar Profesor")]
         public async Task<IActionResult> EliminarProfesor(int id)
         {
             if (id <= 0)

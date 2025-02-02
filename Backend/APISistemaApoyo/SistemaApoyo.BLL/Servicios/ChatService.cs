@@ -2,38 +2,31 @@
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DAL.Repositorios.Contrato;
 using SistemaApoyo.DTO;
-using SistemaApoyo.Model.Models;
+using SistemaApoyo.Model;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using SistemaApoyo.BLL.Hubs;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace SistemaApoyo.BLL.Servicios
 {
     public class ChatService : IChatService
     {
-        private readonly IGenericRepository<SistemaApoyo.Model.Models.Chat> _chatRepository;
+        private readonly IGenericRepository<SistemaApoyo.Model.Chat> _chatRepository;
         private readonly IGenericRepository<Usuario> _usuarioRepository;
         private readonly IMapper _mapper;
         private readonly IHubContext<ChatHub> _chatHubContext; 
-        private readonly ILogger _logger;
-
 
         public ChatService(IGenericRepository<SistemaApoyo.Model.Models.Chat> chatRepository,
                            IGenericRepository<Usuario> usuarioRepository,
                            IMapper mapper,
-                           IHubContext<ChatHub> chatHubContext,
-                           ILogger<ChatService> logger) 
+                           IHubContext<ChatHub> chatHubContext) 
         {
             _chatRepository = chatRepository;
             _usuarioRepository = usuarioRepository;
             _mapper = mapper;
             _chatHubContext = chatHubContext; 
-            _logger = logger;
         }
 
         public async Task<List<UsuarioDTO>> ListaContactos()
@@ -87,34 +80,26 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        public async Task<bool> CrearChat([FromBody] ChatDTO chat) 
+        public async Task<bool> CrearChat(ChatDTO chat)
         {
             try
             {
-                var usuarios = await _usuarioRepository.Consultar(u => u.Idusuario == chat.Idusuario1 || u.Idusuario == chat.Idusuario2);
-                if (usuarios.Count() < 2)
+                if (await _usuarioRepository.Obtener(u => u.Idusuario == chat.Idusuario1) == null ||
+                    await _usuarioRepository.Obtener(u => u.Idusuario == chat.Idusuario2) == null)
                 {
                     throw new Exception("Uno o ambos usuarios no existen.");
                 }
-                var chats = _mapper.Map<SistemaApoyo.Model.Models.Chat>(chat);
+                var chats = _mapper.Map<SistemaApoyo.Model.Chat>(chat);
                 await _chatRepository.Crear(chats);
 
                 // Notificar a los usuarios sobre el nuevo chat
-                try
-                {
-                    await _chatHubContext.Clients.Group(chat.Idusuario1.ToString()).SendAsync("NuevoChat", chats);
-                    await _chatHubContext.Clients.Group(chat.Idusuario2.ToString()).SendAsync("NuevoChat", chats);
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Error al notificar a los usuarios sobre el nuevo chat.");
-                }
+                await _chatHubContext.Clients.Group(chat.Idusuario1.ToString()).SendAsync("NuevoChat", chats);
+                await _chatHubContext.Clients.Group(chat.Idusuario2.ToString()).SendAsync("NuevoChat", chats);
 
                 return true;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al crear el chat.");
                 throw new Exception("Error al crear el chat.", ex);
             }
         }

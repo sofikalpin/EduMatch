@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@microsoft/signalr": "^8.0.7",
-    "react-modal": "^3.16.3"
-  }
-}

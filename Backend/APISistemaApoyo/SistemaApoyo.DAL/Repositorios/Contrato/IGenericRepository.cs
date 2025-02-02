@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Linq.Expressions;
-using SistemaApoyo.Model.Models;
+using SistemaApoyo.Model;
 using SistemaApoyo.DTO;
 
 

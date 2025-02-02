@@ -1,23 +1,19 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DAL.Repositorios.Contrato;
 using SistemaApoyo.DTO;
-using SistemaApoyo.Model.Models;
+using SistemaApoyo.Model;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using BotCrypt;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Identity;
 using System.Security.Cryptography;
-using System.Linq.Expressions;
+using System.Net.Mail;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using System.Net;
+using Microsoft.Extensions.Logging;
 
 namespace SistemaApoyo.BLL.Servicios
 {
@@ -25,36 +21,53 @@ namespace SistemaApoyo.BLL.Servicios
     {
         private readonly IGenericRepository<Usuario> _usuarioRepositorio;
         private readonly IMapper _mapper;
-        private readonly IConfiguration _configuration;  // Usamos IConfiguration aquí
-        private readonly PasswordHasher<object> _passwordHasher;
+        private readonly IConfiguration _configuration;
+        private readonly ILogger<UsuarioService> _logger;
 
-        // Constructor actualizado
-        public UsuarioService(IGenericRepository<Usuario> usuarioRepositorio, IMapper mapper, IConfiguration configuration)
+        public UsuarioService(
+     IGenericRepository<Usuario> usuarioRepositorio,
+     IMapper mapper,
+     IConfiguration configuration,
+     ILogger<UsuarioService> logger) // Agrega este parámetro
         {
             _usuarioRepositorio = usuarioRepositorio;
             _mapper = mapper;
-            _configuration = configuration;  // Se inyecta IConfiguration
-            _passwordHasher = new PasswordHasher<object>();
+            _configuration = configuration;
+            _logger = logger; // Inicializa el logger
         }
 
         public async Task<UsuarioDTO> Crear(UsuarioDTO modelo)
         {
             try
             {
-                var usuarioCreado = await _usuarioRepositorio.Crear(_mapper.Map<Usuario>(modelo));
+                var usuario = _mapper.Map<Usuario>(modelo);
+
+                // Hashear la contraseña antes de guardarla
+                usuario.ContraseñaHash = HashearContrasena(modelo.ContraseñaHash);
+
+                // Verificar si el correo ya existe
+                var usuarioExistente = await _usuarioRepositorio.Obtener(u => u.Correo == modelo.Correo);
+                if (usuarioExistente != null)
+                {
+                    throw new InvalidOperationException("El correo ya está registrado");
+                }
+
+                var usuarioCreado = await _usuarioRepositorio.Crear(usuario);
                 if (usuarioCreado.Idusuario == 0)
-                    _mapper.Map<Usuario>(modelo);
+                    throw new Exception("No se pudo crear el usuario");
 
                 var query = await _usuarioRepositorio.Consultar(u => u.Idusuario == usuarioCreado.Idusuario);
-                usuarioCreado = query.Include(rol => rol.IdrolNavigation).First();
+                usuarioCreado = query.Include(u => u.IdrolNavigation).FirstOrDefault();
 
                 return _mapper.Map<UsuarioDTO>(usuarioCreado);
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine($"Error al crear usuario: {ex.Message}");
                 throw;
             }
         }
+
 
         public async Task<bool> Editar(UsuarioDTO modelo)
         {
@@ -63,12 +76,10 @@ namespace SistemaApoyo.BLL.Servicios
                 var usuarioModelo = _mapper.Map<Usuario>(modelo);
                 var usuarioEncontrado = await _usuarioRepositorio.Obtener(u => u.Idusuario == usuarioModelo.Idusuario);
                 if (usuarioEncontrado == null)
-                    throw new TaskCanceledException("El usuario no existe");
+                    throw new InvalidOperationException("El usuario no existe");
 
                 if (!string.IsNullOrEmpty(usuarioModelo.ContraseñaHash))
-                {
                     usuarioEncontrado.ContraseñaHash = HashearContrasena(usuarioModelo.ContraseñaHash);
-                }
 
                 usuarioEncontrado.Nombrecompleto = usuarioModelo.Nombrecompleto;
                 usuarioEncontrado.Correo = usuarioModelo.Correo;
@@ -77,14 +88,14 @@ namespace SistemaApoyo.BLL.Servicios
 
                 bool respuesta = await _usuarioRepositorio.Editar(usuarioEncontrado);
                 if (!respuesta)
-                    throw new TaskCanceledException("No se pudo editar");
-                return respuesta;
+                    throw new Exception("No se pudo editar el usuario");
 
+                return respuesta;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al editar usuario: {ex.Message}");
-                throw ;
+                throw;
             }
         }
 
@@ -94,14 +105,17 @@ namespace SistemaApoyo.BLL.Servicios
             {
                 var usuarioEncontrado = await _usuarioRepositorio.Obtener(u => u.Idusuario == id);
                 if (usuarioEncontrado == null)
-                    throw new TaskCanceledException("El usuario no existe");
+                    throw new InvalidOperationException("El usuario no existe");
+
                 bool respuesta = await _usuarioRepositorio.Eliminar(usuarioEncontrado);
                 if (!respuesta)
-                    throw new TaskCanceledException("No se pudo eliminar");
+                    throw new Exception("No se pudo eliminar el usuario");
+
                 return respuesta;
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine($"Error al eliminar usuario: {ex.Message}");
                 throw;
             }
         }
@@ -111,11 +125,12 @@ namespace SistemaApoyo.BLL.Servicios
             try
             {
                 var usuariosQuery = await _usuarioRepositorio.Consultar();
-                var listaUsuarios = usuariosQuery.Include(rol => rol.IdrolNavigation).ToList();
+                var listaUsuarios = usuariosQuery.Include(u => u.IdrolNavigation).ToList();
                 return _mapper.Map<List<UsuarioDTO>>(listaUsuarios);
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine($"Error al obtener lista de usuarios: {ex.Message}");
                 throw;
             }
         }
@@ -124,14 +139,14 @@ namespace SistemaApoyo.BLL.Servicios
         {
             try
             {
-                var usuarioQuery = await _usuarioRepositorio.Obtener(u => u.Correo == correo);
-                if (usuarioQuery == null)
+                var usuario = await _usuarioRepositorio.Obtener(u => u.Correo == correo);
+                if (usuario == null)
                 {
-                    Console.WriteLine($"No se encontró un usuario con el correo: {correo}");
-                    throw new Exception("Usuario no encontrado");
+                    Console.WriteLine($"Usuario con correo {correo} no encontrado.");
+                    throw new InvalidOperationException("Usuario no encontrado");
                 }
-                Console.WriteLine($"Usuario encontrado: {usuarioQuery.Correo}, {usuarioQuery.Nombrecompleto}");
-                return _mapper.Map<UsuarioDTO>(usuarioQuery);
+
+                return _mapper.Map<UsuarioDTO>(usuario);
             }
             catch (Exception ex)
             {
@@ -140,140 +155,199 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        public async Task<UsuarioDTO> ObtenerUsuarioPorID(int idUsuario)
-        {
-            try
-            {
-                var usuarioQuery = await _usuarioRepositorio.Obtener(u => u.Idusuario == idUsuario);
-                if (usuarioQuery == null)
-                {
-                    Console.WriteLine($"No se encontró un usuario con el id: {idUsuario}");
-                    throw new Exception("Usuario no encontrado");
-                }
-                Console.WriteLine($"Usuario encontrado: {usuarioQuery.Correo}, {usuarioQuery.Nombrecompleto}");
-                return _mapper.Map<UsuarioDTO>(usuarioQuery);
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error al obtener usuario por id: {ex.Message}");
-                throw;
-            }
-        }
-
-
         public async Task<SesionDTO> ValidarCredenciales(string correo, string contrasena)
         {
             try
-            { 
-                // Buscar al usuario por su correo
+            {
                 var usuario = await ObtenerUsuarioPorCorreo(correo);
-
-                if (usuario != null)
+                if (usuario != null && VerificarContrasena(contrasena, usuario.ContraseñaHash))
                 {
-                    // Verificar la contraseña
-                    if (VerificarContrasena(contrasena, usuario.ContraseñaHash))
+                    return new SesionDTO
                     {
-                        Console.WriteLine($"Usuario encontrado: {usuario.Nombrecompleto}, {usuario.Correo}");
-                        return new SesionDTO
-                        {
-                            NombreCompleto = usuario.Nombrecompleto,
-                            Correo = usuario.Correo
-                        };
-                    }
+                        NombreCompleto = usuario.Nombrecompleto,
+                        Correo = usuario.Correo
+                    };
                 }
-                Console.WriteLine($"Usuario con correo {correo} no encontrado.");
                 throw new UnauthorizedAccessException("Credenciales inválidas");
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                Console.WriteLine($"Error al validar credencialess: {ex.Message}");
+                Console.WriteLine($"Error al validar credenciales: {ex.Message}");
                 throw;
             }
         }
 
+        public async Task<bool> GenerarTokenRecuperacion(string correo)
+        {
+            try
+            {
+                // Buscar usuario por correo
+                var usuario = await _usuarioRepositorio.Obtener(u => u.Correo == correo);
+                if (usuario == null)
+                    throw new InvalidOperationException("Usuario no encontrado");
+
+                // Verificar si hay un token activo y válido
+                if (!string.IsNullOrEmpty(usuario.TokenRecuperacion) &&
+                    usuario.TokenExpiracion.HasValue &&
+                    usuario.TokenExpiracion.Value > DateTime.UtcNow)
+                {
+                    // Invalidar token anterior
+                    usuario.TokenRecuperacion = null;
+                    usuario.TokenExpiracion = null;
+                    await _usuarioRepositorio.Editar(usuario);
+                }
+
+                // Generar nuevo token
+                var token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(32));
+
+                // Establecer expiración (24 horas)
+                usuario.TokenRecuperacion = token;
+                usuario.TokenExpiracion = DateTime.UtcNow.AddHours(24);
+
+                // Guardar cambios
+                bool resultado = await _usuarioRepositorio.Editar(usuario);
+                if (!resultado)
+                    throw new Exception("No se pudo guardar el token de recuperación");
+
+                // Enviar correo
+                await EnviarCorreoRecuperacion(usuario.Correo, token);
+
+                // Registrar el intento de recuperación en el log
+                _logger.LogInformation($"Solicitud de recuperación de contraseña generada para el correo: {correo} en {DateTime.UtcNow}");
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error en GenerarTokenRecuperacion: {ex.Message}");
+                throw;
+            }
+        }
 
         public string HashearContrasena(string contrasena)
         {
-            if (string.IsNullOrEmpty(contrasena))
-            {
-                throw new ArgumentException("La contraseña no puede estar vacía.");
-            }
-            // Generar un salt único
             var salt = new byte[16];
             using (var rng = RandomNumberGenerator.Create())
-            {
                 rng.GetBytes(salt);
-            }
 
-            // Usar PBKDF2 para generar el hash de la contraseña
-            var iteraciones = 10000;
-            using (var pbkdf2 = new Rfc2898DeriveBytes(contrasena, salt, iteraciones, HashAlgorithmName.SHA256))
+            using (var pbkdf2 = new Rfc2898DeriveBytes(contrasena, salt, 10000, HashAlgorithmName.SHA256))
             {
                 var hash = pbkdf2.GetBytes(32);
-
-                // Combinar el salt y el hash en un solo arreglo
                 var resultado = new byte[salt.Length + hash.Length];
                 Array.Copy(salt, 0, resultado, 0, salt.Length);
                 Array.Copy(hash, 0, resultado, salt.Length, hash.Length);
-
-                // Retornar el resultado como Base64 para almacenamiento
                 return Convert.ToBase64String(resultado);
             }
         }
 
         public bool VerificarContrasena(string contrasena, string hashAlmacenado)
         {
-            // Convertir el hash almacenado desde Base64 a un arreglo de bytes
             var datosHash = Convert.FromBase64String(hashAlmacenado);
+            var salt = datosHash[..16];
+            var hashOriginal = datosHash[16..];
 
-            // Extraer el salt (primeros 16 bytes)
-            var salt = new byte[16];
-            Array.Copy(datosHash, 0, salt, 0, 16);
-
-            // Extraer el hash original (resto de los bytes)
-            var hashOriginal = new byte[32];
-            Array.Copy(datosHash, 16, hashOriginal, 0, 32);
-
-            // Recalcular el hash con la contraseña proporcionada
-            var iteraciones = 10000;
-            using (var pbkdf2 = new Rfc2898DeriveBytes(contrasena, salt, iteraciones, HashAlgorithmName.SHA256))
+            using (var pbkdf2 = new Rfc2898DeriveBytes(contrasena, salt, 10000, HashAlgorithmName.SHA256))
             {
                 var hashRecalculado = pbkdf2.GetBytes(32);
-
-                Console.WriteLine($"Salt: {Convert.ToBase64String(salt)}");
-                Console.WriteLine($"Hash recalculado: {Convert.ToBase64String(hashRecalculado)}");
-                Console.WriteLine($"Hash original: {Convert.ToBase64String(hashOriginal)}");
-
-                // Comparar ambos hashes de manera segura
                 return hashOriginal.SequenceEqual(hashRecalculado);
-
             }
         }
 
-        private string GenerarToken(UsuarioDTO usuario)
+
+
+        public async Task<bool> ReestablecerContraseña(string token, string nuevaContraseña)
         {
-            // Definir los "claims" (información) que queremos en el token
-            var claims = new List<Claim>
+            try
             {
-                new Claim(ClaimTypes.Name, usuario.Nombrecompleto),
-                new Claim(ClaimTypes.Email, usuario.Correo),
-                // Puedes agregar más información si lo deseas
-            };
+                // Buscar usuario por token
+                var usuario = await _usuarioRepositorio.Obtener(u => u.TokenRecuperacion == token);
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:SecretKey"])); // Clave secreta
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                // Validar token y su expiración
+                if (usuario == null ||
+                    string.IsNullOrEmpty(usuario.TokenRecuperacion) ||
+                    !usuario.TokenExpiracion.HasValue ||
+                    usuario.TokenExpiracion.Value < DateTime.UtcNow)
+                {
+                    throw new InvalidOperationException("Token inválido o expirado");
+                }
 
-            // Crear el token
-            var token = new JwtSecurityToken(
-                issuer: _configuration["Jwt:Issuer"],    // Emisor
-                audience: _configuration["Jwt:Audience"], // Audiencia
-                claims: claims,                           // Claims
-                expires: DateTime.Now.AddHours(1),        // El token expira en 1 hora
-                signingCredentials: creds                 // Firmado con la clave secreta
-            );
+                // Hashear nueva contraseña
+                usuario.ContraseñaHash = HashearContrasena(nuevaContraseña);
 
-            return new JwtSecurityTokenHandler().WriteToken(token); // Convertimos el token a string y lo retornamos
+                // Limpiar token y expiración
+                usuario.TokenRecuperacion = null;
+                usuario.TokenExpiracion = null;
+
+                // Guardar cambios
+                bool resultado = await _usuarioRepositorio.Editar(usuario);
+                if (!resultado)
+                    throw new Exception("No se pudo actualizar la contraseña");
+
+                // Registrar el cambio exitoso en el log
+                _logger.LogInformation($"Contraseña actualizada exitosamente para el usuario: {usuario.Correo} en {DateTime.UtcNow}");
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error en ReestablecerContraseña: {ex.Message}");
+                throw;
+            }
         }
+
+
+        public async Task EnviarCorreoRecuperacion(string correoDestino, string token)
+        {
+            try
+            {
+                var emailSettings = _configuration.GetSection("EmailSettings");
+                var smtpClient = new SmtpClient(emailSettings["SmtpServer"])
+                {
+                    Port = int.Parse(emailSettings["SmtpPort"] ?? "587"), // 587 es el puerto recomendado para STARTTLS
+                    Credentials = new NetworkCredential(emailSettings["SmtpUser"], emailSettings["SmtpPassword"]),
+                    EnableSsl = true // Asegúrate de habilitar SSL/TLS para STARTTLS
+                };
+
+                // Aquí construyes el enlace con el token como parámetro
+                var resetUrl = $"http://localhost:3000/contra?token={token}";  // Asegúrate de que la ruta sea correcta
+
+                var mensaje = new MailMessage
+                {
+                    From = new MailAddress(emailSettings["FromEmail"], "Sistema de Apoyo"),
+                    Subject = "Recuperación de Contraseña",
+                    Body = $@"
+<h2>Recuperación de Contraseña</h2>
+<p>Has solicitado restablecer tu contraseña.</p>
+<p>Para continuar, haz clic en el siguiente enlace:</p>
+<p><a href='{resetUrl}'>Restablecer Contraseña</a></p>
+<p>Este enlace expirará en 24 horas.</p>
+<p>Si no solicitaste este cambio, puedes ignorar este correo.</p>
+<p>Nota: Si recibes múltiples correos de recuperación, solo el último enlace enviado será válido.</p>",
+                    IsBodyHtml = true
+                };
+                mensaje.To.Add(correoDestino);
+
+                // Enviar el correo
+                await smtpClient.SendMailAsync(mensaje);
+
+                _logger.LogInformation($"Correo de recuperación enviado a: {correoDestino} en {DateTime.UtcNow}");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error al enviar correo de recuperación: {ex.Message}");
+                throw;
+            }
+        }
+
+
+
+
+
+
+
     }
+
+
+
+
 }

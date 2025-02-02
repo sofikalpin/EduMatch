@@ -17,8 +17,22 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
         Task<bool> Editar(UsuarioDTO modelo);
         string HashearContrasena(string contrasena);
 
-        Task<UsuarioDTO> ObtenerUsuarioPorID(int idUsuario);
-
         Task<bool> Eliminar(int id);
+
+
+        Task<bool> ReestablecerContraseña(string token, string nuevaContraseña);
+
+        Task EnviarCorreoRecuperacion(string correoDestino, string token);
+        Task<bool> GenerarTokenRecuperacion(string correo);
+
+
+
+
+
+
+
+
+
+
     }
 }

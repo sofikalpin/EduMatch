@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using SistemaApoyo.Model.Models;
+using SistemaApoyo.Model;
 
-namespace SistemaApoyo.DAL.DBContext
-{
+namespace SistemaApoyo.DAL.DBContext {
 
     public partial class S31Grupo2AprendizajeYApoyoDeInglesContext : DbContext
     {
@@ -43,8 +42,9 @@ namespace SistemaApoyo.DAL.DBContext
 
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
-
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+            => optionsBuilder.UseNpgsql("Host=186.139.240.137;Port=14998;Database=S31-Grupo2 - Aprendizaje-y-apoyo-de-ingles;Username=postgres;Password=tallersoft600;TrustServerCertificate=True;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -349,8 +349,8 @@ namespace SistemaApoyo.DAL.DBContext
                 entity.ToTable("usuario");
 
                 entity.Property(e => e.Idusuario)
-                                .ValueGeneratedNever()
-                                .HasColumnName("idusuario");
+                    .ValueGeneratedNever()
+                    .HasColumnName("idusuario");
                 entity.Property(e => e.AutProf).HasColumnName("autProf");
                 entity.Property(e => e.ContraseñaHash)
                     .HasColumnType("character varying")
@@ -358,12 +358,16 @@ namespace SistemaApoyo.DAL.DBContext
                 entity.Property(e => e.Correo)
                     .HasColumnType("character varying")
                     .HasColumnName("correo");
+                entity.Property(e => e.CvRuta)
+                    .HasColumnType("character varying")
+                    .HasColumnName("cvRuta");
                 entity.Property(e => e.Fecharegistro).HasColumnName("fecharegistro");
                 entity.Property(e => e.Idnivel).HasColumnName("idnivel");
                 entity.Property(e => e.Idrol).HasColumnName("idrol");
                 entity.Property(e => e.Nombrecompleto)
                     .HasColumnType("character varying")
                     .HasColumnName("nombrecompleto");
+                entity.Property(e => e.TokenRecuperacion).HasColumnType("character varying");
 
                 entity.HasOne(d => d.IdnivelNavigation).WithMany(p => p.Usuarios)
                     .HasForeignKey(d => d.Idnivel)
@@ -375,7 +379,6 @@ namespace SistemaApoyo.DAL.DBContext
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("idrol");
             });
-
             modelBuilder.HasSequence("autoincrementoidmensaje").StartsAt(15L);
 
             OnModelCreatingPartial(modelBuilder);

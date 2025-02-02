@@ -4,7 +4,7 @@ using SistemaApoyo.API.Utilidad;
 using SistemaApoyo.BLL.Servicios;
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DTO;
-using SistemaApoyo.Model.Models;
+using SistemaApoyo.Model;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

@@ -2,7 +2,7 @@
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DAL.Repositorios.Contrato;
 using SistemaApoyo.DTO;
-using SistemaApoyo.Model.Models;
+using SistemaApoyo.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +17,12 @@ namespace SistemaApoyo.BLL.Servicios
     public class MensajeService : IMensajeService
     {
         private readonly IGenericRepository<Mensaje> _mensajeRepository;
-        private readonly IGenericRepository<SistemaApoyo.Model.Models.Chat> _chatRepository;
+        private readonly IGenericRepository<SistemaApoyo.Model.Chat> _chatRepository;
         private readonly IHubContext<ChatHub> _hubContext;
         private readonly IMapper _mapper;
 
             public MensajeService(IGenericRepository<Mensaje> mensajeRepository,
-                                  IGenericRepository<SistemaApoyo.Model.Models.Chat> chatRepository,IHubContext<ChatHub> hubContext,
+                                  IGenericRepository<SistemaApoyo.Model.Chat> chatRepository,IHubContext<ChatHub> hubContext,
                                   IMapper mapper)
             {
                 _mensajeRepository = mensajeRepository;

@@ -1,14 +1,19 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DAL.Repositorios.Contrato;
 using SistemaApoyo.DTO;
-using SistemaApoyo.Model.Models;
+using SistemaApoyo.Model;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
+using System.Net.Mail;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using System.Net;
+using Microsoft.Extensions.Logging;
 
 namespace SistemaApoyo.BLL.Servicios
 {
@@ -16,11 +21,19 @@ namespace SistemaApoyo.BLL.Servicios
     {
         private readonly IGenericRepository<Usuario> _usuarioRepositorio;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
+        private readonly ILogger<UsuarioService> _logger;
 
-        public UsuarioService(IGenericRepository<Usuario> usuarioRepositorio, IMapper mapper)
+        public UsuarioService(
+     IGenericRepository<Usuario> usuarioRepositorio,
+     IMapper mapper,
+     IConfiguration configuration,
+     ILogger<UsuarioService> logger) // Agrega este parámetro
         {
             _usuarioRepositorio = usuarioRepositorio;
             _mapper = mapper;
+            _configuration = configuration;
+            _logger = logger; // Inicializa el logger
         }
 
         public async Task<UsuarioDTO> Crear(UsuarioDTO modelo)
@@ -164,6 +177,53 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
+        public async Task<bool> GenerarTokenRecuperacion(string correo)
+        {
+            try
+            {
+                // Buscar usuario por correo
+                var usuario = await _usuarioRepositorio.Obtener(u => u.Correo == correo);
+                if (usuario == null)
+                    throw new InvalidOperationException("Usuario no encontrado");
+
+                // Verificar si hay un token activo y válido
+                if (!string.IsNullOrEmpty(usuario.TokenRecuperacion) &&
+                    usuario.TokenExpiracion.HasValue &&
+                    usuario.TokenExpiracion.Value > DateTime.UtcNow)
+                {
+                    // Invalidar token anterior
+                    usuario.TokenRecuperacion = null;
+                    usuario.TokenExpiracion = null;
+                    await _usuarioRepositorio.Editar(usuario);
+                }
+
+                // Generar nuevo token
+                var token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(32));
+
+                // Establecer expiración (24 horas)
+                usuario.TokenRecuperacion = token;
+                usuario.TokenExpiracion = DateTime.UtcNow.AddHours(24);
+
+                // Guardar cambios
+                bool resultado = await _usuarioRepositorio.Editar(usuario);
+                if (!resultado)
+                    throw new Exception("No se pudo guardar el token de recuperación");
+
+                // Enviar correo
+                await EnviarCorreoRecuperacion(usuario.Correo, token);
+
+                // Registrar el intento de recuperación en el log
+                _logger.LogInformation($"Solicitud de recuperación de contraseña generada para el correo: {correo} en {DateTime.UtcNow}");
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error en GenerarTokenRecuperacion: {ex.Message}");
+                throw;
+            }
+        }
+
         public string HashearContrasena(string contrasena)
         {
             var salt = new byte[16];
@@ -192,5 +252,102 @@ namespace SistemaApoyo.BLL.Servicios
                 return hashOriginal.SequenceEqual(hashRecalculado);
             }
         }
+
+
+
+        public async Task<bool> ReestablecerContraseña(string token, string nuevaContraseña)
+        {
+            try
+            {
+                // Buscar usuario por token
+                var usuario = await _usuarioRepositorio.Obtener(u => u.TokenRecuperacion == token);
+
+                // Validar token y su expiración
+                if (usuario == null ||
+                    string.IsNullOrEmpty(usuario.TokenRecuperacion) ||
+                    !usuario.TokenExpiracion.HasValue ||
+                    usuario.TokenExpiracion.Value < DateTime.UtcNow)
+                {
+                    throw new InvalidOperationException("Token inválido o expirado");
+                }
+
+                // Hashear nueva contraseña
+                usuario.ContraseñaHash = HashearContrasena(nuevaContraseña);
+
+                // Limpiar token y expiración
+                usuario.TokenRecuperacion = null;
+                usuario.TokenExpiracion = null;
+
+                // Guardar cambios
+                bool resultado = await _usuarioRepositorio.Editar(usuario);
+                if (!resultado)
+                    throw new Exception("No se pudo actualizar la contraseña");
+
+                // Registrar el cambio exitoso en el log
+                _logger.LogInformation($"Contraseña actualizada exitosamente para el usuario: {usuario.Correo} en {DateTime.UtcNow}");
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error en ReestablecerContraseña: {ex.Message}");
+                throw;
+            }
+        }
+
+
+        public async Task EnviarCorreoRecuperacion(string correoDestino, string token)
+        {
+            try
+            {
+                var emailSettings = _configuration.GetSection("EmailSettings");
+                var smtpClient = new SmtpClient(emailSettings["SmtpServer"])
+                {
+                    Port = int.Parse(emailSettings["SmtpPort"] ?? "587"), // 587 es el puerto recomendado para STARTTLS
+                    Credentials = new NetworkCredential(emailSettings["SmtpUser"], emailSettings["SmtpPassword"]),
+                    EnableSsl = true // Asegúrate de habilitar SSL/TLS para STARTTLS
+                };
+
+                // Aquí construyes el enlace con el token como parámetro
+                var resetUrl = $"http://localhost:3000/contra?token={token}";  // Asegúrate de que la ruta sea correcta
+
+                var mensaje = new MailMessage
+                {
+                    From = new MailAddress(emailSettings["FromEmail"], "Sistema de Apoyo"),
+                    Subject = "Recuperación de Contraseña",
+                    Body = $@"
+<h2>Recuperación de Contraseña</h2>
+<p>Has solicitado restablecer tu contraseña.</p>
+<p>Para continuar, haz clic en el siguiente enlace:</p>
+<p><a href='{resetUrl}'>Restablecer Contraseña</a></p>
+<p>Este enlace expirará en 24 horas.</p>
+<p>Si no solicitaste este cambio, puedes ignorar este correo.</p>
+<p>Nota: Si recibes múltiples correos de recuperación, solo el último enlace enviado será válido.</p>",
+                    IsBodyHtml = true
+                };
+                mensaje.To.Add(correoDestino);
+
+                // Enviar el correo
+                await smtpClient.SendMailAsync(mensaje);
+
+                _logger.LogInformation($"Correo de recuperación enviado a: {correoDestino} en {DateTime.UtcNow}");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error al enviar correo de recuperación: {ex.Message}");
+                throw;
+            }
+        }
+
+
+
+
+
+
+
     }
+
+
+
+
 }

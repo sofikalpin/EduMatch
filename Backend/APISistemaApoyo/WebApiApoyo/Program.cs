@@ -67,6 +67,9 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseStaticFiles();
+
+
 
 // Configuración de SignalR (WebSockets)
 app.MapHub<ChatHub>("/chatHub");

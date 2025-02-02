@@ -18,5 +18,21 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
         string HashearContrasena(string contrasena);
 
         Task<bool> Eliminar(int id);
+
+
+        Task<bool> ReestablecerContraseña(string token, string nuevaContraseña);
+
+        Task EnviarCorreoRecuperacion(string correoDestino, string token);
+        Task<bool> GenerarTokenRecuperacion(string correo);
+
+
+
+
+
+
+
+
+
+
     }
 }

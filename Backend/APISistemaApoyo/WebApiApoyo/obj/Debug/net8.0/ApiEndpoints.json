@@ -1257,7 +1257,7 @@
   {
     "ContainingType": "UsuarioController",
     "Method": "Guardar",
-    "RelativePath": "API/Usuario/Guardar Usuario",
+    "RelativePath": "API/Usuario/GuardarUsuario",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -1294,6 +1294,75 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
+    "Method": "ObtenerCV",
+    "RelativePath": "API/Usuario/ObtenerCV",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUsuario",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
+    "Method": "ReestablecerContrase\u00F1a",
+    "RelativePath": "API/Usuario/reestablecer-contrasena",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "modelo",
+        "Type": "SistemaApoyo.DTO.ReestablecerContrase\u00F1aDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
+    "Method": "SolicitarRecuperacionContrase\u00F1a",
+    "RelativePath": "API/Usuario/SolicitudToken",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "correo",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
+    "Method": "SubirCV",
+    "RelativePath": "API/Usuario/SubirCV",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUsuario",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "archivo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   }
 ]

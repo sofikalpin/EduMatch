@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wmzqwqC2jKA=",
+  "dgSpecHash": "ZY4dXm9bqes=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usuario\\Downloads\\EduMatch-nueva-rama\\EduMatch-nueva-rama\\Backend\\APISistemaApoyo\\Sistema Apoyo.IOC\\Sistema Apoyo.IOC.csproj",
+  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\LoginCOmpleto-SOFIK\\Backend\\APISistemaApoyo\\Sistema Apoyo.IOC\\Sistema Apoyo.IOC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuario\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

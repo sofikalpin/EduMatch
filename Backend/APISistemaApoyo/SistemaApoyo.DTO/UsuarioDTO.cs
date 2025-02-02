@@ -16,9 +16,20 @@ namespace SistemaApoyo.DTO
 
         public string ContraseñaHash { get; set; } = null!;
 
+        public DateOnly Fecharegistro { get; set; }
+
         public int Idnivel { get; set; }
 
         public int Idrol { get; set; }
+
+        public bool? AutProf { get; set; }
+
+        public string? TokenRecuperacion { get; set; }
+
+        public DateTime? TokenExpiracion { get; set; }
+
+        public string? CvRuta { get; set; }
+
 
     }
 }

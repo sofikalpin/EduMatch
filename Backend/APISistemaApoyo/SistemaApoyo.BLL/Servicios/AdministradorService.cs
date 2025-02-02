@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DAL.Repositorios.Contrato;
 using SistemaApoyo.DTO;
-using SistemaApoyo.Model.Models;
+using SistemaApoyo.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -2,7 +2,7 @@
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DAL.Repositorios.Contrato;
 using SistemaApoyo.DTO;
-using SistemaApoyo.Model.Models;
+using SistemaApoyo.Model;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -13,12 +13,12 @@ namespace SistemaApoyo.BLL.Servicios
 {
     public class ChatService : IChatService
     {
-        private readonly IGenericRepository<SistemaApoyo.Model.Models.Chat> _chatRepository;
+        private readonly IGenericRepository<SistemaApoyo.Model.Chat> _chatRepository;
         private readonly IGenericRepository<Usuario> _usuarioRepository;
         private readonly IMapper _mapper;
         private readonly IHubContext<ChatHub> _chatHubContext; 
 
-        public ChatService(IGenericRepository<SistemaApoyo.Model.Models.Chat> chatRepository,
+        public ChatService(IGenericRepository<SistemaApoyo.Model.Chat> chatRepository,
                            IGenericRepository<Usuario> usuarioRepository,
                            IMapper mapper,
                            IHubContext<ChatHub> chatHubContext) 
@@ -75,7 +75,7 @@ namespace SistemaApoyo.BLL.Servicios
                 {
                     throw new Exception("Uno o ambos usuarios no existen.");
                 }
-                var chats = _mapper.Map<SistemaApoyo.Model.Models.Chat>(chat);
+                var chats = _mapper.Map<SistemaApoyo.Model.Chat>(chat);
                 await _chatRepository.Crear(chats);
 
                 // Notificar a los usuarios sobre el nuevo chat

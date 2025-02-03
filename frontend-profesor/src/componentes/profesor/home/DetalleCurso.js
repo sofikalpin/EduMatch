@@ -1,11 +1,10 @@
-import React from "react";
 import { Link, useParams } from "react-router-dom";
-import logo from "../../logo/LogoInicio.png";
+import Header from "../HeaderProfesor";
+import Footer from "../FooterProfesor";
 import actividad from "../../imagenes/actividad.jpg";
 import foro from "../../imagenes/foro.jpg";
 import examen from "../../imagenes/examen.avif";
 import articulos from "../../imagenes/articulo.jpg";
-import "./DetalleCurso.css";
 
 const cursos = [
   { id: 1, nombre: "A1: Curso Principiante", descripcion: "Introducción al Inglés, conociendo vocabulario básico y frases simples para situaciones cotidianas" },
@@ -32,40 +31,42 @@ const CursoDetalle = () => {
   }
 
   return (
-    <div className="inicio-container">
-      <header className="header">
-        <img src={logo} alt="Logo del curso" className="logo-img" />
-        <nav className="left-nav">
-          <ul>
-            <li><Link to="/profesor/inicio">Inicio</Link></li>
-            <li><Link to="/profesor/cursos">Mis Cursos</Link></li>
-            <li><Link to="/profesor/alumnos">Mis Alumnos</Link></li>
-          </ul>
-        </nav>
-      </header>
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex flex-col">
+      {/* Agrega el Header aquí */}
+      <Header />
 
-      <div className="curso-detalles-container">
-        <h1>{curso.nombre}</h1>
-        <p>{curso.descripcion}</p>
+      {/* Contenido principal */}
+      <div className="curso-detalles-container px-5 py-10 text-center bg-[#f0faf7] flex-grow">
+        <h1 className="text-5xl font-bold text-[#2c7a7b] mb-4">{curso.nombre}</h1>
+        <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">{curso.descripcion}</p>
 
-        <div className="tarjetas-detalles">
+        <div className="tarjetas-detalles flex justify-center gap-8 flex-wrap">
           {tarjetas.map((tarjeta) => (
             <Link 
               to={`/profesor/cursos/${id}/${tarjeta.link}`} 
               key={tarjeta.id} 
-              className="tarjeta-detalle"
+              className="tarjeta-detalle bg-white border border-gray-200 rounded-xl shadow-lg p-6 w-64 text-center no-underline text-gray-800 transition-transform duration-300 ease-in-out hover:transform hover:-translate-y-2 hover:shadow-2xl flex flex-col justify-between"
             >
-              <img src={tarjeta.imagen} alt={`Imagen para ${tarjeta.nombre}`} className="tarjeta-imagen" />
+              <img src={tarjeta.imagen} alt={`Imagen para ${tarjeta.nombre}`} className="tarjeta-imagen w-full h-40 object-cover rounded-lg mb-4" />
               <div className="tarjeta-texto">
-                <h3>{tarjeta.nombre}</h3>
-                <p>{tarjeta.descripcion}</p>
+                <h3 className="text-2xl font-semibold text-[#2c7a7b] mb-2">{tarjeta.nombre}</h3>
+                <p className="text-base text-gray-600">{tarjeta.descripcion}</p>
               </div>
             </Link>
           ))}
         </div>
 
-        <Link to="/profesor/cursos" className="volver-link">Volver a Mis Cursos</Link>
+        <Link 
+          to="/profesor/cursos" 
+          className="volver-link inline-block mt-16 bg-gradient-to-r from-green-500 to-green-600 text-white py-2 px-6 rounded-full text-lg hover:from-green-600 hover:to-green-700 transition-all"
+        >
+          Volver a Mis Cursos
+        </Link>
+      </div>
 
+      {/* Footer con margen superior */}
+      <div className="mt-12">
+        <Footer />
       </div>
     </div>
   );

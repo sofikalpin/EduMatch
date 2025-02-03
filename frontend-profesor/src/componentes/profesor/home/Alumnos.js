@@ -1,21 +1,16 @@
 import React, { useState, useEffect } from "react";
-import "./Alumnos.css";
-import logo from "../../logo/LogoInicio.png";
-import { Link } from "react-router-dom";
+import Header from "../HeaderProfesor";
+
 
 const MisAlumnos = () => {
-  // Estado para almacenar los alumnos
   const [cursos, setCursos] = useState({});
 
-  // Simula la carga desde un backend
   useEffect(() => {
-    // Simula una llamada a un API
     const fetchAlumnos = async () => {
       try {
-        const response = await fetch("/api/alumnos"); // Ajusta la URL según tu backend
+        const response = await fetch("/api/alumnos");
         const data = await response.json();
 
-        // Agrupar alumnos por curso
         const agrupadosPorCurso = data.reduce((acc, alumno) => {
           if (!acc[alumno.curso]) acc[alumno.curso] = [];
           acc[alumno.curso].push(alumno);
@@ -29,40 +24,24 @@ const MisAlumnos = () => {
     };
 
     fetchAlumnos();
-  }, []); // Solo se ejecuta una vez al montar el componente
+  }, []);
 
   return (
-    <div className="inicio-container">
-      <header className="header">
-        <img src={logo} alt="Logo" className="logo-img" />
-        <div className="left-nav">
-          <nav>
-            <ul>
-              <li>
-                <Link to="/profesor/inicio">Inicio</Link>
-              </li>
-              <li>
-                <Link to="/profesor/cursos">Mis Cursos</Link>
-              </li>
-              <li>
-                <Link to="/profesor/alumnos">Mis Alumnos</Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex flex-col items-center">
+      {/* Agrega el Header aquí */}
+      <Header />
 
-      <div className="alumnos-container">
-        <h1>Mis Alumnos</h1>
+      <div className="w-full max-w-4xl mt-8 p-6 bg-white shadow-lg rounded-lg">
+        <h1 className="text-3xl font-bold text-gray-800 mb-6">Mis Alumnos</h1>
         {Object.keys(cursos).length === 0 ? (
-          <p>Cargando alumnos...</p>
+          <p className="text-gray-600">Cargando alumnos...</p>
         ) : (
           Object.keys(cursos).map((curso, index) => (
-            <div key={index} className="curso">
-              <h2>{curso}</h2>
-              <ul>
+            <div key={index} className="mb-6">
+              <h2 className="text-2xl font-semibold text-blue-700 mb-2">{curso}</h2>
+              <ul className="list-disc list-inside bg-gray-50 p-4 rounded-md shadow">
                 {cursos[curso].map((alumno) => (
-                  <li key={alumno.id}>{alumno.nombre}</li>
+                  <li key={alumno.id} className="text-gray-700">{alumno.nombre}</li>
                 ))}
               </ul>
             </div>

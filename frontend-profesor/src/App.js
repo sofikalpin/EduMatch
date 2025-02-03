@@ -1,9 +1,10 @@
 import React from "react";
-import { Routes, Route, Navigate, Router } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
-import './styles/tailwind.css';  // Asegúrate de que la ruta sea correcta
+import './styles/tailwind.css'; 
 
 // Importamos los componentes de las páginas
+import Navbar from "./componentes/profesor/HeaderProfesor";
 import Inicio from "./componentes/profesor/home/Inicio";
 import Alumnos from "./componentes/profesor/home/Alumnos";
 import Cursos from "./componentes/profesor/home/Cursos";
@@ -27,6 +28,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path="/profesor/incio" element={<Navbar />} />
         <Route path="/profesor/inicio" element={<Inicio />} />
         <Route path="/profesor/cursos" element={<Cursos />} />
         <Route path="/profesor/alumnos" element={<Alumnos />} />
@@ -56,4 +58,3 @@ function App() {
 }
 
 export default App;
-

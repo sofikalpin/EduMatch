@@ -14,22 +14,16 @@ builder.Services.InyectarDependencias(builder.Configuration);
 
 builder.Services.AddControllers();
 
-// Configuración de CORS (permitir solo el origen específico del frontend)
+// Configuración de CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("_myCorsPolicy", policy =>
+    options.AddPolicy("AllowAllOrigins", policy =>
     {
-        policy.WithOrigins("http://localhost:3000")
-               // Cambia a HTTPS si es necesario
-               .AllowAnyMethod()
-              .AllowAnyHeader();
-    });
-
-    // Se añade otra política para permitir cualquier origen, método y encabezado
-    options.AddPolicy("AllowAll", policy =>
-        policy.AllowAnyOrigin()
+        policy.WithOrigins("http://localhost:3000") // URL del frontend
               .AllowAnyMethod()
-              .AllowAnyHeader());
+              .AllowAnyHeader()
+              .AllowCredentials();
+    });
 });
 
 // Configuración de Fluent Validation
@@ -53,15 +47,21 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configuración en entorno de desarrollo
+
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseCors("AllowAllOrigins");
+}
+else
+{
+    app.UseHsts();
 }
 
 // Aplicar CORS antes de manejar las solicitudes
-app.UseCors("_myCorsPolicy");  // Usar la política específica para el frontend
+app.UseCors("AllowAllOrigins");  // Usar la política específica para el frontend
 
 app.UseHttpsRedirection();
 app.UseAuthorization();

@@ -134,6 +134,27 @@ namespace SistemaApoyo.BLL.Servicios
                 throw;
             }
         }
+        
+        public async Task<UsuarioDTO> ObtenerUsuarioPorID(int idusuario)
+        {
+            try
+            {
+                var usuario = await _usuarioRepositorio.Obtener(u => u.Idusuario == idusuario);
+                if (usuario == null)
+                {
+                    Console.WriteLine($"Usuario con id {idusuario} no encontrado.");
+                    
+                    throw new InvalidOperationException("Usuario no encontrado");
+                }
+
+                return _mapper.Map<UsuarioDTO>(usuario);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener usuario por correo: {ex.Message}");
+                throw;
+            }
+        }
 
         public async Task<UsuarioDTO> ObtenerUsuarioPorCorreo(string correo)
         {

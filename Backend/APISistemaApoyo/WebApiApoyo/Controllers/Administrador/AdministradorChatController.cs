@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.SignalR;
 using SistemaApoyo.BLL.Hubs;
 using Npgsql;
-using SistemaApoyo.Model.Models;
+using SistemaApoyo.Model;
 
 namespace WebApiApoyo.Controllers.Administrador
 {
@@ -39,7 +39,7 @@ namespace WebApiApoyo.Controllers.Administrador
         }
 
         [HttpGet]
-        [Route ("Contactos")]
+        [Route("Contactos")]
         public async Task<IActionResult> ListaContacto()
         {
             var general = await _administradorService.ListaTotal();
@@ -60,8 +60,8 @@ namespace WebApiApoyo.Controllers.Administrador
 
         [HttpGet]
         [Route("ListaChats")]
-        public async Task<IActionResult> ListaChats(int idUsuario) 
-        { 
+        public async Task<IActionResult> ListaChats(int idUsuario)
+        {
             if (idUsuario <= 0)
             {
                 return BadRequest(new { status = false, msg = "El id del usuario debe ser un número positivo." });
@@ -157,7 +157,7 @@ namespace WebApiApoyo.Controllers.Administrador
         }
 
         [HttpGet]
-        [Route ("MensajesPorChat")]
+        [Route("MensajesPorChat")]
         public async Task<IActionResult> MensajesPorChat(int IdChat, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 20)
         {
             if (pageNumber <= 0 || pageSize <= 0)
@@ -188,11 +188,11 @@ namespace WebApiApoyo.Controllers.Administrador
         }
 
         [HttpPost]
-        [Route ("EnviarMensaje")]
-        public async Task<IActionResult> EnviarMensaje([FromBody] MensajeDTO mensajeDTO) 
+        [Route("EnviarMensaje")]
+        public async Task<IActionResult> EnviarMensaje([FromBody] MensajeDTO mensajeDTO)
         {
 
-            if (!ModelState.IsValid) 
+            if (!ModelState.IsValid)
             {
                 return BadRequest(new Response<string>
                 {
@@ -216,10 +216,10 @@ namespace WebApiApoyo.Controllers.Administrador
 
                 mensajeDTO.Idmensaje = 0;
                 rsp.status = true;
-                var mensajeEnviado = await  _mensajeService.EnviarMensaje(mensajeDTO);
+                var mensajeEnviado = await _mensajeService.EnviarMensaje(mensajeDTO);
                 Console.WriteLine("Mensaje recibido:", mensajeDTO);
                 rsp.value = mensajeEnviado;
-                
+
                 await _chatHubContext.Clients.Group(mensajeDTO.Idchat.ToString()).SendAsync("RecibirMensaje", mensajeEnviado);
 
                 return Ok(rsp);

@@ -595,7 +595,7 @@
         }
       }
     },
-    "/API/Chat/Lista_Contactos": {
+    "/API/Chat/ListaContactos": {
       "get": {
         "tags": [
           "Chat"
@@ -2231,7 +2231,7 @@
         }
       }
     },
-    "/API/Usuario/Iniciar Sesion": {
+    "/API/Usuario/IniciarSesion": {
       "post": {
         "tags": [
           "Usuario"
@@ -2262,7 +2262,7 @@
         }
       }
     },
-    "/API/Usuario/Guardar Usuario": {
+    "/API/Usuario/GuardarUsuario": {
       "post": {
         "tags": [
           "Usuario"
@@ -2324,7 +2324,111 @@
         }
       }
     },
-    "/API/Usuario/BuscarUsuario": {
+    "/API/Usuario/SolicitudToken": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/Usuario/reestablecer-contrasena": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReestablecerContraseñaDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReestablecerContraseñaDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReestablecerContraseñaDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/Usuario/SubirCV": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "parameters": [
+          {
+            "name": "idUsuario",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "archivo": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "archivo": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/Usuario/ObtenerCV": {
       "get": {
         "tags": [
           "Usuario"
@@ -2592,6 +2696,20 @@
         },
         "additionalProperties": false
       },
+      "ReestablecerContraseñaDTO": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "nuevaContraseña": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "RespuestaDTO": {
         "type": "object",
         "properties": {
@@ -2638,6 +2756,10 @@
             "type": "string",
             "nullable": true
           },
+          "fecharegistro": {
+            "type": "string",
+            "format": "date"
+          },
           "idnivel": {
             "type": "integer",
             "format": "int32"
@@ -2648,6 +2770,19 @@
           },
           "autProf": {
             "type": "boolean",
+            "nullable": true
+          },
+          "tokenRecuperacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "tokenExpiracion": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "cvRuta": {
+            "type": "string",
             "nullable": true
           }
         },

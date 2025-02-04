@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using SistemaApoyo.BLL.Hubs;
+using Microsoft.EntityFrameworkCore;
 
 namespace SistemaApoyo.BLL.Servicios
 {
@@ -18,7 +19,7 @@ namespace SistemaApoyo.BLL.Servicios
         private readonly IMapper _mapper;
         private readonly IHubContext<ChatHub> _chatHubContext; 
 
-        public ChatService(IGenericRepository<SistemaApoyo.Model.Models.Chat> chatRepository,
+        public ChatService(IGenericRepository<SistemaApoyo.Model.Chat> chatRepository,
                            IGenericRepository<Usuario> usuarioRepository,
                            IMapper mapper,
                            IHubContext<ChatHub> chatHubContext) 

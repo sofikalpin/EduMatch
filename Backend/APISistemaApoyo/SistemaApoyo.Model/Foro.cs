@@ -11,15 +11,13 @@ public partial class Foro
 
     public string Descripcion { get; set; } = null!;
 
-    public int Idconsulta { get; set; }
-
     public DateOnly Fecha { get; set; }
 
     public int Idusuario { get; set; }
 
     public int? Idnivel { get; set; }
 
-    public virtual Consulta IdconsultaNavigation { get; set; } = null!;
+    public virtual ICollection<Consulta> Consulta { get; set; } = new List<Consulta>();
 
     public virtual Nivel? IdnivelNavigation { get; set; }
 

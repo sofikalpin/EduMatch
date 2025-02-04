@@ -15,7 +15,9 @@ public partial class Consulta
 
     public DateTime? Fechahora { get; set; }
 
-    public virtual ICollection<Foro> Foros { get; set; } = new List<Foro>();
+    public int Idforo { get; set; }
+
+    public virtual Foro IdforoNavigation { get; set; } = null!;
 
     public virtual Usuario IdusuarioNavigation { get; set; } = null!;
 

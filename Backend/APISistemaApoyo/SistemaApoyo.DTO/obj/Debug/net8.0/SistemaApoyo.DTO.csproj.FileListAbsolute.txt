@@ -84,21 +84,6 @@ C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.
 C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\refint\SistemaApoyo.DTO.dll
 C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.pdb
 C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\ref\SistemaApoyo.DTO.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\bin\Debug\net8.0\SistemaApoyo.DTO.deps.json
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\bin\Debug\net8.0\SistemaApoyo.DTO.runtimeconfig.json
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\bin\Debug\net8.0\SistemaApoyo.DTO.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\bin\Debug\net8.0\SistemaApoyo.DTO.pdb
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.csproj.AssemblyReference.cache
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.AssemblyInfoInputs.cache
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.AssemblyInfo.cs
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.csproj.CoreCompileInputs.cache
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.sourcelink.json
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\refint\SistemaApoyo.DTO.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.pdb
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.genruntimeconfig.cache
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\ref\SistemaApoyo.DTO.dll
 C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\bin\Debug\net8.0\SistemaApoyo.DTO.runtimeconfig.json
 C:\Users\Usuario\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.genruntimeconfig.cache
 C:\Users\Usuario\Downloads\EduMatch-nueva-rama\EduMatch-nueva-rama\Backend\APISistemaApoyo\SistemaApoyo.DTO\bin\Debug\net8.0\SistemaApoyo.DTO.deps.json
@@ -115,3 +100,18 @@ C:\Users\Usuario\Downloads\EduMatch-nueva-rama\EduMatch-nueva-rama\Backend\APISi
 C:\Users\Usuario\Downloads\EduMatch-nueva-rama\EduMatch-nueva-rama\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.pdb
 C:\Users\Usuario\Downloads\EduMatch-nueva-rama\EduMatch-nueva-rama\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.genruntimeconfig.cache
 C:\Users\Usuario\Downloads\EduMatch-nueva-rama\EduMatch-nueva-rama\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\ref\SistemaApoyo.DTO.dll
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\bin\Debug\net8.0\SistemaApoyo.DTO.deps.json
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\bin\Debug\net8.0\SistemaApoyo.DTO.runtimeconfig.json
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\bin\Debug\net8.0\SistemaApoyo.DTO.dll
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\bin\Debug\net8.0\SistemaApoyo.DTO.pdb
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.csproj.AssemblyReference.cache
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.AssemblyInfoInputs.cache
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.AssemblyInfo.cs
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.csproj.CoreCompileInputs.cache
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.sourcelink.json
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.dll
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\refint\SistemaApoyo.DTO.dll
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.pdb
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\SistemaApoyo.DTO.genruntimeconfig.cache
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.DTO\obj\Debug\net8.0\ref\SistemaApoyo.DTO.dll

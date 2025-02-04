@@ -14,8 +14,6 @@ namespace SistemaApoyo.DTO
 
         public string Descripcion { get; set; } = null!;
 
-        public int Idconsulta { get; set; }
-
         public DateTime? Fecha { get; set; }
 
         public int Idusuario { get; set; }

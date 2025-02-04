@@ -9,9 +9,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using SistemaApoyo.BLL.Servicios;
-using SistemaApoyo.DAL.DBContext;
+using SistemaApoyo.DAL;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
+using SistemaApoyo.Model;
 
 namespace WebApiApoyo.Controllers
 {

@@ -17,5 +17,7 @@ namespace SistemaApoyo.DTO
         public int Idusuario { get; set; }
 
         public DateTime? Fechahora { get; set; }
+
+        public int IdForo { get; set; }
     }
 }

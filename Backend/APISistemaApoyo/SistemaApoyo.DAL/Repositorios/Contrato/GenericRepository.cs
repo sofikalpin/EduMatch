@@ -4,14 +4,15 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using SistemaApoyo.DAL.DBContext;
+using SistemaApoyo.DAL;
+using SistemaApoyo.Model;
 
 
 namespace SistemaApoyo.DAL.Repositorios
 {
     public class GenericRepository<TModel> : IGenericRepository<TModel> where TModel : class
     {
-        private readonly S31Grupo2AprendizajeYApoyoDeInglesContext _dbContext;
+        public readonly S31Grupo2AprendizajeYApoyoDeInglesContext _dbContext;
 
         public GenericRepository(S31Grupo2AprendizajeYApoyoDeInglesContext dbContext)
         {

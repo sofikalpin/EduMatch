@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Plus, MessageSquare, Trash2, ChevronRight } from "lucide-react";
 import HeaderForo from "../HeaderAlumno";
-import logo from "../../logo/LogoInicio.png";
+import logo from "../../../logo/LogoInicio.png";
 import Footer from "../FooterAlumno";
 import { useNavigate } from "react-router-dom";
 
@@ -23,7 +23,7 @@ const Foro = () => {
   const navigate = useNavigate(); // Usamos useNavigate en lugar de onNavigate
 
   const handleResponder = () => {
-    navigate('/respuesta'); // Aquí rediriges a la página de consulta
+    navigate('/alumno/foro/:idRespuesta'); // Aquí rediriges a la página de consulta
   };
 
   const handleMasRespuestas = () => {
@@ -31,7 +31,7 @@ const Foro = () => {
   };
 
   const handleNuevaConsulta = () => {
-    navigate('/consulta'); // Aquí rediriges a la página de consulta
+    navigate('/alumno/foro/:id'); // Aquí rediriges a la página de consulta
   };
 
   const handleEliminar = (consultaId) => {

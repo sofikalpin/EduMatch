@@ -1,0 +1,218 @@
+.container {
+    background-color: #1a202c;
+    color: white;
+    min-height: 100v;
+    width: 100vw; /* Ocupar todo el ancho de la ventana */
+    
+  }
+
+
+.activities {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%; /* Cambiar a 100% */
+}
+
+
+  .header {
+    background-color: #319795;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    align-items: center;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .nav-item {
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .nav-item.active {
+    color: #ffcc00;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .user-avatar {
+    width: 2rem;
+    height: 2rem;
+    background-color: rgb(228, 186, 219);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  
+  .content {
+    padding: 1.5rem;
+    background-color: white;
+    color: black;
+    width: 100%; 
+  }
+  
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .main-section {
+    display: flex;
+    margin-top: 1rem;
+  }
+  
+  .sidebar {
+    width: 25%;
+    background-color: #e2e8f0;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
+  .search-box {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 241, 241, 0.055);
+    padding: 0,5rem;
+    border-radius: 40px;
+    box-shadow: 3 0px 0px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-icon {
+    color: gray;
+  }
+  
+  .search-input {
+    padding: 8px;
+    width: 250px;
+    margin-left: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .unit-list {
+    margin-top: 0rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: -1px;
+  }
+  
+  .unit-item {
+    margin: 7px 0;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .unit-item:hover {
+    background-color: #cbd5e0;
+  }
+  
+  .activities {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    width: 100%; /* Cambiar a 100% */
+  }
+  
+  
+  .activities.small-cards .activity-card {
+    height: 180px; /* Reduce la altura de las tarjetas */
+    padding: 15px;
+  }
+
+  .activity-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #edf1f7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    height: 270px;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  
+  .activity-image {
+    background-color: #cbd5e0;
+    height: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: gray;
+  }
+  
+  .activity-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 55px; /* Espacio entre la imagen y el texto */
+  } 
+  .activity-title {
+    margin-top: 0.5rem;
+    font-weight: bold;
+  }
+  
+  .activity-checkbox {
+    margin-top: 0.5rem;
+  }
+  
+  /* Estilos para la imagen del logo */
+  .logo {
+    height: 80px;
+    margin-right: 10px;
+  }
+  
+  /* Contenedor del ícono de chat */
+  .chat-icon-container {
+    display: inline-block;
+    margin-left: 10px;
+  }
+  
+  /* Estilo para el ícono de chat */
+  .chat-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .logo-activity {
+    width: 4
+    0%;
+    height: 90px;
+    display: block;
+    margin: 0 auto; /* Centrar la imagen */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .logo-activity:hover {
+    transform: scale(1.1); /* Efecto de zoom al pasar el mouse */
+  }
+  
+  .activity-card {
+    width: 100%; /* Ajustar el ancho de la card */
+    max-width: 400px; /* Limitar tamaño máximo */
+    margin: auto; /* Centrar si sobra espacio */
+}

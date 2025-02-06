@@ -16,16 +16,16 @@ function Cursos() {
   const handleCardClick = (option) => {
     switch(option) {
       case "Artículos":
-        navigate("/articulos");
+        navigate("/alumno/articulos");
         break;
       case "Actividades":
-        navigate("/actividades");
+        navigate("/alumno/actividades"); // Redirige a la página de Actividades
         break;
       case "Foro":
-        navigate("/foro");
+        navigate("/alumno/foro"); // Redirige a la página de Foros para los alumnos
         break;
       case "Exámenes":
-        navigate("/examenes");
+        navigate("/alumno/examenes"); // Redirige a la página de Exámenes
         break;
       case "Mis Cursos": // Cuando se haga clic en Mis Cursos
         navigate("/miscursos");

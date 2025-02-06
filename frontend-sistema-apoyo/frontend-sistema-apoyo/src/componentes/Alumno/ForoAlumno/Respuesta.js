@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowLeft, Send } from 'lucide-react';
 import HeaderForo from '../HeaderAlumno';	
-import logo from '../../logo/LogoInicio.png';
+import logo from '../../../logo/LogoInicio.png';
 import Footer from '../FooterAlumno';
 import { useNavigate } from 'react-router-dom';  // Importa el hook de navegación
 

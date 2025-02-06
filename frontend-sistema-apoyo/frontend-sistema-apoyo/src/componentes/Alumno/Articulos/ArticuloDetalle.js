@@ -3,13 +3,13 @@ import { useParams, Link } from 'react-router-dom';
 import LogoInicio from "../../../logo/LogoInicio.png";
 import chatIcon from "../Imagenes/chat.png";
 import './articuloDetalle.css';
-import { useNavigate } from "react-router-dom"; // Importa el hook useNavigate
+import { useNavigate } from "react-router-dom";
 
 const ArticuloDetalle = () => {
   const { id } = useParams(); // Obtener el ID del artículo de la URL
   const [article, setArticle] = useState(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // Establecer el estado aquí para evitar el error
-  const navigate = useNavigate(); // Usamos useNavigate para redirigir
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   // Simula obtener el artículo desde un servidor o una base de datos
   useEffect(() => {
@@ -23,7 +23,7 @@ const ArticuloDetalle = () => {
     ];
 
     // Buscar el artículo basado en el id recibido de la URL
-    const foundArticle = articles.find((article) => article.id === parseInt(id));
+    const foundArticle = articles.find((article) => article.id === Number(id));
     setArticle(foundArticle);
   }, [id]);
 
@@ -34,23 +34,11 @@ const ArticuloDetalle = () => {
   // Función que maneja el clic para redirigir a diferentes páginas
   const handleCardClick = (option) => {
     switch(option) {
-      case "Artículos":
-        navigate("/articulos");
-        break;
-      case "Actividades":
-        navigate("/actividades");
-        break;
-      case "Foro":
-        navigate("/foro");
-        break;
-      case "Exámenes":
-        navigate("/examenes");
-        break;
-      case "Mis Cursos": // Cuando se haga clic en Mis Cursos
+      case "Mis Cursos":
         navigate("/miscursos");
         break;
-      case "INICIO": // Cuando se haga clic en INICIO
-        navigate("/"); // Esto redirige a la raíz
+      case "INICIO":
+        navigate("/"); 
         break;
       default:
         break;
@@ -66,39 +54,36 @@ const ArticuloDetalle = () => {
   const handleMenuOptionClick = (option) => {
     switch(option) {
       case "Mi perfil":
-        navigate("/mi-perfil"); // Redirige a la página de perfil
+        navigate("/mi-perfil");
         break;
       case "Cambiar de cuenta":
-        // Lógica para cambiar de cuenta (esto puede depender de cómo lo manejes en tu app)
         break;
       case "Salir":
-        // Lógica para salir (por ejemplo, cerrar sesión)
         break;
       default:
         break;
     }
-    setIsMenuOpen(false); // Cierra el menú después de seleccionar una opción
+    setIsMenuOpen(false);
   };
 
   return (
     <div>
-      <nav className="navbar">
-        <div className="navbar-left">
-          <img src={LogoInicio} alt="Logo" className="navbar-logo" />
-          {/* Aquí invertimos el orden de los enlaces */}
-          <a href="#inicio" onClick={() => handleCardClick("INICIO")}>INICIO</a> {/* Primero INICIO */}
-          <a href="#mis-cursos" onClick={() => handleCardClick("Mis Cursos")}>MIS CURSOS</a> {/* Después Mis Cursos */}
-          <a href="#herramientas">PROFESORES</a>
+      {/* Navbar */}
+      <nav className="header">
+        <div className="nav-links">
+          <img src={LogoInicio} alt="Logo" className="logo" />
+          <Link to="/" className="nav-item">INICIO</Link>
+          <Link to="/miscursos" className="nav-item">
+            MIS CURSOS
+          </Link>
+        
         </div>
-        <div className="navbar-right">
-          <span>María A</span>
-          <div className="icon" onClick={toggleMenu}> {/* Tocar el avatar abre el menú */}
-            <span className="icon-circle">M</span> 
+        <div className="user-info">
+          <span>Maria A</span>
+          <div className="user-avatar" onClick={() => setIsMenuOpen(!isMenuOpen)}>M</div>
+          <div className="chat-icon-container">
+            <img src={chatIcon} alt="Chat" className="chat-icon" />
           </div>
-          <div className="chat-icon">
-            <img src={chatIcon} alt="Chat" className="chat-icon-image" />
-          </div>
-          {/* Menú desplegable en mini contenedor */}
           {isMenuOpen && (
             <div className="mini-container">
               <ul>

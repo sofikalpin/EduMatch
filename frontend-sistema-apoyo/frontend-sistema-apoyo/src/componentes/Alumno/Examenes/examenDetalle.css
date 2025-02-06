@@ -1,0 +1,190 @@
+/* ===== ESTILOS GENERALES ===== */
+.container {
+    background-color: white; /* Fondo completamente blanco */
+    color: black;
+    min-height: 100vh;
+    
+  }
+
+  /* Contenedor del examen con carga del archivo (izquierda) y detalles (derecha) */
+
+
+  .exam-description {
+    margin-right: 390px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px; /* Añadir margen inferior */
+  }
+  
+  /* ===== Carga de archivo (Izquierda) ===== */
+.upload-section {
+    width: 60%; /* Ocupa el 60% del contenedor */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* ===== BARRA DE NAVEGACIÓN ===== */
+  .header {
+    background-color: #319795; /* Mantiene el color original */
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    align-items: center;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .nav-item {
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .nav-item.active {
+    color: #ffcc00;
+  }
+  
+  /* ===== PERFIL DE USUARIO Y CHAT ===== */
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .user-avatar {
+    width: 2rem;
+    height: 2rem;
+    background-color: rgb(228, 186, 219);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  
+  .chat-icon-container img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* ===== CONTENIDO PRINCIPAL DEL EXAMEN ===== */
+  .content {
+    padding: 1.5rem;
+    background-color: white; /* Fondo blanco */
+    color: black;
+    border-radius: 10px;
+    margin: 20px;
+   
+    
+  }
+  
+  /* ===== ESTADO DEL EXAMEN (Fecha, Hora, Puntuación) ===== */
+  .exam-status {
+    margin-top: -28px;
+    padding: 30px;
+    background: #f9f9f9;
+    border-radius: 15px;
+    color: black;
+    margin-right: 100px;
+    margin-left: auto; /* Esto mueve el contenedor a la derecha */
+    width: auto; /* Asegura que el contenedor ocupe solo el espacio necesario */
+  }
+  
+  
+  /* ===== LOGO ===== */
+  .logo {
+    height: 80px;
+    margin-right: 10px;
+  }
+  
+  /* ===== EFECTOS HOVER ===== */
+  .logo-examen {
+    width: 40%;
+    height: 90px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .logo-examen:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Estilo de la imagen cuando el archivo está subido */
+.file-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Reducir el tamaño cuando el archivo esté subido */
+  .file-preview.uploaded .file-icon {
+    width: 30px;
+    height: 30px;
+  }
+  .upload-section {
+    width: auto; /* Prueba con esto si sigue desalineado */
+    max-width: 26%;
+}
+
+.file-button, .submit-button {
+    background-color: #319795;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+    width: 300px; /* Un ancho uniforme para ambos */
+    text-align: center;
+}
+
+.submit-button {
+  margin-left: 0;
+  padding: 0;
+}
+
+
+
+.file-button:hover, .submit-button:hover {
+    background-color: #267a7a;
+}
+
+  
+  .file-button:hover, .submit-button:hover {
+    background-color: #267a7a;
+  }
+
+  .file-info {
+    flex-grow: 1;
+  }
+  
+  .progress-bar-container {
+    width: 100%;
+    background-color: #ccc;
+    height: 15px;
+    border-radius: 4px;
+    margin-top: 5px;
+  }
+  
+ 
+  
+  .progress-bar {
+    height: 100%;
+    background-color: #319795;
+    border-radius: 4px;
+    text-align: center;
+    color: white;
+    font-size: 10px;
+  }
+
+  

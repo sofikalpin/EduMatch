@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { ArrowLeft, Send } from 'lucide-react';
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 import HeaderForo from '../HeaderAlumno';
-import logo from '../../logo/LogoInicio.png';
+import logo from '../../../logo/LogoInicio.png';
+
 import Footer from '../FooterAlumno';
 
 const socialIcons = [

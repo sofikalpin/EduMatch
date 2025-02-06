@@ -454,7 +454,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.ConsultaController",
     "Method": "ListaConsultaPorId",
-    "RelativePath": "API/Consulta/Consulta ID",
+    "RelativePath": "API/Consulta/ConsultaID",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -470,7 +470,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.ConsultaController",
     "Method": "CrearConsulta",
-    "RelativePath": "API/Consulta/Crear Consulta",
+    "RelativePath": "API/Consulta/CrearConsulta",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -485,29 +485,8 @@
   },
   {
     "ContainingType": "WebApiApoyo.Controllers.ConsultaController",
-    "Method": "EditarConsulta",
-    "RelativePath": "API/Consulta/Editar Consulta",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "consultaDto",
-        "Type": "SistemaApoyo.DTO.ConsultaDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "WebApiApoyo.Controllers.ConsultaController",
     "Method": "ListaConsultas",
-    "RelativePath": "API/Consulta/Listar Consultas",
+    "RelativePath": "API/Consulta/ListarConsultas",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -516,8 +495,24 @@
   },
   {
     "ContainingType": "WebApiApoyo.Controllers.ConsultaController",
+    "Method": "ListaRespuestasDeConsulta",
+    "RelativePath": "API/Consulta/ListaRespuestasDeConsulta",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "consultaId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ConsultaController",
     "Method": "ListaConsultaPorTitulo",
-    "RelativePath": "API/Consulta/Titulo Consulta",
+    "RelativePath": "API/Consulta/TituloConsulta",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -574,8 +569,24 @@
   },
   {
     "ContainingType": "WebApiApoyo.Controllers.ForoController",
+    "Method": "ListaConsultasPorForoId",
+    "RelativePath": "API/Foro/ConsultasForo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idForo",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ForoController",
     "Method": "CrearForo",
-    "RelativePath": "API/Foro/Crear Foro",
+    "RelativePath": "API/Foro/CrearForo",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -590,29 +601,8 @@
   },
   {
     "ContainingType": "WebApiApoyo.Controllers.ForoController",
-    "Method": "EditarForo",
-    "RelativePath": "API/Foro/Editar por ID",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "foro",
-        "Type": "SistemaApoyo.DTO.ForoDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "WebApiApoyo.Controllers.ForoController",
-    "Method": "ListaForoPorId",
-    "RelativePath": "API/Foro/Foro ID",
+    "Method": "BuscarForoPorId",
+    "RelativePath": "API/Foro/ForoID",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -628,7 +618,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.ForoController",
     "Method": "ListaForos",
-    "RelativePath": "API/Foro/Listar Foros",
+    "RelativePath": "API/Foro/ListarForos",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -638,7 +628,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.ForoController",
     "Method": "ListaConsultaPorNombre",
-    "RelativePath": "API/Foro/Nombre Foro",
+    "RelativePath": "API/Foro/NombreForo",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1345,7 +1335,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.RespuestaController",
     "Method": "CrearRespuesta",
-    "RelativePath": "API/Respuesta/Crear Respuesta",
+    "RelativePath": "API/Respuesta/CrearRespuesta",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -1360,45 +1350,8 @@
   },
   {
     "ContainingType": "WebApiApoyo.Controllers.RespuestaController",
-    "Method": "EditarActividad",
-    "RelativePath": "API/Respuesta/Editar por ID",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "respuesta",
-        "Type": "SistemaApoyo.DTO.RespuestaDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "WebApiApoyo.Controllers.RespuestaController",
-    "Method": "EliminarRespuesta",
-    "RelativePath": "API/Respuesta/Eliminar Respuesta",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "WebApiApoyo.Controllers.RespuestaController",
     "Method": "ListarRespuestas",
-    "RelativePath": "API/Respuesta/Lista Respuestas",
+    "RelativePath": "API/Respuesta/ListaRespuestas",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1408,7 +1361,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.RespuestaController",
     "Method": "ListaRespuestaPorId",
-    "RelativePath": "API/Respuesta/Respuesta ID",
+    "RelativePath": "API/Respuesta/RespuestaID",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

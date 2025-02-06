@@ -682,7 +682,7 @@
         }
       }
     },
-    "/API/Consulta/Listar Consultas": {
+    "/API/Consulta/ListarConsultas": {
       "get": {
         "tags": [
           "Consulta"
@@ -694,7 +694,7 @@
         }
       }
     },
-    "/API/Consulta/Titulo Consulta": {
+    "/API/Consulta/TituloConsulta": {
       "get": {
         "tags": [
           "Consulta"
@@ -715,7 +715,7 @@
         }
       }
     },
-    "/API/Consulta/Consulta ID": {
+    "/API/Consulta/ConsultaID": {
       "get": {
         "tags": [
           "Consulta"
@@ -737,7 +737,7 @@
         }
       }
     },
-    "/API/Consulta/Crear Consulta": {
+    "/API/Consulta/CrearConsulta": {
       "post": {
         "tags": [
           "Consulta"
@@ -768,14 +768,14 @@
         }
       }
     },
-    "/API/Consulta/Editar Consulta": {
-      "put": {
+    "/API/Consulta/ListaRespuestasDeConsulta": {
+      "get": {
         "tags": [
           "Consulta"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "consultaId",
             "in": "query",
             "schema": {
               "type": "integer",
@@ -783,25 +783,6 @@
             }
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ConsultaDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ConsultaDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ConsultaDTO"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "OK"
@@ -866,7 +847,7 @@
         }
       }
     },
-    "/API/Foro/Listar Foros": {
+    "/API/Foro/ListarForos": {
       "get": {
         "tags": [
           "Foro"
@@ -878,7 +859,7 @@
         }
       }
     },
-    "/API/Foro/Nombre Foro": {
+    "/API/Foro/NombreForo": {
       "get": {
         "tags": [
           "Foro"
@@ -899,7 +880,7 @@
         }
       }
     },
-    "/API/Foro/Foro ID": {
+    "/API/Foro/ForoID": {
       "get": {
         "tags": [
           "Foro"
@@ -921,30 +902,21 @@
         }
       }
     },
-    "/API/Foro/Crear Foro": {
-      "post": {
+    "/API/Foro/ConsultasForo": {
+      "get": {
         "tags": [
           "Foro"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ForoDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ForoDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ForoDTO"
-              }
+        "parameters": [
+          {
+            "name": "idForo",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -952,20 +924,10 @@
         }
       }
     },
-    "/API/Foro/Editar por ID": {
-      "put": {
+    "/API/Foro/CrearForo": {
+      "post": {
         "tags": [
           "Foro"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
         ],
         "requestBody": {
           "content": {
@@ -2079,7 +2041,7 @@
         }
       }
     },
-    "/API/Respuesta/Lista Respuestas": {
+    "/API/Respuesta/ListaRespuestas": {
       "get": {
         "tags": [
           "Respuesta"
@@ -2091,7 +2053,7 @@
         }
       }
     },
-    "/API/Respuesta/Respuesta ID": {
+    "/API/Respuesta/RespuestaID": {
       "get": {
         "tags": [
           "Respuesta"
@@ -2113,7 +2075,7 @@
         }
       }
     },
-    "/API/Respuesta/Crear Respuesta": {
+    "/API/Respuesta/CrearRespuesta": {
       "post": {
         "tags": [
           "Respuesta"
@@ -2137,69 +2099,6 @@
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/Respuesta/Editar por ID": {
-      "put": {
-        "tags": [
-          "Respuesta"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RespuestaDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RespuestaDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/RespuestaDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/Respuesta/Eliminar Respuesta": {
-      "delete": {
-        "tags": [
-          "Respuesta"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -2573,6 +2472,10 @@
             "type": "string",
             "format": "date-time",
             "nullable": true
+          },
+          "idForo": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2634,13 +2537,9 @@
             "type": "string",
             "nullable": true
           },
-          "idconsulta": {
-            "type": "integer",
-            "format": "int32"
-          },
           "fecha": {
             "type": "string",
-            "format": "date-time",
+            "format": "date",
             "nullable": true
           },
           "idusuario": {

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DAL.Repositorios.Contrato;
 using SistemaApoyo.DTO;
@@ -16,11 +15,13 @@ namespace SistemaApoyo.BLL.Servicios
     public class ForoService : IForoService
     {
         private readonly IGenericRepository<Foro> _foroRepositorio;
+        private readonly IGenericRepository<Consulta> _consultaRepositorio;
         private readonly IMapper _mapper;
 
-        public ForoService(IGenericRepository<Foro> foroRepositorio, IMapper mapper)
+        public ForoService(IGenericRepository<Foro> foroRepositorio, IGenericRepository<Consulta> consultaRepositorio, IMapper mapper)
         {
             _foroRepositorio = foroRepositorio;
+            _consultaRepositorio = consultaRepositorio;
             _mapper = mapper;
         }
 
@@ -37,6 +38,7 @@ namespace SistemaApoyo.BLL.Servicios
                 throw new Exception("Error al obtener la lista de foros.", ex);
             }
         }
+
         public async Task<List<ForoDTO>> ConsultarPorNombre(string nombre)
         {
             try
@@ -46,7 +48,6 @@ namespace SistemaApoyo.BLL.Servicios
                 {
                     Actividadquery = Actividadquery.Where(v => v.Nombre == nombre);
                 }
-
                 var listaResultado = await Actividadquery.ToListAsync();
                 return _mapper.Map<List<ForoDTO>>(listaResultado);
             }
@@ -65,7 +66,6 @@ namespace SistemaApoyo.BLL.Servicios
                 {
                     throw new InvalidOperationException("Foro no encontrado.");
                 }
-
                 return _mapper.Map<ForoDTO>(foro);
             }
             catch (Exception ex)
@@ -73,6 +73,27 @@ namespace SistemaApoyo.BLL.Servicios
                 throw new Exception("Error al obtener el foro por id.", ex);
             }
         }
+
+        public async Task<List<ConsultaDTO>> ObtenerConsultasPorForo(int idForo)
+        {
+            try
+            {
+                var consultas = await _consultaRepositorio.Consultar(c => c.Idforo == idForo);
+
+                if (consultas == null)
+                {
+                    throw new InvalidOperationException("El foro ingresado no posee consultas.");
+                }
+
+                var listaConsultas = await consultas.ToListAsync();
+                return _mapper.Map<List<ConsultaDTO>>(listaConsultas);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener las consultas del foro.", ex);
+            }
+        }
+
         public async Task<bool> CrearForo(ForoDTO foros)
         {
             try
@@ -86,30 +107,5 @@ namespace SistemaApoyo.BLL.Servicios
                 throw new Exception("Error al crear el foro.", ex);
             }
         }
-
-
-        public async Task<bool> ActualizarForo(ForoDTO foro)
-        {
-            try
-            {
-                var foroExistente = await _foroRepositorio.Obtener(c => c.Idforo == foro.Idforo);
-                if (foroExistente == null)
-                {
-                    throw new InvalidOperationException("Foro no encontrado.");
-                }
-
-                _mapper.Map(foro, foroExistente);
-                await _foroRepositorio.Editar(foroExistente);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al actualizar el foro.", ex);
-            }
-        }
-
-        
-
-
     }
 }

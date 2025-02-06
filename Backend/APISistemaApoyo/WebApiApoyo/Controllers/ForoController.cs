@@ -6,10 +6,8 @@ using Microsoft.AspNetCore.Http;
 using System.Linq.Expressions;
 using SistemaApoyo.BLL.Servicios;
 
-
 namespace WebApiApoyo.Controllers
 {
-
     [Route("API/[controller]")]
     [ApiController]
     public class ForoController : ControllerBase
@@ -24,7 +22,7 @@ namespace WebApiApoyo.Controllers
         }
 
         [HttpGet]
-        [Route("Listar Foros")]
+        [Route("ListarForos")]
         public async Task<IActionResult> ListaForos()
         {
             var rsp = new Response<List<ForoDTO>>();
@@ -40,8 +38,9 @@ namespace WebApiApoyo.Controllers
             }
             return Ok(rsp);
         }
+
         [HttpGet]
-        [Route("Nombre Foro")]
+        [Route("NombreForo")]
         public async Task<IActionResult> ListaConsultaPorNombre(string nombre)
         {
             if (string.IsNullOrWhiteSpace(nombre))
@@ -58,15 +57,14 @@ namespace WebApiApoyo.Controllers
             catch (Exception ex)
             {
                 rsp.status = false;
-                _logger.LogError(ex, "Error al obtener el nombre del foro.");
+                _logger.LogError(ex, "Error al obtener el nombre de la consulta");
             }
             return Ok(rsp);
         }
 
-
         [HttpGet]
-        [Route("Foro ID")]
-        public async Task<IActionResult> ListaForoPorId(int id)
+        [Route("ForoID")]
+        public async Task<IActionResult> BuscarForoPorId(int id)
         {
             if (id <= 0)
             {
@@ -77,7 +75,6 @@ namespace WebApiApoyo.Controllers
             try
             {
                 rsp.value = await _foroService.ObtenerForoPorId(id);
-
                 rsp.status = true;
             }
             catch (Exception ex)
@@ -88,9 +85,31 @@ namespace WebApiApoyo.Controllers
             return Ok(rsp);
         }
 
+        [HttpGet]
+        [Route("ConsultasForo")]
+        public async Task<IActionResult> ListaConsultasPorForoId(int idForo)
+        {
+            if (idForo <= 0)
+            {
+                return BadRequest("El ID del foro no es válido.");
+            }
+
+            var rsp = new Response<List<ConsultaDTO>>();
+            try
+            {
+                rsp.status = true;
+                rsp.value = await _foroService.ObtenerConsultasPorForo(idForo);
+            }
+            catch (Exception ex)
+            {
+                rsp.status = false;
+                _logger.LogError(ex, "Error al obtener las consultas del foro.");
+            }
+            return Ok(rsp);
+        }
 
         [HttpPost]
-        [Route("Crear Foro")]
+        [Route("CrearForo")]
         public async Task<IActionResult> CrearForo([FromBody] ForoDTO foro)
         {
             if (foro == null)
@@ -112,31 +131,5 @@ namespace WebApiApoyo.Controllers
             }
             return Ok(rsp);
         }
-
-        [HttpPut]
-        [Route("Editar por ID")]
-        public async Task<IActionResult> EditarForo(int id, [FromBody] ForoDTO foro)
-        {
-            if (id != foro.Idforo)
-            {
-                return BadRequest("El ID del foro no coincide con el ID proporcionado.");
-            }
-
-            var rsp = new Response<string>();
-            try
-            {
-                var resultado = await _foroService.ActualizarForo(foro);
-                rsp.status = true;
-                rsp.value = "Foro actualizado con éxito.";
-            }
-            catch (Exception ex)
-            {
-                rsp.status = false;
-                _logger.LogError(ex, "Error al actualizar el foro.");
-            }
-            return Ok(rsp);
-        }
-
-
     }
 }

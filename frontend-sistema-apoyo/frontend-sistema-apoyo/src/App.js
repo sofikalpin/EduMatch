@@ -38,10 +38,16 @@ import ExamenProfesor from "./componentes/Profesor/Examen/Examen";
 import CrearActividad from "./componentes/Profesor/Actividad/CrearActividad";
 import CrearArticulo from "./componentes/Profesor/Articulo/CrearArticulo";
 import CrearExamen from "./componentes/Profesor/Examen/CrearExamen";
-import ForoProfesor from "./componentes/Profesor/ForoProfesor/Foros";
+
+import ListaForoProfesor from "./componentes/Profesor/ForoProfesor/ListaForos";
+import ForoProfesor from "./componentes/Profesor/ForoProfesor/Foro";
+import NuevoForo from "./componentes/Profesor/ForoProfesor/NuevoForo";
+import Consulta from "./componentes/Profesor/ForoProfesor/Consulta";
+
 import PerfilProfesor from "./componentes/Profesor/PerfilProfesor";
-import Consulta from "./componentes/Profesor/ForoProfesor/NuevaConsulta";
+import NuevaConsulta from "./componentes/Profesor/ForoProfesor/NuevaConsulta";
 import Respuesta from "./componentes/Profesor/ForoProfesor/Respuesta";
+import NuevaRespuesta from "./componentes/Profesor/ForoProfesor/NuevaRespuesta";
 import ChatProfesor from "./componentes/Profesor/ChatProfesor/chat";
 
 //Alumnos
@@ -85,7 +91,14 @@ function App() {
 
         <Route path="/profesor/cursos/detalle/:id/articulos" element={<ArticuloProfesor />} />
         <Route path="/profesor/cursos/detalle/:id/examen" element={<ExamenProfesor />} />
-        <Route path="/profesor/cursos/detalle/:id/foro" element={<ForoProfesor />} />
+        <Route path="/profesor/cursos/detalle/:id/foros" element={<ListaForoProfesor />} />
+
+        <Route path="/profesor/cursos/detalle/:id/foros/:idForo" element={<ForoProfesor/>} />
+        <Route path="/profesor/cursos/detalle/:id/foros/:idForo/:idConsulta" element={<Consulta/>} />
+
+        <Route path="/crear-foro" element={<NuevoForo/>} />
+        <Route path="/crear-consulta/:idForo" element={<NuevaConsulta/>} />
+        <Route path="/crear-respuesta/:idConsulta" element={<NuevaRespuesta/>} />
         <Route path="/crear-actividad" element={<CrearActividad />} />
         <Route path="/crear-articulo" element={<CrearArticulo />} />
         <Route path="/crear-examen" element={<CrearExamen />} />

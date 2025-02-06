@@ -4,12 +4,8 @@ using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DTO;
 using Microsoft.AspNetCore.Http;
 
-
 namespace WebApiApoyo.Controllers
 {
-
-
-
     [Route("API/[controller]")]
     [ApiController]
     public class RespuestaController : ControllerBase
@@ -22,16 +18,17 @@ namespace WebApiApoyo.Controllers
             _respuestaService = respuestaService;
             _logger = logger;
         }
+
         [HttpGet]
-        [Route("Lista Respuestas")]
+        [Route("ListaRespuestas")]
         public async Task<IActionResult> ListarRespuestas()
         {
             var rsp = new Response<List<RespuestaDTO>>();
             try
             {
                 rsp.status = true;
-                rsp.value = await _respuestaService.ConsultarRespuesta()
-;            }
+                rsp.value = await _respuestaService.ConsultarRespuesta();
+            }
             catch (Exception ex)
             {
                 rsp.status = false;
@@ -40,10 +37,8 @@ namespace WebApiApoyo.Controllers
             return Ok(rsp);
         }
 
-       
-
         [HttpGet]
-        [Route("Respuesta ID")]
+        [Route("RespuestaID")]
         public async Task<IActionResult> ListaRespuestaPorId(int id)
         {
             if (id <= 0)
@@ -65,8 +60,9 @@ namespace WebApiApoyo.Controllers
             }
             return Ok(rsp);
         }
+
         [HttpPost]
-        [Route("Crear Respuesta")]
+        [Route("CrearRespuesta")]
         public async Task<IActionResult> CrearRespuesta([FromBody] RespuestaDTO respuesta)
         {
             var rsp = new Response<string>();
@@ -83,55 +79,5 @@ namespace WebApiApoyo.Controllers
             }
             return Ok(rsp);
         }
-
-        [HttpPut]
-        [Route("Editar por ID")]
-        public async Task<IActionResult> EditarActividad(int id, [FromBody] RespuestaDTO respuesta)
-        {
-            if (id != respuesta.Idrespuesta)
-            {
-                return BadRequest("El ID de la respuesta no coincide con el ID proporcionado.");
-            }
-
-            var rsp = new Response<string>();
-            try
-            {
-                var resultado = await _respuestaService.ActualizarRespuesta(respuesta);
-                rsp.status = true;
-                rsp.value = "Respuesta actualizada con éxito.";
-            }
-            catch (Exception ex)
-            {
-                rsp.status = false;
-                _logger.LogError(ex, "Error al actualizar la respuesta.");
-            }
-            return Ok(rsp);
-        }
-        [HttpDelete]
-        [Route("Eliminar Respuesta")]
-        public async Task<IActionResult> EliminarRespuesta(int id)
-        {
-            if (id <= 0)
-            {
-                return BadRequest("El ID proporcionado no es válido.");
-            }
-
-            var rsp = new Response<string>();
-
-            try
-            {
-                var eli = await _respuestaService.EliminarRespuesta(id);
-                rsp.status = true;
-                rsp.value = "Se elimino la respuesta con exito.";
-            }
-            catch (Exception ex)
-            {
-                rsp.status = false;
-                _logger.LogError(ex, "Error al eliminar la respuesta");
-            }
-            return Ok(rsp);
-        }
     }
-
-
 }

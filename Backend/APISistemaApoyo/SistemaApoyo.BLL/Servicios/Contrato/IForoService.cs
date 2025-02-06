@@ -11,10 +11,12 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
     public interface IForoService
     {
         Task<List<ForoDTO>> ConsultarForos();
+
         Task<List<ForoDTO>> ConsultarPorNombre(string nombre);
         Task<ForoDTO> ObtenerForoPorId(int id);
+
+        Task<List<ConsultaDTO>> ObtenerConsultasPorForo(int idForo);
         Task<bool> CrearForo(ForoDTO foros);
-        Task<bool> ActualizarForo(ForoDTO foro);
 
     }
 

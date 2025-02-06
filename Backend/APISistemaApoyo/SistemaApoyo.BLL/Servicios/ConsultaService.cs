@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DAL.Repositorios.Contrato;
 using SistemaApoyo.DTO;
@@ -15,11 +14,13 @@ namespace SistemaApoyo.BLL.Servicios
     public class ConsultaService : IConsultaService
     {
         private readonly IGenericRepository<Consulta> _consultaRepositorio;
+        private readonly IGenericRepository<Respuesta> _respuestaRepositorio;
         private readonly IMapper _mapper;
 
-        public ConsultaService(IGenericRepository<Consulta> consultaRepositorio, IMapper mapper)
+        public ConsultaService(IGenericRepository<Consulta> consultaRepositorio, IGenericRepository<Respuesta> respuestaRepositorio,IMapper mapper)
         {
             _consultaRepositorio = consultaRepositorio;
+            _respuestaRepositorio = respuestaRepositorio;
             _mapper = mapper;
         }
 
@@ -56,11 +57,11 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        public async Task<ConsultaDTO> ObtenerConsultaPorId(int id)
+        public async Task<ConsultaDTO> ObtenerConsultaPorId(int idconsulta)
         {
             try
             {
-                var consulta = await _consultaRepositorio.Obtener(c => c.Idconsulta == id);
+                var consulta = await _consultaRepositorio.Obtener(c => c.Idconsulta == idconsulta);
                 if (consulta == null)
                 {
                     throw new InvalidOperationException("Consulta no encontrada.");
@@ -88,23 +89,23 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        public async Task<bool> ActualizarConsulta(ConsultaDTO consultaDto)
+        public async Task<List<RespuestaDTO>> RespuestasDeConsultaID(int idConsulta)
         {
             try
             {
-                var consultaExistente = await _consultaRepositorio.Obtener(c => c.Idconsulta == consultaDto.Idconsulta);
-                if (consultaExistente == null)
+                var consulta = await _consultaRepositorio.Obtener(c => c.Idconsulta == idConsulta);
+                if (consulta == null)
                 {
-                    throw new InvalidOperationException("Consulta no encontrada.");
+                    throw new InvalidOperationException("La consulta no exite");
                 }
 
-                _mapper.Map(consultaDto, consultaExistente);
-                await _consultaRepositorio.Editar(consultaExistente);
-                return true;
+                var respuestasConsulta = await _respuestaRepositorio.Consultar(r => r.Idconsulta == idConsulta);
+
+                return _mapper.Map<List<RespuestaDTO>>(respuestasConsulta);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al actualizar la consulta.", ex);
+                throw new Exception("Error al obtener las respuestas de la consulta.", ex);
             }
         }
     }

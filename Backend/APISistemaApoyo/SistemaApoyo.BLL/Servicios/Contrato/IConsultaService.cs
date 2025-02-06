@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using SistemaApoyo.DTO;
-
 
 namespace SistemaApoyo.BLL.Servicios.Contrato
 {
@@ -14,9 +11,6 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
         Task<List<ConsultaDTO>> ConsultarPorTitulo(string titulo);
         Task<ConsultaDTO> ObtenerConsultaPorId(int id);
         Task<bool> CrearConsulta(ConsultaDTO consultaDto);
-        Task<bool> ActualizarConsulta(ConsultaDTO consultaDto);
-        
+        Task<List<RespuestaDTO>> RespuestasDeConsultaID(int idConsulta);
     }
-
-
 }

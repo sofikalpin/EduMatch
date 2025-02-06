@@ -3,7 +3,8 @@ using SistemaApoyo.API.Utilidad;
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DTO;
 using Microsoft.AspNetCore.Http;
-
+using SistemaApoyo.BLL.servicios;
+using SistemaApoyo.Model;
 
 namespace WebApiApoyo.Controllers
 {
@@ -13,15 +14,17 @@ namespace WebApiApoyo.Controllers
     {
         private readonly IConsultaService _consultaService;
         private readonly ILogger<ConsultaController> _logger;
+        private readonly IRespuestaService _respuestaService;
 
-        public ConsultaController(IConsultaService consultaService, ILogger<ConsultaController> logger)
+        public ConsultaController(IConsultaService consultaService, IRespuestaService respuestaService,ILogger<ConsultaController> logger)
         {
             _consultaService = consultaService;
+            _respuestaService = respuestaService;
             _logger = logger;
         }
 
         [HttpGet]
-        [Route("Listar Consultas")]
+        [Route("ListarConsultas")]
         public async Task<IActionResult> ListaConsultas()
         {
             var rsp = new Response<List<ConsultaDTO>>();
@@ -38,9 +41,8 @@ namespace WebApiApoyo.Controllers
             return Ok(rsp);
         }
 
-
         [HttpGet]
-        [Route("Titulo Consulta")]
+        [Route("TituloConsulta")]
         public async Task<IActionResult> ListaConsultaPorTitulo(string titulo)
         {
             if (string.IsNullOrWhiteSpace(titulo))
@@ -62,11 +64,8 @@ namespace WebApiApoyo.Controllers
             return Ok(rsp);
         }
 
-
-
-
         [HttpGet]
-        [Route("Consulta ID")]
+        [Route("ConsultaID")]
         public async Task<IActionResult> ListaConsultaPorId(int id)
         {
             if (id <= 0)
@@ -78,7 +77,6 @@ namespace WebApiApoyo.Controllers
             try
             {
                 rsp.value = await _consultaService.ObtenerConsultaPorId(id);
-
                 rsp.status = true;
             }
             catch (Exception ex)
@@ -90,7 +88,7 @@ namespace WebApiApoyo.Controllers
         }
 
         [HttpPost]
-        [Route("Crear Consulta")]
+        [Route("CrearConsulta")]
         public async Task<IActionResult> CrearConsulta([FromBody] ConsultaDTO consultaDto)
         {
             if (consultaDto == null)
@@ -113,29 +111,21 @@ namespace WebApiApoyo.Controllers
             return Ok(rsp);
         }
 
-        [HttpPut]
-        [Route("Editar Consulta")]
-        public async Task<IActionResult> EditarConsulta(int id, [FromBody] ConsultaDTO consultaDto)
+        [HttpGet("ListaRespuestasDeConsulta")]
+        public async Task<IActionResult> ListaRespuestasDeConsulta(int consultaId)
         {
-            if (id != consultaDto.Idconsulta)
-            {
-                return BadRequest("El ID de la consulta no coincide con el ID proporcionado.");
-            }
-
-            var rsp = new Response<string>();
+            var rsp = new Response<List<RespuestaDTO>>();
             try
             {
-                var resultado = await _consultaService.ActualizarConsulta(consultaDto);
                 rsp.status = true;
-                rsp.value = "Consulta actualizada con éxito.";
+                rsp.value = await _consultaService.RespuestasDeConsultaID(consultaId);
             }
             catch (Exception ex)
             {
                 rsp.status = false;
-                _logger.LogError(ex, "Error al actualizar la consulta.");
+                _logger.LogError(ex, "Error al obtener la lista de respuestas.");
             }
             return Ok(rsp);
         }
-
     }
 }

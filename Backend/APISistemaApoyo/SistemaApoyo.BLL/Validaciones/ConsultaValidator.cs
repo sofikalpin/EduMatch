@@ -14,7 +14,7 @@ namespace SistemaApoyo.BLL.Validaciones
         {
             RuleFor(c => c.Contenido)
                 .NotEmpty().WithMessage("El mensaje no debe estar vacio")
-                .MaximumLength(1000).WithMessage("El mensaje no puede tener maas de 1000 caracteres");
+                .MaximumLength(5000).WithMessage("El mensaje no puede tener maas de 5000 caracteres");
 
             RuleFor(c => c.Fechahora)
                 .NotEmpty().WithMessage("La fecha es obligatoria.")
@@ -22,7 +22,7 @@ namespace SistemaApoyo.BLL.Validaciones
 
             RuleFor(c => c.Titulo)
                 .NotEmpty().WithMessage("El titulo del mensaje no debe estar en blanco")
-                .MaximumLength(30).WithMessage("El titulo del mensaje no debe tener mas de 30 caracteres");
+                .MaximumLength(100).WithMessage("El titulo del mensaje no debe tener mas de 30 caracteres");
 
             RuleFor(c => c.Idusuario)
             .NotNull().WithMessage("El Id usuario es obligatorio.");

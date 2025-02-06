@@ -27,6 +27,7 @@ import EditarAlumno from "./componentes/Administrador/Alumnos/editAlumno/editAlu
 import PerfilAdministrador from "./componentes/Administrador/PerfilAdministrador";
 import ChatAdmin from "./componentes/Administrador/chatAdmin/chatAdmin";
 
+
 //Profesor
 import AlumnosProfesor from "./componentes/Profesor/Alumnos/MisAlumnos";
 import InicioProfesorPage from "./componentes/Profesor/InicioProfesor"; // Renamed here
@@ -44,7 +45,14 @@ import Consulta from "./componentes/Profesor/ForoProfesor/NuevaConsulta";
 import Respuesta from "./componentes/Profesor/ForoProfesor/Respuesta";
 import ChatProfesor from "./componentes/Profesor/ChatProfesor/chat";
 
-//Alumnos
+// Alumno
+import MisCursos from "./componentes/Alumno/Miscursos/Miscursos";
+import Cursos from "./componentes/Alumno/Cursos/Cursos"; 
+import Articulos from "./componentes/Alumno/Articulos/Articulos"
+import ArticuloDetalle from "./componentes/Alumno//Articulos/ArticuloDetalle";
+
+
+
 
 function App() {
   return (
@@ -95,6 +103,13 @@ function App() {
 
         
         <Route path="/profesor/perfil" element={<PerfilProfesor />} />
+
+      
+         {/* Alumno */}
+         <Route path="/alumno/" element={<MisCursos />} />
+         <Route path="/alumno/cursos" element={<Cursos />} /> 
+         <Route path="/alumno/articulos" element={<Articulos />} />
+         <Route path="/alumno/articulo/:id" element={<ArticuloDetalle />} />
 
         {/* Redirigir rutas no encontradas */}
         <Route path="*" element={<Navigate to="/" />} />

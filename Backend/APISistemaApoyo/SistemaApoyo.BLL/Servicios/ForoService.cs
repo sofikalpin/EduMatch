@@ -9,6 +9,7 @@ using SistemaApoyo.DTO;
 using SistemaApoyo.Model;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SistemaApoyo.BLL.Servicios
 {
@@ -36,6 +37,24 @@ namespace SistemaApoyo.BLL.Servicios
             catch (Exception ex)
             {
                 throw new Exception("Error al obtener la lista de foros.", ex);
+            }
+        }
+
+        public async Task<List<ForoDTO>> ConsultarForoNivel(int idNivel)
+        {
+            try
+            {
+                var Foroquery = await _foroRepositorio.Consultar();
+                if (idNivel != null && idNivel > 0)
+                {
+                    Foroquery = Foroquery.Where(f => f.Idnivel == idNivel);
+                }
+                var listaResultado = await Foroquery.ToListAsync();
+                return _mapper.Map<List<ForoDTO>>(listaResultado);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el foro por nombre.", ex);
             }
         }
 

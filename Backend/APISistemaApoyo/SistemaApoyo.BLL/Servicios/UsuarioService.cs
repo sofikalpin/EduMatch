@@ -43,7 +43,7 @@ namespace SistemaApoyo.BLL.Servicios
                 var usuario = _mapper.Map<Usuario>(modelo);
 
                 // Hashear la contraseña antes de guardarla
-                usuario.ContraseñaHash = HashearContrasena(modelo.ContraseñaHash);
+                usuario.ContraseñaHash = CubreContrasena(modelo.ContraseñaHash);
 
                 // Verificar si el correo ya existe
                 var usuarioExistente = await _usuarioRepositorio.Obtener(u => u.Correo == modelo.Correo);
@@ -79,7 +79,7 @@ namespace SistemaApoyo.BLL.Servicios
                     throw new InvalidOperationException("El usuario no existe");
 
                 if (!string.IsNullOrEmpty(usuarioModelo.ContraseñaHash))
-                    usuarioEncontrado.ContraseñaHash = HashearContrasena(usuarioModelo.ContraseñaHash);
+                    usuarioEncontrado.ContraseñaHash = CubreContrasena(usuarioModelo.ContraseñaHash);
 
                 usuarioEncontrado.Nombrecompleto = usuarioModelo.Nombrecompleto;
                 usuarioEncontrado.Correo = usuarioModelo.Correo;
@@ -245,7 +245,7 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        public string HashearContrasena(string contrasena)
+        public string CubreContrasena(string contrasena)
         {
             var salt = new byte[16];
             using (var rng = RandomNumberGenerator.Create())
@@ -293,7 +293,7 @@ namespace SistemaApoyo.BLL.Servicios
                 }
 
                 // Hashear nueva contraseña
-                usuario.ContraseñaHash = HashearContrasena(nuevaContraseña);
+                usuario.ContraseñaHash = CubreContrasena(nuevaContraseña);
 
                 // Limpiar token y expiración
                 usuario.TokenRecuperacion = null;

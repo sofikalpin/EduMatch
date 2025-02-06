@@ -13,6 +13,7 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
         Task<List<ForoDTO>> ConsultarForos();
 
         Task<List<ForoDTO>> ConsultarPorNombre(string nombre);
+        Task<List<ForoDTO>> ConsultarForoNivel(int idNivel);
         Task<ForoDTO> ObtenerForoPorId(int id);
 
         Task<List<ConsultaDTO>> ObtenerConsultasPorForo(int idForo);

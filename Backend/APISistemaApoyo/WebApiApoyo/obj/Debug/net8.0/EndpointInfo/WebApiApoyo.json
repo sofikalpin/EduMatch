@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/API/Actividad/Listar Actividad": {
+    "/API/Actividad/ListaActividad": {
       "get": {
         "tags": [
           "Actividad"
@@ -17,7 +17,7 @@
         }
       }
     },
-    "/API/Actividad/Nombre Completo Actividad": {
+    "/API/Actividad/NombreCompletoActividad": {
       "get": {
         "tags": [
           "Actividad"
@@ -38,7 +38,7 @@
         }
       }
     },
-    "/API/Actividad/Actividad ID": {
+    "/API/Actividad/ActividadID": {
       "get": {
         "tags": [
           "Actividad"
@@ -859,6 +859,28 @@
         }
       }
     },
+    "/API/Foro/ListaForosPorNivel": {
+      "get": {
+        "tags": [
+          "Foro"
+        ],
+        "parameters": [
+          {
+            "name": "idNivel",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/API/Foro/NombreForo": {
       "get": {
         "tags": [
@@ -1293,7 +1315,7 @@
         }
       }
     },
-    "/API/ProfesorActividad/ListaActividadesProfesor": {
+    "/API/ProfesorActividad/ListaActividades": {
       "get": {
         "tags": [
           "ProfesorActividad"
@@ -1305,7 +1327,7 @@
         }
       }
     },
-    "/API/ProfesorActividad/NombreCompletoActividad": {
+    "/API/ProfesorActividad/ListaActividadesNombre": {
       "get": {
         "tags": [
           "ProfesorActividad"
@@ -1326,7 +1348,7 @@
         }
       }
     },
-    "/API/ProfesorActividad/ActividadPorId": {
+    "/API/ProfesorActividad/ActividadID": {
       "get": {
         "tags": [
           "ProfesorActividad"
@@ -1379,7 +1401,7 @@
         }
       }
     },
-    "/API/ProfesorActividad/EditarActividadPorId": {
+    "/API/ProfesorActividad/EditarporID": {
       "put": {
         "tags": [
           "ProfesorActividad"
@@ -1424,304 +1446,6 @@
       "delete": {
         "tags": [
           "ProfesorActividad"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/ProfesorActividad/Lista Actividades": {
-      "get": {
-        "tags": [
-          "ProfesorActividad"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/ProfesorActividad/Nombre Completo Actividad": {
-      "get": {
-        "tags": [
-          "ProfesorActividad"
-        ],
-        "parameters": [
-          {
-            "name": "nombre",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/ProfesorActividad/Actividad ID": {
-      "get": {
-        "tags": [
-          "ProfesorActividad"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/ProfesorActividad/Crear Actividad": {
-      "post": {
-        "tags": [
-          "ProfesorActividad"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ActividadDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ActividadDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ActividadDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/ProfesorActividad/Editar por ID": {
-      "put": {
-        "tags": [
-          "ProfesorActividad"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ActividadDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ActividadDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ActividadDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/ProfesorActividad/Eliminar Actividad": {
-      "delete": {
-        "tags": [
-          "ProfesorActividad"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/ProfesorArticulo/ListaArticulos": {
-      "get": {
-        "tags": [
-          "ProfesorArticulo"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/ProfesorArticulo/TituloArticulo": {
-      "get": {
-        "tags": [
-          "ProfesorArticulo"
-        ],
-        "parameters": [
-          {
-            "name": "titulo",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/ProfesorArticulo/ArticuloPorId": {
-      "get": {
-        "tags": [
-          "ProfesorArticulo"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/ProfesorArticulo/CrearArticulo": {
-      "post": {
-        "tags": [
-          "ProfesorArticulo"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ArticuloDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ArticuloDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ArticuloDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/ProfesorArticulo/EditarArticuloPorId": {
-      "put": {
-        "tags": [
-          "ProfesorArticulo"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ArticuloDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ArticuloDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ArticuloDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/ProfesorArticulo/EliminarArticulo": {
-      "delete": {
-        "tags": [
-          "ProfesorArticulo"
         ],
         "parameters": [
           {
@@ -1876,158 +1600,6 @@
           {
             "name": "id",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/profesor-examen/lista-examenes": {
-      "get": {
-        "tags": [
-          "ProfesorExamen"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/profesor-examen/buscar-por-titulo": {
-      "get": {
-        "tags": [
-          "ProfesorExamen"
-        ],
-        "parameters": [
-          {
-            "name": "titulo",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/profesor-examen/examen/{id}": {
-      "get": {
-        "tags": [
-          "ProfesorExamen"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/profesor-examen/crear-examen": {
-      "post": {
-        "tags": [
-          "ProfesorExamen"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExamenDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExamenDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExamenDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/profesor-examen/editar-examen/{id}": {
-      "put": {
-        "tags": [
-          "ProfesorExamen"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExamenDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExamenDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExamenDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/profesor-examen/eliminar-examen/{id}": {
-      "delete": {
-        "tags": [
-          "ProfesorExamen"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"

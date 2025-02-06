@@ -21,7 +21,7 @@ namespace WebApiApoyo.Controllers
         }
 
         [HttpGet]
-        [Route("Listar Actividad")]
+        [Route("ListaActividad")]
         public async Task<IActionResult> ListaActividades()
         {
             var rsp = new Response<List<ActividadDTO>>();
@@ -39,7 +39,7 @@ namespace WebApiApoyo.Controllers
         }
 
         [HttpGet]
-        [Route("Nombre Completo Actividad")]
+        [Route("NombreCompletoActividad")]
         public async Task<IActionResult> ListaActividadPorNombre(string nombre)
         {
             if (string.IsNullOrWhiteSpace(nombre))
@@ -62,7 +62,7 @@ namespace WebApiApoyo.Controllers
         }
 
         [HttpGet]
-        [Route("Actividad ID")]
+        [Route("ActividadID")]
         public async Task<IActionResult> ListaActividadporId(int id)
         {
             if (id <= 0)

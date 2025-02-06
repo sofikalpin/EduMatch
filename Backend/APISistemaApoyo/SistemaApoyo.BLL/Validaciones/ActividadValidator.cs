@@ -16,11 +16,11 @@ namespace SistemaApoyo.BLL.Validaciones
         {
             RuleFor(a => a.Nombre)
                 .NotEmpty().WithMessage("El nombre no debe estar en blanco")
-                .MaximumLength(20).WithMessage("El nombre no debe tener mas de 5 caracteres");
+                .MaximumLength(500).WithMessage("El nombre no debe tener mas de 500 caracteres");
 
             RuleFor(a => a.Descripcion)
                 .NotEmpty().WithMessage("La descripcion no debe estar en blanco")
-                .Length(5, 1000).WithMessage("La descripcion debe tener como minimo 20 caracteres");
+                .Length(5, 20000).WithMessage("La descripcion debe tener como minimo 5 caracteres");
 
             RuleFor(a => a.Idusuario)
                 .GreaterThan(0).When(x => x.Idusuario.HasValue)

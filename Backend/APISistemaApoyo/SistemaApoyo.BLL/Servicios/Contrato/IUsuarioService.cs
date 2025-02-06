@@ -15,7 +15,7 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
         Task<SesionDTO> ValidarCredenciales(string correo, string contrasenaHash);
         Task<UsuarioDTO> Crear(UsuarioDTO modelo);
         Task<bool> Editar(UsuarioDTO modelo);
-        string HashearContrasena(string contrasena);
+        string CubreContrasena(string contrasena);
 
         Task<bool> Eliminar(int id);
 

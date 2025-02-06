@@ -4,6 +4,8 @@ using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DTO;
 using Microsoft.AspNetCore.Http;
 using SistemaApoyo.BLL.Servicios;
+using SistemaApoyo.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApiApoyo.Controllers.Profesor
 {
@@ -14,14 +16,16 @@ namespace WebApiApoyo.Controllers.Profesor
     {
         private readonly IProfesorActividad _profesorActividadService;
         private readonly ILogger<ProfesorActividadController> _logger;
+        S31Grupo2AprendizajeYApoyoDeInglesContext _context;
 
-        public ProfesorActividadController(IProfesorActividad profesorActividadService, ILogger<ProfesorActividadController> logger)
+        public ProfesorActividadController(IProfesorActividad profesorActividadService, ILogger<ProfesorActividadController> logger, S31Grupo2AprendizajeYApoyoDeInglesContext context)
         {
             _profesorActividadService = profesorActividadService;
+            _context = context;
             _logger = logger;
         }
 
-        [HttpGet("Lista Actividades")]
+        [HttpGet("ListaActividades")]
         public async Task<IActionResult> ListaActividades()
         {
             var rsp = new Response<List<ActividadDTO>>();
@@ -40,8 +44,8 @@ namespace WebApiApoyo.Controllers.Profesor
         }
 
         [HttpGet]
-        [Route("Nombre Completo Actividad")]
-        public async Task<IActionResult> ListaActividadPorNombre(string nombre)
+        [Route("ListaActividadesNombre")]
+        public async Task<IActionResult> ListaActividadNombres(string nombre)
         {
             if (string.IsNullOrWhiteSpace(nombre))
             {
@@ -63,7 +67,7 @@ namespace WebApiApoyo.Controllers.Profesor
         }
 
         [HttpGet]
-        [Route("Actividad ID")]
+        [Route("ActividadID")]
         public async Task<IActionResult> ListaActividadPorId(int id)
         {
             if (id <= 0)
@@ -86,15 +90,21 @@ namespace WebApiApoyo.Controllers.Profesor
         }
 
         [HttpPost]
-        [Route("Crear Actividad")]
+        [Route("CrearActividad")]
         public async Task<IActionResult> CrearActividad([FromBody] ActividadDTO actividad)
         {
+            var idMaximo = await _context.Actividads.MaxAsync(a => a.Idactividad) +1;
+
             var rsp = new Response<string>();
             try
             {
-                rsp.status = true;
-                var resultado = await _profesorActividadService.CrearActividad(actividad);
-                rsp.value = "Actividad creada con éxito";
+                if(actividad.Idactividad == 0) 
+                { 
+                    actividad.Idactividad = idMaximo;
+                    rsp.status = true;
+                    var resultado = await _profesorActividadService.CrearActividad(actividad);
+                    rsp.value = "Actividad creada con éxito";
+                }
             }
             catch (Exception ex)
             {
@@ -105,7 +115,7 @@ namespace WebApiApoyo.Controllers.Profesor
         }
 
         [HttpPut]
-        [Route("Editar por ID")]
+        [Route("EditarporID")]
         public async Task<IActionResult> EditarActividad(int id, [FromBody] ActividadDTO actividad)
         {
             if (id != actividad.Idactividad)
@@ -129,7 +139,7 @@ namespace WebApiApoyo.Controllers.Profesor
         }
 
         [HttpDelete]
-        [Route("Eliminar Actividad")]
+        [Route("EliminarActividad")]
         public async Task<IActionResult> EliminarActividad(int id)
         {
             if (id <= 0)

@@ -6,6 +6,14 @@ import drive from "../Imagenes/google-drive.png";
 import youtube from "../Imagenes/youtube.png";
 import subir from "../Imagenes/subir.png";
 import url from "../Imagenes/url.png";
+import axios from "axios";
+
+//Es necesario revisar todos las aplicaciones de seleccion de estudiante 
+// y cursada, ya que son elementos los cuales no son necesarios para la actividad 
+// (solo es necesario saber el idnivel al cual la actividad corresponde[en este caso seria curso]).
+//Mismo caso para lo de adjuntar, ya que actividad no posee un atributo que trate eso
+//PD: El valor de fecha de entrega es un dato el cual debe tener la fecha del 
+// momento en el que se creo, no es necesario desarrollar mas el valor.
 
 const CrearActividad = () => {
   const [nombre, setNombre] = useState("");
@@ -17,16 +25,17 @@ const CrearActividad = () => {
   const [asignarA, setAsignarA] = useState("Seleccionar Estudiantes");
   const [mostrarModal, setMostrarModal] = useState(false);
   const [estudiantesSeleccionados, setEstudiantesSeleccionados] = useState([]);
-  const [cursoSeleccionado, setCursoSeleccionado] = useState("B1: Pre-Intermedio");
+  const [cursoSeleccionado, setCursoSeleccionado] = useState("");
 
-  const cursos = [
-    "A1: Principiante",
-    "A2: Básico", 
-    "B1: Pre-Intermedio",
-    "B2: Intermedio",
-    "C1: Intermedio-Alto",
-    "C2: Avanzado"
-  ];
+  //los valores corresponden al id nivel
+  const cursos = {
+    "A1: Principiante": 1,
+    "A2: Básico" : 2, 
+    "B1: Pre-Intermedio": 3, 
+    "B2: Intermedio": 4, 
+    "C1: Intermedio-Alto": 5, 
+    "C2: Avanzado": 6, 
+  };
 
   const estudiantes = {
     "B1: Pre-Intermedio": ["Estudiante 1", "Estudiante 2", "Estudiante 3"],
@@ -41,26 +50,39 @@ const CrearActividad = () => {
 
   const handleCrearActividad = async (e) => {
     e.preventDefault();
-    const nuevaActividad = {
-      nombre,
-      descripcion,
-      fechaEntrega: sinFecha ? "" : fechaEntrega,
-      unidad,
-      publicarEn,
-      asignarA: asignarA === "Todos" ? "Todos" : estudiantesSeleccionados
-    };
+    
     try {
-      const response = await fetch("/api/actividades", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(nuevaActividad)
-      });
-      if (response.ok) {
+
+      const idCursada = cursos[cursoSeleccionado];
+    
+      const nuevaActividad = {
+        idactividad: 0,
+        idusuario: idusuario,
+        nombre: nombre.trim(),
+        descripcion: descripcion.trim(),
+        idnivel: idCursada,
+        fechaEntrega: Date().toISOString().split("T")[0],
+        //unidad,
+        //publicarEn,
+        //asignarA: asignarA === "Todos" ? "Todos" : estudiantesSeleccionados
+      };
+
+      const response = await axios.post(
+        "http://localhost:5228/API/ProfesorActividad/CrearActividad",
+        nuevaActividad
+      );
+      if (response.data.status === 200) {
         alert("Actividad creada exitosamente");
         navigate("/profesor/actividades");
+
+        setNombre("");
+        setDescripcion("");
+        setFechaEntrega("");
+        setUnidad("");
+        setCursoSeleccionado("");
       }
     } catch (error) {
-      console.error("Error al enviar la solicitud:", error);
+      console.error("Error al crear la actividad:", error);
     }
   };
 
@@ -77,6 +99,7 @@ const CrearActividad = () => {
     setCursoSeleccionado(curso);
     setPublicarEn(curso);
     setEstudiantesSeleccionados([]);
+    return curso;
   };
 
   const handleAsignarATodos = () => {
@@ -124,7 +147,7 @@ const CrearActividad = () => {
                     value={nombre}
                     onChange={(e) => setNombre(e.target.value)}
                     required
-                    placeholder="Ingrese el nombre de la actividad"
+                    placeholder="Ingrese el nombre de la actividad..."
                   />
                 </div>
 
@@ -167,7 +190,7 @@ const CrearActividad = () => {
               <div className="space-y-8">
                 <div>
                   <label className="block text-lg font-semibold text-[#2c7a7b] mb-3">
-                    Publicar en
+                    Seleccionar curso al que corresponde la actividad
                   </label>
                   <select
                     className="w-full p-4 border-2 border-gray-200 rounded-xl shadow-sm focus:ring-4 focus:ring-teal-200 focus:border-teal-400 transition duration-300 bg-white"

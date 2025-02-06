@@ -5,6 +5,8 @@ using SistemaApoyo.DTO;
 using Microsoft.AspNetCore.Http;
 using System.Linq.Expressions;
 using SistemaApoyo.BLL.Servicios;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Security.Cryptography;
 
 namespace WebApiApoyo.Controllers
 {
@@ -13,11 +15,13 @@ namespace WebApiApoyo.Controllers
     public class ForoController : ControllerBase
     {
         private readonly IForoService _foroService;
+        private readonly INivelService _nivelService;
         private readonly ILogger<ForoController> _logger;
 
-        public ForoController(IForoService foroService, ILogger<ForoController> logger)
+        public ForoController(IForoService foroService, ILogger<ForoController> logger, INivelService nivelService)
         {
             _foroService = foroService;
+            _nivelService = nivelService;
             _logger = logger;
         }
 
@@ -35,6 +39,30 @@ namespace WebApiApoyo.Controllers
             {
                 rsp.status = false;
                 _logger.LogError(ex, "Error al obtener el foro.");
+            }
+            return Ok(rsp);
+        }
+
+        [HttpGet]
+        [Route("ListaForosPorNivel")]
+        public async Task<IActionResult> ListaForoNivel(int idNivel)
+        {
+            var existeNivel = await _nivelService.ObtenerNivelPorID(idNivel);
+            if (existeNivel == null)
+            {
+                return BadRequest("El ID proporcionado no corresponde a un nivel.");
+            }
+
+            var rsp = new Response<List<ForoDTO>>();
+            try
+            {
+                rsp.status = true;
+                rsp.value = await _foroService.ConsultarForoNivel(idNivel);
+            }
+            catch (Exception ex)
+            {
+                rsp.status = false;
+                _logger.LogError(ex, "Error al obtener lso foros correspondientes al nivel");
             }
             return Ok(rsp);
         }

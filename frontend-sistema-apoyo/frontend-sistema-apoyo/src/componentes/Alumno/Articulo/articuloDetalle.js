@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import LogoInicio from "../../../logo/LogoInicio.png";
 import chatIcon from "../Imagenes/chat.png";
-import './articuloDetalle.css';
 import { useNavigate } from "react-router-dom";
+import Header from '../HeaderAlumno';
+import Footer from '../FooterAlumno';
 
 const ArticuloDetalle = () => {
   const { id } = useParams(); // Obtener el ID del artículo de la URL
@@ -68,43 +69,19 @@ const ArticuloDetalle = () => {
 
   return (
     <div>
-      {/* Navbar */}
-      <nav className="header">
-        <div className="nav-links">
-          <img src={LogoInicio} alt="Logo" className="logo" />
-          <Link to="/" className="nav-item">INICIO</Link>
-          <Link to="/miscursos" className="nav-item">
-            MIS CURSOS
-          </Link>
-        
-        </div>
-        <div className="user-info">
-          <span>Maria A</span>
-          <div className="user-avatar" onClick={() => setIsMenuOpen(!isMenuOpen)}>M</div>
-          <div className="chat-icon-container">
-            <img src={chatIcon} alt="Chat" className="chat-icon" />
-          </div>
-          {isMenuOpen && (
-            <div className="mini-container">
-              <ul>
-                <li onClick={() => handleMenuOptionClick("Mi perfil")}>Mi perfil</li>
-                <li onClick={() => handleMenuOptionClick("Cambiar de cuenta")}>Cambiar de cuenta</li>
-                <li onClick={() => handleMenuOptionClick("Salir")}>Salir</li>
-              </ul>
-            </div>
-          )}
-        </div>
-      </nav>
+      <Header></Header>
 
-      <div className="container">
-        <div className="content">
-          <h1 className="title">{article.title}</h1>
-          <div className="article-content">
+      <div className="container mx-auto p-4">
+        <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-10">
+          <h1 className="text-2xl font-semibold text-gray-800 mb-4 m-10">{article.title}</h1>
+          <div className="text-gray-600 mb-6">
             <p>{article.content}</p>
           </div>
-          <Link to="/alumno/articulos" className="back-link">Volver a artículos</Link>
+          <Link to="/alumno/articulos" className="text-blue-500 hover:text-blue-700">Volver a artículos</Link>
         </div>
       </div>
+      <div className="mt-32"></div>
+      <Footer></Footer>
     </div>
   );
 };

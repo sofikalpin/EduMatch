@@ -130,6 +130,12 @@ function App() {
         <Route path="/profesor/chat" element={<ChatProfesor />} />
         <Route path="/profesor/perfil" element={<PerfilProfesor />} />
 
+      
+        {/* Foro Alumno */}
+        <Route path="/alumno/foro" element={<Foros />} /> {/* Ruta de Foros para los alumnos */}
+        <Route path="/alumno/foro/:id" element={<Nuevaconsulta />} /> {/* Ruta de Foros para los alumnos */}
+        <Route path="/alumno/foro/:idRespuesta" element={<RespuestaAlu />} /> {/* Ruta de Foros para los alumnos */}
+
 
         {/* Foro */}
         <Route path="/listaForos" element={<ListaForos/>} />

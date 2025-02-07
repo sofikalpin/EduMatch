@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Importa el hook useNavigate
-import "./cursos.css";
 import LogoInicio from '../../../logo/LogoInicio.png';
 import chatIcon from "../Imagenes/chat.png";
 import articulo from "../Imagenes/articulo.png";
 import actividad from "../Imagenes/actividades.png";
 import foro from "../Imagenes/foro.png";
 import examen from "../Imagenes/examen.png";
+import Header from "../HeaderAlumno";
+import Footer from "../FooterAlumno";
 
 function Cursos() {
   const navigate = useNavigate(); // Usamos useNavigate para redirigir
@@ -25,7 +26,7 @@ function Cursos() {
         navigate("/alumno/foro"); // Redirige a la página de Foros para los alumnos
         break;
       case "Exámenes":
-        navigate("/alumno/examenes"); // Redirige a la página de Exámenes
+        navigate("/alumno/examen"); // Redirige a la página de Exámenes
         break;
       case "Mis Cursos": // Cuando se haga clic en Mis Cursos
         navigate("/miscursos");
@@ -38,80 +39,36 @@ function Cursos() {
     }
   };
 
-  // Función para abrir/cerrar el menú
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  // Función para manejar las opciones del menú
-  const handleMenuOptionClick = (option) => {
-    switch(option) {
-      case "Mi perfil":
-        navigate("/mi-perfil"); // Redirige a la página de perfil
-        break;
-      case "Cambiar de cuenta":
-        // Lógica para cambiar de cuenta (esto puede depender de cómo lo manejes en tu app)
-        break;
-      case "Salir":
-        // Lógica para salir (por ejemplo, cerrar sesión)
-        break;
-      default:
-        break;
-    }
-    setIsMenuOpen(false); // Cierra el menú después de seleccionar una opción
-  };
-
   return (
-    <div>
-      {/* Barra de navegación */}
-      <nav className="header">
-        <div className="nav-links">
-          <img src={LogoInicio} alt="Logo" className="logo" />
-          <a href="#inicio" onClick={() => handleCardClick("INICIO")} className="nav-item">INICIO</a>
-          <a href="#mis-cursos" onClick={() => handleCardClick("Mis Cursos")} className={`nav-item ${window.location.pathname === "/miscursos" ? "active" : ""}`}>MIS CURSOS</a>
-        </div>
-        <div className="user-info">
-          <span>María A</span>
-          <div className="user-avatar" onClick={toggleMenu}>M</div>
-          <div className="chat-icon-container">
-            <img src={chatIcon} alt="Chat" className="chat-icon" />
-          </div>
-          {isMenuOpen && (
-            <div className="mini-container">
-              <ul>
-                <li onClick={() => handleMenuOptionClick("Mi perfil")}>Mi perfil</li>
-                <li onClick={() => handleMenuOptionClick("Cambiar de cuenta")}>Cambiar de cuenta</li>
-                <li onClick={() => handleMenuOptionClick("Salir")}>Salir</li>
-              </ul>
-            </div>
-          )}
-        </div>
-      </nav>
+    <div className="bg-gray-100 min-h-screen overflow-auto flex flex-col">
+      <Header />
 
       {/* Contenido principal */}
-      <div className="content">
-        <h1>A1: Principiante</h1>
+      <div className="p-6 flex-grow">
+        <h1 className="text-3xl font-bold mb-12 mt-12">A1: Principiante</h1>
 
         {/* Tarjetas centradas */}
-        <div className="grid-container grid-container-centered">
-          <div className="card" onClick={() => handleCardClick("Artículos")}>
-            <img src={articulo} alt="Artículos" className="card-image" />
-            <p>Artículos</p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+          <div className="card cursor-pointer p-4 border border-gray-300 rounded-lg flex flex-col items-center justify-center" onClick={() => handleCardClick("Artículos")}>
+            <img src={articulo} alt="Artículos" className="w-16 h-16 mb-2" />
+            <p className="text-center">Artículos</p>
           </div>
-          <div className="card" onClick={() => handleCardClick("Actividades")}>
-            <img src={actividad} alt="Actividades" className="card-image" />
-            <p>Actividades</p>
+          <div className="card cursor-pointer p-4 border border-gray-300 rounded-lg flex flex-col items-center justify-center" onClick={() => handleCardClick("Actividades")}>
+            <img src={actividad} alt="Actividades" className="w-16 h-16 mb-2" />
+            <p className="text-center">Actividades</p>
           </div>
-          <div className="card" onClick={() => handleCardClick("Foro")}>
-            <img src={foro} alt="Foro" className="card-image" />
-            <p>Foro</p>
+          <div className="card cursor-pointer p-4 border border-gray-300 rounded-lg flex flex-col items-center justify-center" onClick={() => handleCardClick("Foro")}>
+            <img src={foro} alt="Foro" className="w-16 h-16 mb-2" />
+            <p className="text-center">Foro</p>
           </div>
-          <div className="card" onClick={() => handleCardClick("Exámenes")}>
-            <img src={examen} alt="Exámenes" className="card-image" />
-            <p>Exámenes</p>
+          <div className="card cursor-pointer p-4 border border-gray-300 rounded-lg flex flex-col items-center justify-center" onClick={() => handleCardClick("Exámenes")}>
+            <img src={examen} alt="Exámenes" className="w-16 h-16 mb-2" />
+            <p className="text-center">Exámenes</p>
           </div>
         </div>
       </div>
+      <div className="mt-32"></div>
+      <Footer />
     </div>
   );
 }

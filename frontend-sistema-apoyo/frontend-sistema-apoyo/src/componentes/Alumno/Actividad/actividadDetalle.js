@@ -1,13 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./actividadDetalle.css";
-import LogoInicio from "../../../logo/LogoInicio.png";
-import chatIcon from "../Imagenes/chat.png";
 import logoactividad from "../Imagenes/actividades.png";
-import youtubeIcon from "../Imagenes/youtube.png"; 
-import driveIcon from "../Imagenes/drive.png"; 
-import uploadIcon from "../Imagenes/upload.png";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaUserCircle, FaBell, FaYoutube, FaGoogleDrive, FaUpload } from "react-icons/fa";
+import Header from "../HeaderAlumno";
+import Footer from "../FooterAlumno";
 
 const ActividadDetalle = () => {
   const { id } = useParams(); 
@@ -93,7 +89,7 @@ const ActividadDetalle = () => {
 
   const archivoSubido = "https://www.example.com/archivo-actividad.pdf"; 
 
-  if (!actividad) return <div>Cargando...</div>; 
+  if (!actividad) return <div className="flex justify-center items-center h-screen">Cargando...</div>; 
 
   const handleSubmit = () => {
     setIsSubmitted(true); 
@@ -101,102 +97,62 @@ const ActividadDetalle = () => {
   };
 
   return (
-    <div>
-      <nav className="header">
-        <div className="nav-links">
-          <img src={LogoInicio} alt="Logo" className="logo" />
-          <a href="#inicio" onClick={() => navigate("/")}>INICIO</a>
-          <a href="#mis-cursos" onClick={() => navigate("/miscursos")}>MIS CURSOS</a>
-        </div>
-        <div className="user-info">
-          <span>María A</span>
-          <div className="user-avatar" onClick={() => setIsMenuOpen(!isMenuOpen)}>M</div>
-          <div className="chat-icon-container">
-            <img src={chatIcon} alt="Chat" className="chat-icon" />
-          </div>
-          {isMenuOpen && (
-            <div className="mini-container">
-              <ul>
-                <li onClick={() => navigate("/mi-perfil")}>Mi perfil</li>
-                <li onClick={() => navigate("/cambiar-cuenta")}>Cambiar de cuenta</li>
-                <li onClick={() => navigate("/salir")}>Salir</li>
-              </ul>
-            </div>
-          )}
-        </div>
-      </nav>
+    <div className="min-h-screen bg-gray-100">
+      <Header />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-12">
+        <div className="flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8">
+        <div className="lg:w-2/3">
+  <h1 className="text-3xl font-bold text-gray-900">{actividad.title}</h1>
+  <div className="mt-6 flex justify-center">
+    <img src={logoactividad} alt="Actividad" className="w-32 h-auto rounded-lg shadow-md mx-auto" />
+  </div>
+  <p className="text-lg mt-6 font-semibold text-gray-800">Descripción:</p>
+  <p className="mt-2 text-gray-600">{actividad.description}</p>
+  {archivoSubido && (
+    <div className="mt-6">
+      <p className="text-gray-800">Archivo de la actividad:</p>
+      <a href={archivoSubido} download className="text-blue-500 hover:underline">
+        Descargar actividad
+      </a>
+    </div>
+  )}
+</div>
 
-      <div className="content">
-        <div className="activity-container">
-          <div className="activity-left">
-            <h1 className="title">{actividad.title}</h1>
-            <div className="activity-details">
-              <img src={logoactividad} alt="Actividad" className="activity-image" />
-              <p className="activity-description-label">Descripción:</p>
-              <p className="activity-description">{actividad.description}</p>
-              {archivoSubido && (
-                <div className="uploaded-file-container">
-                  <p>Archivo de la actividad:</p>
-                  <a href={archivoSubido} download className="download-button">
-                    Descargar actividad
-                  </a>
-                </div>
-              )}
-            </div>
-          </div>
 
-          <div className="activity-right">
-            <div className="upload-container">
-              <span className="due-date">Fecha de entrega: 25/08</span>
-              <div className="upload-icons">
-                <img
-                  src={youtubeIcon}
-                  alt="YouTube"
-                  className="upload-icon"
-                  onClick={() => handleUploadClick(youtubeInputRef)}
-                />
+          <div className="lg:w-1/3">
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <span className="text-gray-600">Fecha de entrega: 25/08</span>
+              <div className="flex space-x-4 mt-6">
+                <FaYoutube className="text-red-500 w-10 h-10 cursor-pointer" onClick={() => handleUploadClick(youtubeInputRef)} />
                 <input
                   type="file"
                   accept="video/*"
                   ref={youtubeInputRef}
-                  className="file-input"
-                  style={{ display: "none" }}
+                  className="hidden"
                   onChange={handleFileChange}
                 />
-                <img
-                  src={driveIcon}
-                  alt="Google Drive"
-                  className="upload-icon"
-                  onClick={() => handleUploadClick(driveInputRef)}
-                />
+                <FaGoogleDrive className="text-blue-500 w-10 h-10 cursor-pointer" onClick={() => handleUploadClick(driveInputRef)} />
                 <input
                   type="file"
                   ref={driveInputRef}
-                  className="file-input"
-                  style={{ display: "none" }}
+                  className="hidden"
                   onChange={handleFileChange}
                 />
-                <img
-                  src={uploadIcon}
-                  alt="Subir archivo"
-                  className="upload-icon"
-                  onClick={() => handleUploadClick(uploadInputRef)}
-                />
+                <FaUpload className="text-gray-700 w-10 h-10 cursor-pointer" onClick={() => handleUploadClick(uploadInputRef)} />
                 <input
                   type="file"
                   ref={uploadInputRef}
-                  className="file-input"
-                  style={{ display: "none" }}
+                  className="hidden"
                   onChange={handleFileChange}
                 />
               </div>
-              {selectedFile && !loading && <p className="file-name">Archivo seleccionado: {selectedFile}</p>}
-              {loading && <p className="loading">Cargando archivo...</p>}
+              {selectedFile && !loading && <p className="mt-4 text-sm text-gray-600">Archivo seleccionado: {selectedFile}</p>}
+              {loading && <p className="mt-4 text-sm text-gray-600">Cargando archivo...</p>}
             </div>
 
-            <div className="activity-actions">
+            <div className="mt-6">
               <button
-                className={`submit-button ${isSubmitted ? "submitted" : ""}`}
+                className={`w-full py-3 rounded-md text-white font-semibold ${isSubmitted ? "bg-green-500" : "bg-blue-500"} hover:bg-blue-600 transition duration-300`}
                 onClick={handleSubmit}
                 disabled={isSubmitted}
               >
@@ -206,6 +162,8 @@ const ActividadDetalle = () => {
           </div>
         </div>
       </div>
+      <div className="mt-32"></div>
+      <Footer></Footer>
     </div>
   );
 };

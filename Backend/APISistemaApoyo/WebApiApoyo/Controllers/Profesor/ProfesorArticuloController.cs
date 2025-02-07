@@ -3,6 +3,8 @@ using SistemaApoyo.API.Utilidad;
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DTO;
 using Microsoft.AspNetCore.Http;
+using SistemaApoyo.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApiApoyo.Controllers.Profesor
 {
@@ -13,14 +15,16 @@ namespace WebApiApoyo.Controllers.Profesor
     {
         private readonly IProfesorArticulo _profesorArticuloService;
         private readonly ILogger<ProfesorArticuloController> _logger;
+        private readonly S31Grupo2AprendizajeYApoyoDeInglesContext _context;
 
-        public ProfesorArticuloController(IProfesorArticulo profesorArticuloService, ILogger<ProfesorArticuloController> logger)
+        public ProfesorArticuloController(IProfesorArticulo profesorArticuloService, ILogger<ProfesorArticuloController> logger, S31Grupo2AprendizajeYApoyoDeInglesContext context)
         {
             _profesorArticuloService = profesorArticuloService;
+            _context = context;
             _logger = logger;
         }
 
-        [HttpGet("Lista Articulo")]
+        [HttpGet("ListaArticulo")]
         public async Task<IActionResult> ListaActividades()
         {
             var rsp = new Response<List<ArticuloDTO>>();
@@ -39,7 +43,7 @@ namespace WebApiApoyo.Controllers.Profesor
         }
 
         [HttpGet]
-        [Route("Titulo Articulo")]
+        [Route("TituloArticulo")]
         public async Task<IActionResult> ListaActividadPorNombre(string titulo)
         {
             if (string.IsNullOrWhiteSpace(titulo))
@@ -62,7 +66,7 @@ namespace WebApiApoyo.Controllers.Profesor
         }
 
         [HttpGet]
-        [Route("Articulo ID")]
+        [Route("ArticuloID")]
         public async Task<IActionResult> ListaArticuloPorId(int id)
         {
             if (id <= 0)
@@ -85,15 +89,27 @@ namespace WebApiApoyo.Controllers.Profesor
         }
 
         [HttpPost]
-        [Route("Crear Articulo")]
+        [Route("CrearArticulo")]
         public async Task<IActionResult> CrearArticulo([FromBody] ArticuloDTO articulo)
         {
+
+            var idMaximo = await _context.Articulos.MaxAsync(a => a.Idarticulo) + 1;
+
             var rsp = new Response<string>();
             try
             {
-                rsp.status = true;
-                var resultado = await _profesorArticuloService.CrearArticulo(articulo);
-                rsp.value = "Articulo creado con éxito";
+                if (articulo.Idarticulo == 0)
+                {
+                    articulo.Idarticulo = idMaximo;
+                    rsp.status = true;
+                    var resultado = await _profesorArticuloService.CrearArticulo(articulo);
+                    rsp.value = "Articulo creado con éxito";
+                }
+                else
+                {
+                    rsp.status = false;
+                    rsp.value = "El valor de Idarticulo debe ser cero";
+                }
             }
             catch (Exception ex)
             {
@@ -104,7 +120,7 @@ namespace WebApiApoyo.Controllers.Profesor
         }
 
         [HttpPut]
-        [Route("Editar por ID")]
+        [Route("EditarporID")]
         public async Task<IActionResult> EditarArticulo(int id, [FromBody] ArticuloDTO articulo)
         {
             if (id != articulo.Idarticulo)
@@ -130,7 +146,7 @@ namespace WebApiApoyo.Controllers.Profesor
 
 
         [HttpDelete]
-        [Route("Eliminar Articulo")]
+        [Route("EliminarArticulo")]
         public async Task<IActionResult> Eliminar(int id)
         {
             if (id <= 0)

@@ -1166,7 +1166,7 @@
         }
       }
     },
-    "/api/ProfeExamen/Lista Examenes": {
+    "/api/ProfeExamen/ListaExamenes": {
       "get": {
         "tags": [
           "ProfeExamen"
@@ -1178,7 +1178,7 @@
         }
       }
     },
-    "/api/ProfeExamen/Titulo Examen": {
+    "/api/ProfeExamen/TituloExamen": {
       "get": {
         "tags": [
           "ProfeExamen"
@@ -1199,7 +1199,7 @@
         }
       }
     },
-    "/api/ProfeExamen/Examen ID": {
+    "/api/ProfeExamen/ExamenID": {
       "get": {
         "tags": [
           "ProfeExamen"
@@ -1221,7 +1221,7 @@
         }
       }
     },
-    "/api/ProfeExamen/Crear Examen": {
+    "/api/ProfeExamen/CrearExamen": {
       "post": {
         "tags": [
           "ProfeExamen"
@@ -1252,7 +1252,7 @@
         }
       }
     },
-    "/api/ProfeExamen/Editar por ID": {
+    "/api/ProfeExamen/EditarporID": {
       "put": {
         "tags": [
           "ProfeExamen"
@@ -1293,7 +1293,7 @@
         }
       }
     },
-    "/api/ProfeExamen/Eliminar Examen": {
+    "/api/ProfeExamen/EliminarExamen": {
       "delete": {
         "tags": [
           "ProfeExamen"
@@ -1464,7 +1464,7 @@
         }
       }
     },
-    "/API/ProfesorArticulo/Lista Articulo": {
+    "/API/ProfesorArticulo/ListaArticulo": {
       "get": {
         "tags": [
           "ProfesorArticulo"
@@ -1476,7 +1476,7 @@
         }
       }
     },
-    "/API/ProfesorArticulo/Titulo Articulo": {
+    "/API/ProfesorArticulo/TituloArticulo": {
       "get": {
         "tags": [
           "ProfesorArticulo"
@@ -1497,7 +1497,7 @@
         }
       }
     },
-    "/API/ProfesorArticulo/Articulo ID": {
+    "/API/ProfesorArticulo/ArticuloID": {
       "get": {
         "tags": [
           "ProfesorArticulo"
@@ -1519,7 +1519,7 @@
         }
       }
     },
-    "/API/ProfesorArticulo/Crear Articulo": {
+    "/API/ProfesorArticulo/CrearArticulo": {
       "post": {
         "tags": [
           "ProfesorArticulo"
@@ -1550,7 +1550,7 @@
         }
       }
     },
-    "/API/ProfesorArticulo/Editar por ID": {
+    "/API/ProfesorArticulo/EditarporID": {
       "put": {
         "tags": [
           "ProfesorArticulo"
@@ -1591,7 +1591,7 @@
         }
       }
     },
-    "/API/ProfesorArticulo/Eliminar Articulo": {
+    "/API/ProfesorArticulo/EliminarArticulo": {
       "delete": {
         "tags": [
           "ProfesorArticulo"

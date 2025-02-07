@@ -105,6 +105,11 @@ namespace WebApiApoyo.Controllers.Profesor
                     var resultado = await _profesorActividadService.CrearActividad(actividad);
                     rsp.value = "Actividad creada con éxito";
                 }
+                else
+                {
+                    rsp.status = false;
+                    rsp.value = "El valor de Idactividad debe ser cero";
+                }
             }
             catch (Exception ex)
             {

@@ -4,6 +4,8 @@ using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DTO;
 using Microsoft.AspNetCore.Http;
 using SistemaApoyo.BLL.Servicios;
+using SistemaApoyo.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApiApoyo.Controllers.Profesor
 {
@@ -12,15 +14,19 @@ namespace WebApiApoyo.Controllers.Profesor
     public class ProfeExamenController : ControllerBase
     {
         private readonly IProfesorExamen _profesorExamen;
+        private readonly IUsuarioService _usuarioService;
         private readonly ILogger<ProfeExamenController> _logger;
+        private readonly S31Grupo2AprendizajeYApoyoDeInglesContext _context;
 
-        public ProfeExamenController(IProfesorExamen profesorExamen, ILogger<ProfeExamenController> logger)
+        public ProfeExamenController(IProfesorExamen profesorExamen, ILogger<ProfeExamenController> logger, S31Grupo2AprendizajeYApoyoDeInglesContext context, IUsuarioService usuarioService)
         {
+            _context = context;
             _profesorExamen = profesorExamen;
             _logger = logger;
+            _usuarioService = usuarioService;
         }
         [HttpGet]
-        [Route("Lista Examenes")]
+        [Route("ListaExamenes")]
         public async Task<IActionResult> ListarExamenes()
         {
             var rsp = new Response<List<ExamenDTO>>();
@@ -38,7 +44,7 @@ namespace WebApiApoyo.Controllers.Profesor
         }
 
         [HttpGet]
-        [Route("Titulo Examen")]
+        [Route("TituloExamen")]
         public async Task<IActionResult> ListaExamenPorTitulo(string titulo)
         {
             if (string.IsNullOrWhiteSpace(titulo))
@@ -61,7 +67,7 @@ namespace WebApiApoyo.Controllers.Profesor
         }
 
         [HttpGet]
-        [Route("Examen ID")]
+        [Route("ExamenID")]
         public async Task<IActionResult> ListaExamenPorId(int id)
         {
             if (id <= 0)
@@ -84,15 +90,27 @@ namespace WebApiApoyo.Controllers.Profesor
             return Ok(rsp);
         }
         [HttpPost]
-        [Route("Crear Examen")]
+        [Route("CrearExamen")]
         public async Task<IActionResult> CrearExamen([FromBody] ExamenDTO examen)
         {
+            var idMaximo = await _context.Examen.MaxAsync(e => e.Idexamen) + 1;
+            
             var rsp = new Response<string>();
             try
             {
-                rsp.status = true;
-                var resultado = await _profesorExamen.CrearExamen(examen);
-                rsp.value = "Examen creado con éxito";
+                if ( examen.Idexamen == 0) 
+                { 
+                    examen.Idexamen = idMaximo;
+                    rsp.status = true;
+                    var resultado = await _profesorExamen.CrearExamen(examen);
+                    rsp.value = "Examen creado con éxito";
+                }
+                else
+                {
+                    rsp.status = false;
+                    rsp.value = "El valor de IdExamen debe ser cero";
+                }
+
             }
             catch (Exception ex)
             {
@@ -103,7 +121,7 @@ namespace WebApiApoyo.Controllers.Profesor
         }
 
         [HttpPut]
-        [Route("Editar por ID")]
+        [Route("EditarporID")]
         public async Task<IActionResult> EditarActividad(int id, [FromBody] ExamenDTO examen)
         {
             if (id != examen.Idexamen)
@@ -126,7 +144,7 @@ namespace WebApiApoyo.Controllers.Profesor
             return Ok(rsp);
         }
         [HttpDelete]
-        [Route("Eliminar Examen")]
+        [Route("EliminarExamen")]
         public async Task<IActionResult> EliminarExamen(int id)
         {
             if (id <= 0)

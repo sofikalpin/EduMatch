@@ -781,7 +781,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfeExamenController",
     "Method": "CrearExamen",
-    "RelativePath": "api/ProfeExamen/Crear Examen",
+    "RelativePath": "api/ProfeExamen/CrearExamen",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -797,7 +797,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfeExamenController",
     "Method": "EditarActividad",
-    "RelativePath": "api/ProfeExamen/Editar por ID",
+    "RelativePath": "api/ProfeExamen/EditarporID",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -818,7 +818,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfeExamenController",
     "Method": "EliminarExamen",
-    "RelativePath": "api/ProfeExamen/Eliminar Examen",
+    "RelativePath": "api/ProfeExamen/EliminarExamen",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -834,7 +834,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfeExamenController",
     "Method": "ListaExamenPorId",
-    "RelativePath": "api/ProfeExamen/Examen ID",
+    "RelativePath": "api/ProfeExamen/ExamenID",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -850,7 +850,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfeExamenController",
     "Method": "ListarExamenes",
-    "RelativePath": "api/ProfeExamen/Lista Examenes",
+    "RelativePath": "api/ProfeExamen/ListaExamenes",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -860,7 +860,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfeExamenController",
     "Method": "ListaExamenPorTitulo",
-    "RelativePath": "api/ProfeExamen/Titulo Examen",
+    "RelativePath": "api/ProfeExamen/TituloExamen",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -971,7 +971,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfesorArticuloController",
     "Method": "ListaArticuloPorId",
-    "RelativePath": "API/ProfesorArticulo/Articulo ID",
+    "RelativePath": "API/ProfesorArticulo/ArticuloID",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -987,7 +987,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfesorArticuloController",
     "Method": "CrearArticulo",
-    "RelativePath": "API/ProfesorArticulo/Crear Articulo",
+    "RelativePath": "API/ProfesorArticulo/CrearArticulo",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -1003,7 +1003,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfesorArticuloController",
     "Method": "EditarArticulo",
-    "RelativePath": "API/ProfesorArticulo/Editar por ID",
+    "RelativePath": "API/ProfesorArticulo/EditarporID",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -1024,7 +1024,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfesorArticuloController",
     "Method": "Eliminar",
-    "RelativePath": "API/ProfesorArticulo/Eliminar Articulo",
+    "RelativePath": "API/ProfesorArticulo/EliminarArticulo",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -1040,7 +1040,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfesorArticuloController",
     "Method": "ListaActividades",
-    "RelativePath": "API/ProfesorArticulo/Lista Articulo",
+    "RelativePath": "API/ProfesorArticulo/ListaArticulo",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1050,7 +1050,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfesorArticuloController",
     "Method": "ListaActividadPorNombre",
-    "RelativePath": "API/ProfesorArticulo/Titulo Articulo",
+    "RelativePath": "API/ProfesorArticulo/TituloArticulo",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

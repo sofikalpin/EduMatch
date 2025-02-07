@@ -130,6 +130,9 @@ function App() {
         <Route path="/profesor/chat" element={<ChatProfesor />} />
         <Route path="/profesor/perfil" element={<PerfilProfesor />} />
 
+      
+       
+
 
         {/* Foro */}
         <Route path="/listaForos" element={<ListaForos/>} />

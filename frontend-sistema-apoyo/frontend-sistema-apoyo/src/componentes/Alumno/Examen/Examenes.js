@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
-import { Link, useLocation, useNavigate } from "react-router-dom"; // Asegúrate de usar useLocation
-import "./examenes.css";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import LogoInicio from "../../../logo/LogoInicio.png";
 import chatIcon from "../Imagenes/chat.png";
 import examenLogo from "../Imagenes/examen.png";
+import Header from "../HeaderAlumno";
+import Footer from "../FooterAlumno";
 
 const Examenes = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -19,7 +20,7 @@ const Examenes = () => {
   ]);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const location = useLocation(); // Usar useLocation en lugar de location global
+  const location = useLocation();
 
   useEffect(() => {
     const unidadesAsignadas = Array.from({ length: 12 }, (_, i) => `Unit ${i + 1}`);
@@ -67,56 +68,35 @@ const Examenes = () => {
   };
 
   return (
-    <div className="container">
-      {/* Barra de navegación actualizada */}
-      <nav className="header">
-        <div className="nav-links">
-          <img src={LogoInicio} alt="Logo" className="logo" />
-          <Link to="/" className="nav-item">INICIO</Link>
-          <Link to="/miscursos" className={`nav-item ${location.pathname === "/miscursos" ? "active" : ""}`}>
-            MIS CURSOS
-          </Link>
-        </div>
-        <div className="user-info">
-          <span>Maria A</span>
-          <div className="user-avatar" onClick={() => setIsMenuOpen(!isMenuOpen)}>M</div>
-          <div className="chat-icon-container">
-            <img src={chatIcon} alt="Chat" className="chat-icon" />
-          </div>
-          {isMenuOpen && (
-            <div className="mini-container">
-              <ul>
-                <li onClick={() => handleMenuOptionClick("Mi perfil")}>Mi perfil</li>
-                <li onClick={() => handleMenuOptionClick("Cambiar de cuenta")}>Cambiar de cuenta</li>
-                <li onClick={() => handleMenuOptionClick("Salir")}>Salir</li>
-              </ul>
-            </div>
-          )}
-        </div>
-      </nav>
+    <div className="bg-gray-100 min-h-screen overflow-auto flex flex-col">
+    <Header></Header>
 
       {/* Contenido */}
-      <div className="content">
-        <h1 className="title">Examenes</h1>
+      <div className="p-6 flex-grow">
+        <h1 className="text-3xl font-semibold mb-6">Examenes</h1>
 
-        <div className="main-section">
-          <div className="sidebar">
-            <div className="search-box">
-              <FaSearch className="search-icon" />
+        <div className="flex">
+          {/* Sidebar */}
+          <div className="w-1/4 bg-gray-100 p-4 rounded-lg shadow-md">
+            <div className="flex items-center space-x-2 mb-6">
+              <FaSearch className="text-gray-500" />
               <input
                 type="text"
                 placeholder="Search examen or Unit"
-                className="search-input"
+                className="w-full p-2 rounded-lg border border-gray-300 focus:outline-none"
                 value={searchQuery}
                 onChange={handleSearchChange}
               />
             </div>
-            <div className="unit-list">
+            <div className="space-y-2">
               {unidades.map((unit, index) => {
                 const unitNumber = index + 1;
                 return (
-                  <div key={index} className="unit-item">
-                    <button className="unit-link" onClick={() => handleUnitClick(unitNumber)}>
+                  <div key={index} className="text-gray-700">
+                    <button
+                      className="w-full text-left py-2 px-4 rounded-lg hover:bg-blue-100"
+                      onClick={() => handleUnitClick(unitNumber)}
+                    >
                       {unit}
                     </button>
                   </div>
@@ -125,22 +105,22 @@ const Examenes = () => {
             </div>
           </div>
 
-          <div className={`examenes ${selectedUnit ? "small-cards" : ""}`}>
+          {/* Examenes */}
+          <div className="w-3/4 ml-8">
             {isUnitEmpty ? (
-              <p className="no-examenes-message">This unit does not contain any examenes at the moment.</p>
+              <p className="text-xl text-gray-600">This unit does not contain any examenes at the moment.</p>
             ) : isSearchUnitEmpty ? (
-              <p className="no-examenes-message">
+              <p className="text-xl text-gray-600">
                 This unit does not exist at the moment. "{searchQuery}"
               </p>
             ) : (
               filteredExamenes.map((examen) => (
-                <div key={examen.id} className="examen-card">
-                  {/* Aquí es donde cambia la redirección a la página de ExamenDetalle */}
-                  <Link to={`/alumno/examenes/${examen.id}`} className="examen-link">
-                    <div className="examen-image-container">
-                      <img src={examenLogo} alt="Logo Examen" className="logo-examen" />
+                <div key={examen.id} className="mb-4">
+                  <Link to={`/alumno/examenes/${examen.id}`} className="flex items-center space-x-4 p-4 bg-white rounded-lg shadow-md hover:bg-gray-100">
+                    <div className="w-12 h-12">
+                      <img src={examenLogo} alt="Logo Examen" className="w-full h-full object-cover rounded-md" />
                     </div>
-                    <p className="examen-title">Unit {examen.unidad}: {examen.title}</p>
+                    <p className="text-lg font-medium text-gray-800">Unit {examen.unidad}: {examen.title}</p>
                   </Link>
                 </div>
               ))
@@ -148,6 +128,8 @@ const Examenes = () => {
           </div>
         </div>
       </div>
+      <div className="mt-32"></div>
+            <Footer />
     </div>
   );
 };

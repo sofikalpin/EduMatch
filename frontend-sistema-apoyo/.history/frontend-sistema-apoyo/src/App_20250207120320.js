@@ -72,7 +72,6 @@ import ExamenDetalleAlumno from "./componentes/Alumno/Examen/ExamenDetalle";
 import PerfilAlumno from "./componentes/Alumno/PerfilAlumno";
 
 
-
 function App() {
   return (
     <div className="App">
@@ -130,6 +129,21 @@ function App() {
         <Route path="/profesor/chat" element={<ChatProfesor />} />
         <Route path="/profesor/perfil" element={<PerfilProfesor />} />
 
+        {/* Alumno */}
+        <Route path="/alumno/" element={<MisCursos />} />
+        <Route path="/alumno/cursos" element={<Cursos />} />
+        <Route path="/alumno/articulos" element={<Articulos />} />
+        <Route path="/alumno/actividades" element={<Actividades />} />
+        <Route path="/alumno/examenes" element={<Examenes />} />
+        <Route path="/alumno/articulo/:id" element={<ArticuloDetalle />} />
+        <Route path="/actividades/:id" element={<ActividadDetalle />} />
+        <Route path="/alumno/examenes/:idForo" element={<ExamenDetalle />} />
+
+        {/* Foro Alumno */}
+        <Route path="/alumno/foro" element={<Foros />} /> {/* Ruta de Foros para los alumnos */}
+        <Route path="/alumno/foro/:id" element={<Nuevaconsulta />} /> {/* Ruta de Foros para los alumnos */}
+        <Route path="/alumno/foro/:idRespuesta" element={<RespuestaAlu />} /> {/* Ruta de Foros para los alumnos */}
+
 
         {/* Foro */}
         <Route path="/listaForos" element={<ListaForos/>} />
@@ -141,19 +155,6 @@ function App() {
         <Route path="/crear-consulta/:idForo" element={<NuevaConsulta />} />
         <Route path="/crear-respuesta/:idConsulta" element={<NuevaRespuesta />} />
         
-         {/* Alumno */}
-        <Route path="/alumno" element={<MisCursosAlumno />} />  
-        <Route path="/alumno/cursos" element={<CursoAlumno />} />
-        <Route path="/alumno/articulos" element={<ArticulosAlumno />} />
-        <Route path="/alumno/actividades" element={<ActividadesAlumno />} />
-        <Route path="/alumno/examen" element={<ExamenAlumno />} />
-        <Route path="/alumno/articulos/:id" element={<ArticuloDetalleAlumno />} />
-
-        <Route path="/alumno/actividades/:id" element={<ActividadDetalleAlumno />} />
-       <Route path="/alumno/examen/:id" element={<ExamenDetalleAlumno />} />
-        <Route path="/alumno/perfil" element={<PerfilAlumno />} />
-
-
         {/* Redirigir rutas no encontradas */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

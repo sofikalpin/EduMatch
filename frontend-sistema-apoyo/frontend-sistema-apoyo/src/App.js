@@ -39,17 +39,26 @@ import ExamenProfesor from "./componentes/Profesor/Examen/Examen";
 import CrearActividad from "./componentes/Profesor/Actividad/CrearActividad";
 import CrearArticulo from "./componentes/Profesor/Articulo/CrearArticulo";
 import CrearExamen from "./componentes/Profesor/Examen/CrearExamen";
-
-import ListaForoProfesor from "./componentes/Profesor/ForoProfesor/ListaForos";
-import ForoProfesor from "./componentes/Profesor/ForoProfesor/Foro";
-import NuevoForo from "./componentes/Profesor/ForoProfesor/NuevoForo";
-import Consulta from "./componentes/Profesor/ForoProfesor/Consulta";
-
 import PerfilProfesor from "./componentes/Profesor/PerfilProfesor";
-import NuevaConsulta from "./componentes/Profesor/ForoProfesor/NuevaConsulta";
-import Respuesta from "./componentes/Profesor/ForoProfesor/Respuesta";
-import NuevaRespuesta from "./componentes/Profesor/ForoProfesor/NuevaRespuesta";
 import ChatProfesor from "./componentes/Profesor/ChatProfesor/chat";
+
+//Foro
+//import ListaForoProfesor from "./componentes/Profesor/ForoProfesor/ListaForos";
+//import ForoProfesor from "./componentes/Profesor/ForoProfesor/Foro";
+//import NuevoForo from "./componentes/Profesor/ForoProfesor/NuevoForo";
+//import Consulta from "./componentes/Profesor/ForoProfesor/Consulta";
+//import NuevaConsulta from "./componentes/Profesor/ForoProfesor/NuevaConsulta";
+//import Respuesta from "./componentes/Profesor/ForoProfesor/Respuesta";
+//import NuevaRespuesta from "./componentes/Profesor/ForoProfesor/NuevaRespuesta";
+
+import ListaForos from "./componentes/Foro/ListaForos";
+import Foro from "./componentes/Foro/Foro";
+import NuevoForo from "./componentes/Foro/NuevoForo";
+import Consulta from "./componentes/Foro/Consulta";
+import NuevaConsulta from "./componentes/Foro/NuevaConsulta";
+import Respuesta from "./componentes/Foro/Respuesta";
+import NuevaRespuesta from "./componentes/Foro/NuevaRespuesta";
+
 
 // Alumno
 import MisCursos from "./componentes/Alumno/Miscursos/Miscursos";
@@ -105,18 +114,23 @@ function App() {
         <Route path="/profesor/cursos/detalle/:id/actividad" element={<ActividadProfesor />} />
         <Route path="/profesor/cursos/detalle/:id/articulos" element={<ArticuloProfesor />} />
         <Route path="/profesor/cursos/detalle/:id/examen" element={<ExamenProfesor />} />
+        {/*
+        
         <Route path="/profesor/cursos/detalle/:id/foros" element={<ListaForoProfesor />} />
         <Route path="/profesor/cursos/detalle/:id/foros/:idForo" element={<ForoProfesor />} />
         <Route path="/profesor/cursos/detalle/:id/foros/:idForo/:idConsulta" element={<Consulta />} />
-
         <Route path="/crear-foro" element={<NuevoForo />} />
         <Route path="/crear-consulta/:idForo" element={<NuevaConsulta />} />
         <Route path="/crear-respuesta/:idConsulta" element={<NuevaRespuesta />} />
+        <Route path="/profesor/consulta" element={<Consulta />} />
+        <Route path="/profesor/respuesta" element={<Respuesta />} />
+
+        */}
+
+
         <Route path="/crear-actividad" element={<CrearActividad />} />
         <Route path="/crear-articulo" element={<CrearArticulo />} />
         <Route path="/crear-examen" element={<CrearExamen />} />
-        <Route path="/profesor/consulta" element={<Consulta />} />
-        <Route path="/profesor/respuesta" element={<Respuesta />} />
         <Route path="/profesor/chat" element={<ChatProfesor />} />
         <Route path="/profesor/perfil" element={<PerfilProfesor />} />
 
@@ -134,6 +148,17 @@ function App() {
         <Route path="/alumno/foro" element={<Foros />} /> {/* Ruta de Foros para los alumnos */}
         <Route path="/alumno/foro/:id" element={<Nuevaconsulta />} /> {/* Ruta de Foros para los alumnos */}
         <Route path="/alumno/foro/:idRespuesta" element={<RespuestaAlu />} /> {/* Ruta de Foros para los alumnos */}
+
+
+        {/* Foro */}
+        <Route path="/listaForos" element={<ListaForos/>} />
+        <Route path="/listaForos/:idForo" element={<Foro/>} />
+        <Route path="/listaForos/:idForo/:idConsulta" element={<Consulta/>}/>
+        <Route path="/listaForos/:idForo/:idConsulta/:idRespuesta" element={<Respuesta/>} />
+
+        <Route path="/crear-foro" element={<NuevoForo />} />
+        <Route path="/crear-consulta/:idForo" element={<NuevaConsulta />} />
+        <Route path="/crear-respuesta/:idConsulta" element={<NuevaRespuesta />} />
         
         {/* Redirigir rutas no encontradas */}
         <Route path="*" element={<Navigate to="/" />} />

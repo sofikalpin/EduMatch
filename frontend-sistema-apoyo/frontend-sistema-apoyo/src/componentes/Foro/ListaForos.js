@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Plus, MessageSquare, Trash2, ChevronRight } from "lucide-react";
-import HeaderForo from "../HeaderProfesor";
-import logo from "../../../logo/LogoInicio.png";
-import Footer from "../FooterProfesor";
+import logo from "../../logo/LogoInicio.png";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react';
 
@@ -67,7 +65,6 @@ const ListarForos = () => {
   
     return (
       <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white">
-        <HeaderForo logo={logo} />
         <button
           onClick={() => navigate(-1)}
           className="mb-6 flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium self-start mt-3"
@@ -132,11 +129,6 @@ const ListarForos = () => {
             </div>
 
         </main>   
-  
-        <Footer 
-          socialIcons={socialIcons}
-          onNavigation={navigate}
-        />
       </div>
     );
   };

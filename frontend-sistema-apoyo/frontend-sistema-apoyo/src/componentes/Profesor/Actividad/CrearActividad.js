@@ -57,7 +57,7 @@ const CrearActividad = () => {
     
       const nuevaActividad = {
         idactividad: 0,
-        idusuario: idusuario,
+        //idusuario: idusuario,
         nombre: nombre.trim(),
         descripcion: descripcion.trim(),
         idnivel: idCursada,

@@ -1033,3 +1033,4 @@ C:\Users\nopef\OneDrive\Documents\UTN\3 Año\Desarrollo de Software\EduMatch\Bac
 C:\Users\nopef\OneDrive\Documents\UTN\3 Año\Desarrollo de Software\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\WebApiApoyo.pdb
 C:\Users\nopef\OneDrive\Documents\UTN\3 Año\Desarrollo de Software\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\WebApiApoyo.genruntimeconfig.cache
 C:\Users\nopef\OneDrive\Documents\UTN\3 Año\Desarrollo de Software\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\ref\WebApiApoyo.dll
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\WebApiApoyo.MvcApplicationPartsAssemblyInfo.cs

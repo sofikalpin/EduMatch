@@ -195,7 +195,7 @@ namespace WebApiApoyo.Controllers.Administrador
                 }
 
                 // Hashear la contraseña antes de guardar
-                usuario.ContraseñaHash = _usuarioService.HashearContrasena(usuario.ContraseñaHash);
+                usuario.ContraseñaHash = _usuarioService.CubreContrasena(usuario.ContraseñaHash);
                 // Todo profesor que se cree no tendra autorizacion hasta que lo permita el administrador
 
 

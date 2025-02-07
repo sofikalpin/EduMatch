@@ -129,7 +129,7 @@ namespace WebApiApoyo.Controllers.Administrador
                 }
 
                 // Hashear la contraseña antes de guardar
-                usuario.ContraseñaHash = _usuarioService.HashearContrasena(usuario.ContraseñaHash);
+                usuario.ContraseñaHash = _usuarioService.CubreContrasena(usuario.ContraseñaHash);
 
                 if (string.IsNullOrEmpty(usuario.ContraseñaHash))
                 {

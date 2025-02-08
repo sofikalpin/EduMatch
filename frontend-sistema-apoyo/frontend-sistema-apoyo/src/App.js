@@ -1,5 +1,7 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import ProtegerRuta from "./ProtectedRoute";
+import { UserProvider } from "./context/userContext";
 import "./App.css";
 
 // Importar los componentes
@@ -43,14 +45,6 @@ import PerfilProfesor from "./componentes/Profesor/PerfilProfesor";
 import ChatProfesor from "./componentes/Profesor/ChatProfesor/chat";
 
 //Foro
-//import ListaForoProfesor from "./componentes/Profesor/ForoProfesor/ListaForos";
-//import ForoProfesor from "./componentes/Profesor/ForoProfesor/Foro";
-//import NuevoForo from "./componentes/Profesor/ForoProfesor/NuevoForo";
-//import Consulta from "./componentes/Profesor/ForoProfesor/Consulta";
-//import NuevaConsulta from "./componentes/Profesor/ForoProfesor/NuevaConsulta";
-//import Respuesta from "./componentes/Profesor/ForoProfesor/Respuesta";
-//import NuevaRespuesta from "./componentes/Profesor/ForoProfesor/NuevaRespuesta";
-
 import ListaForos from "./componentes/Foro/ListaForos";
 import Foro from "./componentes/Foro/Foro";
 import NuevoForo from "./componentes/Foro/NuevoForo";
@@ -58,7 +52,6 @@ import Consulta from "./componentes/Foro/Consulta";
 import NuevaConsulta from "./componentes/Foro/NuevaConsulta";
 import Respuesta from "./componentes/Foro/Respuesta";
 import NuevaRespuesta from "./componentes/Foro/NuevaRespuesta";
-
 
 //Alumno
 import MisCursosAlumno from "./componentes/Alumno/Cursos/MisCursos";
@@ -75,89 +68,80 @@ import PerfilAlumno from "./componentes/Alumno/PerfilAlumno";
 
 function App() {
   return (
-    <div className="App">
-      <Routes>
-        {/* Iniciar Sesión - Registrarse */}
-        <Route path="/iniciarsesion" element={<Login />} />
-        <Route path="/registrarse" element={<Registrar />} />
-
-        {/* Inicio */}
-        <Route path="/" element={<Inicio />} />
-        <Route path="/informacion" element={<Informacion />} />
-        <Route path="/inicioprofesor" element={<InicioProfesor />} />
-        <Route path="/nivelinicial" element={<NivelInicial />} />
-        <Route path="/nivelintermedio" element={<NivelIntermedio />} />
-        <Route path="/nivelavanzado" element={<NivelAvanzado />} />
-        <Route path="/contra" element={<ResetPassword />} />
-
-        {/* Administrador */}
-        <Route path="/administrador" element={<Administrador />} />
-        <Route path="/administrador/listaProfesores" element={<ListaProfesores />} />
-        <Route path="/administrador/listaProfesores/nuevoProfesor" element={<NuevoProfesor />} />
-        <Route path="/administrador/editarProfesor" element={<EditarProfesor />} />
-        <Route path="/administrador/cargarProfesor" element={<CargarProfesor />} />
-        <Route path="/administrador/listaAlumnos" element={<ListaAlumnos />} />
-        <Route path="/administrador/listaAlumnos/nuevoAlumno" element={<NuevoAlumno />} />
-        <Route path="/administrador/editarAlumno" element={<EditarAlumno />} />
-        <Route path="/administrador/perfilAdministrador" element={<PerfilAdministrador />} />
-        <Route path="/administrador/chatAdmin" element={<ChatAdmin />} />
-
-        {/* Profesor */}
-        <Route path="/profesor" element={<InicioProfesorPage />} />
-        <Route path="/profesor/alumnos" element={<AlumnosProfesor />} />
-        <Route path="/profesor/cursos" element={<CursosProfesor />} />
-        <Route path="/profesor/cursos/detalle/:id" element={<CursoDetalle />} />
-        <Route path="/profesor/cursos/detalle/:id/actividad" element={<ActividadProfesor />} />
-        <Route path="/profesor/cursos/detalle/:id/articulos" element={<ArticuloProfesor />} />
-        <Route path="/profesor/cursos/detalle/:id/examen" element={<ExamenProfesor />} />
-        {/*
-        
-        <Route path="/profesor/cursos/detalle/:id/foros" element={<ListaForoProfesor />} />
-        <Route path="/profesor/cursos/detalle/:id/foros/:idForo" element={<ForoProfesor />} />
-        <Route path="/profesor/cursos/detalle/:id/foros/:idForo/:idConsulta" element={<Consulta />} />
-        <Route path="/crear-foro" element={<NuevoForo />} />
-        <Route path="/crear-consulta/:idForo" element={<NuevaConsulta />} />
-        <Route path="/crear-respuesta/:idConsulta" element={<NuevaRespuesta />} />
-        <Route path="/profesor/consulta" element={<Consulta />} />
-        <Route path="/profesor/respuesta" element={<Respuesta />} />
-
-        */}
+    <UserProvider>
+      <div className="App">
+        <Routes>
+          {/* Rutas Publicas */}
+          {/* Iniciar Sesión - Registrarse */}
+          <Route path="/iniciarsesion" element={<Login />} />
+          <Route path="/registrarse" element={<Registrar />} />
 
 
-        <Route path="/crear-actividad" element={<CrearActividad />} />
-        <Route path="/crear-articulo" element={<CrearArticulo />} />
-        <Route path="/crear-examen" element={<CrearExamen />} />
-        <Route path="/profesor/chat" element={<ChatProfesor />} />
-        <Route path="/profesor/perfil" element={<PerfilProfesor />} />
+          {/* Rutas protegidas (Solo lo pueden ver lo que inician sesion) */}
+            {/* Inicio */}
+            <Route path="/" element={<ProtegerRuta><Inicio /></ProtegerRuta>} />
+            <Route path="/informacion" element={<Informacion />} />
+            <Route path="/inicioprofesor" element={<InicioProfesor />} />
+            <Route path="/nivelinicial" element={<NivelInicial />} />
+            <Route path="/nivelintermedio" element={<NivelIntermedio />} />
+            <Route path="/nivelavanzado" element={<NivelAvanzado />} />
+            <Route path="/contra" element={<ResetPassword />} />
+
+            {/* Administrador */}
+            <Route path="/administrador" element={<ProtegerRuta><Administrador /></ProtegerRuta>} />
+            <Route path="/administrador/listaProfesores" element={<ProtegerRuta><ListaProfesores /></ProtegerRuta>} />
+            <Route path="/administrador/listaProfesores/nuevoProfesor" element={<ProtegerRuta><NuevoProfesor /></ProtegerRuta>} />
+            <Route path="/administrador/editarProfesor" element={<ProtegerRuta><EditarProfesor /></ProtegerRuta>} />
+            <Route path="/administrador/cargarProfesor" element={<ProtegerRuta><CargarProfesor /></ProtegerRuta>} />
+            <Route path="/administrador/listaAlumnos" element={<ProtegerRuta><ListaAlumnos /></ProtegerRuta>} />
+            <Route path="/administrador/listaAlumnos/nuevoAlumno" element={<ProtegerRuta><NuevoAlumno /></ProtegerRuta>} />
+            <Route path="/administrador/editarAlumno" element={<ProtegerRuta><EditarAlumno /></ProtegerRuta>} />
+            <Route path="/administrador/perfilAdministrador" element={<ProtegerRuta><PerfilAdministrador /></ProtegerRuta>} />
+            <Route path="/administrador/chatAdmin" element={<ProtegerRuta><ChatAdmin /></ProtegerRuta>} />
+
+            {/* Profesor */}
+            <Route path="/profesor" element={<ProtegerRuta><InicioProfesorPage /></ProtegerRuta>} />
+            <Route path="/profesor/alumnos" element={<ProtegerRuta><AlumnosProfesor /></ProtegerRuta>} />
+            <Route path="/profesor/cursos" element={<ProtegerRuta><CursosProfesor /></ProtegerRuta>} />
+            <Route path="/profesor/cursos/detalle/:id" element={<ProtegerRuta><CursoDetalle /></ProtegerRuta>} />
+            <Route path="/profesor/cursos/detalle/:id/actividad" element={<ProtegerRuta><ActividadProfesor /></ProtegerRuta>} />
+            <Route path="/profesor/cursos/detalle/:id/articulos" element={<ProtegerRuta><ArticuloProfesor /></ProtegerRuta>} />
+            <Route path="/profesor/cursos/detalle/:id/examen" element={<ProtegerRuta><ExamenProfesor /></ProtegerRuta>} />
+                  
+            <Route path="/crear-actividad" element={<ProtegerRuta><CrearActividad /></ProtegerRuta>} />
+            <Route path="/crear-articulo" element={<ProtegerRuta><CrearArticulo /></ProtegerRuta>} />
+            <Route path="/crear-examen" element={<ProtegerRuta><CrearExamen /></ProtegerRuta>} />
+            <Route path="/profesor/chat" element={<ProtegerRuta><ChatProfesor /></ProtegerRuta>} />
+            <Route path="/profesor/perfil" element={<ProtegerRuta><PerfilProfesor /></ProtegerRuta>} />
+
+            {/* Foro */}
+            <Route path="/listaForos" element={<ProtegerRuta><ListaForos/></ProtegerRuta>} />
+            <Route path="/listaForos/:idForo" element={<ProtegerRuta><Foro/></ProtegerRuta>} />
+            <Route path="/listaForos/:idForo/:idConsulta" element={<ProtegerRuta><Consulta/></ProtegerRuta>}/>
+            <Route path="/listaForos/:idForo/:idConsulta/:idRespuesta" element={<ProtegerRuta><Respuesta/></ProtegerRuta>} />
+
+            <Route path="/crear-foro" element={<ProtegerRuta><NuevoForo /></ProtegerRuta>} />
+            <Route path="/crear-consulta/:idForo" element={<ProtegerRuta><NuevaConsulta /></ProtegerRuta>} />
+            <Route path="/crear-respuesta/:idConsulta" element={<ProtegerRuta><NuevaRespuesta /></ProtegerRuta>} />
+                  
+            {/* Alumno */}
+            <Route path="/alumno" element={<ProtegerRuta><MisCursosAlumno /></ProtegerRuta>} />  
+            <Route path="/alumno/cursos" element={<ProtegerRuta><CursoAlumno /></ProtegerRuta>} />
+            <Route path="/alumno/articulos" element={<ProtegerRuta><ArticulosAlumno /></ProtegerRuta>} />
+            <Route path="/alumno/actividades" element={<ProtegerRuta><ActividadesAlumno /></ProtegerRuta>} />
+            <Route path="/alumno/examen" element={<ProtegerRuta><ExamenAlumno /></ProtegerRuta>} />
+            <Route path="/alumno/articulos/:id" element={<ProtegerRuta><ArticuloDetalleAlumno /></ProtegerRuta>} />
+
+            <Route path="/alumno/actividades/:id" element={<ProtegerRuta><ActividadDetalleAlumno /></ProtegerRuta>} />
+            <Route path="/alumno/examen/:id" element={<ProtegerRuta><ExamenDetalleAlumno /></ProtegerRuta>} />
+            <Route path="/alumno/perfil" element={<ProtegerRuta><PerfilAlumno /></ProtegerRuta>} />
 
 
-        {/* Foro */}
-        <Route path="/listaForos" element={<ListaForos/>} />
-        <Route path="/listaForos/:idForo" element={<Foro/>} />
-        <Route path="/listaForos/:idForo/:idConsulta" element={<Consulta/>}/>
-        <Route path="/listaForos/:idForo/:idConsulta/:idRespuesta" element={<Respuesta/>} />
-
-        <Route path="/crear-foro" element={<NuevoForo />} />
-        <Route path="/crear-consulta/:idForo" element={<NuevaConsulta />} />
-        <Route path="/crear-respuesta/:idConsulta" element={<NuevaRespuesta />} />
-        
-         {/* Alumno */}
-        <Route path="/alumno" element={<MisCursosAlumno />} />  
-        <Route path="/alumno/cursos" element={<CursoAlumno />} />
-        <Route path="/alumno/articulos" element={<ArticulosAlumno />} />
-        <Route path="/alumno/actividades" element={<ActividadesAlumno />} />
-        <Route path="/alumno/examen" element={<ExamenAlumno />} />
-        <Route path="/alumno/articulos/:id" element={<ArticuloDetalleAlumno />} />
-
-        <Route path="/alumno/actividades/:id" element={<ActividadDetalleAlumno />} />
-       <Route path="/alumno/examen/:id" element={<ExamenDetalleAlumno />} />
-        <Route path="/alumno/perfil" element={<PerfilAlumno />} />
-
-
-        {/* Redirigir rutas no encontradas */}
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </div>
+            {/* Redirigir rutas no encontradas */}
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </div>          
+    </UserProvider>   
   );
 }
 

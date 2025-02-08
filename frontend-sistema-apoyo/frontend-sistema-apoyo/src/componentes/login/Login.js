@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import logo from "../../logo/LogoInicio.png";
 import Foto from './Mujer con Computadora.jpg';
+import { useUser } from "../../context/userContext";
 import { useNavigate, Link } from 'react-router-dom';
+import axios from "axios";
 import ForgotPassword from './ForgotPassword'; // Importamos el componente ForgotPassword
 
 // Función que maneja el inicio de sesión
 const handleLogin = async ({ email, password }) => {
   try {
-    const response = await fetch('http://localhost:5228/api/Usuario/IniciarSesion', {
+    const response = await fetch('http://localhost:5228/API/Usuario/IniciarSesion', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,10 +44,13 @@ const saveUserSession = (token, rememberMe) => {
 
 // Componente principal Login
 const Login = () => {
+
+  const { login } = useUser();
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
-    contraseña: '',
+    password: '',
     rememberMe: false
   });
 
@@ -82,8 +87,7 @@ const Login = () => {
     const newErrors = {};
     if (!validateEmail(formData.email)) {
       newErrors.email = 'Por favor ingresa un correo electrónico válido';
-    }
-   
+    } 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -99,10 +103,16 @@ const Login = () => {
     try {
       const response = await handleLogin({
         email: formData.email,
-        password: formData.contraseña
+        password: formData.password
       });
   
       console.log('Respuesta del login:', response);
+
+      //Guardar sesion con useUser
+      await login({
+        email: formData.email,
+        password: formData.password,
+      });
   
       saveUserSession(response.token, formData.rememberMe);
       navigate('/dashboard');
@@ -164,8 +174,8 @@ const Login = () => {
                     className="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     id="contraseña"
                     type={showPassword ? 'text' : 'password'}
-                    name="contraseña"
-                    value={formData.contraseña}
+                    name="password"
+                    value={formData.password}
                     onChange={handleChange}
                     required
                   />
@@ -173,12 +183,13 @@ const Login = () => {
                     type="button"
                     onClick={togglePasswordVisibility}
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
+                    aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
                   >
                     {showPassword ? 'Ocultar' : 'Mostrar'}
                   </button>
                 </div>
-                {errors.contraseña && (
-                  <span className="text-red-500 text-sm">{errors.contraseña}</span>
+                {errors.password && (
+                  <span className="text-red-500 text-sm">{errors.password}</span>
                 )}
               </div>
 
@@ -196,7 +207,7 @@ const Login = () => {
               {/* Botón de inicio de sesión */}
               <button 
                 type="submit" 
-                className="w-full p-3 mt-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700"
+                className={`w-full p-3 mt-4 text-white font-semibold rounded-lg ${isLoading ? 'bg-gray-400' : 'bg-blue-600 hover:bg-blue-700'}`}
                 disabled={isLoading}
               >
                 {isLoading ? 'Iniciando sesión...' : 'Iniciar sesión'}

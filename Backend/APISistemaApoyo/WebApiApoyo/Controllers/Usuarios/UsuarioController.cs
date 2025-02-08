@@ -37,7 +37,7 @@ public class UsuarioController : ControllerBase
         _context = context; // Inicializar el DbContext
     }
 
-    [HttpGet("Lista Usuarios")]
+    [HttpGet("ListaUsuarios")]
     public async Task<IActionResult> Lista()
     {
         var rsp = new Response<List<UsuarioDTO>>();
@@ -99,6 +99,45 @@ public class UsuarioController : ControllerBase
         }
     }
 
+    [HttpPost]
+    [Route("InformacionUsuario")]
+    public async Task<IActionResult> InformacionUsuario([FromBody] LoginDTO login) 
+    {
+        var rsp = new Response<UsuarioDTO>();
+        try
+        {
+            // Verificación de que el login no sea nulo y los campos necesarios estén presentes
+            if (login == null || string.IsNullOrEmpty(login.Correo) || string.IsNullOrEmpty(login.ContrasenaHash))
+            {
+                rsp.status = false;
+                rsp.msg = "El correo y la contraseña son obligatorios.";
+                return BadRequest(rsp);
+            }
+
+            var usuario = await _usuarioService.ObtenerUsuarioPorCorreo(login.Correo);
+
+            if (usuario == null)
+            {
+                rsp.status = false;
+                rsp.msg = "Correo o contraseña incorrectos.";
+                return Unauthorized(rsp);
+            }
+
+            rsp.status = true;
+            rsp.value = usuario;
+            return Ok(rsp);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error al iniciar sesión para correo: {Correo}", login?.Correo);
+            return StatusCode(500, new Response<SesionDTO>
+            {
+                status = false,
+                msg = "Error interno del servidor"
+            });
+        }
+    }
+
     private string GenerarToken(string correo)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
@@ -120,6 +159,7 @@ public class UsuarioController : ControllerBase
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
     }
+
     [HttpPost("GuardarUsuario")]
     public async Task<IActionResult> Guardar([FromBody] UsuarioDTO usuario)
     {
@@ -135,7 +175,16 @@ public class UsuarioController : ControllerBase
                 return BadRequest(rsp);
             }
 
-            usuario.Idusuario = idMaximo;
+            var listausuario = await _usuarioService.Lista();
+
+            if (listausuario.Any(u => u.Correo == usuario.Correo))
+            {
+                rsp.status = false;
+                rsp.msg = "El usuario debe tener un mail diferente.";
+                return BadRequest(rsp);
+            }
+
+           
             if (usuario.Idrol == 1)
             {
                 usuario.AutProf = false;
@@ -143,8 +192,9 @@ public class UsuarioController : ControllerBase
             else
             {
                 usuario.AutProf = null;
-            }
-
+            } 
+            
+            usuario.Idusuario = idMaximo;
             rsp.status = true;
             rsp.value = await _usuarioService.Crear(usuario);
         }

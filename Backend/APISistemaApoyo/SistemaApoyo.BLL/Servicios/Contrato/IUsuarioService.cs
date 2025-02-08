@@ -20,6 +20,7 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
         Task<bool> Eliminar(int id);
 
         Task<UsuarioDTO> ObtenerUsuarioPorID(int idusuario);
+        Task<UsuarioDTO> ObtenerUsuarioPorCorreo(string correo);
 
         Task<bool> ReestablecerContraseña(string token, string nuevaContraseña);
 

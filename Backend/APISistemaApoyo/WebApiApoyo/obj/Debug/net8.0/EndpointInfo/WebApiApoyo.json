@@ -1690,7 +1690,7 @@
         }
       }
     },
-    "/API/Usuario/Lista Usuarios": {
+    "/API/Usuario/ListaUsuarios": {
       "get": {
         "tags": [
           "Usuario"
@@ -1703,6 +1703,37 @@
       }
     },
     "/API/Usuario/IniciarSesion": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/Usuario/InformacionUsuario": {
       "post": {
         "tags": [
           "Usuario"

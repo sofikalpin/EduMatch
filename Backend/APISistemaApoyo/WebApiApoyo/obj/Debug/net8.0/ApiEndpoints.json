@@ -1149,6 +1149,22 @@
   },
   {
     "ContainingType": "UsuarioController",
+    "Method": "InformacionUsuario",
+    "RelativePath": "API/Usuario/InformacionUsuario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login",
+        "Type": "SistemaApoyo.DTO.LoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
     "Method": "IniciarSesion",
     "RelativePath": "API/Usuario/IniciarSesion",
     "HttpMethod": "POST",
@@ -1166,7 +1182,7 @@
   {
     "ContainingType": "UsuarioController",
     "Method": "Lista",
-    "RelativePath": "API/Usuario/Lista Usuarios",
+    "RelativePath": "API/Usuario/ListaUsuarios",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

@@ -185,8 +185,11 @@ namespace SistemaApoyo.BLL.Servicios
                 {
                     return new SesionDTO
                     {
+                        IdUsuario = usuario.Idusuario,
                         NombreCompleto = usuario.Nombrecompleto,
-                        Correo = usuario.Correo
+                        Correo = usuario.Correo,
+                        Rol = usuario.Idrol,
+                        Nivel = usuario.Idnivel,
                     };
                 }
                 throw new UnauthorizedAccessException("Credenciales inválidas");
@@ -360,15 +363,5 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-
-
-
-
-
-
     }
-
-
-
-
 }

@@ -71,7 +71,7 @@ namespace SistemaApoyo.Utility
                 .ForMember(dest => dest.IdUsuario, opt => opt.MapFrom(src => src.Idusuario))
                 .ForMember(dest => dest.NombreCompleto, opt => opt.MapFrom(src => src.Nombrecompleto))
                 .ForMember(dest => dest.Correo, opt => opt.MapFrom(src => src.Correo))
-                .ForMember(destino => destino.RolDescripcion,
+                .ForMember(destino => destino.Rol,
                            opt => opt.MapFrom(origen => origen.IdrolNavigation.Nombre)); 
             CreateMap<UsuarioDTO, Usuario>()
                 .ForMember(destino => destino.IdrolNavigation,

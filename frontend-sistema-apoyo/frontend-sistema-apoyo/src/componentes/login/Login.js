@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../logo/LogoInicio.png";
 import Foto from './Mujer con Computadora.jpg';
 import { useUser } from "../../context/userContext";
 import { useNavigate, Link } from 'react-router-dom';
-import axios from "axios";
 import ForgotPassword from './ForgotPassword'; // Importamos el componente ForgotPassword
 
 // Función que maneja el inicio de sesión
 const handleLogin = async ({ email, password }) => {
+
   try {
     const response = await fetch('http://localhost:5228/API/Usuario/IniciarSesion', {
       method: 'POST',
@@ -44,9 +44,7 @@ const saveUserSession = (token, rememberMe) => {
 
 // Componente principal Login
 const Login = () => {
-
-  const { login } = useUser();
-
+  const { user, login } = useUser();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
@@ -115,7 +113,20 @@ const Login = () => {
       });
   
       saveUserSession(response.token, formData.rememberMe);
-      navigate('/dashboard');
+
+      const idrol = response.idrol;
+
+      //Dirigir al iniciar sesion segun los datos de useUser
+      if (idrol === 1) {
+        navigate("/profesor");
+      } else if (idrol === 2) {
+          navigate("/alumno");
+      } else if (idrol === 3) {
+          navigate("/administrador"); 
+      } else {
+          navigate("/iniciarsesion"); // Redirigir a login si no hay rol válido
+      }
+
     } catch (error) {
       console.error('Error en submit:', error);
       setErrors({

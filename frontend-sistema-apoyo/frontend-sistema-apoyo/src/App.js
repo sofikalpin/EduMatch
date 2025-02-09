@@ -73,13 +73,13 @@ function App() {
         <Routes>
           {/* Rutas Publicas */}
           {/* Iniciar Sesión - Registrarse */}
-          <Route path="/iniciarsesion" element={<Login />} />
+          <Route path="/iniciarsesion" element={ <Login />} />
           <Route path="/registrarse" element={<Registrar />} />
 
 
           {/* Rutas protegidas (Solo lo pueden ver lo que inician sesion) */}
             {/* Inicio */}
-            <Route path="/" element={<ProtegerRuta><Inicio /></ProtegerRuta>} />
+            <Route path="/" element={<Inicio />} />
             <Route path="/informacion" element={<Informacion />} />
             <Route path="/inicioprofesor" element={<InicioProfesor />} />
             <Route path="/nivelinicial" element={<NivelInicial />} />

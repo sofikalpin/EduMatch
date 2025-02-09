@@ -20,7 +20,7 @@ namespace SistemaApoyo.BLL.Validaciones
                 .NotEmpty().WithMessage("El correo es obligatorio.")
                 .EmailAddress().WithMessage("El formato del correo no es válido.");
 
-            RuleFor(s => s.RolDescripcion)
+            RuleFor(s => s.Rol)
                 .NotNull().WithMessage("El rol no debe estar vacio");
         }
     }

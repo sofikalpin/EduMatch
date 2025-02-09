@@ -9,7 +9,12 @@ const ProtegerRuta = ({ children }) => {
         return <p>Cargando...</p>;
     }
 
-    return user ? children : <Navigate to="/iniciarsesion" />; 
+    // Si no hay usuario, redirigimos al login
+    if (!user) {
+        return <Navigate to="/iniciarsesion" />;
+    }
+
+    return children;
 };
 
 export default ProtegerRuta;

@@ -19,7 +19,7 @@ const tarjetas = [
   { id: 1, nombre: "Actividad", descripcion: "Ver actividades relacionadas", imagen: actividad, link: "actividad" },
   { id: 2, nombre: "Artículos", descripcion: "Explorar artículos", imagen: articulos, link: "articulos" },
   { id: 3, nombre: "Exámenes", descripcion: "Acceder al examen", imagen: examen, link: "examen" },
-  { id: 4, nombre: "Foro", descripcion: "Participar en el foro de consulta", imagen: foro, link: "foro" },
+  { id: 4, nombre: "Foro", descripcion: "Participar en el foro de consulta", imagen: foro, link: "/listaForos" },
 ];
 
 const CursoDetalle = () => {

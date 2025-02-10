@@ -834,7 +834,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfeExamenController",
     "Method": "ListaExamenPorId",
-    "RelativePath": "api/ProfeExamen/ExamenID",
+    "RelativePath": "api/ProfeExamen/ExamenIDProfesor",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -971,7 +971,7 @@
   {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfesorArticuloController",
     "Method": "ListaArticuloPorId",
-    "RelativePath": "API/ProfesorArticulo/ArticuloID",
+    "RelativePath": "API/ProfesorArticulo/ArticuloIDProfesor",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

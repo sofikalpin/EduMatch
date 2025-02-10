@@ -3,6 +3,7 @@ import { ArrowLeft, Send } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom'; 
 import logo from '../../logo/LogoInicio.png';
 import axios from 'axios';
+import { useUser } from "../../context/userContext.js";
 
 
 const socialIcons = [
@@ -15,6 +16,7 @@ const socialIcons = [
 
 const NuevaConsulta = () => {
   //const { idForo } = useParams();
+  const { user } = useUser();
   const [titulo, setTitulo] = useState('');
   const [contenido, setContenido] = useState('');
   const [mensaje, setMensaje] = useState('');
@@ -22,7 +24,7 @@ const NuevaConsulta = () => {
   
   const navigate = useNavigate(); // Inicializa el hook useNavigate
 
-  const idusuario = 5;
+  const idusuario = user?.idUsuario;
   const idForo = 5;
 
   const hadleNuevaConsulta = async(e) => {

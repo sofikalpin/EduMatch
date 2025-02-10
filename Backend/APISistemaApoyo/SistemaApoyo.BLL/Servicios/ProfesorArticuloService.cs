@@ -58,16 +58,16 @@ namespace SistemaApoyo.BLL.Servicios
                 throw new Exception("Error al obtener el articulo por titulo.", ex);
             }
         }
-        public async Task<ArticuloDTO> ObteneArticulorPorId(int id)
+        public async Task<List<ArticuloDTO>> ObteneArticulorPorIdProfesor(int id)
         {
             try
             {
-                var articulo = await _articuloRepositorio.Obtener(a => a.Idarticulo == id);
+                var articulo = await _articuloRepositorio.ObtenerTodos(a => a.Idusuario == id);
                 if (articulo == null)
                 {
                     throw new InvalidOperationException("Articulo no encontrado.");
                 }
-                return _mapper.Map<ArticuloDTO>(articulo);
+                return _mapper.Map<List<ArticuloDTO>>(articulo);
             }
             catch (Exception ex)
             {

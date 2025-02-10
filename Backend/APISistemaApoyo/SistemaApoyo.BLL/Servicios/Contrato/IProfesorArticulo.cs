@@ -12,7 +12,7 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
     {
         Task<List<ArticuloDTO>> ConsultarArticulo();
         Task<List<ArticuloDTO>> ConsultarporTitulo(string titulo);
-        Task<ArticuloDTO> ObteneArticulorPorId(int id);
+        Task<List<ArticuloDTO>> ObteneArticulorPorIdProfesor(int id);
         Task<bool> CrearArticulo(ArticuloDTO articulos);
         Task<bool> ActualizarArticulo(ArticuloDTO articulo);
         Task<bool> EliminarArticulo(int id);

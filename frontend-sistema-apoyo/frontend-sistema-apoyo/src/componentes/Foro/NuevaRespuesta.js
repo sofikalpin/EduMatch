@@ -3,6 +3,7 @@ import { ArrowLeft, Send } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom'; 
 import logo from '../../logo/LogoInicio.png';
 import axios from 'axios';
+import { useUser } from "../../context/userContext.js";
 
 
 const socialIcons = [
@@ -15,13 +16,14 @@ const socialIcons = [
 
 const NuevaRespuesta = () => {
   //const { idConsulta } = useParams();
+  const { user } = useUser();
   const [contenido, setContenido] = useState('');
   const [mensaje, setMensaje] = useState('');
   const [loading, setLoading] = useState(false);
   
   const navigate = useNavigate(); // Inicializa el hook useNavigate
 
-  const idusuario = 5;
+  const idusuario = user?.idUsuario;
   const idconsulta = 6;
 
   const hadleNuevaRespuesta = async(e) => {

@@ -66,7 +66,7 @@ namespace WebApiApoyo.Controllers.Profesor
         }
 
         [HttpGet]
-        [Route("ArticuloID")]
+        [Route("ArticuloIDProfesor")]
         public async Task<IActionResult> ListaArticuloPorId(int id)
         {
             if (id <= 0)
@@ -74,11 +74,11 @@ namespace WebApiApoyo.Controllers.Profesor
                 return BadRequest("El ID proporcionado no es válido.");
             }
 
-            var rsp = new Response<ArticuloDTO>();
+            var rsp = new Response<List<ArticuloDTO>>();
             try
             {
                 rsp.status = true;
-                rsp.value = await _profesorArticuloService.ObteneArticulorPorId(id);
+                rsp.value = await _profesorArticuloService.ObteneArticulorPorIdProfesor(id);
             }
             catch (Exception ex)
             {

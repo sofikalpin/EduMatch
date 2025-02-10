@@ -1199,7 +1199,7 @@
         }
       }
     },
-    "/api/ProfeExamen/ExamenID": {
+    "/api/ProfeExamen/ExamenIDProfesor": {
       "get": {
         "tags": [
           "ProfeExamen"
@@ -1497,7 +1497,7 @@
         }
       }
     },
-    "/API/ProfesorArticulo/ArticuloID": {
+    "/API/ProfesorArticulo/ArticuloIDProfesor": {
       "get": {
         "tags": [
           "ProfesorArticulo"

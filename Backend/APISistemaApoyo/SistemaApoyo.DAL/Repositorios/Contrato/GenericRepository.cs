@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using SistemaApoyo.DAL;
 using SistemaApoyo.Model;
 
-
 namespace SistemaApoyo.DAL.Repositorios
 {
     public class GenericRepository<TModel> : IGenericRepository<TModel> where TModel : class
@@ -93,5 +92,11 @@ namespace SistemaApoyo.DAL.Repositorios
                 throw;
             }
         }
+
+        public async Task<List<TModel>> ObtenerTodos(Expression<Func<TModel, bool>> filtro)
+        {
+            return await _dbContext.Set<TModel>().Where(filtro).ToListAsync();
+        }
+
     }
 }

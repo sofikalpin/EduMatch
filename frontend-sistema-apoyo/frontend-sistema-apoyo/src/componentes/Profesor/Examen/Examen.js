@@ -4,25 +4,43 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Header from "../HeaderProfesor";
 import Footer from "../FooterProfesor";  
+import axios from "axios";
+import { useUser } from "../../../context/userContext";
 
 const Examen = () => {
+  const { user } = useUser();
   const [examenes, setExamenes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const navigate = useNavigate(); 
 
   // Función para obtener los exámenes desde la API
-  const fetchExamenes = async () => {
-    try {
-      const response = await fetch("/api/examenes"); 
-      const data = await response.json();
-      setExamenes(data);
-    } catch (error) {
-      console.error("Error al cargar exámenes:", error);
-    }
-  };
-
   useEffect(() => {
+    const fetchExamenes = async () => {
+      setLoading(true);
+      try {
+        const idProfesor = user?.idUsuario;
+        if (!idProfesor) {
+          throw new Error("El ID del profesor no está disponible.");
+        }
+
+        const response = await axios.get(`http://localhost:5228/api/ProfeExamen/ExamenIDProfesor?id=${idProfesor}`); 
+        if (response.data.status && Array.isArray(response.data.value)){
+          setExamenes(response.data.value);
+        }else{
+          console.error("Error al cargar los examenes" + response.data.message);
+          setError(response.data.message);
+        }
+      } catch (error) {
+        console.error("Error al cargar exámenes:", error);
+        setError("Error al conectar con el servidor.");
+      } finally {
+        setLoading (false);
+      }
+    };
+
     fetchExamenes();
-  }, []);
+}, []); 
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100">
@@ -46,10 +64,14 @@ const Examen = () => {
         </p>
 
         <div className="flex justify-center gap-8 flex-wrap">
-          {examenes.length > 0 ? (
+          {loading ? (
+            <p>Cargando examenes ...</p>
+          ) : error ? (
+            <p className="text-red-500">{error}</p>
+          ) : examenes.length > 0 ? (
             examenes.map((examen) => (
               <div
-                key={examen.id}
+                key={examen.idexamen}
                 className="bg-white border border-gray-200 rounded-xl shadow-lg p-6 w-64 text-center transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl"
               >
                 <h3 className="text-2xl font-semibold text-[#2b6cb0] mb-2">
@@ -57,7 +79,7 @@ const Examen = () => {
                 </h3>
                 <p className="text-gray-600 text-sm mb-4">{examen.descripcion}</p>
                 <Link
-                  to={`/examen/${examen.id}`}
+                  to={`/examen/${examen.idexamen}`}
                   className="inline-block bg-gradient-to-r from-blue-500 to-blue-600 text-white py-2 px-4 rounded-full text-lg hover:from-blue-600 hover:to-blue-700 transition-all"
                 >
                   Acceder

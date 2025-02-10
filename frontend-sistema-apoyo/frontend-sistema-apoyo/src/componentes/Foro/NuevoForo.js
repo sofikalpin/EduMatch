@@ -3,6 +3,7 @@ import { ArrowLeft, Send } from 'lucide-react';
 import { useNavigate } from 'react-router-dom'; 
 import logo from '../../logo/LogoInicio.png';
 import axios from "axios";
+import { useUser } from "../../context/userContext.js";
 
 const socialIcons = [
   { name: 'Facebook', color: 'hover:text-blue-500' },
@@ -13,6 +14,7 @@ const socialIcons = [
 ];
 
 const NuevoForo = () => {
+    const { user } = useUser();
     const [nombre, setNombre] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [nivel, setNivel] = useState('');
@@ -30,7 +32,7 @@ const NuevoForo = () => {
         C2: 6,
     };
 
-    const idusuario = 5;
+    const idusuario = user?.idUsuario;
 
     const handleSubmit = async(e) => {
         e.preventDefault();

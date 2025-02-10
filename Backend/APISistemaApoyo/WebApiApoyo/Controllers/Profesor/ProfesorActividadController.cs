@@ -75,11 +75,12 @@ namespace WebApiApoyo.Controllers.Profesor
                 return BadRequest("El ID proporcionado no es válido.");
             }
 
-            var rsp = new Response<ActividadDTO>();
+            var rsp = new Response<List<ActividadDTO>>();
+
             try
             {
                 rsp.status = true;
-                rsp.value = await _profesorActividadService.ObteneActividadrPorId(id);
+                rsp.value = await _profesorActividadService.ObteneActividadrPorIdProfesor(id);
             }
             catch (Exception ex)
             {

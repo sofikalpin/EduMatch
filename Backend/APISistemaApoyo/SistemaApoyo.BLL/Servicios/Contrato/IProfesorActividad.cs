@@ -12,7 +12,7 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
     {
         Task<List<ActividadDTO>> ConsultarActividad();
         Task<List<ActividadDTO>> ConsultarporNombre(string nombre);
-        Task<ActividadDTO> ObteneActividadrPorId(int id);
+        Task<List<ActividadDTO>> ObteneActividadrPorIdProfesor(int id);
         Task<bool> CrearActividad(ActividadDTO actividads);
         Task<bool> ActualizarActivdad(ActividadDTO actividad);
         Task<bool> EliminarActividad(int id);

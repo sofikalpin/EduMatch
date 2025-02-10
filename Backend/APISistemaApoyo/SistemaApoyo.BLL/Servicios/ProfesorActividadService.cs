@@ -59,20 +59,20 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        public async Task<ActividadDTO> ObteneActividadrPorId(int id)
+        public async Task<List<ActividadDTO>> ObteneActividadrPorIdProfesor(int id)
         {
             try
             {
-                var actividad = await _actividadRepositorio.Obtener(a => a.Idactividad == id);
+                var actividad = await _actividadRepositorio.ObtenerTodos(a => a.Idusuario == id);
                 if (actividad == null)
                 {
-                    throw new InvalidOperationException("Actividad no encontrada.");
+                    throw new InvalidOperationException("El usuario no desarrollo ninguna actividad.");
                 }
-                return _mapper.Map<ActividadDTO>(actividad);
+                return _mapper.Map<List<ActividadDTO>>(actividad);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener la actividad por id.", ex);
+                throw new Exception("Error al obtener la actividad por id del usuario.", ex);
             }
 
         }

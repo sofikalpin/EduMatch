@@ -61,16 +61,16 @@ namespace SistemaApoyo.BLL.Servicios
 
 
 
-        public async Task<ExamenDTO> ObteneExamenrPorId(int id)
+        public async Task<List<ExamenDTO>> ObteneExamenrPorIdProfesor(int id)
         {
             try
             {
-                var examen = await _examenRepositorio.Obtener(a => a.Idexamen == id);
+                var examen = await _examenRepositorio.ObtenerTodos(a => a.Idusuario == id);
                 if (examen == null)
                 {
                     throw new InvalidOperationException("Examen no encontrado.");
                 }
-                return _mapper.Map<ExamenDTO>(examen);
+                return _mapper.Map<List<ExamenDTO>>(examen);
             }
             catch (Exception ex)
             {

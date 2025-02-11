@@ -5,6 +5,7 @@ using SistemaApoyo.DTO;
 using Microsoft.AspNetCore.Http;
 using SistemaApoyo.Model;
 using Microsoft.EntityFrameworkCore;
+using SistemaApoyo.BLL.Servicios;
 
 namespace WebApiApoyo.Controllers.Profesor
 {
@@ -86,6 +87,42 @@ namespace WebApiApoyo.Controllers.Profesor
                 _logger.LogError(ex, "Error al obtener el id de la actividad");
             }
             return Ok(rsp);
+        }
+
+        [HttpGet]
+        [Route("ArticuloProProfeyNivel")]
+        public async Task<IActionResult> ListaArticuloPorProfesorYNivel(int idUsuario, int idNivel)
+        {
+            if (idUsuario <= 0 || idNivel <= 0)
+            {
+                return BadRequest("El ID del nivel o usuario proporcionado no es válido.");
+            }
+
+            var rsp = new Response<List<ArticuloDTO>>();
+
+            var listaArticuloProfe = await _profesorArticuloService.ObteneArticulorPorIdProfesor(idUsuario);
+
+            if (listaArticuloProfe == null || !listaArticuloProfe.Any())
+            {
+                return NotFound("No se encontraron articulos para el profesor indicado.");
+            }
+
+            var listaFinal = listaArticuloProfe.Where(a => a.Idnivel == idNivel).ToList();
+
+            try
+            {
+                rsp.status = true;
+                rsp.value = listaFinal;
+                return Ok(rsp);
+            }
+            catch (Exception ex)
+            {
+                rsp.status = false;
+                _logger.LogError(ex, "Error al obtener el id de la articulo");
+                return StatusCode(500, "Ocurrió un error al procesar la solicitud.");
+            }
+
+
         }
 
         [HttpPost]

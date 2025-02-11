@@ -73,6 +73,23 @@ namespace SistemaApoyo.BLL.Servicios
                 throw;
             }
         }
-       
+
+        public async Task<List<ArticuloDTO>> ObtenerPorNivel(int idNivel)
+        {
+            try
+            {
+                var articulos = await _articuloRepository.ObtenerTodos(a => a.Idnivel == idNivel);
+                if (articulos == null)
+                {
+                    throw new InvalidOperationException("Consulta no encontrada.");
+                }
+                return _mapper.Map<List<ArticuloDTO>>(articulos);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la lista de articulos por nivel.", ex);
+            }
+        }
+
     }
 }

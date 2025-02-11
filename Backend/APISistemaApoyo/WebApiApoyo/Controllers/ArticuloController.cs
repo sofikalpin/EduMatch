@@ -3,6 +3,7 @@ using SistemaApoyo.API.Utilidad;
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DTO;
 using Microsoft.AspNetCore.Http;
+using SistemaApoyo.BLL.Servicios;
 
 namespace SistemaApoyo.API.Controllers
 {
@@ -83,7 +84,29 @@ namespace SistemaApoyo.API.Controllers
             return Ok(rsp);
         }
 
+        [HttpGet]
+        [Route("ArticulosPorNivel")]
+        public async Task<IActionResult> ListaArticuloporNivel(int idNivel)
+        {
+            if (idNivel <= 0 || idNivel >= 6)
+            {
+                return BadRequest("El ID proporcionado no es válido.");
+            }
 
+            var rsp = new Response<List<ArticuloDTO>>();
+
+            try
+            {
+                rsp.status = true;
+                rsp.value = await _articuloService.ObtenerPorNivel(idNivel);
+            }
+            catch (Exception ex)
+            {
+                rsp.status = false;
+                _logger.LogError(ex, "Error al obtener la lista de articulos por nivel");
+            }
+            return Ok(rsp);
+        }
 
 
     }

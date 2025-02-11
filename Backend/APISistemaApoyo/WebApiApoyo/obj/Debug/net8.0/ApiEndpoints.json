@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "WebApiApoyo.Controllers.ActividadController",
+    "Method": "ListaActividadporNivel",
+    "RelativePath": "API/Actividad/ActividadesPorNivel",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idNivel",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.ActividadController",
     "Method": "ListaActividadporId",
     "RelativePath": "API/Actividad/ActividadID",
     "HttpMethod": "GET",
@@ -369,6 +385,22 @@
   },
   {
     "ContainingType": "SistemaApoyo.API.Controllers.ArticuloController",
+    "Method": "ListaArticuloporNivel",
+    "RelativePath": "API/Articulo/ArticulosPorNivel",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idNivel",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SistemaApoyo.API.Controllers.ArticuloController",
     "Method": "ListaArticulo",
     "RelativePath": "API/Articulo/Listar Articulo",
     "HttpMethod": "GET",
@@ -528,7 +560,7 @@
   {
     "ContainingType": "ExamenController",
     "Method": "ListaExamenPorId",
-    "RelativePath": "api/examenes/{id}",
+    "RelativePath": "api/examenes/ExamenID",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -536,25 +568,31 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "ExamenController",
-    "Method": "ListarExamenes",
-    "RelativePath": "api/examenes/lista",
+    "Method": "ListaExamenPorNivel",
+    "RelativePath": "api/examenes/ExamenPorNivel",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "idNivel",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "ExamenController",
     "Method": "ListaExamenPorTitulo",
-    "RelativePath": "api/examenes/titulo",
+    "RelativePath": "api/examenes/ListaPorTitulos",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -565,6 +603,16 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExamenController",
+    "Method": "ListarExamenes",
+    "RelativePath": "api/examenes/ListaTodosExamenes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -849,6 +897,27 @@
   },
   {
     "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfeExamenController",
+    "Method": "ListaExamenPorProfesorYNivel",
+    "RelativePath": "api/ProfeExamen/ExamenPorProfeyNivel",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUsuario",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "idNivel",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfeExamenController",
     "Method": "ListarExamenes",
     "RelativePath": "api/ProfeExamen/ListaExamenes",
     "HttpMethod": "GET",
@@ -883,6 +952,27 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfesorActividadController",
+    "Method": "ListaActividadPorProfesorYNivel",
+    "RelativePath": "API/ProfesorActividad/ActividadPorProfeyNivel",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUsuario",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "idNivel",
         "Type": "System.Int32",
         "IsRequired": false
       }
@@ -978,6 +1068,27 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.Profesor.ProfesorArticuloController",
+    "Method": "ListaArticuloPorProfesorYNivel",
+    "RelativePath": "API/ProfesorArticulo/ArticuloProProfeyNivel",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUsuario",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "idNivel",
         "Type": "System.Int32",
         "IsRequired": false
       }

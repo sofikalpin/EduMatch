@@ -77,5 +77,22 @@ namespace SistemaApoyo.BLL.Servicios
                 throw new Exception("Error al obtener la consulta.", ex);
             }
         }
+
+       public async Task<List<ActividadDTO>> ObtenerPorNivel(int idNivel)
+        {
+            try
+            {
+                var actividades = await _actividadRepositorio.ObtenerTodos(a => a.Idnivel == idNivel);
+                if (actividades == null)
+                {
+                    throw new InvalidOperationException("Consulta no encontrada.");
+                }
+                return _mapper.Map<List<ActividadDTO>>(actividades);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la lista de actividades por nivel.", ex);
+            }
+        }
     }
 }

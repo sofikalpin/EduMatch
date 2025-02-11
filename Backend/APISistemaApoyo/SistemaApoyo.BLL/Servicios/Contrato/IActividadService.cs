@@ -12,6 +12,7 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
     {
         Task<List<ActividadDTO>> ConsultarActividad();
         Task<List<ActividadDTO>> ConsultarporNombre(string nombre);
+        Task<List<ActividadDTO>> ObtenerPorNivel(int idNivel);
         Task<ActividadDTO> ObtenerPorId(int id);
     }
 }

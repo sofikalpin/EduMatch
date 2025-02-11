@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaApoyo.API.Utilidad;
+using SistemaApoyo.BLL.Servicios;
 using SistemaApoyo.BLL.Servicios.Contrato;
+using SistemaApoyo.DTO;
 using System.ComponentModel.DataAnnotations;
 
 [Route("api/examenes")]
@@ -16,19 +18,19 @@ public class ExamenController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet("lista")]
+    [HttpGet("ListaTodosExamenes")]
     public Task<IActionResult> ListarExamenes()
     {
         return HandleRequest(() => _examenService.ConsultarExamen(), "Error al obtener los exámenes.");
     }
 
-    [HttpGet("titulo")]
+    [HttpGet("ListaPorTitulos")]
     public Task<IActionResult> ListaExamenPorTitulo([FromQuery][Required] string titulo)
     {
         return HandleRequest(() => _examenService.ConsultarPorTitulo(titulo), "Error al obtener el examen por título.");
     }
 
-    [HttpGet("{id:int}")]
+    [HttpGet("ExamenID")]
     public Task<IActionResult> ListaExamenPorId(int id)
     {
         if (id <= 0)
@@ -55,4 +57,30 @@ public class ExamenController : ControllerBase
             return StatusCode(500, rsp);
         }
     }
+
+    [HttpGet]
+    [Route("ExamenPorNivel")]
+    public async Task<IActionResult> ListaExamenPorNivel(int idNivel)
+    {
+        if (idNivel <= 0 || idNivel >= 6)
+        {
+            return BadRequest("El ID proporcionado no es válido.");
+        }
+
+        var rsp = new Response<List<ExamenDTO>>();
+
+        try
+        {
+            rsp.status = true;
+            rsp.value = await _examenService.ObtenerPorNivel(idNivel);
+        }
+        catch (Exception ex)
+        {
+            rsp.status = false;
+            _logger.LogError(ex, "Error al obtener la lista de examenes por nivel");
+        }
+        return Ok(rsp);
+    }
+
+
 }

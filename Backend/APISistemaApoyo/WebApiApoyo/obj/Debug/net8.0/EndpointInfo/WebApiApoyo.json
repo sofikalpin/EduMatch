@@ -60,6 +60,28 @@
         }
       }
     },
+    "/API/Actividad/ActividadesPorNivel": {
+      "get": {
+        "tags": [
+          "Actividad"
+        ],
+        "parameters": [
+          {
+            "name": "idNivel",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/API/AdministradorAlumno/ListaAlumnos": {
       "get": {
         "tags": [
@@ -595,6 +617,28 @@
         }
       }
     },
+    "/API/Articulo/ArticulosPorNivel": {
+      "get": {
+        "tags": [
+          "Articulo"
+        ],
+        "parameters": [
+          {
+            "name": "idNivel",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/API/Chat/ListaContactos": {
       "get": {
         "tags": [
@@ -790,7 +834,7 @@
         }
       }
     },
-    "/api/examenes/lista": {
+    "/api/examenes/ListaTodosExamenes": {
       "get": {
         "tags": [
           "Examen"
@@ -802,7 +846,7 @@
         }
       }
     },
-    "/api/examenes/titulo": {
+    "/api/examenes/ListaPorTitulos": {
       "get": {
         "tags": [
           "Examen"
@@ -824,7 +868,7 @@
         }
       }
     },
-    "/api/examenes/{id}": {
+    "/api/examenes/ExamenID": {
       "get": {
         "tags": [
           "Examen"
@@ -832,8 +876,29 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/examenes/ExamenPorNivel": {
+      "get": {
+        "tags": [
+          "Examen"
+        ],
+        "parameters": [
+          {
+            "name": "idNivel",
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -1221,6 +1286,36 @@
         }
       }
     },
+    "/api/ProfeExamen/ExamenPorProfeyNivel": {
+      "get": {
+        "tags": [
+          "ProfeExamen"
+        ],
+        "parameters": [
+          {
+            "name": "idUsuario",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "idNivel",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/ProfeExamen/CrearExamen": {
       "post": {
         "tags": [
@@ -1370,6 +1465,36 @@
         }
       }
     },
+    "/API/ProfesorActividad/ActividadPorProfeyNivel": {
+      "get": {
+        "tags": [
+          "ProfesorActividad"
+        ],
+        "parameters": [
+          {
+            "name": "idUsuario",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "idNivel",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/API/ProfesorActividad/CrearActividad": {
       "post": {
         "tags": [
@@ -1505,6 +1630,36 @@
         "parameters": [
           {
             "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/ProfesorArticulo/ArticuloProProfeyNivel": {
+      "get": {
+        "tags": [
+          "ProfesorArticulo"
+        ],
+        "parameters": [
+          {
+            "name": "idUsuario",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "idNivel",
             "in": "query",
             "schema": {
               "type": "integer",

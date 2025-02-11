@@ -4,20 +4,43 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import actividad from "../Imagenes/actividades.png";
 import Header from "../HeaderAlumno";
 import Footer from "../FooterAlumno";
+import { useUser } from "../../../context/userContext";
+import axios from "axios";
 
 const Actividades = () => {
+  const { user } = useUser();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedUnit, setSelectedUnit] = useState(null);
   const [unidades, setUnidades] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
-  const [assignedActivities, setAssignedActivities] = useState([
-    { id: 1, title: "Cómo utilizar el pasado en conversaciones cotidianas", link: "/actividades/1", unidad: 1 },
-    { id: 2, title: "Claves para mejorar tu pronunciación en inglés", link: "/actividades/2", unidad: 2 },
-    { id: 3, title: "Uso correcto de los verbos modales en inglés", link: "/actividades/3", unidad: 3 },
-    { id: 4, title: "El presente perfecto en situaciones reales", link: "/actividades/4", unidad: 1 },
-    { id: 5, title: "Diferencias entre 'must' y 'have to'", link: "/actividades/5", unidad: 2 },
-  ]);
+  const [assignedActivities, setAssignedActivities] = useState([]);
 
+  useEffect(() => {
+    const fetchActividades = async () => {
+      setLoading(true);
+      try {
+        const idAlumnoNivel = user?.idNivel;
+        if (!idAlumnoNivel) {
+          throw new Error("El ID del alumno no está disponible.");
+        }
+
+        const response = await axios.get(`http://localhost:5228/API/Actividad/ActividadesPorNivel?idNivel=${idAlumnoNivel}`)
+        if (response.data.status && Array.isArray(response.data.value)){
+          setAssignedActivities(response.data.value);
+        }else{
+          console.error("Error al cargar las actividades" + response.data.message);
+          setError(response.data.message);
+        }
+      }catch (error){
+        console.error("Error al cargar las actividades: ", error);
+        setError("Error al conectar con el servidor.");
+      }finally{
+        setLoading(false);
+      }
+    }
+    fetchActividades();
+  }, [user]);
+  
   useEffect(() => {
     const unidadesAsignadas = Array.from({ length: 12 }, (_, i) => `Unit ${i + 1}`);
     setUnidades(unidadesAsignadas);

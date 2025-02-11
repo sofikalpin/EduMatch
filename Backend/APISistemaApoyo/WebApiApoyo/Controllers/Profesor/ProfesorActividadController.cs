@@ -90,6 +90,42 @@ namespace WebApiApoyo.Controllers.Profesor
             return Ok(rsp);
         }
 
+        [HttpGet]
+        [Route("ActividadPorProfeyNivel")]
+        public async Task<IActionResult> ListaActividadPorProfesorYNivel (int idUsuario, int idNivel)
+        {
+            if (idUsuario <= 0 || idNivel <= 0)
+            {
+                return BadRequest("El ID del nivel o usuario proporcionado no es válido.");
+            }
+
+            var rsp = new Response<List<ActividadDTO>>();
+
+            var listaActividadProfe = await _profesorActividadService.ObteneActividadrPorIdProfesor(idUsuario);
+
+            if (listaActividadProfe == null || !listaActividadProfe.Any())
+            {
+                return NotFound("No se encontraron actividades para el profesor indicado.");
+            }
+
+            var listaFinal = listaActividadProfe.Where(a => a.Idnivel == idNivel).ToList();
+
+            try
+            {
+                rsp.status = true;
+                rsp.value = listaFinal;            
+                return Ok(rsp);
+            }
+            catch (Exception ex)
+            {
+                rsp.status = false;
+                _logger.LogError(ex, "Error al obtener el id de la actividad");
+                return StatusCode(500, "Ocurrió un error al procesar la solicitud.");
+            }
+
+
+        }
+
         [HttpPost]
         [Route("CrearActividad")]
         public async Task<IActionResult> CrearActividad([FromBody] ActividadDTO actividad)

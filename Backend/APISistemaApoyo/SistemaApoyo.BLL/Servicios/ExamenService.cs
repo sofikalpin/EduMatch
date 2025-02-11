@@ -78,6 +78,21 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-
+        public async Task<List<ExamenDTO>> ObtenerPorNivel(int idNivel)
+        {
+            try
+            {
+                var examenes = await _examenRepositorio.ObtenerTodos(a => a.Idnivel == idNivel);
+                if (examenes == null)
+                {
+                    throw new InvalidOperationException("Examen no encontrada.");
+                }
+                return _mapper.Map<List<ExamenDTO>>(examenes);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la lista de examenes por nivel.", ex);
+            }
+        }
     }
 }

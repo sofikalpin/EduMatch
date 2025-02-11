@@ -84,6 +84,30 @@ namespace WebApiApoyo.Controllers
             return Ok(rsp);
         }
 
+        [HttpGet]
+        [Route("ActividadesPorNivel")]
+        public async Task<IActionResult> ListaActividadporNivel(int idNivel)
+        {
+            if (idNivel<= 0 || idNivel>=6)
+            {
+                return BadRequest("El ID proporcionado no es válido.");
+            }
+
+            var rsp = new Response<List<ActividadDTO>>();
+
+            try
+            {
+                rsp.status = true;
+                rsp.value = await _actividadService.ObtenerPorNivel(idNivel);
+            }
+            catch (Exception ex)
+            {
+                rsp.status = false;
+                _logger.LogError(ex, "Error al obtener la lista de actividades por nivel");
+            }
+            return Ok(rsp);
+        }
+
 
 
     }

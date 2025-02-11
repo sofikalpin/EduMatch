@@ -55,7 +55,7 @@ import NuevaRespuesta from "./componentes/Foro/NuevaRespuesta";
 
 //Alumno
 import MisCursosAlumno from "./componentes/Alumno/Cursos/MisCursos";
-import CursoAlumno from "./componentes/Alumno/Cursos/Cursos";
+import Cursos from "./componentes/Alumno/Cursos/Cursos";
 import ArticulosAlumno from "./componentes/Alumno/Articulo/Articulos";
 import ActividadesAlumno from "./componentes/Alumno/Actividad/Actividades";
 import ExamenAlumno from "./componentes/Alumno/Examen/Examenes";
@@ -126,12 +126,11 @@ function App() {
                   
             {/* Alumno */}
             <Route path="/alumno" element={<ProtegerRuta><MisCursosAlumno /></ProtegerRuta>} />  
-            <Route path="/alumno/cursos" element={<ProtegerRuta><CursoAlumno /></ProtegerRuta>} />
-            <Route path="/alumno/articulos" element={<ProtegerRuta><ArticulosAlumno /></ProtegerRuta>} />
-            <Route path="/alumno/actividades" element={<ProtegerRuta><ActividadesAlumno /></ProtegerRuta>} />
-            <Route path="/alumno/examen" element={<ProtegerRuta><ExamenAlumno /></ProtegerRuta>} />
+            <Route path="/alumno/cursos/" element={<ProtegerRuta><Cursos /></ProtegerRuta>} />
+            <Route path="/alumno/articulos/" element={<ProtegerRuta><ArticulosAlumno /></ProtegerRuta>} />
+            <Route path="/alumno/actividades/" element={<ProtegerRuta><ActividadesAlumno /></ProtegerRuta>} />
+            <Route path="/alumno/examen/" element={<ProtegerRuta><ExamenAlumno /></ProtegerRuta>} />
             <Route path="/alumno/articulos/:id" element={<ProtegerRuta><ArticuloDetalleAlumno /></ProtegerRuta>} />
-
             <Route path="/alumno/actividades/:id" element={<ProtegerRuta><ActividadDetalleAlumno /></ProtegerRuta>} />
             <Route path="/alumno/examen/:id" element={<ProtegerRuta><ExamenDetalleAlumno /></ProtegerRuta>} />
             <Route path="/alumno/perfil" element={<ProtegerRuta><PerfilAlumno /></ProtegerRuta>} />

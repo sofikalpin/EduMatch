@@ -4,66 +4,71 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import actividad from "../Imagenes/actividades.png";
 import Header from "../HeaderAlumno";
 import Footer from "../FooterAlumno";
-import { useUser } from "../../../context/userContext";
 import axios from "axios";
 
 const Actividades = () => {
-  const { user } = useUser();
+  const location = useLocation();
+  const { nivel, nombre } = location.state || {};
+  console.log(location.state);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedUnit, setSelectedUnit] = useState(null);
-  const [unidades, setUnidades] = useState([]);
-  const [isFocused, setIsFocused] = useState(false);
   const [assignedActivities, setAssignedActivities] = useState([]);
+  const [isFocused, setIsFocused] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const navigate = useNavigate(); // Inicializa la función navigate
 
+  // Cargar actividades relacionadas al nivel seleccionado
   useEffect(() => {
     const fetchActividades = async () => {
       setLoading(true);
+      setError("");
       try {
-        const idAlumnoNivel = user?.idNivel;
+        const idAlumnoNivel = nivel;
         if (!idAlumnoNivel) {
           throw new Error("El ID del alumno no está disponible.");
         }
 
-        const response = await axios.get(`http://localhost:5228/API/Actividad/ActividadesPorNivel?idNivel=${idAlumnoNivel}`)
-        if (response.data.status && Array.isArray(response.data.value)){
+        const response = await axios.get(`http://localhost:5228/API/Actividad/ActividadesPorNivel?idNivel=${idAlumnoNivel}`);
+        if (response.data.status && Array.isArray(response.data.value)) {
           setAssignedActivities(response.data.value);
-        }else{
-          console.error("Error al cargar las actividades" + response.data.message);
+        } else {
+          console.error("Error al cargar las actividades: " + response.data.message);
           setError(response.data.message);
         }
-      }catch (error){
+      } catch (error) {
         console.error("Error al cargar las actividades: ", error);
-        setError("Error al conectar con el servidor.");
-      }finally{
+        setError("Error al conectar con el servidor, inténtelo más tarde.");
+        setAssignedActivities([]);
+      } finally {
         setLoading(false);
       }
-    }
+    };
     fetchActividades();
-  }, [user]);
-  
-  useEffect(() => {
-    const unidadesAsignadas = Array.from({ length: 12 }, (_, i) => `Unit ${i + 1}`);
-    setUnidades(unidadesAsignadas);
-  }, []);
+  }, [nivel]); // Solo dependemos de nivel
 
+  // Manejo de la búsqueda
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
-    setSelectedUnit(null);
+    setIsFocused(true);
   };
 
+  // Filtrado de actividades
   const filteredActivities = assignedActivities.filter(
     (activity) =>
-      activity.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      `Unit ${activity.unidad}`.toLowerCase().includes(searchQuery.toLowerCase())
+      activity.nombre?.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
+  
   return (
     <div className="bg-gray-100 min-h-screen overflow-auto flex flex-col">
-      <Header></Header>
+      <Header />
       <div className="container mx-auto mt-10">
-      <h1 className="text-3xl font-bold mb-12 mt-12">Actividades</h1>
-        <div className="relative max-w-lg mx-auto ">
+        <h1 className="text-3xl font-bold mb-12 mt-12">Actividades</h1>
+        
+        <div className="relative max-w-lg mx-auto">
           <div className="relative">
+            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+              🔍
+            </span>
             <input
               type="text"
               placeholder="Buscar actividad o Unidad..."
@@ -73,14 +78,17 @@ const Actividades = () => {
               onFocus={() => setIsFocused(true)}
               onBlur={() => setTimeout(() => setIsFocused(false), 200)}
             />
-            <FaSearch className="absolute left-3 top-3 text-gray-500" />
           </div>
           {isFocused && searchQuery && (
             <ul className="absolute w-full bg-white shadow-lg rounded-xl mt-2 max-h-48 overflow-y-auto">
-              {filteredActivities.length > 0 ? (
+              {loading ? (
+                <p>Cargando actividades ...</p>
+              ) : error ? (
+                <p className="text-red-500">{error}</p>
+              ) : filteredActivities.length > 0 ? (
                 filteredActivities.map((activity) => (
-                  <li key={activity.id} className="p-2 hover:bg-gray-200 cursor-pointer">
-                    <Link to={activity.link}>{activity.title}</Link>
+                  <li key={activity.idactividad} className="p-2 hover:bg-gray-200 cursor-pointer">
+                    <Link to={activity.link}>{activity.nombre}</Link>
                   </li>
                 ))
               ) : (
@@ -92,17 +100,18 @@ const Actividades = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
           {filteredActivities.map((activity) => (
-            <div key={activity.id} className="bg-white shadow-md rounded-xl p-4">
+            <div key={activity.idactividad} className="bg-white shadow-md rounded-xl p-4">
               <Link to={activity.link} className="block">
                 <img src={actividad} alt="Actividad" className="w-full h-40 object-cover rounded-md" />
-                <p className="text-lg font-semibold mt-2">Unit {activity.unidad}: {activity.title}</p>
+                <p className="text-lg font-semibold mt-2">{activity.nombre}</p>
+                <p>{activity.descripcion}</p>
               </Link>
             </div>
           ))}
         </div>
       </div>
       <div className="mt-32"></div>
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 };

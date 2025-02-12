@@ -49,7 +49,6 @@ import Foro from "./componentes/Foro/Foro";
 import NuevoForo from "./componentes/Foro/NuevoForo";
 import Consulta from "./componentes/Foro/Consulta";
 import NuevaConsulta from "./componentes/Foro/NuevaConsulta";
-import Respuesta from "./componentes/Foro/Respuesta";
 import NuevaRespuesta from "./componentes/Foro/NuevaRespuesta";
 
 //Alumno
@@ -119,11 +118,10 @@ function App() {
             <Route path="/listaForos" element={<ProtegerRuta><ListaForos/></ProtegerRuta>} />
             <Route path="/foro" element={<ProtegerRuta><Foro/></ProtegerRuta>} />
             <Route path="/consulta" element={<ProtegerRuta><Consulta/></ProtegerRuta>}/>
-            <Route path="/respuesta" element={<ProtegerRuta><Respuesta/></ProtegerRuta>} />
 
             <Route path="/crear-foro" element={<ProtegerRuta><NuevoForo /></ProtegerRuta>} />
             <Route path="/crear-consulta/:idForo" element={<ProtegerRuta><NuevaConsulta /></ProtegerRuta>} />
-            <Route path="/crear-respuesta/:idConsulta" element={<ProtegerRuta><NuevaRespuesta /></ProtegerRuta>} />
+            <Route path="/crear-respuesta" element={<ProtegerRuta><NuevaRespuesta /></ProtegerRuta>} />
                   
             {/* Alumno */}
             <Route path="/alumno" element={<ProtegerRuta><MisCursosAlumno /></ProtegerRuta>} />  

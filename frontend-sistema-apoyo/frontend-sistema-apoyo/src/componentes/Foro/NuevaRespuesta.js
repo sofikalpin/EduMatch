@@ -1,30 +1,44 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowLeft, Send } from 'lucide-react';
-import { useNavigate, useParams } from 'react-router-dom'; 
-import logo from '../../logo/LogoInicio.png';
+import { useNavigate, useLocation } from 'react-router-dom';  // Importa el hook de navegación
 import axios from 'axios';
 import { useUser } from "../../context/userContext.js";
 
 
-const socialIcons = [
-  { name: 'Facebook', color: 'hover:text-blue-500' },
-  { name: 'Instagram', color: 'hover:text-pink-500' },
-  { name: 'Twitter', color: 'hover:text-blue-400' },
-  { name: 'Youtube', color: 'hover:text-red-500' },
-  { name: 'Linkedin', color: 'hover:text-blue-700' }
-];
+const Card = ({ children, className }) => (
+  <div className={`bg-white rounded-xl shadow-lg overflow-hidden ${className}`}>
+    {children}
+  </div>
+);
 
-const NuevaRespuesta = () => {
-  //const { idConsulta } = useParams();
+const CardContent = ({ children, className }) => (
+  <div className={`p-6 ${className}`}>
+    {children}
+  </div>
+);
+
+const Respuesta = () => {
   const { user } = useUser();
+  
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [consulta, setConsulta] = useState(null);
   const [contenido, setContenido] = useState('');
   const [mensaje, setMensaje] = useState('');
   const [loading, setLoading] = useState(false);
-  
-  const navigate = useNavigate(); 
+
+  useEffect(() => {
+    if (location.state){
+      setConsulta(location.state.consulta);
+    }
+  }, [location.state])
+  console.log(location.state.consulta);
 
   const idusuario = user?.idUsuario;
-  const idconsulta = 6;
+  const idconsulta = consulta?.idconsulta;
+
+  const nombreConsulta = consulta?.titulo;
 
   const hadleNuevaRespuesta = async(e) => {
     e.preventDefault();
@@ -38,10 +52,16 @@ const NuevaRespuesta = () => {
     }
       
     if (contenido.length < 10) {
-        setMensaje({ tipo: "error", texto: "El contenido de la respuesta debe tener al menos 10 caracteres." });
+        setMensaje("El contenido de la respuesta debe tener al menos 10 caracteres.");
         setLoading(false);
         return;
     }
+
+    if (!idconsulta || !idusuario) {
+      setMensaje({ tipo: "error", texto: "No se pudo obtener la información del usuario o la consulta." });
+      setLoading(false);
+      return;
+    }    
     
 
     try {
@@ -65,63 +85,82 @@ const NuevaRespuesta = () => {
         if (response?.status === 200)
         {
           setMensaje("Respuesta creada con éxito. Redirigiendo...");
-          setTimeout(() => navigate("/:idConsulta"), 2000);
+          setTimeout(() => navigate("/consulta"), 2000);
           setContenido("");
         }
         else{
           alert(response?.data?.msg || "No se pudo crear la respuesta.");
         }
 
-    }catch (error){
-      console.error("Error al registrar la respuesta:", error);
-      alert("Ocurrió un error al registrar la respuesta. Por favor, intenta nuevamente.");
-
-    }finally{
+    } catch (error) {
+        console.error("Error al registrar la respuesta:", error.response?.data || error.message);
+        setMensaje("Ocurrió un error al registrar la respuesta. Por favor, intenta nuevamente.");
+    
+    } finally{
       setLoading(false);
     }
   };
 
-  return (
-    <div className="w-full min-h-screen flex flex-col bg-gray-50">
 
-      <div className="flex-grow flex flex-col items-center justify-center p-6 mb-16">
-        <button 
-           onClick={() => navigate(-1)}
+  return (
+    <div className="min-h-screen flex flex-col bg-gray-100">
+      {/* HeaderForo ocupa todo el ancho de la pantalla */}
+      
+      {/* Contenido principal adaptado a toda la pantalla */}
+      <div className="flex-1 container mx-auto p-6 mb-16">
+        <button
+           onClick={() => navigate(-1)} // Llama a la función onBack
           className="mb-6 flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium self-start mt-3"
         >
           <ArrowLeft className="w-6 h-6" />
-          <span>Volver a las respuestas</span>
+          <span>Volver a respuestas</span>
         </button>
 
-        <h2 className="text-4xl font-bold text-gray-900 text-center mb-8">Nueva Respuesta</h2>
-        
-        {mensaje}
-        {loading}
+        {/* Contenedor blanco para la pregunta y la respuesta */}
+        <div className="bg-white rounded-xl shadow-lg p-6 mt-16">
+          {/* Pregunta */}
+          <Card className="mb-6">
+            <CardContent className="text-gray-800">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full flex items-center justify-center text-white font-semibold text-lg">
+                  {'U'}
+                </div>
+                <div>
+                  <h3 className="font-semibold text-xl text-gray-900">{user.nombreCompleto || 'Usuario'}</h3>
+                </div>
+              </div>
+              <p className="text-lg leading-relaxed">{nombreConsulta}</p>
+            </CardContent>
+          </Card>
 
-        <form onSubmit={hadleNuevaRespuesta} className="w-full max-w-3xl space-y-6">
-          <div className="flex flex-col gap-2">
-            <label htmlFor="contenido" className="text-lg font-semibold text-gray-800">
-            </label>
-            <textarea 
+          {mensaje}
+          {loading}
+
+          {/* Formulario de respuesta */}
+          <Card>
+          <form onSubmit={hadleNuevaRespuesta} className="w-full max-w-3xl space-y-6">
+            <CardContent className="space-y-4">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4 text-left">Tu Respuesta</h2>
+
+              <textarea 
               id="contenido"
               value={contenido}
               onChange={(e) => setContenido(e.target.value)}
               className="w-full px-5 py-3 rounded-lg border border-gray-300 focus:ring-4 focus:ring-teal-500 focus:border-teal-500 text-gray-900 shadow-sm bg-white min-h-[150px]"
               placeholder="Describe tu respuesta en detalle..."
-            />
-          </div>
+              />
 
-          <button 
-            type="submit" 
-            className="w-full bg-teal-600 hover:bg-teal-700 text-white px-6 py-4 rounded-lg font-semibold flex items-center justify-center gap-3 shadow-md transition-all duration-300"
-          >
-            <Send className="w-6 h-6" />
-            Publicar Respuesta
-          </button>
-        </form>
+              <button type="submit" className="inline-flex items-center gap-3 bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 shadow-lg">
+                <Send className="w-5 h-5" />
+                <span>Enviar Respuesta</span>
+              </button>
+            </CardContent>
+          </form>
+          </Card>
+        </div>
       </div>
     </div>
   );
 };
 
-export default NuevaRespuesta;
+export default Respuesta;

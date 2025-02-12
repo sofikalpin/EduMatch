@@ -46,7 +46,7 @@ const Consulta = () => {
   }, [consulta]);
 
   const handleNuevaRespuesta = () => {
-    navigate("/respuesta", {state: {consulta}});
+    navigate("/crear-respuesta", {state: {consulta}});
   };
 
   if (loading) return <p className="text-center text-gray-500">Cargando respuestas de consulta...</p>;

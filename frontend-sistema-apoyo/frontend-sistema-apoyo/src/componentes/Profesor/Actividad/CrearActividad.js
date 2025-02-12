@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react';
+import { Upload } from "lucide-react";
 import Header from "../HeaderProfesor";
 import drive from "../Imagenes/google-drive.png";
 import youtube from "../Imagenes/youtube.png";
@@ -92,12 +93,19 @@ const CrearActividad = () => {
     }
   };
 
+  const [archivoSeleccionado, setArchivoSeleccionado] = useState(null);
+
+  const handleArchivoSeleccionado = (event) => {
+    const archivo = event.target.files[0]; // Obtiene el archivo seleccionado
+    setArchivoSeleccionado(archivo);
+  };
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
-      {/* Agrega el Header aquí */}
+      {/* Se agrega el Header */}
       <Header />
 
-      {/* Botón "Volver" en la esquina superior izquierda */}
+      {/* Botón de Volver */}
       <button
         onClick={() => navigate(-1)}
         className="mb-6 flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium self-start mt-3"
@@ -148,16 +156,27 @@ const CrearActividad = () => {
                 <label className="block text-lg font-semibold text-[#2c7a7b] mb-4">
                   Adjuntar
                 </label>
-                <input
-                  type="text"
-                  placeholder="Ingrese URL..."
-                  value={nuevaUrl}
-                  onChange={(e) => setNuevaUrl(e.target.value)}
-                  className="w-full p-2 border rounded-lg mt-2"
-                />
-                <button type="button" className="flex gap-4 mt-4 bg-teal-500 text-white p-4 rounded-xl" onClick={handleAgregarUrl}>Agregar url</button>
+                
+                {/* Input y botón Agregar URL */}
+                <div className="flex items-center gap-4 w-full">
+                  <input
+                    type="text"
+                    placeholder="Ingrese URL..."
+                    value={nuevaUrl}
+                    onChange={(e) => setNuevaUrl(e.target.value)}
+                    className="flex-grow p-4 border-2 border-gray-200 rounded-xl shadow-sm focus:ring-4 focus:ring-teal-200 focus:border-teal-400 transition duration-300 bg-white"
+                  />
+                  <button 
+                    type="button" 
+                    className="bg-teal-500 text-white text-ls px-6 py-4 rounded-xl shadow-lg w-auto"
+                    onClick={handleAgregarUrl}
+                  >
+                    Agregar URL
+                  </button>
+                </div>
 
-                <div className="flex gap-4 mt-4">
+                {/* Botones Google Drive, YouTube, y Subir Archivo  */}
+                <div className="flex gap-4 mt-4 items-center">
                   <button
                     type="button"
                     className="p-6 bg-white rounded-xl hover:bg-gray-50 shadow-md hover:shadow-lg transform hover:-translate-y-1"
@@ -172,27 +191,53 @@ const CrearActividad = () => {
                   >
                     <img src={youtube} alt="YouTube" className="h-8 w-8" />
                   </button>
+                  
+                  {/* Ícono de subir archivo */}
+                  <input
+                    type="file"
+                    accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
+                    onChange={handleArchivoSeleccionado}
+                    className="hidden"
+                    id="archivo"
+                  />
+                  <label 
+                    htmlFor="archivo" 
+                    className="p-6 bg-white rounded-xl hover:bg-gray-50 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+                  >
+                    <Upload size={30} className="text-gray-600" /> {/* Solo el ícono de subida */}
+                  </label>
+                  
+                  <button 
+                    type="button" 
+                    onClick={handleConfirmarUrl} 
+                    className="bg-teal-500 text-white text-ls px-6 py-4 rounded-xl shadow-lg flex items-center gap-2"
+                  >
+                    Confirmar URLs
+                  </button>
                 </div>
-                  <div className="flex gap-4 mt-4">
-                    <button type="button" onClick={handleConfirmarUrl} className="bg-teal-500 text-white p-4 rounded-xl">
-                      Confirmar URLs
-                    </button>
-                  </div>
 
                   {/* Mostrar URLs cargadas */}
                   {actividadUrl.length > 0 && (
                     <div className="mt-4">
-                      <p className="text-gray-700">URLs cargadas:</p>
+                      <p className="text-lg font-semibold text-teal-500">URLs cargadas:</p>
                       <ul className="mt-4 space-y-2">
-                          {actividadUrl.map((url, index) => (
-                          <li key={index} className="text-blue-600 underline flex justify-between">
-                            <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
-                              <button
-                                onClick={() => setActividadUrl(actividadUrl.filter((_, i) => i !== index))}
-                                className="text-red-500 ml-4"
-                              >
-                              X
-                              </button>
+                        {actividadUrl.map((url, index) => (
+                          <li key={index} className="flex justify-between items-center">
+                            <a
+                              href={url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 underline text-sm hover:text-blue-800"
+                            >
+                              {url}
+                            </a>
+                            <button
+                              onClick={() => setActividadUrl(actividadUrl.filter((_, i) => i !== index))}
+                              className="text-red-500 hover:text-red-700 text-lg"
+                              aria-label="Eliminar URL"
+                            >
+                              <i className="fas fa-times-circle"></i> {/* Icono de eliminar */}
+                            </button>
                           </li>
                         ))}
                       </ul>

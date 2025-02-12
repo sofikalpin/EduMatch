@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
-import { useNavigate, useParams } from "react-router-dom";  // Asegúrate de importar useNavigate
+import { useNavigate, useParams } from "react-router-dom";  
 import Header from "../HeaderProfesor";
-import Footer from "../FooterProfesor";  // Asegúrate de importar el Footer
+import Footer from "../FooterProfesor";  
 import actividadImg from "../Imagenes/actividad.jpg";
 import axios from "axios";
 import { useUser } from "../../../context/userContext";
@@ -14,7 +14,7 @@ const Actividad = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [opcionCreacion, setOpcionCreacion] = useState("");
-  const navigate = useNavigate(); // Inicializa la función navigate
+  const navigate = useNavigate(); 
 
   const idProfesor = user?.idUsuario;
 
@@ -54,47 +54,57 @@ const Actividad = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
-      {/* Agrega el Header aquí */}
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
+      {/* Se agrega el Header*/}
       <Header />
+      
+      {/* Contenido principal */}
+      <div className="curso-detalles-container flex-grow px-12 py-16 text-center bg-[#f0faf7]">
+        
+        {/* Contenedor para el botón Volver y título */}
+        <div className="relative mt-[-20px]">
+          <button
+            onClick={() => navigate(-1)}
+            className="absolute left-0 -ml-2 flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
+          >
+            <ArrowLeft className="w-6 h-6" />
+            <span>Volver</span>
+          </button>
 
-      {/* Contenedor para el botón "Volver" y el título centrado */}
-      <div className="flex items-center justify-between px-5 py-3">
-        {/* Botón "Volver" en la esquina superior izquierda */}
-        <button
-          onClick={() => navigate(-1)} // Usa navigate aquí
-          className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
-        >
-          <ArrowLeft className="w-6 h-6" />
-          <span>Volver</span>
-        </button>
-
-        {/* Título centrado con más espacio hacia abajo */}
-        <h1 className="text-5xl font-bold text-[#2c7a7b] absolute left-1/2 transform -translate-x-1/2 mt-24">
-          Actividades
-        </h1>
-      </div>
-
-      {/* Contenido principal con menos espacio entre el título y el contenido */}
-      <div className="curso-detalles-container px-12 py-16 text-center bg-[#f0faf7] mb-24">
-        <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto mt-10 ">Explora y accede a las actividades disponibles.</p>
-
-        <div className="mb-4 flex items-center gap-4">
-              <label htmlFor="nivel-select" className="text-base font-semibold text-gray-700">
-                Filtrar:
-              </label>
-              <select
-                id="nivel-select"
-                value={opcionCreacion}
-                onChange={(e) => setOpcionCreacion(e.target.value)}
-                className="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-lg w-60"
-              >
-              <option value="">Todos las actividades</option>
-              <option value={idProfesor?.toString()}>Mis actividades</option>
-            </select>
+          <h1 className="text-5xl font-bold text-[#2c7a7b] text-center w-full">
+            Actividades
+          </h1>
         </div>
 
-        <div className="tarjetas-detalles flex justify-center gap-8 flex-wrap">
+        <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto mt-10">Explora y accede a las actividades disponibles.</p>
+
+        {/* Filtro y botón de Crear nueva actividad*/}
+        <div className="mb-4 flex items-center justify-between space-x-4">
+          <div className="flex items-center space-x-4">
+            <label htmlFor="nivel-select" className="text-base font-semibold text-gray-700">
+              Filtrar:
+            </label>
+            <select
+              id="nivel-select"
+              value={opcionCreacion}
+              onChange={(e) => setOpcionCreacion(e.target.value)}
+              className="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-lg w-60"
+            >
+              <option value="">Todas las actividades</option>
+              <option value={idProfesor?.toString()}>Mis actividades</option>
+            </select>
+          </div>
+
+          {/* Botón "Crear nueva actividad" en la misma línea */}
+          <button 
+            onClick={() => hadleNuevaActividad()}
+            className="bg-gradient-to-r from-green-500 to-green-600 text-white py-2 px-6 rounded-full text-lg hover:from-green-600 hover:to-green-700 transition-all"
+          >
+            Crear nueva actividad
+          </button>
+        </div>
+
+        <div className="tarjetas-detalles flex justify-center gap-8 flex-wrap grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {loading ? (
             <p>Cargando actividades ...</p>
           ) : error ? (
@@ -103,7 +113,7 @@ const Actividad = () => {
             actividadCreador.map((actividad) => (
               <div 
                 key={actividad.idactividad} 
-                className="tarjeta-detalle bg-white border border-gray-200 rounded-xl shadow-lg p-6 w-64 text-center no-underline text-gray-800 transition-transform duration-300 ease-in-out hover:transform hover:-translate-y-2 hover:shadow-2xl flex flex-col justify-between"
+                className="tarjeta-detalle bg-white border border-gray-200 rounded-xl shadow-lg p-6 text-center no-underline text-gray-800 transition-transform duration-300 ease-in-out hover:transform hover:-translate-y-2 hover:shadow-2xl flex flex-col justify-between"
               >
                 <img src={actividadImg} alt="Imagen de actividad" className="tarjeta-imagen w-full h-40 object-cover rounded-lg mb-4" />
                 <div className="tarjeta-texto">
@@ -123,17 +133,10 @@ const Actividad = () => {
           )}
 
         </div>
-
-        <button 
-          onClick={() => hadleNuevaActividad()}
-          className="inline-block mt-12 bg-gradient-to-r from-green-500 to-green-600 text-white py-2 px-6 rounded-full text-lg hover:from-green-600 hover:to-green-700 transition-all"
-        >
-          Crear nueva actividad
-        </button>
       </div>
 
       {/* Footer al final de la página */}
-      <Footer className="pt-20" />
+      <Footer />
     </div>
   );
 };

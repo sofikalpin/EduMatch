@@ -117,9 +117,9 @@ function App() {
 
             {/* Foro */}
             <Route path="/listaForos" element={<ProtegerRuta><ListaForos/></ProtegerRuta>} />
-            <Route path="/listaForos/:idForo" element={<ProtegerRuta><Foro/></ProtegerRuta>} />
-            <Route path="/listaForos/:idForo/:idConsulta" element={<ProtegerRuta><Consulta/></ProtegerRuta>}/>
-            <Route path="/listaForos/:idForo/:idConsulta/:idRespuesta" element={<ProtegerRuta><Respuesta/></ProtegerRuta>} />
+            <Route path="/foro" element={<ProtegerRuta><Foro/></ProtegerRuta>} />
+            <Route path="/consulta" element={<ProtegerRuta><Consulta/></ProtegerRuta>}/>
+            <Route path="/respuesta" element={<ProtegerRuta><Respuesta/></ProtegerRuta>} />
 
             <Route path="/crear-foro" element={<ProtegerRuta><NuevoForo /></ProtegerRuta>} />
             <Route path="/crear-consulta/:idForo" element={<ProtegerRuta><NuevaConsulta /></ProtegerRuta>} />

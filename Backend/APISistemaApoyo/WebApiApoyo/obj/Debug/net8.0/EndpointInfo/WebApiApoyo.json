@@ -2106,6 +2106,59 @@
           }
         }
       }
+    },
+    "/API/Usuario/ActualizarFoto": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActualizarFotoDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActualizarFotoDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActualizarFotoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/Usuario/ObtenerFoto/{correo}": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "parameters": [
+          {
+            "name": "correo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -2138,6 +2191,20 @@
           "fecha": {
             "type": "string",
             "format": "date",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ActualizarFotoDTO": {
+        "type": "object",
+        "properties": {
+          "correo": {
+            "type": "string",
+            "nullable": true
+          },
+          "foto": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -2439,6 +2506,10 @@
             "nullable": true
           },
           "cvRuta": {
+            "type": "string",
+            "nullable": true
+          },
+          "fotoRuta": {
             "type": "string",
             "nullable": true
           }

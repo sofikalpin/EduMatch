@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\Sistema Apoyo.IOC\\Sistema Apoyo.IOC.csproj": {}
+    "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\Sistema Apoyo.IOC\\Sistema Apoyo.IOC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\Sistema Apoyo.IOC\\Sistema Apoyo.IOC.csproj": {
+    "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\Sistema Apoyo.IOC\\Sistema Apoyo.IOC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\Sistema Apoyo.IOC\\Sistema Apoyo.IOC.csproj",
+        "projectUniqueName": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\Sistema Apoyo.IOC\\Sistema Apoyo.IOC.csproj",
         "projectName": "Sistema Apoyo.IOC",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\Sistema Apoyo.IOC\\Sistema Apoyo.IOC.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\Sistema Apoyo.IOC\\obj\\",
+        "projectPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\Sistema Apoyo.IOC\\Sistema Apoyo.IOC.csproj",
+        "packagesPath": "C:\\Users\\Sofia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\Sistema Apoyo.IOC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sofia\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -33,14 +33,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj"
+              "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj": {
+                "projectPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj"
               },
-              "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj"
+              "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj": {
+                "projectPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj"
               },
-              "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj"
+              "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj": {
+                "projectPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj"
               }
             }
           }
@@ -53,8 +53,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
-        }
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -81,24 +82,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj": {
+    "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj",
+        "projectUniqueName": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj",
         "projectName": "SistemaApoyo.BLL",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\obj\\",
+        "projectPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj",
+        "packagesPath": "C:\\Users\\Sofia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sofia\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -114,17 +115,17 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj"
+              "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj": {
+                "projectPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj"
               },
-              "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj"
+              "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj": {
+                "projectPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj"
               },
-              "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj"
+              "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj": {
+                "projectPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj"
               },
-              "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj"
+              "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj": {
+                "projectPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj"
               }
             }
           }
@@ -137,8 +138,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
-        }
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -181,24 +183,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj": {
+    "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj",
+        "projectUniqueName": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj",
         "projectName": "SistemaApoyo.DAL",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\obj\\",
+        "projectPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj",
+        "packagesPath": "C:\\Users\\Sofia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sofia\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -214,11 +216,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj"
+              "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj": {
+                "projectPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj"
               },
-              "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj"
+              "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj": {
+                "projectPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj"
               }
             }
           }
@@ -231,8 +233,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
-        }
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -277,24 +280,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj": {
+    "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj",
+        "projectUniqueName": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj",
         "projectName": "SistemaApoyo.DTO",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\obj\\",
+        "projectPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj",
+        "packagesPath": "C:\\Users\\Sofia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sofia\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -320,8 +323,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
-        }
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -358,24 +362,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj": {
+    "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj",
+        "projectUniqueName": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj",
         "projectName": "SistemaApoyo.Model",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\obj\\",
+        "projectPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj",
+        "packagesPath": "C:\\Users\\Sofia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sofia\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -401,8 +405,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
-        }
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -445,24 +450,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj": {
+    "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj",
+        "projectUniqueName": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj",
         "projectName": "SistemaApoyo.Utility",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\obj\\",
+        "projectPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj",
+        "packagesPath": "C:\\Users\\Sofia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sofia\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -478,11 +483,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj"
+              "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj": {
+                "projectPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj"
               },
-              "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj"
+              "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj": {
+                "projectPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\SistemaApoyo.Model.csproj"
               }
             }
           }
@@ -495,8 +500,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
-        }
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -537,7 +543,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

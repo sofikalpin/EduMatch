@@ -1,72 +1,56 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Plus } from "lucide-react";
+import { Plus, ChevronRight } from "lucide-react";
 import logo from "../../logo/LogoInicio.png";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react';
 
 
-const socialIcons = [
-  { name: 'Facebook', color: 'hover:text-blue-500' },
-  { name: 'Instagram', color: 'hover:text-pink-500' },
-  { name: 'Twitter', color: 'hover:text-blue-400' },
-  { name: 'Youtube', color: 'hover:text-red-500' },
-  { name: 'Linkedin', color: 'hover:text-blue-700' }
-];
-
 const Consulta = () => {
-  const { idConsulta } = useParams();
-  const [consulta, setConsulta] = useState({});
+  const location = useLocation();
+  const navigate = useNavigate();
+  
+  const [consulta, setConsulta] = useState(null);
   const [respuestas, setRespuestas] = useState([]);
-  const [loadingConsulta, setLoadingConsulta] = useState(true);
-  const [loadingRespuestas, setloadingRespuestas] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    if (!consulta && location.state){
+      setConsulta(location.state.consulta);
+    }
+  }, [location.state])
 
   useEffect(() => {
     const cargarRespuestas = async () => {
       try {
-        setloadingRespuestas(true);
+        setLoading(true);
         setError("");
-        const respuesta = await axios.get(`http://localhost:5228/API/Consulta/ListaRespuestasDeConsulta?consultaId=${idConsulta}`);
-        setRespuestas(respuesta.data.value); 
+        const respuesta = await axios.get(`http://localhost:5228/API/Consulta/ListaRespuestasDeConsulta?consultaId=${consulta.idconsulta}`);
+        if(respuesta.data.status && Array.isArray(respuesta.data.value)){
+          setRespuestas(respuesta.data.value);
+          console.log("Respuestas: ", respuesta.data.value);
+        } else {
+          console.error("Error al cargar las repuestas del la consulta " + respuesta.data.message);
+          setError(respuesta.data.message);
+        }
       } catch (error) {
-        console.error("Error al obtener las consultas: ", error);
-        setError("No se pudieron cargar las consultas.");
+        console.error("Error al obtener las respuestas: ", error);
+        setError("No se pudieron cargar las respuestas.");
       } finally {
-        setloadingRespuestas(false);
+        setLoading(false);
       }
     };  
 
-    if (idConsulta) {
-      cargarRespuestas();
-    }
-  }, [idConsulta]);
-
-  useEffect(() => {
-    const cargaDatosConsulta = async () => {
-      try {
-        setLoadingConsulta(true);
-        setError("");
-        const datosConsulta = await axios.get(`http://localhost:5228/API/Consulta/ConsultaID?id=${idConsulta}`);
-        setConsulta(datosConsulta.data.value);
-      } catch (error) {
-        console.error("Error al obtener la consulta elegida: ", error);
-        setError("No se pudieron cargar los datos de la consulta.");
-      } finally {
-        setLoadingConsulta(false);
-      }
-    };
-
-    if (idConsulta) {
-      cargaDatosConsulta();
-    }
-  }, [idConsulta]);
+    cargarRespuestas();
+  }, [consulta]);
 
   const handleNuevaRespuesta = () => {
-    navigate(`/crear-respuesta/${idConsulta}`);
+    navigate("/respuesta", {state: {consulta}});
   };
+
+  if (loading) return <p className="text-center text-gray-500">Cargando respuestas de consulta...</p>;
+  if (error) return <p className="text-center text-red-500">{error}</p>;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white">
@@ -81,7 +65,7 @@ const Consulta = () => {
       <main className="max-w-4xl mx-auto px-4 pt-24 pb-32">
         <div className="mb-8 flex items-center justify-between">
           <h1 className="text-3xl font-bold text-gray-900">
-            {loadingConsulta ? "Cargando consulta..." : `Consulta: ${consulta.titulo}` || "Consulta sin titulo"} 
+            {`Consulta: ${consulta.titulo}` || "Consulta sin titulo"} 
           </h1> 
           
           <button
@@ -94,23 +78,21 @@ const Consulta = () => {
         </div>
 
         <div className="space-y-6">
-          {loadingRespuestas ? (
-            <p className="text-center text-gray-500">Cargando respuestas...</p>
-          ) : error ? (
-            <p className="text-center text-red-500">{error}</p>
-          ) : (respuestas && respuestas.length === 0) ? (
+          {respuestas.length === 0 ? (
             <p className="text-center text-gray-500">La consulta seleccionada no posee respuestas disponibles.</p>
           ) : (
             <ul>
-              {respuestas && respuestas.map((respuesta) => (
-                <li key={respuesta.idrespuesta} className="p-4 border-b">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-800">
-                      {respuesta.contenido}
-                    </span>
-                  </div>
-                </li>
-              ))}
+              {
+                respuestas.map((respuesta) => (
+                  <li key={respuesta.idrespuesta} className="p-4 border-b">
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-800">
+                        <p>{respuesta.contenido}</p>
+                      </span>
+                    </div>
+                  </li>
+                ))
+              }
             </ul>
           )}
         </div>

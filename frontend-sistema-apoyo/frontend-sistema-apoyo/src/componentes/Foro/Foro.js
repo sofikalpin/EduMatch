@@ -2,70 +2,57 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Plus, ChevronRight } from "lucide-react";
 import logo from "../../logo/LogoInicio.png"; 
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react';
 
-const socialIcons = [
-  { name: 'Facebook', color: 'hover:text-blue-500' },
-  { name: 'Instagram', color: 'hover:text-pink-500' },
-  { name: 'Twitter', color: 'hover:text-blue-400' },
-  { name: 'Youtube', color: 'hover:text-red-500' },
-  { name: 'Linkedin', color: 'hover:text-blue-700' }
-];
-
 const Foro = () => {
-  const { idForo } = useParams();
-  const [foro, setForo] = useState({});
-  const [consultas, setConsultas] = useState([]);
-  const [loadingConsultas, setLoadingConsultas] = useState(true);
-  const [loadingForo, setLoadingForo] = useState(true);
-  const [error, setError] = useState("");
-
+  const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const cargarConsultas = async () => {
-      try {
-        setLoadingConsultas(true);
-        setError("");
-        const respuesta = await axios.get(`http://localhost:5228/API/Foro/ConsultasForo?idForo=${idForo}`);
-        setConsultas(respuesta.data.value); 
-      } catch (error) {
-        console.error("Error al obtener las consultas: ", error);
-        setError("No se pudieron cargar las consultas.");
-      } finally {
-        setLoadingConsultas(false);
-      }
-    };  
+  const [foro, setForo] = useState(null);
+  const [consultas, setConsultas] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-    if (idForo) {
-      cargarConsultas();
+  useEffect(() => {
+    if (!foro && location.state) {
+      setForo(location.state.foro);
     }
-  }, [idForo]);
+  }, [location.state]);
 
   useEffect(() => {
-    const cargaDatosForo = async () => {
+    const fetchConsultas = async () => {
+
+      setLoading(true);
+      setError("");
+      
       try {
-        setLoadingForo(true);
-        setError("");
-        const datosForo = await axios.get(`http://localhost:5228/API/Foro/ForoID?id=${idForo}`);
-        setForo(datosForo.data.value);
-      } catch (error) {
-        console.error("Error al obtener el foro elegido: ", error);
-        setError("No se pudieron cargar los datos del foro.");
-      } finally {
-        setLoadingForo(false);
+        const respuesta = await axios.get(`http://localhost:5228/API/Foro/ConsultasForo?idForo=${foro.idforo}`);
+        if(respuesta.data.status && Array.isArray(respuesta.data.value)){
+          setConsultas(respuesta.data.value);
+          console.log("Consultas: ", respuesta.data.value);
+        } else {
+          console.error("Error al cargar las consultas del foro " + respuesta.data.message);
+          setError(respuesta.data.message);
+        }
+      } catch (err) {
+        console.error("Error al cargar las consultas: ", error);
+        setError("Error al conectar con el servidor, inténtelo más tarde.");
+        setConsultas([]);
+      }finally{
+        setLoading(false);
       }
     };
 
-    if (idForo) {
-      cargaDatosForo();
-    }
-  }, [idForo]);
+    fetchConsultas();
+  }, [foro]);
 
   const handleNuevaConsulta = () => {
-    navigate(`/crear-consulta/${idForo}`);
+    navigate(`/crear-consulta/${foro.idforo}`);
   };
+
+  if (loading) return <p className="text-center text-gray-500">Cargando consultas de foro...</p>;
+  if (error) return <p className="text-center text-red-500">{error}</p>;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white">
@@ -80,7 +67,7 @@ const Foro = () => {
       <main className="max-w-4xl mx-auto px-4 pt-24 pb-32">
         <div className="mb-8 flex items-center justify-between">
           <h1 className="text-3xl font-bold text-gray-900">
-            {loadingForo ? "Cargando foro..." : `Foro: ${foro.nombre || "Sin título"}`}
+            {`Foro: ${foro?.nombre || "Sin título"}`}
           </h1> 
           <button
             onClick={() => handleNuevaConsulta()}
@@ -92,32 +79,28 @@ const Foro = () => {
         </div>
 
         <div className="space-y-6">
-          {loadingConsultas ? (
-            <p className="text-center text-gray-500">Cargando consultas...</p>
-          ) : error ? (
-            <p className="text-center text-red-500">{error}</p>
-          ) : consultas.length === 0 ? (
-            <p className="text-center text-gray-500">El foro seleccionado no posee consultas disponibles.</p>
-          ) : (
-            <ul>
-              {consultas.map((consulta) => (
-                <li key={consulta.idConsulta} className="p-4 border-b">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-800">
-                      <strong>{consulta.titulo}</strong><br />
-                      {consulta.contenido}
-                    </span>
-                    <button 
-                      onClick={() => navigate(`/consulta/${consulta.idConsulta}`)} 
-                      className="text-teal-600 hover:text-teal-800"
-                    >
-                      <ChevronRight className="w-5 h-5" />
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
+          {consultas.length === 0 ? (
+              <p className="text-center text-gray-500">El foro seleccionado no posee consultas disponibles.</p>
+            ) : (
+              <ul>
+                {consultas.map((consulta) => (
+                  <li key={consulta.idconsulta} className="p-4 border-b">
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-800">
+                        <strong>{consulta.titulo}</strong><br />
+                        {consulta.contenido}
+                      </span>
+                      <button 
+                        onClick={() => navigate("/consulta", { state: {consulta}})} 
+                        className="text-teal-600 hover:text-teal-800"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
         </div>
       </main>
     </div>

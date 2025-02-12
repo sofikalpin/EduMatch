@@ -1,49 +1,25 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\",
+  "WorkspaceRootPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\desktop\\desarrollo de software\\60versionconback -sofiraggi\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\profesor\\profesorexamencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\profesor\\profesorexamencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\desktop\\desarrollo de software\\60versionconback -sofiraggi\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\profesor\\profesoractividadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\profesor\\profesoractividadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\desktop\\desarrollo de software\\60versionconback -sofiraggi\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\desktop\\desarrollo de software\\60versionconback -sofiraggi\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\administrador\\administradorprofesorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\administrador\\administradorprofesorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\desktop\\desarrollo de software\\60versionconback -sofiraggi\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\administrador\\administradorchatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\administrador\\administradorchatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\desktop\\desarrollo de software\\60versionconback -sofiraggi\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\administrador\\administradoralumnocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\administrador\\administradoralumnocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{75B98C71-F23C-4FF6-91AD-5DDF75A50234}|Sistema Apoyo.IOC\\Sistema Apoyo.IOC.csproj|c:\\users\\usuario\\desktop\\desarrollo de software\\60versionconback -sofiraggi\\edumatch\\backend\\apisistemaapoyo\\sistema apoyo.ioc\\dependencia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{75B98C71-F23C-4FF6-91AD-5DDF75A50234}|Sistema Apoyo.IOC\\Sistema Apoyo.IOC.csproj|c:\\users\\sofia\\documents\\utn\\3 a\u00F1o - 2024\\desarrollosoftware\\edumatch\\backend\\apisistemaapoyo\\sistema apoyo.ioc\\dependencia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{75B98C71-F23C-4FF6-91AD-5DDF75A50234}|Sistema Apoyo.IOC\\Sistema Apoyo.IOC.csproj|solutionrelative:sistema apoyo.ioc\\dependencia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\desktop\\desarrollo de software\\60versionconback -sofiraggi\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\profesor\\profesorarticulocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\sofia\\documents\\utn\\3 a\u00F1o - 2024\\desarrollosoftware\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\profesor\\profesorarticulocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\profesor\\profesorarticulocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\desktop\\desarrollo de software\\60versionconback -sofiraggi\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\usuarios\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\sofia\\documents\\utn\\3 a\u00F1o - 2024\\desarrollosoftware\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\usuarios\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\usuarios\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|c:\\users\\usuario\\desktop\\desarrollo de software\\60versionconback -sofiraggi\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.bll\\servicios\\respuestaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|c:\\users\\sofia\\documents\\utn\\3 a\u00F1o - 2024\\desarrollosoftware\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.bll\\servicios\\respuestaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|solutionrelative:sistemaapoyo.bll\\servicios\\respuestaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E9C332F1-56F5-4D50-B82E-9AFDF3C33349}|SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj|c:\\users\\usuario\\desktop\\desarrollo de software\\60versionconback -sofiraggi\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.dal\\repositorios\\contrato\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E9C332F1-56F5-4D50-B82E-9AFDF3C33349}|SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj|c:\\users\\sofia\\documents\\utn\\3 a\u00F1o - 2024\\desarrollosoftware\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.dal\\repositorios\\contrato\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E9C332F1-56F5-4D50-B82E-9AFDF3C33349}|SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj|solutionrelative:sistemaapoyo.dal\\repositorios\\contrato\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -58,10 +34,6 @@
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
@@ -69,103 +41,29 @@
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ProfesorExamenController.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorExamenController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Profesor\\ProfesorExamenController.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorExamenController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\Profesor\\ProfesorExamenController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T20:48:30.271Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProfesorActividadController.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorActividadController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Profesor\\ProfesorActividadController.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorActividadController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\Profesor\\ProfesorActividadController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T20:48:04.579Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ChatController.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ChatController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\ChatController.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ChatController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\ChatController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T20:47:53.598Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AdministradorProfesorController.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Administrador\\AdministradorProfesorController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Administrador\\AdministradorProfesorController.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Administrador\\AdministradorProfesorController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\Administrador\\AdministradorProfesorController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T20:47:41.131Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AdministradorChatController.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Administrador\\AdministradorChatController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Administrador\\AdministradorChatController.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Administrador\\AdministradorChatController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\Administrador\\AdministradorChatController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T20:47:24.959Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AdministradorAlumnoController.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Administrador\\AdministradorAlumnoController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Administrador\\AdministradorAlumnoController.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Administrador\\AdministradorAlumnoController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\Administrador\\AdministradorAlumnoController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T20:47:11.612Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "Dependencia.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\Sistema Apoyo.IOC\\Dependencia.cs",
+              "DocumentMoniker": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\Sistema Apoyo.IOC\\Dependencia.cs",
               "RelativeDocumentMoniker": "Sistema Apoyo.IOC\\Dependencia.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\Sistema Apoyo.IOC\\Dependencia.cs",
+              "ToolTip": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\Sistema Apoyo.IOC\\Dependencia.cs",
               "RelativeToolTip": "Sistema Apoyo.IOC\\Dependencia.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAcwAgAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-11T20:45:46.644Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "ProfesorArticuloController.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorArticuloController.cs",
+              "DocumentMoniker": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorArticuloController.cs",
               "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Profesor\\ProfesorArticuloController.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorArticuloController.cs",
+              "ToolTip": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorArticuloController.cs",
               "RelativeToolTip": "WebApiApoyo\\Controllers\\Profesor\\ProfesorArticuloController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -173,11 +71,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 2,
               "Title": "UsuarioController.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "DocumentMoniker": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
               "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "ToolTip": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
               "RelativeToolTip": "WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAD4vw8AAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -185,11 +83,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 3,
               "Title": "RespuestaService.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\RespuestaService.cs",
+              "DocumentMoniker": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\RespuestaService.cs",
               "RelativeDocumentMoniker": "SistemaApoyo.BLL\\Servicios\\RespuestaService.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\RespuestaService.cs",
+              "ToolTip": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\RespuestaService.cs",
               "RelativeToolTip": "SistemaApoyo.BLL\\Servicios\\RespuestaService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -197,11 +95,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 4,
               "Title": "GenericRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\Repositorios\\Contrato\\GenericRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\Repositorios\\Contrato\\GenericRepository.cs",
               "RelativeDocumentMoniker": "SistemaApoyo.DAL\\Repositorios\\Contrato\\GenericRepository.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo de Software\\60VERSIONCONBACK -SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\Repositorios\\Contrato\\GenericRepository.cs",
+              "ToolTip": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\Repositorios\\Contrato\\GenericRepository.cs",
               "RelativeToolTip": "SistemaApoyo.DAL\\Repositorios\\Contrato\\GenericRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

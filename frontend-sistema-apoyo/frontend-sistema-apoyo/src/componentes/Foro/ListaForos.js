@@ -95,7 +95,7 @@ const ListarForos = () => {
                                 <span className="text-gray-800">
                                     <strong>{foro.nombre}</strong><br />{foro.descripcion}
                                 </span>
-                                <button onClick={() => navigate(`/foros/${foro.idForo}`)} className="text-teal-600 hover:text-teal-800">
+                                <button onClick={() => navigate("/foro", { state: {foro}})} className="text-teal-600 hover:text-teal-800">
                                     <ChevronRight className="w-5 h-5" />
                                 </button>
                             </li>

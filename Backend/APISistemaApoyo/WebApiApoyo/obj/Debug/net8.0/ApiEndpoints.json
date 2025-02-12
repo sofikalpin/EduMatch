@@ -370,7 +370,7 @@
   {
     "ContainingType": "SistemaApoyo.API.Controllers.ArticuloController",
     "Method": "ListaArticuloId",
-    "RelativePath": "API/Articulo/Articulo ID",
+    "RelativePath": "API/Articulo/ArticuloID",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -402,7 +402,7 @@
   {
     "ContainingType": "SistemaApoyo.API.Controllers.ArticuloController",
     "Method": "ListaArticulo",
-    "RelativePath": "API/Articulo/Listar Articulo",
+    "RelativePath": "API/Articulo/ListarArticulo",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -412,7 +412,7 @@
   {
     "ContainingType": "SistemaApoyo.API.Controllers.ArticuloController",
     "Method": "ListaArticuloPorNombre",
-    "RelativePath": "API/Articulo/Titulo Articulo",
+    "RelativePath": "API/Articulo/TituloArticulo",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

@@ -2,7 +2,7 @@
 using SistemaApoyo.API.Utilidad;
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DTO;
-using SistemaApoyo.DAL.DBContext;
+using SistemaApoyo.DAL;
 using SistemaApoyo.BLL.Servicios;
 using Microsoft.EntityFrameworkCore;
 using SistemaApoyo.Model;

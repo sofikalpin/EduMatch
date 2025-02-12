@@ -6,7 +6,7 @@ using SistemaApoyo.DAL.Repositorios;
 using SistemaApoyo.Utility;
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.BLL.Servicios;
-using SistemaApoyo.DAL.DBContext;
+using SistemaApoyo.DAL;
 using SistemaApoyo.BLL.servicios;
 using SistemaApoyo.Model;
 

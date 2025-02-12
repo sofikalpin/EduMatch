@@ -562,7 +562,7 @@
         }
       }
     },
-    "/API/Articulo/Listar Articulo": {
+    "/API/Articulo/ListarArticulo": {
       "get": {
         "tags": [
           "Articulo"
@@ -574,7 +574,7 @@
         }
       }
     },
-    "/API/Articulo/Titulo Articulo": {
+    "/API/Articulo/TituloArticulo": {
       "get": {
         "tags": [
           "Articulo"
@@ -595,7 +595,7 @@
         }
       }
     },
-    "/API/Articulo/Articulo ID": {
+    "/API/Articulo/ArticuloID": {
       "get": {
         "tags": [
           "Articulo"
@@ -2188,9 +2188,13 @@
             "format": "int32",
             "nullable": true
           },
-          "fecha": {
+          "fechaCreacion": {
             "type": "string",
             "format": "date",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -2225,18 +2229,21 @@
             "type": "string",
             "nullable": true
           },
-          "urlImagen": {
+          "url": {
             "type": "string",
             "nullable": true
           },
           "idusuario": {
             "type": "integer",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "idnivel": {
             "type": "integer",
-            "format": "int32",
+            "format": "int32"
+          },
+          "fechaCreacion": {
+            "type": "string",
+            "format": "date",
             "nullable": true
           }
         },
@@ -2316,32 +2323,25 @@
             "type": "string",
             "nullable": true
           },
-          "duracion": {
-            "type": "integer",
-            "format": "int32"
-          },
           "calificacion": {
             "type": "string",
             "nullable": true
           },
           "idusuario": {
             "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "horaFin": {
-            "type": "string",
-            "format": "time",
-            "nullable": true
-          },
-          "horaIni": {
-            "type": "string",
-            "format": "time",
-            "nullable": true
+            "format": "int32"
           },
           "idnivel": {
             "type": "integer",
-            "format": "int32",
+            "format": "int32"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaCreacion": {
+            "type": "string",
+            "format": "date",
             "nullable": true
           }
         },

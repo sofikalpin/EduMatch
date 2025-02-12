@@ -14,10 +14,12 @@ namespace SistemaApoyo.DTO
 
         public string Descripcion { get; set; } = null!;
 
-        public string? UrlImagen { get; set; }
+        public string? Url { get; set; }
 
-        public int? Idusuario { get; set; }
+        public int Idusuario { get; set; }
 
-        public int? Idnivel { get; set; }
+        public int Idnivel { get; set; }
+
+        public DateOnly? FechaCreacion { get; set; }
     }
 }

@@ -21,6 +21,8 @@ namespace SistemaApoyo.DTO
 
         public int? Idnivel { get; set; }
 
-        public DateOnly? Fecha { get; set; }
+        public DateOnly? FechaCreacion { get; set; }
+
+        public string? Url { get; set; }
     }
 }

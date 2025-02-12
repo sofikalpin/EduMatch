@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { ArrowLeft } from 'lucide-react';
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../HeaderProfesor";
 import Footer from "../FooterProfesor";  // Asegúrate de importar el Footer
+import articulopng from "../Imagenes/articulo.jpg"; 
 import axios from "axios";
 import { useUser } from "../../../context/userContext";
 
 const Articulo = () => {
+  const { id } = useParams();
   const { user } = useUser();
   const [articulos, setArticulos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [opcionCreacion, setOpcionCreacion] = useState("");
   const navigate = useNavigate(); // Inicializa la función navigate
+
+  const idProfesor = user?.idUsuario;
 
   // Cargar artículos desde una API al montar el componente
   useEffect(() => {
@@ -20,12 +24,7 @@ const Articulo = () => {
       setLoading(true);
       try {
 
-        const idProfesor = user?.idUsuario;
-        if (!idProfesor) {
-          throw new Error("El ID del profesor no está disponible.");
-        }
-
-        const response = await axios.get(`http://localhost:5228/API/ProfesorArticulo/ArticuloIDProfesor?id=${idProfesor}`); // Ajusta la ruta de tu API
+        const response = await axios.get(`http://localhost:5228/API/Articulo/ArticulosPorNivel?idNivel=${id}`); // Ajusta la ruta de tu API
         
         if (response.data.status && Array.isArray(response.data.value)){
           setArticulos(response.data.value);
@@ -40,9 +39,18 @@ const Articulo = () => {
         setLoading(false);
       }
     };
-
     fetchArticulos();
-  }, []);
+  }, [id]);
+
+  const articuloCreador = articulos.filter(
+    (articulo) => 
+      opcionCreacion === "" || 
+      (articulo.idusuario && articulo.idusuario.toString() === opcionCreacion)
+  );
+
+  const hadleNuevoArticulo = () => {
+    navigate("/crear-articulo", {state: { id }})
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
@@ -72,43 +80,61 @@ const Articulo = () => {
           Explora artículos sobre diferentes temas de aprendizaje.
         </p>
 
+        <div className="mb-4 flex items-center gap-4">
+              <label htmlFor="nivel-select" className="text-base font-semibold text-gray-700">
+                Filtrar:
+              </label>
+              <select
+                id="nivel-select"
+                value={opcionCreacion}
+                onChange={(e) => setOpcionCreacion(e.target.value)}
+                className="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-lg w-60"
+              >
+              <option value="">Todos los articulos</option>
+              <option value={idProfesor?.toString()}>Mis articulos</option>
+            </select>
+        </div>
+
         <div className="flex justify-center gap-8 flex-wrap">
           {loading ? (
             <p>Cargando articulos ...</p>
           ) : error ? (
             <p className="text-red-500">{error}</p>
-          ) : articulos.length > 0 ? (
-            articulos.map((articulo) => (
+          ) : articuloCreador.length > 0 ? (
+            articuloCreador.map((articulo) => (
               <div
                 key={articulo.idarticulo}
                 className="bg-white border border-gray-200 rounded-xl shadow-lg p-6 w-64 text-center transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl"
               >
-                <h3 className="text-2xl font-semibold text-[#2c7a7b] mb-2">
-                  {articulo.titulo}
-                </h3>
-                <p className="text-gray-600 text-sm mb-4">{articulo.descripcion}</p>
-                <Link
-                  to={`/articulo/${articulo.idarticulo}`}
+                <img src={articulopng} alt="Imagen de articulo" className="tarjeta-imagen w-full h-40 object-cover rounded-lg mb-4" />
+                <div className="tarjeta-texto">
+                  <h3 className="text-2xl font-semibold text-[#2c7a7b] mb-2">{articulo.titulo}</h3>
+                  <p className="text-base text-gray-600">{articulo.descripcion}</p>
+                </div>
+                <button
+                  onClick={() => navigate(`/articulo/${articulo.idarticulo}`)}
                   className="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white py-2 px-4 rounded-full text-lg hover:from-green-600 hover:to-green-700 transition-all"
                 >
                   Acceder
-                </Link>
+                </button>
               </div>
             ))
           ) : (
             <p className="text-gray-500 text-xl">No hay artículos disponibles</p>
           )}
+
         </div>
 
-        <Link to="/crear-articulo">
-          <button className="inline-block mt-16 bg-gradient-to-r from-green-500 to-green-600 text-white py-2 px-6 rounded-full text-lg hover:from-green-600 hover:to-green-700 transition-all">
+          <button 
+            onClick={() => hadleNuevoArticulo()}
+            className="inline-block mt-16 bg-gradient-to-r from-green-500 to-green-600 text-white py-2 px-6 rounded-full text-lg hover:from-green-600 hover:to-green-700 transition-all"
+          >
             Crear nuevo artículo
           </button>
-        </Link>
       </div>
 
       {/* Agrega el Footer aquí */}
-      <Footer />
+      <Footer className="pt-20"/>
     </div>
   );
 };

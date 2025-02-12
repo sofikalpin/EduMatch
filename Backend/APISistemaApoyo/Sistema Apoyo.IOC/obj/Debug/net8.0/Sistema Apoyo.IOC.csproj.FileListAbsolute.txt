@@ -184,30 +184,6 @@ C:\Users\Usuario\Downloads\EduMatch-nueva-rama\EduMatch-nueva-rama\Backend\APISi
 C:\Users\Usuario\Downloads\EduMatch-nueva-rama\EduMatch-nueva-rama\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\refint\Sistema Apoyo.IOC.dll
 C:\Users\Usuario\Downloads\EduMatch-nueva-rama\EduMatch-nueva-rama\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.pdb
 C:\Users\Usuario\Downloads\EduMatch-nueva-rama\EduMatch-nueva-rama\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\ref\Sistema Apoyo.IOC.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.csproj.AssemblyReference.cache
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.AssemblyInfoInputs.cache
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.AssemblyInfo.cs
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.csproj.CoreCompileInputs.cache
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.sourcelink.json
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\Sistema Apoyo.IOC.deps.json
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\Sistema Apoyo.IOC.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\Sistema Apoyo.IOC.pdb
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.BLL.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.DAL.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.DTO.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.Model.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.Utility.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.BLL.pdb
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.DAL.pdb
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.Utility.pdb
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.DTO.pdb
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.Model.pdb
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema .5CACF472.Up2Date
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\refint\Sistema Apoyo.IOC.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.pdb
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\ref\Sistema Apoyo.IOC.dll
 C:\Users\nopef\OneDrive\Documents\UTN\3 Año\Desarrollo de Software\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\Sistema Apoyo.IOC.deps.json
 C:\Users\nopef\OneDrive\Documents\UTN\3 Año\Desarrollo de Software\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\Sistema Apoyo.IOC.dll
 C:\Users\nopef\OneDrive\Documents\UTN\3 Año\Desarrollo de Software\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\Sistema Apoyo.IOC.pdb
@@ -256,3 +232,27 @@ C:\Users\Usuario\Desktop\Desarrollo de Software\60VERSIONCONBACK -SOFIRAGGI\EduM
 C:\Users\Usuario\Desktop\Desarrollo de Software\60VERSIONCONBACK -SOFIRAGGI\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\refint\Sistema Apoyo.IOC.dll
 C:\Users\Usuario\Desktop\Desarrollo de Software\60VERSIONCONBACK -SOFIRAGGI\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.pdb
 C:\Users\Usuario\Desktop\Desarrollo de Software\60VERSIONCONBACK -SOFIRAGGI\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\ref\Sistema Apoyo.IOC.dll
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.csproj.AssemblyReference.cache
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.AssemblyInfoInputs.cache
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.AssemblyInfo.cs
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.csproj.CoreCompileInputs.cache
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.sourcelink.json
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\Sistema Apoyo.IOC.deps.json
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\Sistema Apoyo.IOC.dll
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\Sistema Apoyo.IOC.pdb
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.BLL.dll
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.DAL.dll
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.DTO.dll
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.Model.dll
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.Utility.dll
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.BLL.pdb
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.DAL.pdb
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.Utility.pdb
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.DTO.pdb
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\bin\Debug\net8.0\SistemaApoyo.Model.pdb
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema .5CACF472.Up2Date
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.dll
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\refint\Sistema Apoyo.IOC.dll
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\Sistema Apoyo.IOC.pdb
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\Sistema Apoyo.IOC\obj\Debug\net8.0\ref\Sistema Apoyo.IOC.dll

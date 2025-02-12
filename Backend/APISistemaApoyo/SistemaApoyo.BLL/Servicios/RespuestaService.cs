@@ -9,7 +9,7 @@ using SistemaApoyo.DTO;
 using SistemaApoyo.Model;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using SistemaApoyo.DAL.DBContext;
+using SistemaApoyo.DAL;
 
 namespace SistemaApoyo.BLL.servicios
 {

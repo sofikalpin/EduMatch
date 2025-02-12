@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using SistemaApoyo.BLL.Servicios;
 using SistemaApoyo.Model;
 using Microsoft.EntityFrameworkCore;
-using SistemaApoyo.DAL.DBContext;
+using SistemaApoyo.DAL;
 
 namespace WebApiApoyo.Controllers.Profesor
 {

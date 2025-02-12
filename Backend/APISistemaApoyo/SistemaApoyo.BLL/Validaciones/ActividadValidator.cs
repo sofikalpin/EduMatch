@@ -30,7 +30,7 @@ namespace SistemaApoyo.BLL.Validaciones
                 .GreaterThan(0).When(x => x.Idnivel.HasValue)
                 .WithMessage("El ID nivel debe ser un valor positivo.");
 
-            RuleFor(a => a.Fecha)
+            RuleFor(a => a.FechaCreacion)
                 .Must(fecha => fecha == null || fecha <= DateOnly.FromDateTime(DateTime.Now))
                 .WithMessage("La fecha no puede ser mayor a la fecha actual");
 

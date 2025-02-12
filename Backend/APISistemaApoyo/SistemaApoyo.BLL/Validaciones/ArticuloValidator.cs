@@ -20,13 +20,9 @@ namespace SistemaApoyo.BLL.Validaciones
                 .NotEmpty().WithMessage("La descripcion no debe estar en blanco")
                 .MinimumLength(30).WithMessage("La descripcion debe tener mas de 30 caracteres");
 
-            RuleFor(a => a.UrlImagen)
-                .Must(BeAValidUrl).When(x => !string.IsNullOrEmpty(x.UrlImagen))
+            RuleFor(a => a.Url)
+                .Must(BeAValidUrl).When(x => !string.IsNullOrEmpty(x.Url))
                 .WithMessage("La URL de la imagen no es válida.");
-
-            RuleFor(a => a.Idusuario)
-                .GreaterThan(0).When(x => x.Idusuario.HasValue)
-                .WithMessage("El ID del usuario debe ser un valor positivo.");
         }
 
         //Metodo para validar URLs

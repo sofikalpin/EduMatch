@@ -1,88 +1,104 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react';
 import Header from "../HeaderProfesor";
 import drive from "../Imagenes/google-drive.png";
 import youtube from "../Imagenes/youtube.png";
 import subir from "../Imagenes/subir.png";
 import url from "../Imagenes/url.png";
+import axios from "axios";
+import { useUser } from "../../../context/userContext";
+
+ //     "idarticulo": 5,
+ //     "titulo": "ArticuloPrueba",
+ //     "descripcion": "Muchas cosas pasan en la BD, y uno no sabe lo que pasa",
+ //     "url": "",
+ //     "idusuario": 2,
+ //     "idnivel": 1,
+//      "fechaCreacion": null
 
 const CrearArticulo = () => {
-  const [nombre, setNombre] = useState("");
+  const location = useLocation();
+  const { id } = location.state;
+
+  const { user } = useUser();
+  const [titulo, setTitulo] = useState("");
   const [descripcion, setDescripcion] = useState("");
-  const [unidad, setUnidad] = useState("Unidad 1");
-  const [publicarEn, setPublicarEn] = useState("B1: Pre-Intermedio");
-  const [mostrarModal, setMostrarModal] = useState(false);
-  const [estudiantesSeleccionados, setEstudiantesSeleccionados] = useState([]);
-  const [cursoSeleccionado, setCursoSeleccionado] = useState("B1: Pre-Intermedio");
-  const [asignarA, setAsignarA] = useState("Seleccionar Estudiantes");
-
-  const cursos = [
-    "A1: Principiante",
-    "A2: Básico", 
-    "B1: Pre-Intermedio",
-    "B2: Intermedio",
-    "C1: Intermedio-Alto",
-    "C2: Avanzado"
-  ];
-
-  const estudiantes = {
-    "B1: Pre-Intermedio": ["Estudiante 1", "Estudiante 2", "Estudiante 3"],
-    "A1: Principiante": ["Estudiante 4", "Estudiante 5"],
-    "A2: Básico": ["Estudiante 6", "Estudiante 7"],
-    "B2: Intermedio": ["Estudiante 8", "Estudiante 9"],
-    "C1: Intermedio-Alto": ["Estudiante 10", "Estudiante 11"],
-    "C2: Avanzado": ["Estudiante 12", "Estudiante 13"]
-  };
+  const [articulodUrl, setArticuloUrl] = useState([]); 
+  const [nuevaUrl, setNuevaUrl] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
+  const validarURL = (url) => {
+    const regex = /^(ftp|http|https):\/\/[^ "]+$/;  // Regex para validar URL
+    return regex.test(url);  // Retorna true si la URL es válida
+  }
+
+  const handleAgregarUrl = () => {
+    if (nuevaUrl.trim() !== ""){
+      setArticuloUrl([...articulodUrl, nuevaUrl]);
+      setNuevaUrl("");
+    } else {
+      alert("Ingrese un URL antes de agregar");
+    }
+  }
+
+  const handleConfirmarUrl = () => {
+    
+    if (articulodUrl.length > 0 && articulodUrl[0].trim() !== "") {
+      alert("URLs cargadas correctamente: " + articulodUrl.join(";"));
+    } else {
+      alert("No se han cargado URLs.");
+    }
+  }
+
   const handleCrearArticulo = async (e) => {
     e.preventDefault();
-    const nuevoArticulo = {
-      nombre,
-      descripcion,
-      unidad,
-      publicarEn,
-      asignarA: asignarA === "Todos" ? "Todos" : estudiantesSeleccionados
-    };
+
+    setLoading(true);
+    
     try {
-      const response = await fetch("/api/articulos", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(nuevoArticulo)
-      });
-      if (response.ok) {
-        alert("Artículo creado exitosamente");
-        navigate("/profesor/articulos");
+
+      const nuevoArticulo = {
+      idarticulo: 0,
+      titulo: titulo.trim(),
+      descripcion: descripcion.trim(),
+      url: articulodUrl.length > 0 ? articulodUrl.join(";") : "",
+      idusuario: user?.idUsuario,
+      idnivel: id,
+      fechaCreacion: new Date().toISOString().split("T")[0],
+      };
+
+      const response = await axios.post(
+        "http://localhost:5228/API/ProfesorArticulo/CrearArticulo",
+        nuevoArticulo
+      );
+      if (response.data.status) {
+        alert("Articulo creado exitosamente");
+        navigate(-1);
+
+        setTitulo("");
+        setDescripcion("");
+        setArticuloUrl([]);
+
+        console.log("Articulo creado exitosamente");
+        console.log({nuevoArticulo});
       }
     } catch (error) {
       console.error("Error al enviar la solicitud:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleSeleccionarEstudiantes = (e) => {
-    const value = e.target.value;
-    setEstudiantesSeleccionados((prevState) =>
-      prevState.includes(value)
-        ? prevState.filter((estudiante) => estudiante !== value)
-        : [...prevState, value]
-    );
-  };
-
-  const handleSeleccionarCurso = (curso) => {
-    setCursoSeleccionado(curso);
-    setPublicarEn(curso);
-    setEstudiantesSeleccionados([]);
-  };
-
-  const handleAsignarATodos = () => {
-    if (asignarA === "Todos") {
-      setEstudiantesSeleccionados([]);
-      setAsignarA("Seleccionar Estudiantes");
-    } else {
-      setEstudiantesSeleccionados(estudiantes[cursoSeleccionado]);
-      setAsignarA("Todos");
+  const handleAgregarEnlace = () => {
+    const enlace = prompt("Ingrese el enlace:");
+    
+    if (enlace && validarURL(enlace)) {
+      setArticuloUrl((prev) => [...prev, enlace]);
+    }else{
+      alert("Por favor, ingrese un enlace valido.");
     }
   };
 
@@ -118,8 +134,8 @@ const CrearArticulo = () => {
                   <input
                     type="text"
                     className="w-full p-4 border-2 border-gray-200 rounded-xl shadow-sm focus:ring-4 focus:ring-teal-200 focus:border-teal-400 transition duration-300 bg-white"
-                    value={nombre}
-                    onChange={(e) => setNombre(e.target.value)}
+                    value={titulo}
+                    onChange={(e) => setTitulo(e.target.value)}
                     required
                     placeholder="Ingrese el nombre del artículo"
                   />
@@ -140,169 +156,74 @@ const CrearArticulo = () => {
                 <div>
                   <label className="block text-lg font-semibold text-[#2c7a7b] mb-4">
                     Adjuntar
-                  </label>
-                  <div className="flex justify-start space-x-6">
-                    {[
-                      { icon: drive, name: "Drive" },
-                      { icon: youtube, name: "YouTube" },
-                      { icon: subir, name: "Subir" },
-                      { icon: url, name: "URL" }
-                    ].map((item) => (
+                   </label>
+                    <input
+                      type="text"
+                      placeholder="Ingrese URL..."
+                      value={nuevaUrl}
+                      onChange={(e) => setNuevaUrl(e.target.value)}
+                      className="w-full p-2 border rounded-lg mt-2"
+                    />
+                    <button type="button" className="flex gap-4 mt-4 bg-teal-500 text-white p-4 rounded-xl" onClick={handleAgregarUrl}>Agregar url</button>
+                
+                    <div className="flex gap-4 mt-4">
                       <button
-                        key={item.name}
                         type="button"
-                        className="p-6 bg-white rounded-xl hover:bg-gray-50 transition duration-300 flex items-center justify-center group shadow-md hover:shadow-lg transform hover:-translate-y-1"
+                        className="p-6 bg-white rounded-xl hover:bg-gray-50 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+                        onClick={handleAgregarEnlace}
                       >
-                        <img src={item.icon} alt={item.name} className="h-8 w-8" />
+                      <img src={drive} alt="Google Drive" className="h-8 w-8" />
                       </button>
-                    ))}
+                      <button
+                        type="button"
+                        className="p-6 bg-white rounded-xl hover:bg-gray-50 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+                         onClick={handleAgregarEnlace}
+                      >
+                        <img src={youtube} alt="YouTube" className="h-8 w-8" />
+                      </button>
+                      </div>
+                      <div className="flex gap-4 mt-4">
+                        <button type="button" onClick={handleConfirmarUrl} className="bg-teal-500 text-white p-4 rounded-xl">
+                          Confirmar URLs
+                        </button>
+                      </div>
+                
+                      {/* Mostrar URLs cargadas */}
+                      {articulodUrl.length > 0 && (
+                      <div className="mt-4">
+                      <p className="text-gray-700">URLs cargadas:</p>
+                        <ul className="mt-4 space-y-2">
+                        {articulodUrl.map((url, index) => (
+                          <li key={index} className="text-blue-600 underline flex justify-between">
+                            <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
+                            <button
+                              onClick={() => setArticuloUrl(articulodUrl.filter((_, i) => i !== index))}
+                              className="text-red-500 ml-4"
+                            >
+                              X
+                            </button>
+                          </li>
+                        ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 </div>
-              </div>
-
-              {/* Right Column */}
-              <div className="space-y-8">
-                <div>
-                  <label className="block text-lg font-semibold text-[#2c7a7b] mb-3">
-                    Publicar en
-                  </label>
-                  <select
-                    className="w-full p-4 border-2 border-gray-200 rounded-xl shadow-sm focus:ring-4 focus:ring-teal-200 focus:border-teal-400 transition duration-300 bg-white"
-                    value={publicarEn}
-                    onChange={(e) => handleSeleccionarCurso(e.target.value)}
-                  >
-                    {cursos.map((curso) => (
-                      <option key={curso} value={curso}>
-                        {curso}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-lg font-semibold text-[#2c7a7b] mb-3">
-                    Asignar a
-                  </label>
-                  <button
-                    type="button"
-                    onClick={() => setMostrarModal(true)}
-                    className="w-full p-4 bg-teal-50 text-[#2c7a7b] rounded-xl hover:bg-teal-100 transition duration-300 flex items-center justify-between shadow-md hover:shadow-lg"
-                  >
-                    <span className="font-medium">
-                      {asignarA === "Todos"
-                        ? "Todos los estudiantes"
-                        : `${estudiantesSeleccionados.length} estudiantes seleccionados`}
-                    </span>
-                    <svg
-                      className="w-6 h-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </button>
-                </div>
-
-                <div>
-                  <label className="block text-lg font-semibold text-[#2c7a7b] mb-3">
-                    Unidad
-                  </label>
-                  <select
-                    className="w-full p-4 border-2 border-gray-200 rounded-xl shadow-sm focus:ring-4 focus:ring-teal-200 focus:border-teal-400 transition duration-300 bg-white"
-                    value={unidad}
-                    onChange={(e) => setUnidad(e.target.value)}
-                  >
-                    {[1, 2, 3, 4, 5].map((num) => (
-                      <option key={num} value={`Unit ${num}`}>
-                        Unidad {num}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex justify-end pt-8">
-              <button
+              <div className="flex justify-end pt-8">
+              <button 
                 type="submit"
-                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-10 py-4 rounded-full text-lg font-semibold hover:from-green-600 hover:to-green-700 transition-all transform hover:-translate-y-1 hover:shadow-xl"
+                className={`bg-gradient-to-r from-green-500 to-green-600 text-white px-10 py-4 rounded-full text-lg font-semibold transition-all transform hover:-translate-y-1 hover:shadow-xl ${
+                  loading ? "opacity-50 cursor-not-allowed" : "hover:from-green-600 hover:to-green-700"
+                }`}
+                disabled={loading}
               >
-                Crear Artículo
+                {loading ? "Creando..." : "Crear Articulo"}
               </button>
+            </div>
             </div>
           </form>
         </div>
       </div>
-
-      {/* Modal */}
-      {mostrarModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex justify-center items-center z-50">
-          <div className="bg-white rounded-xl shadow-xl p-8 w-full max-w-md m-4 transform transition-all">
-            <h3 className="text-2xl font-bold text-[#2c7a7b] mb-6">
-              Seleccionar Estudiantes de {cursoSeleccionado}
-            </h3>
-            
-            <div className="space-y-6">
-              <div className="flex items-center">
-                <input
-                  type="checkbox"
-                  id="todos"
-                  checked={asignarA === "Todos"}
-                  onChange={handleAsignarATodos}
-                  className="w-5 h-5 rounded text-teal-600 focus:ring-teal-500"
-                />
-                <label htmlFor="todos" className="ml-3 text-gray-700 font-medium">
-                  Asignar a todos
-                </label>
-              </div>
-              
-              <div className="max-h-64 overflow-y-auto space-y-3 pr-4">
-                {estudiantes[cursoSeleccionado]?.map((estudiante, index) => (
-                  <div key={index} className="flex items-center p-2 hover:bg-gray-50 rounded-xl transition duration-200">
-                    <input
-                      type="checkbox"
-                      value={estudiante}
-                      checked={estudiantesSeleccionados.includes(estudiante)}
-                      onChange={handleSeleccionarEstudiantes}
-                      disabled={asignarA === "Todos"}
-                      className="w-5 h-5 rounded text-teal-600 focus:ring-teal-500"
-                    />
-                    <label className="ml-3 text-gray-700">{estudiante}</label>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-8 flex justify-end space-x-4">
-              <button
-                onClick={() => setMostrarModal(false)}
-                className="px-6 py-3 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition duration-300 font-medium"
-              >
-                Cancelar
-              </button>
-              <button
-                onClick={() => {
-                  setMostrarModal(false);
-                  setAsignarA(
-                    estudiantesSeleccionados.length
-                      ? estudiantesSeleccionados
-                      : "Todos"
-                  );
-                }}
-                className="px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl hover:from-green-600 hover:to-green-700 transition duration-300 font-medium"
-              >
-                Confirmar
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
-import { useNavigate } from "react-router-dom";  // Asegúrate de importar useNavigate
-import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";  // Asegúrate de importar useNavigate
 import Header from "../HeaderProfesor";
 import Footer from "../FooterProfesor";  // Asegúrate de importar el Footer
 import actividadImg from "../Imagenes/actividad.jpg";
@@ -9,11 +8,15 @@ import axios from "axios";
 import { useUser } from "../../../context/userContext";
 
 const Actividad = () => {
+  const { id } = useParams();
   const { user } = useUser();
   const [actividades, setActividades] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [opcionCreacion, setOpcionCreacion] = useState("");
   const navigate = useNavigate(); // Inicializa la función navigate
+
+  const idProfesor = user?.idUsuario;
 
   // Cargar actividades desde una API al montar el componente
   useEffect(() => {
@@ -21,12 +24,7 @@ const Actividad = () => {
       setLoading(true);
       try {
 
-        const idProfesor = user?.idUsuario;
-        if (!idProfesor) {
-          throw new Error("El ID del profesor no está disponible.");
-        }
-
-        const response = await axios.get(`http://localhost:5228/API/ProfesorActividad/ActividadID?id=${idProfesor}`); // Ajusta la ruta de tu API
+        const response = await axios.get(`http://localhost:5228/API/Actividad/ActividadesPorNivel?idNivel=${id}`); // Ajusta la ruta de tu API
         
         if (response.data.status && Array.isArray(response.data.value)){
           setActividades(response.data.value);
@@ -43,7 +41,17 @@ const Actividad = () => {
       }
     }
     fetchActividades();
-  }, [user]);
+  }, [id]);
+
+  const actividadCreador = actividades.filter(
+    (actividad) => 
+      opcionCreacion === "" || 
+      (actividad.idusuario && actividad.idusuario.toString() === opcionCreacion)
+  );
+
+  const hadleNuevaActividad = () => {
+    navigate("/crear-actividad", {state: { id }})
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
@@ -71,13 +79,28 @@ const Actividad = () => {
       <div className="curso-detalles-container px-12 py-16 text-center bg-[#f0faf7] mb-24">
         <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto mt-10 ">Explora y accede a las actividades disponibles.</p>
 
+        <div className="mb-4 flex items-center gap-4">
+              <label htmlFor="nivel-select" className="text-base font-semibold text-gray-700">
+                Filtrar:
+              </label>
+              <select
+                id="nivel-select"
+                value={opcionCreacion}
+                onChange={(e) => setOpcionCreacion(e.target.value)}
+                className="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-lg w-60"
+              >
+              <option value="">Todos las actividades</option>
+              <option value={idProfesor?.toString()}>Mis actividades</option>
+            </select>
+        </div>
+
         <div className="tarjetas-detalles flex justify-center gap-8 flex-wrap">
           {loading ? (
             <p>Cargando actividades ...</p>
           ) : error ? (
             <p className="text-red-500">{error}</p>
-          ) : actividades.length > 0 ? (
-            actividades.map((actividad) => (
+          ) : actividadCreador.length > 0 ? (
+            actividadCreador.map((actividad) => (
               <div 
                 key={actividad.idactividad} 
                 className="tarjeta-detalle bg-white border border-gray-200 rounded-xl shadow-lg p-6 w-64 text-center no-underline text-gray-800 transition-transform duration-300 ease-in-out hover:transform hover:-translate-y-2 hover:shadow-2xl flex flex-col justify-between"
@@ -88,7 +111,7 @@ const Actividad = () => {
                   <p className="text-base text-gray-600">{actividad.descripcion}</p>
                 </div>
                 <button 
-                  onClick={() => window.location.href = `/actividad/${actividad.idactividad}`} 
+                  onClick={() => navigate(`/actividad/${actividad.idactividad}`)}
                   className="mt-4 py-2 px-4 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
                 >
                   Acceder
@@ -101,12 +124,12 @@ const Actividad = () => {
 
         </div>
 
-        <Link 
-          to="/crear-actividad" 
+        <button 
+          onClick={() => hadleNuevaActividad()}
           className="inline-block mt-12 bg-gradient-to-r from-green-500 to-green-600 text-white py-2 px-6 rounded-full text-lg hover:from-green-600 hover:to-green-700 transition-all"
         >
           Crear nueva actividad
-        </Link>
+        </button>
       </div>
 
       {/* Footer al final de la página */}

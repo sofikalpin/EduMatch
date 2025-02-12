@@ -21,7 +21,7 @@ namespace SistemaApoyo.API.Controllers
         }
 
         [HttpGet]
-        [Route("Listar Articulo")]
+        [Route("ListarArticulo")]
         public async Task<IActionResult> ListaArticulo()
         {
             var rsp = new Response<List<ArticuloDTO>>();
@@ -39,7 +39,7 @@ namespace SistemaApoyo.API.Controllers
         }
 
         [HttpGet]
-        [Route("Titulo Articulo")]
+        [Route("TituloArticulo")]
         public async Task<IActionResult> ListaArticuloPorNombre(string titulo)
         {
             if (string.IsNullOrWhiteSpace(titulo))
@@ -62,7 +62,7 @@ namespace SistemaApoyo.API.Controllers
         }
 
         [HttpGet]
-        [Route("Articulo ID")]
+        [Route("ArticuloID")]
         public async Task<IActionResult> ListaArticuloId(int id)
         {
             if (id <= 0)

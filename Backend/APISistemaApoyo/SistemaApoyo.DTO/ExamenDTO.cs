@@ -12,16 +12,14 @@ namespace SistemaApoyo.DTO
 
         public string Titulo { get; set; } = null!;
 
-        public int Duracion { get; set; }
-
         public string? Calificacion { get; set; }
 
-        public int? Idusuario { get; set; }
+        public int Idusuario { get; set; }
 
-        public TimeOnly? HoraFin { get; set; }
+        public int Idnivel { get; set; }
 
-        public TimeOnly? HoraIni { get; set; }
+        public string? Url { get; set; }
 
-        public int? Idnivel { get; set; }
+        public DateOnly? FechaCreacion { get; set; }
     }
 }

@@ -1,30 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { ArrowLeft } from 'lucide-react';
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate, useParams } from "react-router-dom"; 
 import { Link } from "react-router-dom";
+import examenpng from "../Imagenes/examen.avif";
 import Header from "../HeaderProfesor";
 import Footer from "../FooterProfesor";  
 import axios from "axios";
 import { useUser } from "../../../context/userContext";
 
 const Examen = () => {
+  const { id } = useParams();
   const { user } = useUser();
   const [examenes, setExamenes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [opcionCreacion, setOpcionCreacion] = useState("");
   const navigate = useNavigate(); 
+
+  const idProfesor = user?.idUsuario;
 
   // Función para obtener los exámenes desde la API
   useEffect(() => {
     const fetchExamenes = async () => {
       setLoading(true);
       try {
-        const idProfesor = user?.idUsuario;
-        if (!idProfesor) {
-          throw new Error("El ID del profesor no está disponible.");
-        }
 
-        const response = await axios.get(`http://localhost:5228/api/ProfeExamen/ExamenIDProfesor?id=${idProfesor}`); 
+        const response = await axios.get(`http://localhost:5228/api/examenes/ExamenPorNivel?idNivel=${id}`); 
         if (response.data.status && Array.isArray(response.data.value)){
           setExamenes(response.data.value);
         }else{
@@ -40,7 +41,17 @@ const Examen = () => {
     };
 
     fetchExamenes();
-}, []); 
+}, [id]); 
+
+const examenCreador = examenes.filter(
+  (examen) => 
+    opcionCreacion === "" || 
+    (examen.idusuario && examen.idusuario.toString() === opcionCreacion)
+);
+
+const hadleNuevoExamen = () => {
+  navigate("/crear-examen", {state: { id }})
+}
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100">
@@ -63,27 +74,45 @@ const Examen = () => {
           Encuentra y accede a tus exámenes programados.
         </p>
 
+        <div className="mb-4 flex items-center gap-4">
+              <label htmlFor="nivel-select" className="text-base font-semibold text-gray-700">
+                Filtrar:
+              </label>
+              <select
+                id="nivel-select"
+                value={opcionCreacion}
+                onChange={(e) => setOpcionCreacion(e.target.value)}
+                className="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-lg w-60"
+              >
+              <option value="">Todos los examenes</option>
+              <option value={idProfesor?.toString()}>Mis examenes</option>
+            </select>
+        </div>
+
         <div className="flex justify-center gap-8 flex-wrap">
           {loading ? (
             <p>Cargando examenes ...</p>
           ) : error ? (
             <p className="text-red-500">{error}</p>
-          ) : examenes.length > 0 ? (
-            examenes.map((examen) => (
+          ) : examenCreador.length > 0 ? (
+            examenCreador.map((examen) => (
               <div
                 key={examen.idexamen}
                 className="bg-white border border-gray-200 rounded-xl shadow-lg p-6 w-64 text-center transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl"
               >
-                <h3 className="text-2xl font-semibold text-[#2b6cb0] mb-2">
-                  {examen.titulo}
-                </h3>
-                <p className="text-gray-600 text-sm mb-4">{examen.descripcion}</p>
-                <Link
-                  to={`/examen/${examen.idexamen}`}
+                <img src={examenpng} alt="Imagen de actividad" className="tarjeta-imagen w-full h-40 object-cover rounded-lg mb-4" />
+                <div className="tarjeta-texto">
+                  <h3 className="text-2xl font-semibold text-[#2b6cb0] mb-2">
+                    {examen.titulo}
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-4">{examen.descripcion}</p>
+                </div>
+                <button
+                  onClick={() => navigate(`/examen/${examen.idexamen}`)}
                   className="inline-block bg-gradient-to-r from-blue-500 to-blue-600 text-white py-2 px-4 rounded-full text-lg hover:from-blue-600 hover:to-blue-700 transition-all"
                 >
                   Acceder
-                </Link>
+                </button>
               </div>
             ))
           ) : (
@@ -91,14 +120,15 @@ const Examen = () => {
           )}
         </div>
 
-        <Link to="/crear-examen">
-          <button className="inline-block mt-16 bg-gradient-to-r from-green-500 to-green-600 text-white py-2 px-6 rounded-full text-lg hover:from-green-600 hover:to-green-700 transition-all">
+          <button 
+            onClick={() => hadleNuevoExamen()}
+            className="inline-block mt-16 bg-gradient-to-r from-green-500 to-green-600 text-white py-2 px-6 rounded-full text-lg hover:from-green-600 hover:to-green-700 transition-all"
+          >
             Crear nuevo examen
           </button>
-        </Link>
       </div>
 
-      <Footer />
+      <Footer className="pt-20"/>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../../../logo/LogoInicio.png";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const niveles = {
@@ -8,14 +8,16 @@ const niveles = {
 };
 
 export const EditarProfesor = ({ onUpdate }) => {
-  const [searchParams] = useSearchParams();
-  const idusuario = searchParams.get("id");
+  const location = useLocation();
+  const idusuario = location.state?.idusuario;
+  
+  const [profesor, setProfesor] = useState([]);
   const [email, setEmail] = useState("");
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [nivel, setNivel] = useState("");
-  const [contraseñaHash, setContraseñaHash] = useState("");
   const [mensajeActualizado, setMensajeActualizado] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
@@ -26,21 +28,27 @@ export const EditarProfesor = ({ onUpdate }) => {
         const response = await axios.get(
           `http://localhost:5228/API/AdministradorProfesor/ProfesorID?id=${idusuario}`
         );
-        const profesor = response.data.value;
-        if (!profesor || !profesor.nombrecompleto) {
-          throw new Error("Datos inválidos del profesor.");
-        }
-        const [nombre, apellido] = profesor.nombrecompleto.split(" ") || ["", ""];
+        
+        if (!response.data || !response.data.value) throw new Error("No se encontraron datos del profesor.");
+        const profesorData = response.data.value;
+
+        const [nombre, ...apellidoPartes] = profesorData.nombrecompleto.split(" ");
         setNombre(nombre || "");
-        setApellido(apellido || "");
-        setEmail(profesor.correo || "");
-        setContraseñaHash(profesor.contraseñaHash || "");
-        setNivel(Object.keys(niveles).find(key => niveles[key] === profesor.idnivel) || "");
+        setApellido(apellidoPartes.join(" "));
+        setEmail(profesorData.correo || "");
+        setNivel(Object.keys(niveles).find(key => niveles[key] === profesorData.idnivel) || "");
+        setProfesor(profesorData);
       } catch (error) {
-        console.error("Error al cargar el profesor:", error);
-        alert("No se pudieron cargar los datos del profesor.");
-      }
-    };
+        // Verificar si el error es de Axios y mostrar el mensaje correcto
+        if (error.response) {
+            alert(`Error ${error.response.status}: ${error.response.data.message || "No se pudieron cargar los datos del profesor."}`);
+        } else {
+            alert(error.message);
+        }
+    }finally{
+        setLoading(false);
+    }
+  };
     cargarProfesor();
   }, [idusuario]);
 
@@ -55,10 +63,15 @@ export const EditarProfesor = ({ onUpdate }) => {
       const datosActualizados = {
         idusuario: parseInt(idusuario, 10),
         nombrecompleto: `${nombre.trim()} ${apellido.trim()}`,
+        contraseñaHash: profesor.contraseñaHash,
+        fecharegistro: profesor.fecharegistro,
         correo: email.trim(),
         idnivel: nivelId,
         idrol: 1,
-        contraseñaHash: contraseñaHash,
+        tokenRecuperacion: profesor.tokenRecuperacion,
+        tokenExpiracion: profesor.tokenExpiracion,
+        cvRuta: profesor.cvRuta,
+        fotoRuta: profesor.fotoRuta,
       };
       const response = await axios.put(
         `http://localhost:5228/API/AdministradorProfesor/EditarporID?id=${idusuario}`,
@@ -77,7 +90,7 @@ export const EditarProfesor = ({ onUpdate }) => {
   };
 
   const handleCancelar = () => {
-    navigate("../listaProfesores", { replace: true });
+    navigate(-1, { replace: true });
   };
 
   return (
@@ -92,6 +105,10 @@ export const EditarProfesor = ({ onUpdate }) => {
             {mensajeActualizado}
           </div>
         )}
+
+        { loading ? (
+          <p>Cargando datos...</p>
+        ) : (
         <form onSubmit={handleActualizar} className="p-10 space-y-6">
           <div className="grid grid-cols-2 gap-6">
             <div>
@@ -129,6 +146,7 @@ export const EditarProfesor = ({ onUpdate }) => {
             </button>
           </div>
         </form>
+        )}
       </div>
     </div>
   );

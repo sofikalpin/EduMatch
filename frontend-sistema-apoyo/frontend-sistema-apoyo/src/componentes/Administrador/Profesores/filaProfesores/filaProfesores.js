@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import EditarProfesor from "../EditarProfesor/editProfeso";
+import EditarProfesor from "../EditarProfesor/editProfesor";
 
 const FilaProfesores = ({ profesor, onDelete }) => {
     const [mostrarEditar, setMostrarEditar] = useState(false);
@@ -16,7 +16,7 @@ const FilaProfesores = ({ profesor, onDelete }) => {
             console.error("El idusuario del profesor no esta definido o es invalido");
             return;
         }
-        navigate(`editarProfesor?id=${encodeURIComponent(profesor.idusuario)}`);
+        navigate("editarProfesor", {state: { idusuario: profesor.idusuario}});
         setMostrarEditar(true)
     }
 
@@ -81,7 +81,7 @@ const FilaProfesores = ({ profesor, onDelete }) => {
                 </button>
                 {mostrarEditar && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                        <EditarProfesor onUpdate={handleUpdate} />
+                        <EditarProfesor idusuario={profesor.idusuario} onUpdate={handleUpdate} />
                     </div>
                 )}
                 <button 

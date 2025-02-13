@@ -12,7 +12,7 @@ const FilaAlumnos = ({ alumno, onDelete }) => {
             return;
         }
         console.log("El idusuario: " + alumno.idusuario);
-        navigate(`editarAlumno?id=${encodeURIComponent(alumno.idusuario)}`);
+        navigate("editarAlumno", {state: { idusuario: alumno.idusuario}});
         setMostrarEditar(true);
     };
 
@@ -45,10 +45,6 @@ const FilaAlumnos = ({ alumno, onDelete }) => {
     };
 
     const handleUpdate = () => {
-        if (typeof onUpdate !== 'function') {
-            console.error("onUpdate no es una función");
-            return;
-        }
         console.log("Alumno actualizado");
         setMostrarEditar(false);  // Cierra el modal
     };
@@ -78,7 +74,7 @@ const FilaAlumnos = ({ alumno, onDelete }) => {
                     {mostrarEditar && (
                         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
                             <div className="bg-white p-6 rounded-lg shadow-lg">
-                                <EditarAlumno onUpdate={handleUpdate} />
+                                <EditarAlumno idusuario={alumno.idusuario} onUpdate={handleUpdate} />
                             </div>
                         </div>
                     )}

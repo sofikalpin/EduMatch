@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../../../logo/LogoInicio.png";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const niveles = {
@@ -13,13 +13,16 @@ const niveles = {
 };
 
 export const EditarAlumno = ({ onUpdate }) => {
-    const [searchParams] = useSearchParams();
-    const idusuario = searchParams.get("id");
+    const location = useLocation();
+    const idusuario = location.state?.idusuario;
+
+    const [alumno, setAlumno] = useState([]);
     const [email, setEmail] = useState("");
     const [nombre, setNombre] = useState("");
     const [apellido, setApellido] = useState("");
     const [nivel, setNivel] = useState("");
     const [mensajeActualizado, setMensajeActualizado] = useState("");
+    const [loading, setLoading] = useState(true);
 
     const navigate = useNavigate();
 
@@ -30,17 +33,25 @@ export const EditarAlumno = ({ onUpdate }) => {
                 const response = await axios.get(
                     `http://localhost:5228/API/AdministradorAlumno/AlumnoID?id=${idusuario}`
                 );
-                const alumno = response.data.value;
-                if (!alumno || !alumno.nombrecompleto) throw new Error("Datos inválidos");
+                
+                if (!response.data || !response.data.value) throw new Error("No se encontraron datos del alumno.");
+                const alumnoData = response.data.value;
 
-                const [nombre, apellido] = alumno.nombrecompleto.split(" ") || ["", ""];
+                const [nombre, ...apellidoPartes] = alumnoData.nombrecompleto.split(" ");
                 setNombre(nombre || "");
-                setApellido(apellido || "");
-                setEmail(alumno.correo || "");
-                setNivel(Object.keys(niveles).find(key => niveles[key] === alumno.idnivel) || "");
+                setApellido(apellidoPartes.join(" "));
+                setEmail(alumnoData.correo || "");
+                setNivel(Object.keys(niveles).find(key => niveles[key] === alumnoData.idnivel) || "");
+                setAlumno(alumnoData);
             } catch (error) {
-                console.error("Error al cargar datos del alumno:", error);
-                alert("No se pudieron cargar los datos del alumno.");
+                // Verificar si el error es de Axios y mostrar el mensaje correcto
+                if (error.response) {
+                    alert(`Error ${error.response.status}: ${error.response.data.message || "No se pudieron cargar los datos del alumno."}`);
+                } else {
+                    alert(error.message);
+                }
+            }finally{
+                setLoading(false);
             }
         };
         cargarAlumno();
@@ -57,9 +68,15 @@ export const EditarAlumno = ({ onUpdate }) => {
             const datosActualizados = {
                 idusuario: parseInt(idusuario, 10),
                 nombrecompleto: `${nombre.trim()} ${apellido.trim()}`,
+                contraseñaHash: alumno.contraseñaHash,
+                fecharegistro: alumno.fecharegistro,
                 correo: email.trim(),
                 idnivel: nivelId,
                 idrol: 2,
+                tokenRecuperacion: alumno.tokenRecuperacion,
+                tokenExpiracion: alumno.tokenExpiracion,
+                cvRuta: alumno.cvRuta,
+                fotoRuta: alumno.fotoRuta,
             };
             const response = await axios.put(
                 `http://localhost:5228/API/AdministradorAlumno/EditarporID?id=${idusuario}`,
@@ -78,7 +95,7 @@ export const EditarAlumno = ({ onUpdate }) => {
     };
 
     const handleCancelar = () => {
-        navigate("../listaAlumnos", { replace: true });
+        navigate(-1, { replace: true });
     };
 
     return (
@@ -95,6 +112,10 @@ export const EditarAlumno = ({ onUpdate }) => {
                     </div>
                 )}
 
+                { loading ? (
+                    <p>Cargando datos...</p>
+                ) : (
+                    
                 <form onSubmit={handleActualizar} className="p-10 space-y-6">
                     <div className="grid grid-cols-2 gap-6">
                         <div>
@@ -136,6 +157,7 @@ export const EditarAlumno = ({ onUpdate }) => {
                         </button>
                     </div>
                 </form>
+                )}
             </div>
         </div>
     );

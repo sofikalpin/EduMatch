@@ -8,15 +8,63 @@ import logoC1 from "../Logos/C1.png";
 import logoC2 from "../Logos/C2.png";
 import Header from "../HeaderProfesor";
 import Footer from "../FooterProfesor";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const MisCursos = () => {
+
+  const [cantidadAlumnos, setCantidadAlumnos] = useState(0);
+  const [listaGeneral, setListaGeneral] = useState([]);
+
+ useEffect(() =>  {
+    const cargarUsuarios = async () => {
+    try {
+      const respuesta = await axios.get('http://localhost:5228/API/Usuario/ListaUsuarios');
+      if (respuesta.data.status && Array.isArray(respuesta.data.value)) {
+        setListaGeneral(respuesta.data.value);
+      } else {
+        console.error("La API no devolvió la estructura esperada");
+        setListaGeneral([]);
+      }
+    }catch (error) {
+      console.error('Error al obtener la cantidad de profesores no autorizados', error);
+      setCantidadAlumnos(0);
+      setListaGeneral([]);
+    }
+  }
+  cargarUsuarios();
+}, []) 
+
+  useEffect(() => {
+    if (listaGeneral.length > 0) {
+      const calcularAlumnos = () => {
+        let nuevaCantidad = {};
+
+        cursos.forEach((curso) => {
+          const listaNivel = listaGeneral.filter((usuario) => 
+            { 
+              console.log(`Verificando usuario: ${JSON.stringify(usuario)}`);
+              console.log(`Comparando usuario.idnivel (${usuario.idnivel}) con curso.id (${curso.id})`);
+              
+              return usuario.idnivel == curso.id && usuario.idrol == 2
+            }
+          );
+          nuevaCantidad[curso.id] = listaNivel.length;
+        });
+        setCantidadAlumnos(nuevaCantidad);
+      };
+      calcularAlumnos();
+    }
+  }, [listaGeneral]);
+
+
   const cursos = [
-    { id: 1, nombre: "A1: Curso Principiante", alumnos: 20, imagen: logoA1 },
-    { id: 2, nombre: "A2: Curso Básico", alumnos: 15, imagen: logoA2 },
-    { id: 3, nombre: "B1: Curso Pre-Intermedio", alumnos: 25, imagen: logoB1 },
-    { id: 4, nombre: "B2: Curso Intermedio", alumnos: 10, imagen: logoB2 },
-    { id: 5, nombre: "C1: Curso Intermedio-Alto", alumnos: 15, imagen: logoC1 },
-    { id: 6, nombre: "C2: Curso Avanzado", alumnos: 5, imagen: logoC2 },
+    { id:1, nombre: "A1: Curso Principiante", imagen: logoA1 },
+    { id:2, nombre: "A2: Curso Básico", imagen: logoA2 },
+    { id:3, nombre: "B1: Curso Pre-Intermedio", imagen: logoB1 },
+    { id:4, nombre: "B2: Curso Intermedio", imagen: logoB2 },
+    { id:5, nombre: "C1: Curso Intermedio-Alto", imagen: logoC1 },
+    { id:6, nombre: "C2: Curso Avanzado", imagen: logoC2 },
   ];
 
   return (
@@ -51,7 +99,7 @@ const MisCursos = () => {
                   {curso.nombre}
                 </h2>
                 <p className="text-sm text-gray-600 mb-4">
-                  {curso.alumnos} Alumnos inscriptos
+                  {cantidadAlumnos[curso.id] || 0} Alumnos inscriptos
                 </p>
                 <Link
                   to={`/profesor/cursos/detalle/${curso.id}`}

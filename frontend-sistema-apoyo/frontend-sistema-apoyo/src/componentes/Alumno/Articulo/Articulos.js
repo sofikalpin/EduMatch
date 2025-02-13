@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ArrowLeft } from 'lucide-react'; 
 import articulo from "../Imagenes/articulo.png";
 import Header from "../HeaderAlumno";
 import Footer from "../FooterAlumno";
@@ -9,15 +10,13 @@ import axios from "axios";
 const Articulos = () => {
   const location = useLocation();
   const { nivel, nombre } = location.state || {};
-  console.log(location.state);
   const [searchQuery, setSearchQuery] = useState("");
   const [assignedArticles, setAssignedArticles] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const navigate = useNavigate(); // Inicializa la función navigate
+  const navigate = useNavigate();
 
-  // Cargar articulos relacionadas al nivel seleccionado
   useEffect(() => {
     const fetchArticulo = async () => {
       setLoading(true);
@@ -32,11 +31,9 @@ const Articulos = () => {
         if (response.data.status && Array.isArray(response.data.value)) {
           setAssignedArticles(response.data.value);
         } else {
-          console.error("Error al cargar los articulos: " + response.data.message);
           setError(response.data.message);
         }
       } catch (error) {
-        console.error("Error al cargar los articulos: ", error);
         setError("Error al conectar con el servidor, inténtelo más tarde.");
         setAssignedArticles([]);
       } finally {
@@ -44,75 +41,110 @@ const Articulos = () => {
       }
     };
     fetchArticulo();
-  }, [nivel]); // Solo dependemos de nivel
+  }, [nivel]);
 
-  // Manejo de la búsqueda
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setIsFocused(true);
   };
 
-  // Filtrado de articulos
   const filteredArticles = assignedArticles.filter(
-    (article) =>
-      article.titulo?.toLowerCase().includes(searchQuery.toLowerCase())
+    (article) => article.titulo?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
-    
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
       <Header />
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-10 mt-12">Articulos</h1>
-        <div className="relative max-w-lg mx-auto">
+      <div className="flex-grow flex flex-col items-center justify-center px-5 py-10">
+        
+        {/* Contenedor para "Volver" y el título */}
+        <div className="flex items-center justify-between w-full mb-10">
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
+          >
+            <ArrowLeft className="w-6 h-6" />
+            <span>Volver</span>
+          </button>
+
+          <h1 className="text-5xl font-bold text-[#2c7a7b] text-center flex-grow">Artículos</h1>
+        </div>
+
+        {/* Buscador centrado y largo */}
+        <div className="relative w-full max-w-2xl mx-auto mb-10">
           <div className="relative">
-            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-              🔍
-            </span>
+            <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input
               type="text"
-              placeholder="Buscar actividad o Unidad..."
-              className="w-full p-3 pl-10 border border-gray-300 rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+              placeholder="Buscar articulo..."
+              className="w-full p-4 pl-12 border-2 border-gray-300 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300 bg-white"
               value={searchQuery}
               onChange={handleSearchChange}
               onFocus={() => setIsFocused(true)}
               onBlur={() => setTimeout(() => setIsFocused(false), 200)}
             />
           </div>
-            
+
+          {/* Lista desplegable de resultados del buscador */}
           {isFocused && searchQuery && (
-            <ul className="absolute w-full bg-white shadow-lg rounded-xl mt-2 max-h-48 overflow-y-auto">
+            <ul className="absolute w-full bg-white shadow-lg rounded-lg mt-2 max-h-48 overflow-y-auto border border-gray-200 z-20">
               {loading ? (
-                <p>Cargando articulos ...</p>
+                <p className="text-center py-4">Cargando artículos...</p>
               ) : error ? (
-                <p className="text-red-500">{error}</p>
+                <p className="text-center py-4 text-red-500">{error}</p>
               ) : filteredArticles.length > 0 ? (
                 filteredArticles.map((article) => (
-                  <li key={article.idarticulo} className="p-2 hover:bg-gray-200 cursor-pointer">
-                    <Link to={article.link}>{article.titulo}</Link>
+                  <li key={article.idarticulo} className="p-3 hover:bg-gray-100 cursor-pointer transition-all">
+                    <Link to={article.link} className="block text-gray-700">{article.titulo}</Link>
                   </li>
                 ))
               ) : (
-                <li className="p-2 text-gray-500">No se encontraron resultados</li>
+                <li className="p-3 text-center text-gray-500">No se encontraron resultados</li>
               )}
             </ul>
           )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-          {filteredArticles.map((article) => (
-            <div key={article.idarticulo} className="bg-white shadow-md rounded-xl p-4">
-              <Link to={article.link} className="block">
-                <img src={articulo} alt="Articulo" className="w-full h-40 object-cover rounded-md" />
-                <p className="text-lg font-semibold mt-2">{article.titulo}</p>
-              </Link>
-            </div>
-          ))}
+        {/* Artículos filtrados */}
+        <div className="tarjetas-detalles flex justify-center gap-8 flex-wrap grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+          {assignedArticles.length === 0 && !loading && !error ? (
+            <div className="text-center text-gray-500">No hay artículos asignados.</div>
+          ) : (
+            (filteredArticles.length > 0 ? filteredArticles : assignedArticles).map((article) => (
+              <div 
+                key={article.idarticulo} 
+                className="bg-white shadow-xl rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300 ease-in-out w-full h-[350px] flex flex-col p-4"
+              >
+                <Link to={article.link} className="block h-full flex flex-col">
+                  <div className="relative w-full h-[150px] mb-4"> {/* Contenedor para la imagen */}
+                    <img 
+                      src={articulo} 
+                      alt="Articulo" 
+                      className="w-auto h-full object-contain mx-auto"  
+                    />
+                  </div>
+                  <div className="flex flex-col flex-grow justify-between">
+                    <h3 className="text-xl font-semibold text-[#2c7a7b] mb-3 truncate">
+                      {article.titulo}
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-4 line-clamp-3">
+                      {article.descripcion}
+                    </p>
+                    <button 
+                      onClick={() => navigate(`/articulo/${article.idarticulo}`)}
+                      className="mt-auto py-2 px-4 bg-teal-600 text-white rounded-lg text-sm hover:bg-teal-700 transition-colors duration-300"
+                    >
+                      Acceder
+                    </button>
+                  </div>
+                </Link>
+              </div>
+            ))
+          )}
         </div>
       </div>
-      <div className="mt-32"></div>
+
       <Footer />
     </div>
   );

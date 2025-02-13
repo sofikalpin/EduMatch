@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom"; // Importa el hook useNavigate
-import LogoInicio from '../../../logo/LogoInicio.png';
-import chatIcon from "../Imagenes/chat.png";
-import articulo from "../Imagenes/articulo.png";
-import actividad from "../Imagenes/actividades.png";
-import foro from "../Imagenes/foro.png";
-import examen from "../Imagenes/examen.png";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { ArrowLeft } from 'lucide-react';
 import Header from "../HeaderAlumno";
 import Footer from "../FooterAlumno";
+import actividad from "../Imagenes/actividades.png";
+import examen from "../Imagenes/examen.png";
+import articulo from "../Imagenes/articulo.png";
 
-const Cursos = () => {
+const CursoDetalleAlumno = () => {
   const location = useLocation();
-  const [error, setError] = useState(""); // Mensaje de error
-  const navigate = useNavigate(); // Usamos useNavigate para redirigir
-  const { nivel, nombre } = location.state || {};
+  const navigate = useNavigate();
+  const [error, setError] = useState("");  // Mensaje de error
+  const { nivel, nombre } = location.state || {}; // Datos del curso
 
-  // Si no hay curso seleccionado, se muestra un error y un botón para regresar
+  // Si no hay curso seleccionado, se muestra un error
   if (!nivel || !nombre) {
     return (
       <div className="text-center mt-20">
@@ -62,33 +60,69 @@ const Cursos = () => {
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
       <Header />
 
-      {/* Contenido principal */}
-      <div className="p-6 flex-grow">
-        <h1 className="text-3xl font-bold mb-12 mt-12">{nombre}</h1>
+      <div className="curso-detalles-container px-5 py-10 text-center bg-[#f0faf7] flex-grow">
+        <div className="flex items-center mb-12 mt-6">
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
+          >
+            <ArrowLeft className="w-6 h-6" />
+            <span>Volver</span>
+          </button>
+          <h1 className="flex-grow text-5xl font-bold text-[#2c7a7b] text-center">
+             {nombre}
+          </h1>
+        </div>
 
         {/* Mostrar error si existe */}
         {error && <div className="text-red-500 mb-4">{error}</div>}
 
-        {/* Tarjetas centradas */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-6">
-          <div className="card cursor-pointer p-4 border border-gray-300 rounded-lg flex flex-col items-center justify-center" onClick={() => handleCardClick("Artículos")}>
-            <img src={articulo} alt="Artículos" className="w-16 h-16 mb-2" />
-            <p className="text-center">Artículos</p>
+        <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+          Aquí podrás obtener más información sobre el contenido, los objetivos y los materiales disponibles.
+        </p>
+
+        {/* Tarjetas de detalles del curso */}
+        <div className="tarjetas-detalles flex justify-center gap-8 flex-wrap">
+          <div 
+            className="tarjeta-detalle bg-white border border-gray-200 rounded-xl shadow-lg p-6 w-64 text-center no-underline text-gray-800 transition-transform duration-300 ease-in-out hover:transform hover:-translate-y-2 hover:shadow-2xl flex flex-col justify-between"
+            onClick={() => handleCardClick("Actividades")}
+          >
+            <img src={actividad} alt="Actividades" className="tarjeta-imagen w-full h-48 object-cover rounded-lg mb-4" />
+            <div className="tarjeta-texto">
+              <h3 className="text-2xl font-semibold text-[#2c7a7b] mb-2">Actividades</h3>
+              <p className="text-base text-gray-600">Realiza actividades interactivas para mejorar tu aprendizaje.</p>
+            </div>
           </div>
-          <div className="card cursor-pointer p-4 border border-gray-300 rounded-lg flex flex-col items-center justify-center" onClick={() => handleCardClick("Actividades")}>
-            <img src={actividad} alt="Actividades" className="w-16 h-16 mb-2" />
-            <p className="text-center">Actividades</p>
+
+          <div 
+            className="tarjeta-detalle bg-white border border-gray-200 rounded-xl shadow-lg p-6 w-64 text-center no-underline text-gray-800 transition-transform duration-300 ease-in-out hover:transform hover:-translate-y-2 hover:shadow-2xl flex flex-col justify-between"
+            onClick={() => handleCardClick("Artículos")}
+          >
+            <img src={articulo} alt="Artículos" className="tarjeta-imagen w-full h-48 object-cover rounded-lg mb-4" />
+            <div className="tarjeta-texto">
+              <h3 className="text-2xl font-semibold text-[#2c7a7b] mb-2">Artículos</h3>
+              <p className="text-base text-gray-600">Accede a materiales adicionales y artículos relevantes.</p>
+            </div>
           </div>
-          <div className="card cursor-pointer p-4 border border-gray-300 rounded-lg flex flex-col items-center justify-center" onClick={() => handleCardClick("Exámenes")}>
-            <img src={examen} alt="Exámenes" className="w-16 h-16 mb-2" />
-            <p className="text-center">Exámenes</p>
+
+          <div 
+            className="tarjeta-detalle bg-white border border-gray-200 rounded-xl shadow-lg p-6 w-64 text-center no-underline text-gray-800 transition-transform duration-300 ease-in-out hover:transform hover:-translate-y-2 hover:shadow-2xl flex flex-col justify-between"
+            onClick={() => handleCardClick("Exámenes")}
+          >
+            <img src={examen} alt="Exámenes" className="tarjeta-imagen w-full h-48 object-cover rounded-lg mb-4" />
+            <div className="tarjeta-texto">
+              <h3 className="text-2xl font-semibold text-[#2c7a7b] mb-2">Exámenes</h3>
+              <p className="text-base text-gray-600">Accede a exámenes para evaluar tu progreso.</p>
+            </div>
           </div>
         </div>
+
       </div>
-      <div className="mt-32"></div>
+
+      {/* Footer con margen superior */}
       <Footer />
     </div>
   );
-}
+};
 
-export default Cursos;
+export default CursoDetalleAlumno;

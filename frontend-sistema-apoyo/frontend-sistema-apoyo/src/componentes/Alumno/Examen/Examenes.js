@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import LogoInicio from "../../../logo/LogoInicio.png";
-import chatIcon from "../Imagenes/chat.png";
+import { ArrowLeft } from 'lucide-react';
 import examenLogo from "../Imagenes/examen.png";
 import Header from "../HeaderAlumno";
 import Footer from "../FooterAlumno";
@@ -11,15 +10,13 @@ import axios from "axios";
 const Examenes = () => {
   const location = useLocation();
   const { nivel, nombre } = location.state || {};
-  console.log(location.state);
   const [searchQuery, setSearchQuery] = useState("");
   const [assignedExamenes, setAssignedExamenes] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const navigate = useNavigate(); // Inicializa la función navigate
+  const navigate = useNavigate();
 
-  //carga de examenes
   useEffect(() => {
     const fetchExamenes = async () => {
       setLoading(true);
@@ -34,11 +31,9 @@ const Examenes = () => {
         if (response.data.status && Array.isArray(response.data.value)) {
           setAssignedExamenes(response.data.value);
         } else {
-          console.error("Error al cargar los examenes: " + response.data.message);
           setError(response.data.message);
         }
       } catch (error) {
-        console.error("Error al cargar los examenes: ", error);
         setError("Error al conectar con el servidor, inténtelo más tarde.");
         setAssignedExamenes([]);
       } finally {
@@ -46,73 +41,105 @@ const Examenes = () => {
       }
     };
     fetchExamenes();
-  }, [nivel]); // Solo dependemos de nivel
+  }, [nivel]);
 
-  // Manejo de la búsqueda
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setIsFocused(true);
   };
 
   const filteredExamenes = assignedExamenes.filter(
-    (examen) =>
-      examen.titulo?.toLowerCase().includes(searchQuery.toLowerCase())
+    (examen) => examen.titulo?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
-    <Header />
+      <Header />
 
-      {/* Contenido */}
-      <div className="p-6 flex-grow">
-        <h1 className="text-3xl font-semibold mb-6">Examenes</h1>
+      <div className="flex-grow flex flex-col items-center justify-center px-5 py-10">
+        {/* Contenedor para "Volver" y el título */}
+        <div className="flex items-center justify-between w-full mb-10">
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
+          >
+            <ArrowLeft className="w-6 h-6" />
+            <span>Volver</span>
+          </button>
 
-        <div className="relative max-w-lg mx-auto">
+          <h1 className="text-5xl font-bold text-[#2c7a7b] text-center flex-grow">Examenes</h1>
+        </div>
+
+        {/* Buscador centrado y más largo */}
+        <div className="relative w-full max-w-2xl mx-auto">
           <div className="relative">
-            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-              🔍
-            </span>
+            <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input
               type="text"
-              placeholder="Buscar actividad o Unidad..."
-              className="w-full p-3 pl-10 border border-gray-300 rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+              placeholder="Buscar examen o unidad..."
+              className="w-full p-4 pl-12 border-2 border-gray-300 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300 bg-white"
               value={searchQuery}
               onChange={handleSearchChange}
               onFocus={() => setIsFocused(true)}
               onBlur={() => setTimeout(() => setIsFocused(false), 200)}
             />
           </div>
+          
+          {/* Lista desplegable para el buscador */}
           {isFocused && searchQuery && (
-            <ul className="absolute w-full bg-white shadow-lg rounded-xl mt-2 max-h-48 overflow-y-auto">
+            <ul className="absolute w-full bg-white shadow-lg rounded-lg mt-2 max-h-48 overflow-y-auto border border-gray-200 z-20">
               {loading ? (
-                <p>Cargando examenes ...</p>
+                <p className="text-center py-4">Cargando examenes...</p>
               ) : error ? (
-                <p className="text-red-500">{error}</p>
+                <p className="text-center py-4 text-red-500">{error}</p>
               ) : filteredExamenes.length > 0 ? (
                 filteredExamenes.map((examen) => (
-                  <li key={examen.idexamen} className="p-2 hover:bg-gray-200 cursor-pointer">
-                    <Link to={examen.link}>{examen.titulo}</Link>
+                  <li key={examen.idexamen} className="p-3 hover:bg-gray-100 cursor-pointer transition-all">
+                    <Link to={examen.link} className="block text-gray-700">{examen.titulo}</Link>
                   </li>
                 ))
               ) : (
-                <li className="p-2 text-gray-500">No se encontraron resultados</li>
+                <li className="p-3 text-center text-gray-500">No se encontraron resultados</li>
               )}
             </ul>
           )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        {/* Contenedor de las tarjetas */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 w-full max-w-7xl mx-auto">
           {filteredExamenes.map((examen) => (
-            <div key={examen.idexamen} className="bg-white shadow-md rounded-xl p-4">
-              <Link to={examen.link} className="block">
-                <img src={examenLogo} alt="Examen" className="w-full h-40 object-cover rounded-md" />
-                <p className="text-lg font-semibold mt-2">{examen.titulo}</p>
+            <div 
+              key={examen.idexamen} 
+              className="bg-white shadow-lg rounded-lg overflow-hidden transition-all hover:shadow-2xl w-full h-96" 
+            >
+              <Link to={examen.link} className="block h-full flex flex-col">
+                <div className="h-1/2 relative"> {/* Aumentado a 60% de la altura */}
+                  <img 
+                    src={examenLogo} 
+                    alt="Examen" 
+                    className="w-full h-full object-contain p-4" // Cambiado a object-contain y añadido padding
+                  />
+                </div>
+                <div className="flex flex-col p-6 h-1/2"> {/* Reducido a 40% de la altura */}
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2 line-clamp-2">
+                    {examen.titulo}
+                  </h3>
+                  <p className="text-gray-600 flex-grow overflow-hidden line-clamp-3">
+                    {examen.descripcion}
+                  </p>
+                  <button
+                    className="mt-4 w-full py-2 bg-[#2c7a7b] text-white rounded-lg text-xl font-semibold transition-all hover:bg-[#1b5c59]"
+                    onClick={() => navigate(`/examen/${examen.idexamen}`)}
+                  >
+                    Acceder
+                  </button>
+                </div>
               </Link>
             </div>
           ))}
         </div>
       </div>
-      <div className="mt-32"></div>
+
       <Footer />
     </div>
   );

@@ -3,8 +3,11 @@ import ListaChat from "./listaChats/listaChats.js";
 import Mensajes from "./mensajes/mensajes.js";
 import logo from "../../logo/LogoInicio.png";
 import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../../context/userContext.js";
 
 const Chat = () => {
+    const { user } = useUser();
+
     const [chatSeleccionado, setChatSeleccionado] = useState(null);
     const navigate = useNavigate();
 
@@ -28,7 +31,7 @@ const Chat = () => {
                     className="bg-white text-blue-600 font-bold px-4 py-2 rounded-full shadow-md hover:bg-gray-200 transition"
                     onClick={() => navigate("/perfil")}
                 >
-                    {iniciales("Administrador 1")}
+                    {iniciales(user.nombreCompleto)}
                 </button>
             </header>
             <div className="flex flex-1 overflow-hidden">

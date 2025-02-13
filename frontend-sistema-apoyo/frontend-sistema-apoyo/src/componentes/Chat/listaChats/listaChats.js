@@ -3,8 +3,10 @@ import axios from "axios";
 import Modal from "react-modal";
 import CrearChat from "../crearChat/crearChat.js";
 import nuevoChatIcon from "../chatIcons/newChatIcon.png";
+import { useUser } from "../../../context/userContext.js";
 
 const ListaChats = ({ onSelectChat }) => {
+    const { user } = useUser();
     const [chats, setChats] = useState([]);
     const [receptor, setReceptor] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -13,7 +15,7 @@ const ListaChats = ({ onSelectChat }) => {
     const [rolseleccionado, setRolseleccionado] = useState("");
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    const idusuario = 5;
+    const idusuario = user?.idUsuario;
 
     useEffect(() => {
         const cargarChats = async () => {
@@ -22,11 +24,17 @@ const ListaChats = ({ onSelectChat }) => {
                 const respuesta = await axios.get(
                     `http://localhost:5228/API/Chat/ChatporUsuarioID?userId=${idusuario}`
                 );
-                setChats(respuesta.data.value);
+                console.log("Respuesta de la API:", respuesta.data);
+                setChats(Array.isArray(respuesta.data.value) ? respuesta.data.value : []);
 
-                const idsUsuarios = respuesta.data.value.map(chat => chat.idusuario2);
+                const idsUsuarios = new Set();
+                respuesta.data.value.forEach(chat => {
+                        idsUsuarios.add(chat.idusuario1);
+                        idsUsuarios.add(chat.idusuario2);
+                });
+
                 const datosUsuarios = await Promise.all(
-                    idsUsuarios.map(async (id) => {
+                    [...idsUsuarios].map(async (id) => {
                         const usuarioResp = await axios.get(
                             `http://localhost:5228/API/Usuario/BuscarUsuario?idUsuario=${id}`
                         );
@@ -48,7 +56,7 @@ const ListaChats = ({ onSelectChat }) => {
         };
         
         cargarChats();
-    }, []);
+    }, [idusuario]);
 
     const openModal = () => setModalIsOpen(true);
     const closeModal = () => setModalIsOpen(false);
@@ -121,15 +129,24 @@ const ListaChats = ({ onSelectChat }) => {
                 <p className="text-center text-gray-500">No se encontraron chats activos.</p>
             ) : (
                 <ul className="divide-y divide-gray-200">
-                    {chatsFiltrados.map(chat => (
-                        <li 
-                            key={chat.idchat} 
-                            onClick={() => onSelectChat(chat)}
-                            className="p-2 cursor-pointer hover:bg-gray-100 rounded"
-                        >
-                            {receptor[chat.idusuario2]?.nombrecompleto || "Usuario"}
-                        </li>
-                    ))}
+                    {chatsFiltrados.map(chat => {
+
+                        let nombreChat = receptor[chat.idusuario2]?.nombrecompleto || "Usuario";
+
+                        if (nombreChat === user.nombreCompleto){
+                            nombreChat = receptor[chat.idusuario1]?.nombrecompleto || "Usuario";
+                        }
+
+                        return (
+                            <li 
+                                key={chat.idchat} 
+                                onClick={() => onSelectChat(chat)}
+                                className="p-2 cursor-pointer hover:bg-gray-100 rounded"
+                            >
+                                {nombreChat}
+                            </li>
+                        )
+                    })}
                 </ul>
             )}
         </div>

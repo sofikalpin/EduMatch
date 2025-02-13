@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useUser } from "../../../context/userContext";
 
 const CrearChat = ({ idusuario, onChatCreado, onClose }) => {
+    const { user } = useUser();
     const [contactoSeleccionado, setContactoSeleccionado] = useState(null);
     const [contactos, setContactos] = useState([]);
     const [contactoFiltrado, setContactoFiltrado] = useState([]);
@@ -44,13 +46,13 @@ const CrearChat = ({ idusuario, onChatCreado, onClose }) => {
         }
 
         const datosChat = {
-            idusuario1: idusuario,
+            idusuario1: user.idUsuario,
             idusuario2: contactoSeleccionado.idusuario,
             fechahoraInicio: new Date().toISOString(),
             mensajes: [{
                 fechaEnvio: new Date().toISOString().split('T')[0],
                 contenido: `Chat iniciado.`,
-                idusuario: idusuario,
+                idusuario: user.idUsuario,
             }]
         };
 

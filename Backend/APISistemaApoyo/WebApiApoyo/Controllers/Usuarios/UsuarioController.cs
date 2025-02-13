@@ -99,6 +99,45 @@ public class UsuarioController : ControllerBase
         }
     }
 
+    [HttpGet]
+    [Route("BuscarUsuario")]
+    public async Task<IActionResult> ObtenerUsuario(int idUsuario)
+    {
+        var rsp = new Response<UsuarioDTO>();
+        try
+        {
+            // Verificación de que el login no sea nulo y los campos necesarios estén presentes
+            if (idUsuario == null || idUsuario <= 0)
+            {
+                rsp.status = false;
+                rsp.msg = "El dato de idUsuario son obligatorios.";
+                return BadRequest(rsp);
+            }
+
+            var usuario = await _usuarioService.ObtenerUsuarioPorID(idUsuario);
+
+            if (usuario == null)
+            {
+                rsp.status = false;
+                rsp.msg = "Id ingresado incorrecto.";
+                return Unauthorized(rsp);
+            }
+
+            rsp.status = true;
+            rsp.value = usuario;
+            return Ok(rsp);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error al obtener datos");
+            return StatusCode(500, new Response<UsuarioDTO>
+            {
+                status = false,
+                msg = "Error interno del servidor"
+            });
+        }
+    }
+
     [HttpPost]
     [Route("InformacionUsuario")]
     public async Task<IActionResult> InformacionUsuario([FromBody] LoginDTO login) 

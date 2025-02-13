@@ -1244,6 +1244,22 @@
   },
   {
     "ContainingType": "UsuarioController",
+    "Method": "ObtenerUsuario",
+    "RelativePath": "API/Usuario/BuscarUsuario",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUsuario",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UsuarioController",
     "Method": "Editar",
     "RelativePath": "API/Usuario/EditarUsuario",
     "HttpMethod": "PUT",

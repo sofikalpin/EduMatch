@@ -45,10 +45,10 @@ const Header = () => {
                                     Inicio
                                 </Link>
                                 <Link to="/profesor/cursos" className="font-bold hover:text-yellow-400 text-xl">
-                                    Mis Cursos
+                                    Cursos
                                 </Link>
                                 <Link to="/profesor/alumnos" className="font-bold hover:text-yellow-400 text-xl">
-                                    Mis Alumnos
+                                    Lista de Alumnos
                                 </Link>
                                 <Link to="/listaForos" className="font-bold hover:text-yellow-400 text-xl">
                                     Foro

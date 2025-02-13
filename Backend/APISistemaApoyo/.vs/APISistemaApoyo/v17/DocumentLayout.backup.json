@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\sofia\\documents\\utn\\3 a\u00F1o - 2024\\desarrollosoftware\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\articulocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\articulocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\sofia\\documents\\utn\\3 a\u00F1o - 2024\\desarrollosoftware\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\usuarios\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\usuarios\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,14 +31,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ArticuloController.cs",
-              "DocumentMoniker": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ArticuloController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\ArticuloController.cs",
-              "ToolTip": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ArticuloController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\ArticuloController.cs",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAAAEAAAAAYAAAAAAAAAA==",
+              "Title": "UsuarioController.cs",
+              "DocumentMoniker": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "ToolTip": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAQwGEAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T12:04:32.805Z",
+              "WhenOpened": "2025-02-12T22:48:33.665Z",
               "EditorCaption": ""
             }
           ]

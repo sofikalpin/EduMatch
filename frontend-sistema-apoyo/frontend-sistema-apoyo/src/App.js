@@ -28,7 +28,6 @@ import CargarProfesor from "./componentes/Administrador/CargarProfesor/cargarPro
 import ListaAlumnos from "./componentes/Administrador/Alumnos/listaAlumnos";
 import NuevoAlumno from "./componentes/Administrador/Alumnos/nuevoAlumno/NuevoAlumno";
 import EditarAlumno from "./componentes/Administrador/Alumnos/editAlumno/editAlumno";
-import ChatAdmin from "./componentes/Administrador/chatAdmin/chatAdmin";
 
 // Profesor
 import AlumnosProfesor from "./componentes/Profesor/Alumnos/MisAlumnos";
@@ -66,7 +65,7 @@ import MisProfesores from "./componentes/Alumno/Profesores/MisProfesores";
 import Perfil from "./componentes/Perfil/Perfil";
 
 //Chat
-import Chat from "./componentes/ChatProfesor/chat";
+import Chat from "./componentes/Chat/chat";
 
 function App() {
   return (
@@ -98,7 +97,6 @@ function App() {
             <Route path="/administrador/listaAlumnos" element={<ProtegerRuta><ListaAlumnos /></ProtegerRuta>} />
             <Route path="/administrador/listaAlumnos/nuevoAlumno" element={<ProtegerRuta><NuevoAlumno /></ProtegerRuta>} />
             <Route path="/administrador/editarAlumno" element={<ProtegerRuta><EditarAlumno /></ProtegerRuta>} />
-            <Route path="/administrador/chatAdmin" element={<ProtegerRuta><ChatAdmin /></ProtegerRuta>} />
 
             {/* Profesor */}
             <Route path="/profesor" element={<ProtegerRuta><InicioProfesorPage /></ProtegerRuta>} />

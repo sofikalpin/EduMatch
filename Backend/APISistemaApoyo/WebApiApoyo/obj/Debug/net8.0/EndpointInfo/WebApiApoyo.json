@@ -1888,6 +1888,28 @@
         }
       }
     },
+    "/API/Usuario/BuscarUsuario": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "parameters": [
+          {
+            "name": "idUsuario",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/API/Usuario/InformacionUsuario": {
       "post": {
         "tags": [

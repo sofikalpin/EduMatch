@@ -16,7 +16,7 @@ const Header = () => {
     const handleLogout = () => navigate("/");
     const closeLogoutModal = () => setIsLogoutModalOpen(false);
     const goToAlumno = () => navigate("/alumno");
-    const goToChatAdmin = () => navigate("/Administrador/chatadmin"); 
+    const goToChatAdmin = () => navigate("/chat"); 
 
     // Obtener nombre del usuario
     const userName = user?.nombreCompleto || "Invitado";

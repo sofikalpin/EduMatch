@@ -42,10 +42,7 @@ const MisCursos = () => {
 
         cursos.forEach((curso) => {
           const listaNivel = listaGeneral.filter((usuario) => 
-            { 
-              console.log(`Verificando usuario: ${JSON.stringify(usuario)}`);
-              console.log(`Comparando usuario.idnivel (${usuario.idnivel}) con curso.id (${curso.id})`);
-              
+            {       
               return usuario.idnivel == curso.id && usuario.idrol == 2
             }
           );

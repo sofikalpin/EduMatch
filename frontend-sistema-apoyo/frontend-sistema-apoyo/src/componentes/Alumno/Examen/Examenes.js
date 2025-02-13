@@ -112,7 +112,7 @@ const Examenes = () => {
               key={examen.idexamen} 
               className="bg-white shadow-lg rounded-lg overflow-hidden transition-all hover:shadow-2xl w-full h-96" 
             >
-              <Link to={examen.link} className="block h-full flex flex-col">
+              <div to={examen.link} className="block h-full flex flex-col">
                 <div className="h-1/2 relative"> {/* Aumentado a 60% de la altura */}
                   <img 
                     src={examenLogo} 
@@ -124,17 +124,14 @@ const Examenes = () => {
                   <h3 className="text-xl font-semibold text-gray-800 mb-2 line-clamp-2">
                     {examen.titulo}
                   </h3>
-                  <p className="text-gray-600 flex-grow overflow-hidden line-clamp-3">
-                    {examen.descripcion}
-                  </p>
-                  <button
+                  <button 
+                    onClick={() => navigate(`/alumno/examenes/examen/${examen.idexamen}`)}
                     className="mt-4 w-full py-2 bg-[#2c7a7b] text-white rounded-lg text-xl font-semibold transition-all hover:bg-[#1b5c59]"
-                    onClick={() => navigate(`/examen/${examen.idexamen}`)}
                   >
                     Acceder
                   </button>
                 </div>
-              </Link>
+              </div>
             </div>
           ))}
         </div>

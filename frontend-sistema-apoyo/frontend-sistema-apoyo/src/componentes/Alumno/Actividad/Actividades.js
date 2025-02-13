@@ -116,7 +116,7 @@ const Actividades = () => {
                 key={activity.idactividad} 
                 className="bg-white shadow-xl rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300 ease-in-out w-full h-[350px] flex flex-col p-4"
               >
-                <Link to={activity.link} className="block h-full flex flex-col">
+                <div to={activity.link} className="block h-full flex flex-col">
                   <div className="relative w-full h-[150px] mb-4"> {/* Contenedor para la imagen */}
                   <img 
                     src={actividad} 
@@ -132,13 +132,13 @@ const Actividades = () => {
                       {activity.descripcion}
                     </p>
                     <button 
-                      onClick={() => navigate(`/actividad/${activity.idactividad}`)}
+                      onClick={() => navigate(`/alumno/actividades/actividad/${activity.idactividad}`)}
                       className="mt-auto py-2 px-4 bg-teal-600 text-white rounded-lg text-sm hover:bg-teal-700 transition-colors duration-300"
                     >
                       Acceder
                     </button>
                   </div>
-                </Link>
+                </div>
               </div>
             ))
           )}

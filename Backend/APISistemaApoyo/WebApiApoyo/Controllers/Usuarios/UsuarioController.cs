@@ -95,7 +95,7 @@ public class UsuarioController : ControllerBase
             {
                 status = false,
                 msg = "Error interno del servidor"
-            });
+            }); 
         }
     }
 

@@ -125,15 +125,14 @@ function App() {
             <Route path="/alumno/cursos/" element={<ProtegerRuta><Cursos /></ProtegerRuta>} />
             <Route path="/alumno/articulos/" element={<ProtegerRuta><ArticulosAlumno /></ProtegerRuta>} />
             <Route path="/alumno/actividades/" element={<ProtegerRuta><ActividadesAlumno /></ProtegerRuta>} />
-            <Route path="/alumno/examen/" element={<ProtegerRuta><ExamenAlumno /></ProtegerRuta>} />
-            <Route path="/alumno/articulos/:id" element={<ProtegerRuta><ArticuloDetalleAlumno /></ProtegerRuta>} />
-            <Route path="/alumno/actividades/:id" element={<ProtegerRuta><ActividadDetalleAlumno /></ProtegerRuta>} />
-            <Route path="/alumno/examen/:id" element={<ProtegerRuta><ExamenDetalleAlumno /></ProtegerRuta>} />
+            <Route path="/alumno/examenes/" element={<ProtegerRuta><ExamenAlumno /></ProtegerRuta>} />
+            <Route path="/alumno/articulos/articulo/:idarticulo" element={<ProtegerRuta><ArticuloDetalleAlumno /></ProtegerRuta>} />
+            <Route path="/alumno/actividades/actividad/:idactividad" element={<ProtegerRuta><ActividadDetalleAlumno /></ProtegerRuta>} />
+            <Route path="/alumno/examenes/examen/:idexamen" element={<ProtegerRuta><ExamenDetalleAlumno /></ProtegerRuta>} />
             <Route path="/alumno/profesores/" element={<ProtegerRuta><MisProfesores /></ProtegerRuta>} />
 
 
             {/* Perfil */}
-
             <Route path="/perfil" element={<ProtegerRuta><Perfil /></ProtegerRuta>} />
 
             {/* Chat */}

@@ -15,9 +15,6 @@ const MisCursos = () => {
   const { user } = useUser(); // Obtén el usuario autenticado
   const navigate = useNavigate();
 
-  // Estado para el menú (si lo necesitas)
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const navegarACurso = (curso) => {
     navigate("/alumno/cursos", { state: { nivel: curso.nivel, nombre: curso.nombre } });
   };

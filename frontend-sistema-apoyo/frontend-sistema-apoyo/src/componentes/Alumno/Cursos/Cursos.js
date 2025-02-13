@@ -43,7 +43,7 @@ const CursoDetalleAlumno = () => {
         navigate(`/alumno/actividades`, { state: { nivel, nombre } });
         break;
       case "Exámenes":
-        navigate(`/alumno/examen`, { state: { nivel, nombre } });
+        navigate(`/alumno/examenes`, { state: { nivel, nombre } });
         break;
       case "Mis Cursos":
         navigate("/alumno");

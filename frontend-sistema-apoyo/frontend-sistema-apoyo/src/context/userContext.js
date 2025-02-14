@@ -84,7 +84,9 @@ export const UserProvider = ({ children }) => {
     setUser(null);
     sessionStorage.removeItem("authToken");
     sessionStorage.removeItem("userData");
-    navigate("/iniciarsesion"); // Redirigir al login al cerrar sesión
+    setTimeout(() => {
+      navigate("/iniciarsesion"); 
+  }, 500);
   };
 
   return (

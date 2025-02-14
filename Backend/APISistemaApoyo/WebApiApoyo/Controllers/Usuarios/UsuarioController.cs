@@ -107,7 +107,7 @@ public class UsuarioController : ControllerBase
         try
         {
             // Verificación de que el login no sea nulo y los campos necesarios estén presentes
-            if (idUsuario == null || idUsuario <= 0)
+            if (idUsuario == null || idUsuario < 0)
             {
                 rsp.status = false;
                 rsp.msg = "El dato de idUsuario son obligatorios.";
@@ -248,9 +248,15 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpPut("EditarUsuario")]
-    public async Task<IActionResult> Editar([FromBody] UsuarioDTO usuario)
+    public async Task<IActionResult> Editar(int id, [FromBody] UsuarioDTO usuario)
     {
-        var rsp = new Response<bool>();
+        if (id != usuario.Idusuario)
+        {
+            _logger.LogWarning("El ID de la URL no coincide con el ID del cuerpo.");
+            return BadRequest("El ID del alumno no coincide con el ID proporcionado.");
+        }
+
+        var rsp = new Response<string>();
         try
         {
             var resultado = await _usuarioService.Editar(usuario);

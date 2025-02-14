@@ -268,8 +268,30 @@ const Perfil = () => {
                   </div>
                 )}
               </div>
+              
             </div>
           </div>
+
+          <div className="lg:col-span-1">
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-200/60 p-8">
+              <h3 className="text-xl font-semibold text-slate-800 mb-6">
+                Informacion de Perfil
+              </h3>
+              <div className="space-y-4">
+                <div>
+                  <button
+                    onClick={() => navigate("/editarperfil")}
+                    className="w-full px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-xl transition-colors duration-200 flex items-center justify-center gap-2"
+                    aria-label="Cambiar foto"
+                  >
+                    Editar Perfil
+                  </button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

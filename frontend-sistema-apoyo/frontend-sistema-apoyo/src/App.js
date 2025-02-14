@@ -66,6 +66,7 @@ import VerExamen from "./componentes/Profesor/Examen/VerExamen";
 
 //Perfil
 import Perfil from "./componentes/Perfil/Perfil";
+import EditPerfil from "./componentes/Perfil/EditPerfil";
 
 //Chat
 import Chat from "./componentes/Chat/chat";
@@ -142,6 +143,7 @@ function App() {
 
             {/* Perfil */}
             <Route path="/perfil" element={<ProtegerRuta><Perfil /></ProtegerRuta>} />
+            <Route path="/editarperfil" element={<ProtegerRuta><EditPerfil /></ProtegerRuta>} />
 
             {/* Chat */}
             <Route path="/chat" element={<ProtegerRuta><Chat /></ProtegerRuta>} />

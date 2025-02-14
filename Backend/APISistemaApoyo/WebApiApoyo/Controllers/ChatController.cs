@@ -60,7 +60,7 @@ namespace WebApiApoyo.Controllers
         [Route("ChatporUsuarioID")]
         public async Task<IActionResult> ObtenerChatsPorUsuarioId(int userId)
         {
-            if (userId <= 0)
+            if (userId < 0)
             {
                 return BadRequest(new { status = false, msg = "El UserId debe ser un número positivo." });
             }

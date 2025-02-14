@@ -68,7 +68,6 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-
         public async Task<bool> Editar(UsuarioDTO modelo)
         {
             try
@@ -76,16 +75,25 @@ namespace SistemaApoyo.BLL.Servicios
                 var usuarioModelo = _mapper.Map<Usuario>(modelo);
                 var usuarioEncontrado = await _usuarioRepositorio.Obtener(u => u.Idusuario == usuarioModelo.Idusuario);
                 if (usuarioEncontrado == null)
+                {
                     throw new InvalidOperationException("El usuario no existe");
+                }
 
+                // Si la contraseña está vacía o nula, no la actualizamos
                 if (!string.IsNullOrEmpty(usuarioModelo.ContraseñaHash))
+                {
                     usuarioEncontrado.ContraseñaHash = CubreContrasena(usuarioModelo.ContraseñaHash);
+                }
 
+                // Actualizar otros campos
                 usuarioEncontrado.Nombrecompleto = usuarioModelo.Nombrecompleto;
                 usuarioEncontrado.Correo = usuarioModelo.Correo;
                 usuarioEncontrado.Idnivel = usuarioModelo.Idnivel;
                 usuarioEncontrado.Idrol = usuarioModelo.Idrol;
+                usuarioEncontrado.CvRuta = usuarioModelo?.CvRuta;
+                usuarioEncontrado.FotoRuta = usuarioModelo?.FotoRuta;
 
+                // Guardar los cambios
                 bool respuesta = await _usuarioRepositorio.Editar(usuarioEncontrado);
                 if (!respuesta)
                     throw new Exception("No se pudo editar el usuario");
@@ -98,6 +106,7 @@ namespace SistemaApoyo.BLL.Servicios
                 throw;
             }
         }
+
 
         public async Task<bool> Eliminar(int id)
         {

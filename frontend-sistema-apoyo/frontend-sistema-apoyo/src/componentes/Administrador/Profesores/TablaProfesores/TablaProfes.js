@@ -25,16 +25,16 @@ const TablaProfes = ({ data, onDelete }) => {
     const isDataValid = profesorNivel.length > 0;
 
     return (
-        <div className="p-6 bg-white rounded-lg shadow-lg">
+        <div className="p-4 bg-gray-100 rounded-lg shadow-md">
             <div className="mb-4">
-                <label htmlFor="nivel-select" className="block text-gray-700 font-semibold mb-2">
+                <label htmlFor="nivel-select" className="lock text-sm font-medium text-gray-700">
                     Filtrar por nivel:
                 </label>
                 <select
                     id="nivel-select"
                     value={nivelSeleccionado}
                     onChange={handleNivelSeleccionado}
-                    className="w-full p-2 border border-gray-300 rounded-md"
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 >
                     <option value="">Todos los niveles</option>
                     <option value="1">A1: Principiante</option>
@@ -46,24 +46,24 @@ const TablaProfes = ({ data, onDelete }) => {
                 </select>
             </div>
 
-            {/* Botón alineado a la izquierda */}
-            <div className="mb-4 flex justify-start">
+            {/* Botón para añadir un nuevo profesor */}
+            <div className="mb-4 flex justify-end">
                 <button
-                    className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
                     onClick={handleNavigate}
                 >
                     Añadir nuevo profesor
                 </button>
             </div>
 
-            <div className="overflow-x-auto">
-                <table className="min-w-full table-auto">
+            <div className="overflow-x-auto bg-white rounded-lg shadow">
+                <table className="min-w-full border-collapse">
                     <thead>
-                        <tr>
-                            <th className="px-4 py-2 text-left text-gray-700">Nombre y apellido</th>
-                            <th className="px-4 py-2 text-left text-gray-700">Correo electrónico</th>
-                            <th className="px-4 py-2 text-left text-gray-700">🔽 Nivel</th>
-                            <th className="px-4 py-2 text-left text-gray-700">Acción</th>
+                        <tr className="bg-gray-200 text-gray-700"> 
+                            <th className="py-3 px-4 border-b">Nombre y apellido</th>
+                            <th className="py-3 px-4 border-b">Correo electrónico</th>
+                            <th className="py-3 px-4 border-b">Nivel</th>
+                            <th className="py-3 px-4 border-b">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>

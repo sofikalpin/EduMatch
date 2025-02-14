@@ -5,14 +5,6 @@ import axios from 'axios';
 import Header from './HeaderAdministrador';
 import Footer from '../Administrador/FooteraAdministrador';
 
-const socialIcons = [
-    { name: 'Facebook', color: 'hover:text-blue-500' },
-    { name: 'Instagram', color: 'hover:text-pink-500' },
-    { name: 'Twitter', color: 'hover:text-blue-400' },
-    { name: 'Youtube', color: 'hover:text-red-500' },
-    { name: 'Linkedin', color: 'hover:text-blue-700' }
-];
-
 const AutorizarProfesor = ({ cantidad, onNavigate }) => (
     <div className="mt-4 p-4 bg-white shadow-md rounded-lg flex items-center justify-between">
         <span className="text-sm font-semibold">Autorizar Profesor</span>
@@ -56,7 +48,7 @@ const Administrador = () => {
     }, []);
 
     return (
-        <div className="min-h-screen flex flex-col bg-gray-100">
+        <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
             <Header onNavigate={navigate} logo={logo} />
 
             {location.pathname === '/administrador' && (
@@ -78,7 +70,7 @@ const Administrador = () => {
                 </div>
             </main>
             <div className="mb-28"></div>
-            <Footer socialIcons={socialIcons} className="w-full" />
+            <Footer />
         </div>
     );
 };

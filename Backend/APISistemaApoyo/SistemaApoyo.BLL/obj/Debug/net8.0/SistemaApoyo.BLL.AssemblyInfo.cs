@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SistemaApoyo.BLL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+865ce7ff3fb8ac7a41260c2376675ef79391ec79")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5858d71d812ffb36b8b2e7ffe70a797a58e13554")]
 [assembly: System.Reflection.AssemblyProductAttribute("SistemaApoyo.BLL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SistemaApoyo.BLL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

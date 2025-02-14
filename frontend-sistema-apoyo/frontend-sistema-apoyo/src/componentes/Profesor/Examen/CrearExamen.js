@@ -5,6 +5,7 @@ import { Upload } from "lucide-react";
 import Header from "../HeaderProfesor";
 import drive from "../Imagenes/google-drive.png";
 import youtube from "../Imagenes/youtube.png";
+import googleform from "../Imagenes/google-forms.png";
 import axios from "axios";
 import { useUser } from "../../../context/userContext";
 
@@ -52,15 +53,15 @@ const CrearExamen = () => {
       const nuevoExamen = {
         idexamen: 0,
         idusuario: user?.idUsuario,
-        nombre: nombre.trim(),
-        descripcion: descripcion.trim(),
+        titulo: nombre.trim(),
+        calificacion: descripcion.trim(),
         idnivel: id,
         fechaCreacion: new Date().toISOString().split("T")[0],
         url: examenUrl.length > 0 ? examenUrl.join(";") : "",
       };
 
       const response = await axios.post(
-        "http://localhost:5228/API/ProfesorExamen/CrearExamen",
+        "http://localhost:5228/api/ProfeExamen/CrearExamen",
         nuevoExamen
       );
       if (response.data.status) {
@@ -181,6 +182,13 @@ const CrearExamen = () => {
                     onClick={handleAgregarEnlace}
                   >
                     <img src={youtube} alt="YouTube" className="h-8 w-8" />
+                  </button>
+                  <button
+                    type="button"
+                    className="p-6 bg-white rounded-xl hover:bg-gray-50 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+                    onClick={handleAgregarEnlace}
+                  >
+                    <img src={googleform} alt="Google Forms" className="h-8 w-8" />
                   </button>
                   
                   <input

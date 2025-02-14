@@ -120,7 +120,7 @@ const Examen = () => {
                   <p className="text-base text-gray-600">{examen.descripcion}</p>
                 </div>
                 <button 
-                  onClick={() => navigate(`/examen/${examen.idexamen}`)}
+                  onClick={() => navigate(`/profesor/cursos/detalle/:id/examen/${examen.idexamen}`)}
                   className="mt-4 py-2 px-4 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
                 >
                   Acceder

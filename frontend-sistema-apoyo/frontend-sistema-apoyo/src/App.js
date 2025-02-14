@@ -39,6 +39,7 @@ import ArticuloProfesor from "./componentes/Profesor/Articulo/Articulo";
 import ExamenProfesor from "./componentes/Profesor/Examen/Examen";
 import CrearActividad from "./componentes/Profesor/Actividad/CrearActividad";
 import CrearArticulo from "./componentes/Profesor/Articulo/CrearArticulo";
+import ExamenDetalleProfesor from "./componentes/Profesor/Examen/ExamenDetalle";
 import CrearExamen from "./componentes/Profesor/Examen/CrearExamen";
 
 //Foro
@@ -59,6 +60,9 @@ import ArticuloDetalleAlumno from "./componentes/Alumno/Articulo/articuloDetalle
 import ActividadDetalleAlumno from "./componentes/Alumno/Actividad/actividadDetalle";
 import ExamenDetalleAlumno from "./componentes/Alumno/Examen/ExamenDetalle";
 import MisProfesores from "./componentes/Alumno/Profesores/MisProfesores";
+
+//Examenes de Google Forms
+import VerExamen from "./componentes/Profesor/Examen/VerExamen";
 
 //Perfil
 import Perfil from "./componentes/Perfil/Perfil";
@@ -105,7 +109,9 @@ function App() {
             <Route path="/profesor/cursos/detalle/:id/actividad" element={<ProtegerRuta><ActividadProfesor /></ProtegerRuta>} />
             <Route path="/profesor/cursos/detalle/:id/articulos" element={<ProtegerRuta><ArticuloProfesor /></ProtegerRuta>} />
             <Route path="/profesor/cursos/detalle/:id/examen" element={<ProtegerRuta><ExamenProfesor /></ProtegerRuta>} />
-                  
+
+            <Route path="/profesor/cursos/detalle/:id/examen/:idexamen" element={<ProtegerRuta><ExamenDetalleProfesor /></ProtegerRuta>} />      
+            
             <Route path="/crear-actividad" element={<ProtegerRuta><CrearActividad /></ProtegerRuta>} />
             <Route path="/crear-articulo" element={<ProtegerRuta><CrearArticulo /></ProtegerRuta>} />
             <Route path="/crear-examen" element={<ProtegerRuta><CrearExamen /></ProtegerRuta>} />
@@ -131,6 +137,8 @@ function App() {
             <Route path="/alumno/examenes/examen/:idexamen" element={<ProtegerRuta><ExamenDetalleAlumno /></ProtegerRuta>} />
             <Route path="/alumno/profesores/" element={<ProtegerRuta><MisProfesores /></ProtegerRuta>} />
 
+            {/* Examen Google Forms */}
+            <Route path="/ver-examen" element={<ProtegerRuta><VerExamen /></ProtegerRuta>} /> 
 
             {/* Perfil */}
             <Route path="/perfil" element={<ProtegerRuta><Perfil /></ProtegerRuta>} />
@@ -138,8 +146,6 @@ function App() {
             {/* Chat */}
             <Route path="/chat" element={<ProtegerRuta><Chat /></ProtegerRuta>} />
           
-
-
             {/* Redirigir rutas no encontradas */}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

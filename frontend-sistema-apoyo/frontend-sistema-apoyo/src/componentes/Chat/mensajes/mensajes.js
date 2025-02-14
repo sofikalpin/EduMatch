@@ -1,8 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import hubConnection from "../../../signalRConnection.js";
+import { useUser } from "../../../context/userContext.js";
 
 const Mensajes = ({ usuarioId, chatId }) => {
+
+    const { user } = useUser();
+
     const [mensajes, setMensajes] = useState([]);
     const [nuevoMensaje, setNuevoMensaje] = useState("");
     const [loading, setLoading] = useState(false);
@@ -11,7 +15,7 @@ const Mensajes = ({ usuarioId, chatId }) => {
     const inputRef = useRef(null);
     const messagesContainerRef = useRef(null);
 
-    const usuarioid = usuarioId || 5;
+    const usuarioid = user.idUsuario;
 
     useEffect(() => {
         const cargarMensaje = async () => {

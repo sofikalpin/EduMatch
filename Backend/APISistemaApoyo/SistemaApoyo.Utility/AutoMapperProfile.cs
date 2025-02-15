@@ -78,6 +78,14 @@ namespace SistemaApoyo.Utility
                            opt => opt.Ignore());
             #endregion Usuario
 
+            #region Reseña
+            CreateMap<UsuarioDTO, Usuario>();
+            CreateMap<Reseña, ReseñaAlumnoDTO>();
+            CreateMap<CrearReseñaAlumnoDTO, Reseña>();
+            #endregion Reseña
+
+
+
         }
     }
 }

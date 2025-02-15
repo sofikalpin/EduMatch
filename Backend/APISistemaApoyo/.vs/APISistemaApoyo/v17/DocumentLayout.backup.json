@@ -1,24 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|c:\\users\\sofia\\documents\\utn\\3 a\u00F1o - 2024\\desarrollosoftware\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.bll\\servicios\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|solutionrelative:sistemaapoyo.bll\\servicios\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\sofia\\documents\\utn\\3 a\u00F1o - 2024\\desarrollosoftware\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\usuarios\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\usuarios\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|c:\\users\\sofia\\documents\\utn\\3 a\u00F1o - 2024\\desarrollosoftware\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.bll\\servicios\\mensajeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|solutionrelative:sistemaapoyo.bll\\servicios\\mensajeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|c:\\users\\sofia\\documents\\utn\\3 a\u00F1o - 2024\\desarrollosoftware\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.bll\\servicios\\administradorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|solutionrelative:sistemaapoyo.bll\\servicios\\administradorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\80VERSIONCONBACK - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -26,8 +9,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 119,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": -1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -35,62 +22,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MensajeService.cs",
-              "DocumentMoniker": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\MensajeService.cs",
-              "RelativeDocumentMoniker": "SistemaApoyo.BLL\\Servicios\\MensajeService.cs",
-              "ToolTip": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\MensajeService.cs",
-              "RelativeToolTip": "SistemaApoyo.BLL\\Servicios\\MensajeService.cs",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T15:01:59.946Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AdministradorService.cs",
-              "DocumentMoniker": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\AdministradorService.cs",
-              "RelativeDocumentMoniker": "SistemaApoyo.BLL\\Servicios\\AdministradorService.cs",
-              "ToolTip": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\AdministradorService.cs",
-              "RelativeToolTip": "SistemaApoyo.BLL\\Servicios\\AdministradorService.cs",
-              "ViewState": "AgIAAI0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T14:27:15.864Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UsuarioController.cs",
-              "DocumentMoniker": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
-              "ToolTip": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAQwGkAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T22:48:33.665Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UsuarioService.cs",
-              "DocumentMoniker": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\UsuarioService.cs",
-              "RelativeDocumentMoniker": "SistemaApoyo.BLL\\Servicios\\UsuarioService.cs",
-              "ToolTip": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\UsuarioService.cs",
-              "RelativeToolTip": "SistemaApoyo.BLL\\Servicios\\UsuarioService.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAAAEQAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T14:27:18.903Z",
-              "EditorCaption": ""
             }
           ]
         }

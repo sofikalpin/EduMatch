@@ -47,7 +47,6 @@ const TablaAlumnos = ({ data, onDelete }) => {
                 </select>
             </div>
 
-            {/* Botón para añadir un nuevo alumno */}
             <div className="mb-4 flex justify-end">
                 <button
                     className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
@@ -61,10 +60,10 @@ const TablaAlumnos = ({ data, onDelete }) => {
                 <table className="min-w-full border-collapse">
                     <thead>
                         <tr className="bg-gray-200 text-gray-700">
-                            <th className="py-3 px-4 border-b">Nombre y apellido</th>
-                            <th className="py-3 px-4 border-b">Correo electrónico</th>
-                            <th className="py-3 px-4 border-b">Nivel</th>
-                            <th className="py-3 px-4 border-b">Acciones</th>
+                            <th className="px-4 py-2 text-left">Nombre y apellido</th>
+                            <th className="px-4 py-2 text-left">Correo electrónico</th>
+                            <th className="px-4 py-2 text-left">🔽 Nivel</th>
+                            <th className="px-4 py-2 text-left">Acción</th>
                         </tr>
                     </thead>
                     <tbody>

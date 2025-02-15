@@ -15,16 +15,16 @@ const TablaProfesA = ({ data, onDelete, onAutorizar }) => {
   const isDataValid = profesorNivel.length > 0;
 
   return (
-    <div className="p-4 bg-gray-100 rounded-lg shadow-md">
+    <div className="p-4 bg-white shadow-lg rounded-xl">
       <div className="mb-4">
-        <label htmlFor="nivel-select" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="nivel-select" className="block text-gray-700 font-semibold mb-2">
           Filtrar por nivel:
         </label>
         <select
           id="nivel-select"
           value={nivelSeleccionado}
           onChange={handleNivelSeleccionado}
-          className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <option value="">Todos los niveles</option>
           <option value="1">A1: Principiante</option>
@@ -36,16 +36,14 @@ const TablaProfesA = ({ data, onDelete, onAutorizar }) => {
         </select>
       </div>
 
-      <div className="overflow-x-auto bg-white rounded-lg shadow">
-        <table className="min-w-full border-collapse">
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
           <thead>
-            <tr className="bbg-gray-200 text-gray-700">
-              <th className="py-3 px-4 border-b">NOMBRE Y APELLIDO</th>
-              <th className="py-3 px-4 border-b">CORREO ELECTRÓNICO</th>
-              <th className="py-3 px-4 border-b">NIVEL</th>
-              <th className="py-3 px-4 border-b">CV</th>
-              <th className="py-3 px-4 border-b">ACCIONES</th>
-              
+            <tr className="bg-gray-100 text-gray-700 uppercase text-sm">
+              <th className="py-3 px-4 border-b">Nombre y apellido</th>
+              <th className="py-3 px-4 border-b">Correo electrónico</th>
+              <th className="py-3 px-4 border-b">🔽 Nivel</th>
+              <th className="py-3 px-4 border-b">Acción</th>
             </tr>
           </thead>
           <tbody>

@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const FilaProfesor = ({ profesor, onDelete, onAutorizar }) => {
+    const [showTooltip, setShowTooltip] = useState(false);
     const navigate = useNavigate();
 
-    const controlarRechazar = () => {
-        if (window.confirm(`¿Estas seguro que deseas rechazar al profesor ${profesor.nombrecompleto}?`)) {
+    const controlarEliminar = () => {
+        if (window.confirm(`¿Desea eliminar al profesor ${profesor.nombrecompleto}?`)) {
             onDelete(profesor.idusuario);
         }
     };
@@ -41,25 +42,31 @@ const FilaProfesor = ({ profesor, onDelete, onAutorizar }) => {
             </td>
             <td className="px-4 py-3">{profesor.correo}</td>
             <td className="px-4 py-3 text-center">{nivelInicial(profesor.idnivel)}</td>
-            
-            {/* Columna para el botón de Ver CV */}
-            <td className="px-4 py-3 text-center">
-                <button
-                    className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md"
-                    onClick={() => navigate("/profesorCV")}
-                >
-                    Ver CV
-                </button>
-            </td>
-
-            {/* Columna para las acciones */}
             <td className="px-4 py-3 flex items-center gap-2">
                 <button className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-md" onClick={handleAutorizarProfesor}>
                     Autorizar
                 </button>
-                <button className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md" onClick={controlarRechazar}>
-                    Rechazar
+                <button className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md" onClick={controlarEliminar}>
+                    Eliminar
                 </button>
+                <div className="relative">
+                    <button 
+                        className="text-gray-600 text-xl px-2" 
+                        onClick={() => setShowTooltip(!showTooltip)}
+                    >
+                        ⋮
+                    </button>
+                    {showTooltip && (
+                        <div className="absolute right-0 mt-2 bg-white border shadow-md rounded-md">
+                            <button
+                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 w-full text-left"
+                                onClick={() => navigate("/profesorCV")}
+                            >
+                                Ver CV
+                            </button>
+                        </div>
+                    )}
+                </div>
             </td>
         </tr>
     );

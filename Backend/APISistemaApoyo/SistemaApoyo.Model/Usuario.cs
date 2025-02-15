@@ -33,6 +33,8 @@ public partial class Usuario
 
     public virtual ICollection<Articulo> Articulos { get; set; } = new List<Articulo>();
 
+    public virtual ICollection<Bolsatrabajo> Bolsatrabajos { get; set; } = new List<Bolsatrabajo>();
+
     public virtual ICollection<Chat> ChatIdusuario1Navigations { get; set; } = new List<Chat>();
 
     public virtual ICollection<Chat> ChatIdusuario2Navigations { get; set; } = new List<Chat>();
@@ -48,6 +50,12 @@ public partial class Usuario
     public virtual Rol IdrolNavigation { get; set; } = null!;
 
     public virtual ICollection<Mensaje> Mensajes { get; set; } = new List<Mensaje>();
+
+    public virtual ICollection<Reseña> ReseñaIdProfesorNavigations { get; set; } = new List<Reseña>();
+
+    public virtual ICollection<Reseña> ReseñaIdusuarioNavigations { get; set; } = new List<Reseña>();
+
+    public virtual ICollection<Reseñapagina> Reseñapaginas { get; set; } = new List<Reseñapagina>();
 
     public virtual ICollection<Respuesta> Respuesta { get; set; } = new List<Respuesta>();
 }

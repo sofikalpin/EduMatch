@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 import TablaProfesoresT from "./TablaProfesores/TablaProfes";
+import logo from "../../../logo/LogoInicio.png";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft } from 'lucide-react';
 import axios from "axios";
 import Header from "../HeaderAdministrador.js";
 import Footer from "../FooteraAdministrador.js";
 
+const socialIcons = [
+    { name: 'Facebook', color: 'hover:text-blue-500' },
+    { name: 'Instagram', color: 'hover:text-pink-500' },
+    { name: 'Twitter', color: 'hover:text-blue-400' },
+    { name: 'Youtube', color: 'hover:text-red-500' },
+    { name: 'Linkedin', color: 'hover:text-blue-700' }
+];
 const ListaProfesores = () => {
     const [profesores, setProfesores] = useState([]);
     const [busqueda, setBusqueda] = useState("");
@@ -66,23 +73,10 @@ const ListaProfesores = () => {
     };
 
     return (
-        <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
-        <Header />
-    
-        <div className="flex items-center justify-start w-full mt-4 mb-0 px-20">
-            <button
-                onClick={() => navigate(-1)}
-                className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
-            >
-                <ArrowLeft className="w-6 h-6" />
-                <span>Volver</span>
-            </button>
-        </div>
-    
-        <div className="flex flex-col items-center mt-8 px-20 max-w-13xl mx-auto">
-            <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Lista de Profesores Registrados</h1>
-    
-            {/* Campo de búsqueda */}
+        <div className="min-h-screen flex flex-col bg-gray-100">
+            <Header onNavigate={navigate} logo={logo} />
+            <div className="flex flex-col items-center mt-16 px-20 max-w-13xl mx-auto">
+            <h1 className="text-3xl font-bold text-gray-800 mb-8">Lista de Profesores</h1>
             <input
                 type="text"
                 placeholder="Buscar por nombre de profesor..."
@@ -91,8 +85,7 @@ const ListaProfesores = () => {
                 className="mb-4 p-2 border border-gray-300 rounded w-full"
                 autoComplete="off"
             />
-    
-            {/* Mostrar mensaje de eliminación, error o la tabla */}
+
             <div>
                 {mensajeEliminacion && <div className="text-green-500 mb-4">{mensajeEliminacion}</div>}
                 {error && <div className="text-red-500 mb-4">{error}</div>}
@@ -102,9 +95,10 @@ const ListaProfesores = () => {
                     <TablaProfesoresT data={profesorFiltro} onDelete={handleDeleteProfesor} />
                 )}
             </div>
+            </div>
+            <div className="mb-16"></div>
+                        <Footer socialIcons={socialIcons} className="w-full" />
         </div>
-        <Footer />
-    </div>
     );
 };
 

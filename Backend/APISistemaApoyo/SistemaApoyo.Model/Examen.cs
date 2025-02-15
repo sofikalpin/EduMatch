@@ -23,4 +23,3 @@ public partial class Examen
 
     public virtual Usuario IdusuarioNavigation { get; set; } = null!;
 }
-

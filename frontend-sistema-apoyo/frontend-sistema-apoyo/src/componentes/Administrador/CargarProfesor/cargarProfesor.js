@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
 import TablaProfesores from "./tablaProfesAutorizar/tablaProfesA.js";
+import Titulo from "./titulo/titulo.js";
 import axios from "axios";
 import Header from "../HeaderAdministrador.js";
 import Footer from "../FooteraAdministrador.js";
-import { ArrowLeft } from 'lucide-react';
+import logo from "../../../logo/LogoInicio.png";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+
+const socialIcons = [
+    { name: 'Facebook', color: 'hover:text-blue-500' },
+    { name: 'Instagram', color: 'hover:text-pink-500' },
+    { name: 'Twitter', color: 'hover:text-blue-400' },
+    { name: 'Youtube', color: 'hover:text-red-500' },
+    { name: 'Linkedin', color: 'hover:text-blue-700' }
+];
 
 const CargarProfesor = () => {
     const [profesoresNoAutorizado, setProfesoresNoAutorizado] = useState([]);
@@ -43,17 +52,17 @@ const CargarProfesor = () => {
     );
 
     const handleDeleteProfesor = (id) => {
-        if (window.confirm("¿Estás seguro de que deseas rechazar este profesor?")) {
+        if (window.confirm("¿Estás seguro de que deseas eliminar este profesor?")) {
             axios.delete(`http://localhost:5228/API/AdministradorProfesor/EliminarProfesor?id=${id}`)
                 .then(() => {
                     setProfesoresNoAutorizado((prevProfesores) => prevProfesores.filter((profesor) => profesor.idusuario !== id));
-                    setMensaje("Profesor rechazado con éxito.");
+                    setMensaje("Profesor eliminado con éxito.");
                     setCantidad((prevCantidad) => prevCantidad - 1);
                     setTimeout(() => setMensaje(""), 2000);
                 })
                 .catch((error) => {
-                    console.error("Error al rechazar al profesor: ", error);
-                    alert("Ocurrió un error al rechazar el profesor. Por favor, intenta nuevamente.");
+                    console.error("Error al eliminar al profesor: ", error);
+                    alert("Ocurrió un error al eliminar el profesor. Por favor, intenta nuevamente.");
                 });
         }
     };
@@ -74,45 +83,19 @@ const CargarProfesor = () => {
         }
     };
 
-    const handleRedirectToProfesores = () => {
-        // Redirigir a la vista donde se mostrarán todos los profesores pendientes de autorización
-        navigate('/administrador/cargarProfesorExterno');
-    };
-
     return (
-        <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
-            <Header />
-
-            <div className="flex items-center justify-start w-full mt-4 mb-0 px-20">
-                <button
-                    onClick={() => navigate(-1)}
-                    className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
-                >
-                    <ArrowLeft className="w-6 h-6" />
-                    <span>Volver</span>
-                </button>
-            </div>
-
-            <div className="flex flex-col items-center mt-8 px-20 max-w-13xl mx-auto">
-                <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Autorizar Profesores</h1>
-                
-                <div className="flex items-center">
-                    <input
-                        type="text"
-                        placeholder="Buscar por nombre de profesor..."
-                        value={busqueda}
-                        onChange={(e) => setBusqueda(e.target.value)}
-                        className="p-4 w-96 text-lg border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        autoComplete="off"
-                    />
-                    
-                    <button
-                        onClick={handleRedirectToProfesores}
-                        className="bg-[#00A89F] hover:bg-[#008F8C] active:bg-[#007C79] text-white px-6 py-2 rounded-md ml-4 transition-all"
-                    >
-                        Ver Profesores en espera
-                    </button>
-                </div>
+        <div className="min-h-screen flex flex-col bg-gray-100">
+            <Header onNavigate={navigate} logo={logo} />
+            <div className="flex flex-col items-center mt-16 px-20 max-w-13xl mx-auto">
+            <h1 className="text-3xl font-bold text-gray-800 mb-8">Autorizar Profesores</h1>
+                <input
+                    type="text"
+                    placeholder="Buscar por nombre de profesor..."
+                    value={busqueda}
+                    onChange={(e) => setBusqueda(e.target.value)}
+                    className="p-4 w-96 text-lg border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    autoComplete="off"
+                />
 
                 {mensajeEliminacion && <div className="text-green-600 text-center mb-4">{mensajeEliminacion}</div>}
                 {error && <div className="text-red-600 text-center mb-4">{error}</div>}
@@ -126,8 +109,8 @@ const CargarProfesor = () => {
                     />
                 )}
             </div>
-            <div ></div>
-            <Footer />
+            <div className="mb-16"></div>
+            <Footer socialIcons={socialIcons} className="w-full" />
         </div>
     );
 };

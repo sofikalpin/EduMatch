@@ -1,117 +1,124 @@
-﻿using SistemaApoyo.BLL.Servicios.Contrato;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DAL.Repositorios.Contrato;
 using SistemaApoyo.DTO;
 using SistemaApoyo.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace SistemaApoyo.BLL.Servicios
 {
     public class ReseñaService : IReseñaService
     {
-        private readonly IGenericRepository<Reseña> _reviewRepository;
-        private readonly IGenericRepository<Usuario> _userRepository;
+        private readonly IGenericRepository<Reseñapagina> _reseñaRepositorio;
+        private readonly IGenericRepository<Usuario> _usuarioRepositorio;
+        private readonly IMapper _mapper;
 
         public ReseñaService(
-            IGenericRepository<Reseña> reviewRepository,
-            IGenericRepository<Usuario> userRepository)
+            IGenericRepository<Reseñapagina> reseñaRepositorio,
+            IGenericRepository<Usuario> usuarioRepository, IMapper mapper)
         {
-            _reviewRepository = reviewRepository;
-            _userRepository = userRepository;
+            _reseñaRepositorio = reseñaRepositorio;
+            _usuarioRepositorio = usuarioRepository;
+            _mapper = mapper;
         }
 
-        private async Task<ReseñaRespuestaDTO> MapToDTO(Reseña reseña)
+        public async Task<ReseñaDTO> ObtenerReseñaPorId(int id)
         {
-            var user = await _userRepository.Obtener(u => u.Idusuario == reseña.UserId);
-            return new ReseñaRespuestaDTO
+            try
             {
-                Id = reseña.Id,
-                UserId = reseña.UserId,
-                UserName = user?.NombreUsuario ?? "Usuario Desconocido",
-                Rating = reseña.Rating,
-                Comment = reseña.Comment,
-                Date = reseña.Date
-            };
-        }
-
-        public async Task<ReseñaRespuestaDTO> CreateReview(ReseñaDTO reviewDTO)
-        {
-            var user = await _userRepository.Obtener(u => u.Idusuario == reviewDTO.UserId);
-            if (user == null)
-                throw new Exception("Usuario no encontrado");
-
-            var review = new Reseña
-            {
-                UserId = reviewDTO.UserId,
-                Rating = reviewDTO.Rating,
-                Comment = reviewDTO.Comment,
-                Date = DateTime.Now
-            };
-
-            var createdReview = await _reviewRepository.Crear(review);
-            return await MapToDTO(createdReview);
-        }
-
-        public async Task<ReseñaRespuestaDTO> GetReview(int id)
-        {
-            var review = await _reviewRepository.Obtener(r => r.Id == id);
-            if (review == null) return null;
-            return await MapToDTO(review);
-        }
-
-        public async Task<IEnumerable<ReseñaRespuestaDTO>> GetAllReviews()
-        {
-            var queryable = await _reviewRepository.Consultar();
-            var reviews = await queryable.ToListAsync();
-            var reviewDTOs = new List<ReseñaRespuestaDTO>();
-
-            foreach (var review in reviews)
-            {
-                reviewDTOs.Add(await MapToDTO(review));
+                var resena = await _reseñaRepositorio.Obtener(r => r.IdReseñaP == id);
+                if (resena == null)
+                {
+                    throw new Exception("Reseña no encontrada");
+                }
+                return _mapper.Map<ReseñaDTO>(resena);
             }
-
-            return reviewDTOs;
-        }
-
-        public async Task<IEnumerable<ReseñaRespuestaDTO>> GetUserReviews(int userId)
-        {
-            var queryable = await _reviewRepository.Consultar(r => r.UserId == userId);
-            var reviews = await queryable.ToListAsync();
-            var reviewDTOs = new List<ReseñaRespuestaDTO>();
-
-            foreach (var review in reviews)
+            catch (Exception ex)
             {
-                reviewDTOs.Add(await MapToDTO(review));
+                throw new Exception("Error al obtener la reseña", ex);
             }
-
-            return reviewDTOs;
         }
 
-        public async Task<bool> UpdateReview(int id, int userId, ReseñaDTO reseñaDTO)
+        public async Task<List<ReseñaDTO>> ObtenerTodasLasReseñas()
         {
-            var existingReview = await _reviewRepository.Obtener(r => r.Id == id);
-
-            if (existingReview == null || existingReview.UserId != userId)
-                return false;
-
-            existingReview.Rating = reseñaDTO.Rating;
-            existingReview.Comment = reseñaDTO.Comment;
-
-            return await _reviewRepository.Editar(existingReview);
+            try
+            {
+                var reseñas = await _reseñaRepositorio.Consultar();
+                var listaReseña = await reseñas.ToListAsync();
+                return _mapper.Map<List<ReseñaDTO>>(listaReseña);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener las reseñas", ex);
+            }
         }
 
-        public async Task<bool> DeleteReview(int id, int userId)
+        public async Task<List<ReseñaDTO>> ObtenerReseñasDeUsuario(int idUsuario)
         {
-            var review = await _reviewRepository.Obtener(r => r.Id == id && r.UserId == userId);
+            try
+            {
+                var usuario = await _usuarioRepositorio.Obtener(u => u.Idusuario == idUsuario);
+                if (usuario == null)
+                {
+                    throw new InvalidOperationException("El usuario no se encontro");
+                }
 
-            if (review == null)
-                return false;
-
-            return await _reviewRepository.Eliminar(review);
+                var reseñas = await _reseñaRepositorio.Consultar(r => r.Idusuaro == idUsuario);
+                var listaReseñas = await reseñas.ToListAsync();
+                return _mapper.Map<List<ReseñaDTO>>(listaReseñas);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener las reseñas del usuario", ex);
+            }
         }
+
+        public async Task<bool> CrearReseña(ReseñaDTO reseñaDTO)
+        {
+            try
+            {
+                if (reseñaDTO.Rating < 1 || reseñaDTO.Rating > 5)
+                {
+                    throw new Exception("El rating debe estar entre 1 y 5");
+                }
+
+                var reseña = _mapper.Map<Reseñapagina>(reseñaDTO);
+                var reseñaCreada = await _reseñaRepositorio.Crear(reseña);
+                if (reseñaCreada == null)
+                {
+                    throw new Exception("Error al crear la reseña");
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al crear la reseña", ex);
+            }
+        }
+
+        public async Task<bool> EliminarReseña(int id)
+        {
+            try
+            {
+                var ReseñaEncontrada = await _reseñaRepositorio.Obtener(a => a.IdReseñaP == id);
+                if (ReseñaEncontrada == null)
+                    throw new TaskCanceledException("Reseña no encontrada.");
+
+                bool respuesta = await _reseñaRepositorio.Eliminar(ReseñaEncontrada);
+                if (!respuesta)
+                    throw new TaskCanceledException("No se pudo eliminar");
+                return respuesta;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        
     }
 }
-

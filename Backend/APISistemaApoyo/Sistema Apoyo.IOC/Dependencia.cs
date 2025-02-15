@@ -6,7 +6,7 @@ using SistemaApoyo.DAL.Repositorios;
 using SistemaApoyo.Utility;
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.BLL.Servicios;
-using SistemaApoyo.DAL;
+using SistemaApoyo.DAL.DBContext;
 using SistemaApoyo.BLL.servicios;
 using SistemaApoyo.Model;
 
@@ -28,7 +28,6 @@ namespace SistemaApoyo.IOC
            
             services.AddScoped<IRolService, RolService>();
             services.AddScoped<IUsuarioService, UsuarioService>();
-            services.AddScoped<IMenuService, MenuService>();
             services.AddScoped<IExamenService, ExamenService>();
             services.AddScoped<IConsultaService, ConsultaService>();
             services.AddScoped<IForoService, ForoService>();
@@ -42,6 +41,8 @@ namespace SistemaApoyo.IOC
             services.AddScoped<IProfesorArticulo, ProfesorArticuloService>();
             services.AddScoped<IMensajeService, MensajeService>();
             services.AddScoped<IAdministrador, AdministradorService>();
+            services.AddScoped<IReseñaAlumnoService, ReseñaAlumnoService>();
+            services.AddScoped<IReseñaService, ReseñaService>();
             services.AddSignalR();
           
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

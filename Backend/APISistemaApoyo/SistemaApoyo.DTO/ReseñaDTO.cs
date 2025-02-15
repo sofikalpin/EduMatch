@@ -8,10 +8,14 @@ namespace SistemaApoyo.DTO
 {
     public class ReseñaDTO
     {
-       public int idReseñaP {  get; set; }
-        public int idusuario { get; set; }
-        public string nombreusuario { get; set; }   
-        public string rating { get; set; }
-        public string comentario { get; set; }
+        public int IdReseñaP { get; set; }
+
+        public int Idusuaro { get; set; }
+
+        public string NombreUsuario { get; set; }
+
+        public int Rating { get; set; }
+
+        public string Comentario { get; set; } = null!;
     }
 }

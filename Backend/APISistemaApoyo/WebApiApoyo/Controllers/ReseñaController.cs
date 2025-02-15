@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
+using SistemaApoyo.API.Utilidad;
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DTO;
-using SistemaApoyo.API.Utilidad;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using SistemaApoyo.BLL.Servicios;
+using SistemaApoyo.Model;
+using Microsoft.EntityFrameworkCore;
+using SistemaApoyo.DAL.DBContext;
 
 namespace SistemaApoyo.API.Controllers
 {
@@ -16,115 +16,106 @@ namespace SistemaApoyo.API.Controllers
     {
         private readonly IReseñaService _reseñaService;
         private readonly ILogger<ReseñaController> _logger;
+        S31Grupo2AprendizajeYApoyoDeInglesContext _context;
 
-        public ReseñaController(IReseñaService reseñaService, ILogger<ReseñaController> logger)
+        public ReseñaController(IReseñaService reseñaService, ILogger<ReseñaController> logger, S31Grupo2AprendizajeYApoyoDeInglesContext context)
         {
             _reseñaService = reseñaService;
             _logger = logger;
+            _context = context;
+        }
+
+        [HttpGet]
+        [Route("ListaReseñas")]
+        public async Task<IActionResult> ListaReseñas()
+        {
+            var rsp = new Response<List<ReseñaDTO>>();
+            try
+            {
+                rsp.status = true;
+                rsp.value = await _reseñaService.ObtenerTodasLasReseñas();
+            }
+            catch (Exception ex)
+            {
+                rsp.status = false;
+                _logger.LogError(ex, "Error al obtener las reseñas.");
+            }
+            return Ok(rsp);
+        }
+
+        [HttpGet]
+        [Route("ReseñaID")]
+        public async Task<IActionResult> ListaReseñaporId(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest("El ID proporcionado no es válido.");
+            }
+
+            var rsp = new Response<ReseñaDTO>();
+            try
+            {
+                rsp.status = true;
+                rsp.value = await _reseñaService.ObtenerReseñaPorId(id);
+            }
+            catch (Exception ex)
+            {
+                rsp.status = false;
+                _logger.LogError(ex, "Error al obtener la reseña por ID");
+            }
+            return Ok(rsp);
         }
 
         [HttpPost]
-        [Route("Crear")]
+        [Route("CrearReseña")]
         public async Task<IActionResult> CrearReseña([FromBody] ReseñaDTO reseñaDTO)
         {
-            var rsp = new Response<ReseñaRespuestaDTO>();
+            var idMaximo = await _context.Reseñapaginas.MaxAsync(r => r.IdReseñaP) + 1;
+            var rsp = new Response<string>();
             try
             {
-                rsp.status = true;
-                rsp.value = await _reseñaService.CreateReview(reseñaDTO);
+                if (reseñaDTO.IdReseñaP == 0)
+                {
+                    reseñaDTO.IdReseñaP = idMaximo;
+                    rsp.status = true;
+                    var resultado = await _reseñaService.CrearReseña(reseñaDTO);
+                    rsp.value = "Reseña creada con exito";
+                }
+                else
+                {
+                    rsp.status = false;
+                    rsp.value = "Error al guardar reseña";
+                }
             }
             catch (Exception ex)
             {
                 rsp.status = false;
-                _logger.LogError(ex, "Error al crear la reseña.");
+                _logger.LogError(ex, "Error al crear la reseña");
             }
             return Ok(rsp);
         }
 
-        [HttpGet]
-        [Route("Obtener/{id}")]
-        public async Task<IActionResult> ObtenerReseña(int id)
-        {
-            var rsp = new Response<ReseñaRespuestaDTO>();
-            try
-            {
-                rsp.value = await _reseñaService.GetReview(id);
-                rsp.status = rsp.value != null;
-            }
-            catch (Exception ex)
-            {
-                rsp.status = false;
-                _logger.LogError(ex, "Error al obtener la reseña.");
-            }
-            return Ok(rsp);
-        }
-
-        [HttpGet]
-        [Route("Listar")]
-        public async Task<IActionResult> ListarReseñas()
-        {
-            var rsp = new Response<List<ReseñaRespuestaDTO>>();
-            try
-            {
-                rsp.status = true;
-                rsp.value = (List<ReseñaRespuestaDTO>)await _reseñaService.GetAllReviews();
-            }
-            catch (Exception ex)
-            {
-                rsp.status = false;
-                _logger.LogError(ex, "Error al listar las reseñas.");
-            }
-            return Ok(rsp);
-        }
-
-        [HttpGet]
-        [Route("Usuario/{userId}")]
-        public async Task<IActionResult> ListarReseñasPorUsuario(int userId)
-        {
-            var rsp = new Response<List<ReseñaRespuestaDTO>>();
-            try
-            {
-                rsp.status = true;
-                rsp.value = (List<ReseñaRespuestaDTO>)await _reseñaService.GetUserReviews(userId);
-            }
-            catch (Exception ex)
-            {
-                rsp.status = false;
-                _logger.LogError(ex, "Error al obtener reseñas del usuario.");
-            }
-            return Ok(rsp);
-        }
-
-        [HttpPut]
-        [Route("Actualizar/{id}/{userId}")]
-        public async Task<IActionResult> ActualizarReseña(int id, int userId, [FromBody] ReseñaDTO reseñaDTO)
-        {
-            var rsp = new Response<bool>();
-            try
-            {
-                rsp.status = await _reseñaService.UpdateReview(id, userId, reseñaDTO);
-            }
-            catch (Exception ex)
-            {
-                rsp.status = false;
-                _logger.LogError(ex, "Error al actualizar la reseña.");
-            }
-            return Ok(rsp);
-        }
 
         [HttpDelete]
-        [Route("Eliminar/{id}/{userId}")]
-        public async Task<IActionResult> EliminarReseña(int id, int userId)
+        [Route("EliminarReseña")]
+        public async Task<IActionResult> EliminarReseña(int id)
         {
-            var rsp = new Response<bool>();
+            if (id <= 0)
+            {
+                return BadRequest("El ID proporcionado no es válido.");
+            }
+
+            var rsp = new Response<string>();
             try
             {
-                rsp.status = await _reseñaService.DeleteReview(id, userId);
+                var eli = await _reseñaService.EliminarReseña(id);
+                rsp.status = true;
+                rsp.value = "Se elimino con exito";
             }
             catch (Exception ex)
             {
                 rsp.status = false;
-                _logger.LogError(ex, "Error al eliminar la reseña.");
+                _logger.LogError(ex, "Error al eliminar la reseña");
             }
             return Ok(rsp);
         }

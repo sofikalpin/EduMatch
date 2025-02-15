@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using SistemaApoyo.BLL.Servicios;
 using SistemaApoyo.Model;
 using Microsoft.EntityFrameworkCore;
-using SistemaApoyo.DAL;
+using SistemaApoyo.DAL.DBContext;
 
 namespace WebApiApoyo.Controllers.Profesor
 {
@@ -131,7 +131,7 @@ namespace WebApiApoyo.Controllers.Profesor
         [Route("CrearActividad")]
         public async Task<IActionResult> CrearActividad([FromBody] ActividadDTO actividad)
         {
-            var idMaximo = await _context.Actividad.MaxAsync(a => a.Idactividad) +1;
+            var idMaximo = await _context.Actividads.MaxAsync(a => a.Idactividad) +1;
 
             var rsp = new Response<string>();
             try

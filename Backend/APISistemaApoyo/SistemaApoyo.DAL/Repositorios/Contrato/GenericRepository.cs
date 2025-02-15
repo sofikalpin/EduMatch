@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using SistemaApoyo.DAL;
+using SistemaApoyo.DAL.DBContext;
 using SistemaApoyo.Model;
 
 namespace SistemaApoyo.DAL.Repositorios

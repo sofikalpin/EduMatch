@@ -13,7 +13,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.EntityFrameworkCore;
-using SistemaApoyo.DAL;
+using SistemaApoyo.DAL.DBContext;
 using SistemaApoyo.Model;
 
 [Route("API/[controller]")]

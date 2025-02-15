@@ -4,7 +4,7 @@ using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DTO;
 using Microsoft.AspNetCore.Http;
 using SistemaApoyo.BLL.Servicios;
-using SistemaApoyo.DAL;
+using SistemaApoyo.DAL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.SignalR;
 using SistemaApoyo.BLL.Hubs;

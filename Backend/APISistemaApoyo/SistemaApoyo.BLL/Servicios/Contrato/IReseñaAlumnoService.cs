@@ -9,11 +9,14 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
 {
     public interface IReseñaAlumnoService
     {
-        Task<IEnumerable<ReseñaAlumnoDTO>> ObtenerTodasAsync();
-        Task<ReseñaAlumnoDTO> ObtenerPorIdAsync(int id);
-        Task<bool> CrearAsync(CrearReseñaAlumnoDTO nuevaReseñaDto);
-        Task<bool> ActualizarAsync(ReseñaAlumnoDTO reseñaDto);
+        Task<List<ReseñaAlumnoDTO>> ObtenerTodasReseñas();
+        Task<ReseñaAlumnoDTO> ObtenerPorId(int id);
+        Task<bool> CrearReseña(ReseñaAlumnoDTO reseñaDTO);
         Task<bool> EliminarAsync(int id);
+
+
+
+
 
 
     }

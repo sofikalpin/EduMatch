@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using SistemaApoyo.DAL;
 using SistemaApoyo.Model;
+using SistemaApoyo.DAL.DBContext;
 
 namespace SistemaApoyo.DAL.Repositorios
 {

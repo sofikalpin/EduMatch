@@ -49,7 +49,11 @@ const Articulo = () => {
   );
 
   const handleNuevoArticulo = () => {
-    navigate("/crear-articulo", { state: { id } })
+    if (user.nivel < id) {
+      error("Su nivel de perfil es menor al nivel correspondiente al articulo que desea crear. Por favor cree articulos con su nivel o menor a este.")
+    } else {
+      navigate("/crear-articulo", { state: { id } })
+    }
   }
 
   return (
@@ -97,9 +101,14 @@ const Articulo = () => {
           {/* Botón "Crear nuevo artículo" en la misma línea */}
           <button 
             onClick={() => handleNuevoArticulo()}
-            className="bg-gradient-to-r from-green-500 to-green-600 text-white py-2 px-6 rounded-full text-lg hover:from-green-600 hover:to-green-700 transition-all"
+            disabled={user.nivel < id}
+            className={ `py-2 px-6 rounded-full text-lg transition-all 
+              ${user.nivel < id 
+                ? "bg-gray-400 cursor-not-allowed text-gray-200" 
+                : "bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700"}
+            `}
           >
-            Crear nuevo artículo
+            Crear nuevo articulo
           </button>
         </div>
 

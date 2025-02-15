@@ -17,7 +17,6 @@ export const EditarPerfil = ({ onUpdate }) => {
     const { user } = useUser();
     const idusuario = user.idUsuario;
 
-
     const [perfil, setPerfil] = useState([]);
     const [email, setEmail] = useState("");
     const [nombre, setNombre] = useState("");
@@ -71,7 +70,7 @@ export const EditarPerfil = ({ onUpdate }) => {
             const datosActualizados = {
                 idusuario: user.idUsuario,
                 nombrecompleto: `${nombre.trim()} ${apellido.trim()}`,
-                contraseñaHash: contraseñaHash.trim() ? contraseñaHash.trim() : perfil.contraseñaHash,
+                contraseñaHash: contraseñaHash.trim() || undefined,
                 fecharegistro: perfil.fecharegistro,
                 correo: email.trim(),
                 idnivel: nivelId,

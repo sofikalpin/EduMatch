@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Plus, ChevronRight } from "lucide-react";
+import { Plus, ChevronRight, User } from "lucide-react";
 import logo from "../../logo/LogoInicio.png";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useUser } from "../../context/userContext";
 import { ArrowLeft } from 'lucide-react';
 
 
 const Consulta = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const { user } = useUser();
   
   const [consulta, setConsulta] = useState(null);
   const [respuestas, setRespuestas] = useState([]);
@@ -46,7 +49,11 @@ const Consulta = () => {
   }, [consulta]);
 
   const handleNuevaRespuesta = () => {
-    navigate("/crear-respuesta", {state: {consulta}});
+    if (user.nivel < consulta.nivel) {
+      error("Su nivel es menor al nivel necesario para participar en la consulta.")
+    } else {
+      navigate("/crear-respuesta", {state: {consulta}});
+    }
   };
 
   if (loading) return <p className="text-center text-gray-500">Cargando respuestas de consulta...</p>;
@@ -70,7 +77,12 @@ const Consulta = () => {
           
           <button
             onClick={() => handleNuevaRespuesta()}
-            className="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-full transition-colors duration-200"
+            disabled={user.nivel < consulta.nivel}
+            className={ `py-2 px-6 rounded-full text-lg transition-all 
+            ${user.nivel < consulta.nivel
+              ? "bg-gray-400 cursor-not-allowed text-gray-200" 
+              : "bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700"}
+            `}
           >
             <Plus className="w-5 h-5" />
             <span>Nueva Respuesta</span>

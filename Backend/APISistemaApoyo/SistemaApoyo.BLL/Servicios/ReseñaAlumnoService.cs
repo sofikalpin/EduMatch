@@ -75,7 +75,7 @@ namespace SistemaApoyo.BLL.Servicios
         {
             try
             {
-                var reseñaExistente = await _resenaRepositorio.Obtener(r => r.Id == reseñaDto.Id);
+                var reseñaExistente = await _resenaRepositorio.Obtener(r => r.IdReseña == reseñaDto.idReseña);
                 if (reseñaExistente == null)
                     throw new Exception("Reseña no encontrada.");
 

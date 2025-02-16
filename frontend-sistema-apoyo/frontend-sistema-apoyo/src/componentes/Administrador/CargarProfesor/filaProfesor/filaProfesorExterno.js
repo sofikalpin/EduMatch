@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const FilaProfesor = ({ profesor, onDelete, onAutorizar }) => {
+const FilaProfesorExterno = ({ profesor, onDelete, onAutorizar }) => {
     const navigate = useNavigate();
 
     const controlarRechazar = () => {
-        if (window.confirm(`¿Estas seguro que deseas rechazar al profesor ${profesor.nombrecompleto}?`)) {
+        if (window.confirm(`¿Estás seguro que deseas rechazar al profesor ${profesor.nombrecompleto}?`)) {
             onDelete(profesor.idusuario);
         }
     };
@@ -33,26 +33,34 @@ const FilaProfesor = ({ profesor, onDelete, onAutorizar }) => {
 
     return (
         <tr className="border-b hover:bg-gray-100">
+            {/* Nombre y Apellido */}
             <td className="px-4 py-3 flex items-center gap-2">
                 <span className="w-10 h-10 flex items-center justify-center bg-blue-500 text-white font-bold rounded-full">
                     {iniciales(profesor.nombrecompleto)}
                 </span>
                 <span>{profesor.nombrecompleto}</span>
             </td>
+            
+            {/* Correo electrónico */}
             <td className="px-4 py-3">{profesor.correo}</td>
+
+            {/* Especialidad */}
+            <td className="px-4 py-3">{profesor.especialidad}</td>
+
+            {/* Nivel */}
             <td className="px-4 py-3 text-center">{nivelInicial(profesor.idnivel)}</td>
             
-            {/* Columna para el botón de Ver CV */}
+            {/* Ver CV */}
             <td className="px-4 py-3 text-center">
                 <button
                     className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md"
-                    onClick={() => navigate("/profesorCV")}
+                    onClick={() => navigate("/administrador/cargarProfesorExterno/profesorCVExterno")}
                 >
                     Ver CV
                 </button>
             </td>
 
-            {/* Columna para las acciones */}
+            {/* Acciones: Autorizar y Rechazar */}
             <td className="px-4 py-3 flex items-center gap-2">
                 <button className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-md" onClick={handleAutorizarProfesor}>
                     Autorizar
@@ -65,4 +73,4 @@ const FilaProfesor = ({ profesor, onDelete, onAutorizar }) => {
     );
 };
 
-export default FilaProfesor;
+export default FilaProfesorExterno;

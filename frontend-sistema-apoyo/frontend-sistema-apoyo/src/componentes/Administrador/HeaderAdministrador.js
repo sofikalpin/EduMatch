@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import logo from "../../logo/LogoInicio.png";
 import { AiOutlineMessage } from "react-icons/ai";
 import { useNavigate, Link } from "react-router-dom";
-import { useUser } from "../../context/userContext";
+import { useUser } from "../../Context/userContext";
 
 const Header = () => {
     const { user } = useUser();
@@ -39,6 +39,12 @@ const Header = () => {
                 <div className="max-w-7xl mx-auto px-4 w-full">
                     <div className="flex items-center justify-between h-14">
                         <nav className="flex items-center space-x-8">
+                        <Link
+                                to="/administrador"
+                                className="text-white font-bold hover:text-yellow-400 active:text-yellow-400 text-xl transition-colors"
+                            >
+                                Inicio
+                            </Link>
                             <Link
                                 to="/administrador/listaProfesores"
                                 className="text-white font-bold hover:text-yellow-400 active:text-yellow-400 text-xl transition-colors"

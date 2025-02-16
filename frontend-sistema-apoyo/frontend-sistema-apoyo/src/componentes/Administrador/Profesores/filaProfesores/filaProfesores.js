@@ -57,8 +57,8 @@ const FilaProfesores = ({ profesor, onDelete }) => {
     };
 
     return (
-        <tr className="border-b">
-            <td className="px-4 py-2">
+        <tr className="border-b hover:bg-gray-100">
+            <td className="px-4 py-3 flex items-center gap-2">
                 <div className="flex items-center">
                     <span className="inline-block w-8 h-8 bg-gray-300 rounded-full text-white flex items-center justify-center text-sm font-bold mr-2">
                         {iniciales(profesor.nombrecompleto)}
@@ -66,13 +66,13 @@ const FilaProfesores = ({ profesor, onDelete }) => {
                     {profesor.nombrecompleto}
                 </div>
             </td>
-            <td className="px-4 py-2">
-                {profesor.correo}
-            </td>
-            <td className="px-4 py-2">
+
+            <td className="px-4 py-4">{profesor.correo}</td>
+
+            <td className="px-4 py-4">
                 <span className="text-sm text-gray-600">{nivelInicial(profesor.idnivel)}</span>
             </td>
-            <td className="px-4 py-2 flex justify-end items-center">
+            <td className="px-4 py-3 flex justify-end items-center">
                 <button 
                     className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
                     onClick={handleNavigate}

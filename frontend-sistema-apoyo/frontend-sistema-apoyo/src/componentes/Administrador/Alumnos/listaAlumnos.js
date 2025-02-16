@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../../logo/LogoInicio.png";
 import TablaAlumnos from "./tablaAlumnos/tablaAlumnos.js";
 import axios from "axios";
+import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import Header from "../HeaderAdministrador.js";
 import Footer from "../FooteraAdministrador.js";
-
-const socialIcons = [
-    { name: 'Facebook', color: 'hover:text-blue-500' },
-    { name: 'Instagram', color: 'hover:text-pink-500' },
-    { name: 'Twitter', color: 'hover:text-blue-400' },
-    { name: 'Youtube', color: 'hover:text-red-500' },
-    { name: 'Linkedin', color: 'hover:text-blue-700' }
-];
 
 const ListaAlumnos = () => {
     const [alumnos, setAlumnos] = useState([]);
@@ -70,10 +62,21 @@ const ListaAlumnos = () => {
     };
 
     return (
-        <div className="min-h-screen flex flex-col bg-gray-100">
-            <Header onNavigate={navigate} logo={logo} />
-            <div className="flex-grow flex flex-col items-center mt-16 px-20 max-w-13xl mx-auto">
-                <h1 className="text-3xl font-bold text-gray-800 mb-8">Lista de Alumnos</h1>
+        <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
+            <Header />
+
+            <div className="flex items-center justify-start w-full mt-4 mb-0 px-20">
+                <button
+                    onClick={() => navigate(-1)}
+                    className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
+                >
+                    <ArrowLeft className="w-6 h-6" />
+                    <span>Volver</span>
+                </button>
+            </div>
+
+            <div className="flex flex-col items-center mt-8 px-20 max-w-13xl mx-auto">
+                <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Lista de Alumnos Registrados</h1>
 
                 <input
                     type="text"
@@ -95,7 +98,7 @@ const ListaAlumnos = () => {
                 </div>
             </div>
             <div className="mb-16"></div>
-            <Footer socialIcons={socialIcons} className="w-full" />
+            <Footer />
         </div>
     );
 };

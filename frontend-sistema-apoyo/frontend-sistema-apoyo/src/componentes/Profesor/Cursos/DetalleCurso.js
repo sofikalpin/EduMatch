@@ -1,4 +1,5 @@
-import { Link, useParams } from "react-router-dom";
+import React, {useState} from "react";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import Header from "../HeaderProfesor";
 import Footer from "../FooterProfesor";
 import actividad from "../Imagenes/actividad.jpg";
@@ -22,6 +23,10 @@ const tarjetas = [
 ];
 
 const CursoDetalle = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [error, setError] = useState("");  // Mensaje de error
+  const { nivel, nombre } = location.state || {}; // Datos del curso
   const { id } = useParams();
   const curso = cursos.find((c) => c.id === parseInt(id));
 

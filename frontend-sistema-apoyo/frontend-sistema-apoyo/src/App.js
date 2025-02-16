@@ -31,6 +31,9 @@ import NuevoAlumno from "./componentes/Administrador/Alumnos/nuevoAlumno/NuevoAl
 import EditarAlumno from "./componentes/Administrador/Alumnos/editAlumno/editAlumno";
 import ProfesorCVExterno from "./componentes/Administrador/CargarProfesor/profesorCV/profesorCVExterno";
 
+//Profesor no Autorizado
+import InicioNoAutoProfesro from "./componentes/Profesor/InicioNoAutoProfesor";
+
 // Profesor
 import AlumnosProfesor from "./componentes/Profesor/Alumnos/MisAlumnos";
 import InicioProfesorPage from "./componentes/Profesor/InicioProfesor"; 
@@ -41,8 +44,10 @@ import ArticuloProfesor from "./componentes/Profesor/Articulo/Articulo";
 import ExamenProfesor from "./componentes/Profesor/Examen/Examen";
 import CrearActividad from "./componentes/Profesor/Actividad/CrearActividad";
 import CrearArticulo from "./componentes/Profesor/Articulo/CrearArticulo";
-import ExamenDetalleProfesor from "./componentes/Profesor/Examen/ExamenDetalle";
 import CrearExamen from "./componentes/Profesor/Examen/CrearExamen";
+import ActividadDetalleProfesor from "./componentes/Profesor/Actividad/actividadDetalle";
+import ArticuloDetalleProfesor from "./componentes/Profesor/Articulo/articuloDetalle";
+import ExamenDetalleProfesor from "./componentes/Profesor/Examen/ExamenDetalle";
 
 //Foro
 import ListaForos from "./componentes/Foro/ListaForos";
@@ -109,15 +114,20 @@ function App() {
             <Route path="/administrador/listaAlumnos/editarAlumno" element={<ProtegerRuta><EditarAlumno /></ProtegerRuta>} />
             <Route path="/administrador/cargarProfesorExterno/profesorCVExterno" element={<ProtegerRuta><ProfesorCVExterno /></ProtegerRuta>} />
             
+            {/* Profesor no Autorizado */}
+            <Route path="/profesor-noAutorizado" element={<ProtegerRuta><InicioNoAutoProfesro/></ProtegerRuta>} />
+
             {/* Profesor */}
             <Route path="/profesor" element={<ProtegerRuta><InicioProfesorPage /></ProtegerRuta>} />
             <Route path="/profesor/alumnos" element={<ProtegerRuta><AlumnosProfesor /></ProtegerRuta>} />
             <Route path="/profesor/cursos" element={<ProtegerRuta><CursosProfesor /></ProtegerRuta>} />
-            <Route path="/profesor/cursos/detalle/:id" element={<ProtegerRuta><CursoDetalle /></ProtegerRuta>} />
-            <Route path="/profesor/cursos/detalle/:id/actividad" element={<ProtegerRuta><ActividadProfesor /></ProtegerRuta>} />
-            <Route path="/profesor/cursos/detalle/:id/articulos" element={<ProtegerRuta><ArticuloProfesor /></ProtegerRuta>} />
-            <Route path="/profesor/cursos/detalle/:id/examen" element={<ProtegerRuta><ExamenProfesor /></ProtegerRuta>} />
+            <Route path="/profesor/cursos/detalle" element={<ProtegerRuta><CursoDetalle /></ProtegerRuta>} />
+            <Route path="/profesor/actividad" element={<ProtegerRuta><ActividadProfesor /></ProtegerRuta>} />
+            <Route path="/profesor/articulos" element={<ProtegerRuta><ArticuloProfesor /></ProtegerRuta>} />
+            <Route path="/profesor/examen" element={<ProtegerRuta><ExamenProfesor /></ProtegerRuta>} />
 
+            <Route path="/profesor/cursos/detalle/:id/actividad/:idactividad" element={<ProtegerRuta><ActividadDetalleProfesor /></ProtegerRuta>}/>
+            <Route path="/profesor/cursos/detalle/:id/articulos/:idarticulo" element={<ProtegerRuta><ArticuloDetalleProfesor /></ProtegerRuta> } />
             <Route path="/profesor/cursos/detalle/:id/examen/:idexamen" element={<ProtegerRuta><ExamenDetalleProfesor /></ProtegerRuta>} />      
             
             <Route path="/crear-actividad" element={<ProtegerRuta><CrearActividad /></ProtegerRuta>} />

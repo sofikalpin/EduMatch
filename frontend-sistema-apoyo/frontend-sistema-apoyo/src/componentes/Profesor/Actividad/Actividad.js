@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
-import { useNavigate, useParams } from "react-router-dom";  
+import { useLocation, useNavigate, useParams } from "react-router-dom";  
 import Header from "../HeaderProfesor";
 import Footer from "../FooterProfesor";  
 import actividadImg from "../Imagenes/actividad.jpg";
@@ -8,6 +8,7 @@ import axios from "axios";
 import { useUser } from "../../../context/userContext";
 
 const Actividad = () => {
+  const location = useLocation();
   const { id } = useParams();
   const { user } = useUser();
   const [actividades, setActividades] = useState([]);
@@ -129,7 +130,7 @@ const Actividad = () => {
                   <p className="text-base text-gray-600">{actividad.descripcion}</p>
                 </div>
                 <button 
-                  onClick={() => navigate(`/actividad/${actividad.idactividad}`)}
+                  onClick={() => navigate(`/profesor/cursos/detalle/:id/actividad/${actividad.idactividad}`)}
                   className="mt-4 py-2 px-4 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
                 >
                   Acceder

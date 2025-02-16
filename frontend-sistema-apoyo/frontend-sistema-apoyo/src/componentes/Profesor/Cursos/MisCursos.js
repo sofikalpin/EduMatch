@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../logo/LogoInicio.png";
 import logoA1 from "../Logos/A1.png";
 import logoA2 from "../Logos/A2.png";
@@ -12,9 +12,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const MisCursos = () => {
-
+  const navigate = useNavigate();
   const [cantidadAlumnos, setCantidadAlumnos] = useState(0);
   const [listaGeneral, setListaGeneral] = useState([]);
+
+  const navegarACurso = (curso) => {
+    navigate("/profesor/cursos/detalle", { state: {nivel: curso.nivel, nombre: curso.nombre}})
+  };
 
  useEffect(() =>  {
     const cargarUsuarios = async () => {
@@ -98,12 +102,12 @@ const MisCursos = () => {
                 <p className="text-sm text-gray-600 mb-4">
                   {cantidadAlumnos[curso.id] || 0} Alumnos inscriptos
                 </p>
-                <Link
-                  to={`/profesor/cursos/detalle/${curso.id}`}
+                <button
+                  onClick={() => navegarACurso(curso)}
                   className="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white py-2 px-6 rounded-full text-sm hover:from-green-600 hover:to-green-700 transition-all"
                 >
                   Ver detalles
-                </Link>
+                </button>
               </div>
             </div>
           ))}

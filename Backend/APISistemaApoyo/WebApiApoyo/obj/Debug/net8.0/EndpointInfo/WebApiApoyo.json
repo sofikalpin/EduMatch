@@ -1811,28 +1811,6 @@
         }
       }
     },
-    "/API/Reseña/EliminarReseña": {
-      "delete": {
-        "tags": [
-          "Reseña"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/API/Reseña/ListaReseñasAlumno": {
       "get": {
         "tags": [
@@ -1891,28 +1869,6 @@
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/API/Reseña/EliminarReseñaAlumno": {
-      "delete": {
-        "tags": [
-          "Reseña"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"

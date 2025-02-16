@@ -1,11 +1,125 @@
 {
   "Version": 1,
-  "Hash": "sn2XcBglL11wNmJGmyh7Wzyd85PL8lLcVnU94ULwCos=",
+  "Hash": "3Bgs3ZGpSShMXo+rV4SNrEjSXDnnKEHtqnQjZcqnt2U=",
   "Source": "WebApiApoyo",
   "BasePath": "_content/WebApiApoyo",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "WebApiApoyo\\wwwroot",
+      "Source": "WebApiApoyo",
+      "ContentRoot": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\",
+      "BasePath": "_content/WebApiApoyo",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\fotos\\foto_15_638753272166970647.jpg",
+      "SourceId": "WebApiApoyo",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\",
+      "BasePath": "_content/WebApiApoyo",
+      "RelativePath": "fotos/foto_15_638753272166970647#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "iq0y28zagi",
+      "Integrity": "xrV5suYPpyHVy9+l9rFv3PtkTKlhhsv0ZiU/l7TYXwo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\fotos\\foto_15_638753272166970647.jpg"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "fotos/foto_15_638753272166970647.iq0y28zagi.jpg",
+      "AssetFile": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\fotos\\foto_15_638753272166970647.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6027"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xrV5suYPpyHVy9+l9rFv3PtkTKlhhsv0ZiU/l7TYXwo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Feb 2025 22:12:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "iq0y28zagi"
+        },
+        {
+          "Name": "label",
+          "Value": "fotos/foto_15_638753272166970647.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-xrV5suYPpyHVy9+l9rFv3PtkTKlhhsv0ZiU/l7TYXwo="
+        }
+      ]
+    },
+    {
+      "Route": "fotos/foto_15_638753272166970647.jpg",
+      "AssetFile": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\fotos\\foto_15_638753272166970647.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6027"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xrV5suYPpyHVy9+l9rFv3PtkTKlhhsv0ZiU/l7TYXwo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Feb 2025 22:12:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-xrV5suYPpyHVy9+l9rFv3PtkTKlhhsv0ZiU/l7TYXwo="
+        }
+      ]
+    }
+  ]
 }

@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import logo from '../../logo/LogoInicio.png';
 import axios from 'axios';
 import { useUser } from "../../context/userContext.js";
+import HeaderForo from './HeaderForo.js';
 
 
 const socialIcons = [
@@ -15,7 +16,6 @@ const socialIcons = [
 ];
 
 const NuevaConsulta = () => {
-  //const { idForo } = useParams();
   const { user } = useUser();
   const [titulo, setTitulo] = useState('');
   const [contenido, setContenido] = useState('');
@@ -73,7 +73,7 @@ const NuevaConsulta = () => {
         if (response?.status === 200)
         {
           setMensaje("Consulta creado con éxito. Redirigiendo...");
-          setTimeout(() => navigate("/:idforo"), 2000);
+          setTimeout(() => navigate("/consulta"), 2000);
           setTitulo("");
           setContenido("");
         }
@@ -91,23 +91,26 @@ const NuevaConsulta = () => {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center">
 
-      <div className="flex-grow flex flex-col items-center justify-center p-6 mb-16">
+      <HeaderForo />
+
+      <div className="w-full max-w-3xl px-6 py-10">
         <button 
            onClick={() => navigate(-1)}
-          className="mb-6 flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium self-start mt-3"
+          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition font-medium mb-6"
         >
           <ArrowLeft className="w-6 h-6" />
           <span>Volver al foro</span>
         </button>
 
-        <h2 className="text-4xl font-bold text-gray-900 text-center mb-8">Nueva Consulta</h2>
+        <div className="bg-white rounded-xl shadow-lg p-6">
+        <h2 className="text-2xl font-bold text-gray-900 text-center mb-4">Nueva Consulta</h2>
         
-        {mensaje}
+        {mensaje && <p className="text-center text-red-500">{mensaje}</p>}
         {loading}
 
-        <form onSubmit={hadleNuevaConsulta} className="w-full max-w-3xl space-y-6">
+        <form onSubmit={hadleNuevaConsulta} className="space-y-6">
           <div className="flex flex-col gap-2">
             <label htmlFor="titulo" className="text-lg font-semibold text-gray-800">
               Título
@@ -145,6 +148,7 @@ const NuevaConsulta = () => {
         </form>
       </div>
     </div>
+  </div>
   );
 };
 

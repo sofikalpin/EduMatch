@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import logo from '../../logo/LogoInicio.png';
 import axios from "axios";
 import { useUser } from "../../context/userContext.js";
+import HeaderForo from './HeaderForo.js';
 
 const socialIcons = [
   { name: 'Facebook', color: 'hover:text-blue-500' },
@@ -81,7 +82,7 @@ const NuevoForo = () => {
             if (response?.status === 200)
                 {
                 setMensaje("Foro creado con éxito. Redirigiendo...");
-                setTimeout(() => navigate("/foros"), 2000);
+                setTimeout(() => navigate("/listaForos"), 2000);
                 setNombre("");
                 setDescripcion("");
                 setNivel("");
@@ -102,30 +103,23 @@ const NuevoForo = () => {
     };    
 
     return (
-        <div className="w-full min-h-screen flex flex-col bg-gray-50">
-             <header className="flex items-center justify-between px-6 py-4 shadow-md bg-white">
-                <img 
-                    src={logo} 
-                    alt="Logo" 
-                    className="h-12 w-auto cursor-pointer" 
-                    onClick={() => navigate(-1)} // Redirigir a la página anterior
-                />
-            </header>
+        <div className="min-h-screen bg-gray-50 flex flex-col items-center">
+            <HeaderForo/>
 
-        <div className="flex-grow flex flex-col items-center justify-center p-6 mb-16">
+        <div className="w-full max-w-3xl px-6 py-10">
             <button 
             onClick={() => navigate(-1)}
-            className="mb-6 flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium self-start mt-3"
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition font-medium mb-6"
             >
-            <ArrowLeft className="w-6 h-6" />
+            <ArrowLeft className="w-5 h-5" />
             <span>Volver a la lista de foros</span>
             </button>
-
-            <h2 className="text-4xl font-bold text-gray-900 text-center mb-8">Nuevo Foro</h2>
+        <div className="bg-white rounded-xl shadow-lg p-6">
+            <h2 className="text-2xl font-bold text-gray-900 text-center mb-4">Nuevo Foro</h2>
 
             {mensaje && <p className="text-center text-red-500">{mensaje}</p>}
 
-            <form onSubmit={handleSubmit} className="w-full max-w-3xl space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
             <div className="flex flex-col gap-2">
                 <label htmlFor="titulo" className="text-lg font-semibold text-gray-800">
                 Nombre
@@ -183,6 +177,8 @@ const NuevoForo = () => {
             </button>
             </form>
         </div>
+        </div>
+            
 
         </div>
     );

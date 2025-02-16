@@ -3,6 +3,7 @@ import { ArrowLeft, Send } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';  // Importa el hook de navegación
 import axios from 'axios';
 import { useUser } from "../../context/userContext.js";
+import HeaderForo from './HeaderForo.js';
 
 
 const Card = ({ children, className }) => (
@@ -28,6 +29,16 @@ const Respuesta = () => {
   const [mensaje, setMensaje] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const iniciales = (name) => {
+    if (!name) return "";
+    return name
+        .split(" ")
+        .map(word => word[0])
+        .join("")
+        .toUpperCase();
+  };
+  
+  
   useEffect(() => {
     if (location.state){
       setConsulta(location.state.consulta);
@@ -105,7 +116,7 @@ const Respuesta = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
       {/* HeaderForo ocupa todo el ancho de la pantalla */}
-      
+      <HeaderForo />
       {/* Contenido principal adaptado a toda la pantalla */}
       <div className="flex-1 container mx-auto p-6 mb-16">
         <button
@@ -123,13 +134,13 @@ const Respuesta = () => {
             <CardContent className="text-gray-800">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full flex items-center justify-center text-white font-semibold text-lg">
-                  {'U'}
+                  {iniciales(user.nombreCompleto)}
                 </div>
                 <div>
-                  <h3 className="font-semibold text-xl text-gray-900">{user.nombreCompleto || 'Usuario'}</h3>
+                  <h3 className="text-xl text-gray-900">{user.nombreCompleto || 'Usuario'}</h3>
                 </div>
               </div>
-              <p className="text-lg leading-relaxed">{nombreConsulta}</p>
+              <p className="text-lg leading-relaxed font-bold">Consulta: {nombreConsulta}</p>
             </CardContent>
           </Card>
 
@@ -138,7 +149,7 @@ const Respuesta = () => {
 
           {/* Formulario de respuesta */}
           <Card>
-          <form onSubmit={hadleNuevaRespuesta} className="w-full max-w-3xl space-y-6">
+          <form onSubmit={hadleNuevaRespuesta} className="w-full max-w space-y-6">
             <CardContent className="space-y-4">
               <h2 className="text-2xl font-semibold text-gray-900 mb-4 text-left">Tu Respuesta</h2>
 

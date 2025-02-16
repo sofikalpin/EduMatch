@@ -4,6 +4,7 @@ import { Plus, ChevronRight, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../logo/LogoInicio.png";
 import HeaderForo from "./HeaderForo";
+import FooterForo from "./FooterForo";
 import { useUser } from "../../context/userContext";
 
 const ListarForos = () => {
@@ -62,13 +63,15 @@ const ListarForos = () => {
     if (error) return <p className="text-center text-red-500">{error}</p>;
 
     return (
-        <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
+        <div className="h-screen bg-gradient-to-b from-teal-50 to-white flex flex-col">
+
             <HeaderForo/>
 
-            <div className="max-w-4xl mx-auto px-6 pt-10">
+            <main className="w-full max-w-5xl px-6 py-10 mx-auto">
+
                 <button
                     onClick={() => navigate(-1)} // Redirigir a la página anterior
-                    className="mb-4 flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium ml-[-150px]"
+                    className="mb-4 flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
                 >
                     <ArrowLeft className="w-6 h-6" />
                     <span>Volver</span>
@@ -104,7 +107,7 @@ const ListarForos = () => {
                         foroNivel.map((foro, index) => (
                             <div 
                                 key={foro.idForo || `foro-${index}`} 
-                                className="p-6 border rounded-lg shadow-md bg-white flex justify-between items-center w-full"
+                                className="p-6 border rounded-lg shadow-md bg-white flex justify-between items-center w-full max-w-5xl mx-auto"
                             >
                                 <span
                                     className={`px-3 py-1 text-sm font-semibold rounded-full ${nivelColores[foro.idnivel?.toString()] || "bg-gray-300 text-gray-700"}`}
@@ -128,8 +131,11 @@ const ListarForos = () => {
                         <p className="text-center text-gray-500">No hay foros disponibles para este nivel.</p>
                     )}
                 </div>
-            </div>
+            </main>        
+            
+            < FooterForo />
         </div>
+
     );
 };
 

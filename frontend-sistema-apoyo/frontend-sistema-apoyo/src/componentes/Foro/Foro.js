@@ -5,6 +5,7 @@ import { Plus, ChevronRight, User } from "lucide-react";
 import logo from "../../logo/LogoInicio.png"; 
 import { useNavigate, useLocation } from "react-router-dom";
 import { useUser } from "../../context/userContext.js";
+import FooterForo from "./FooterForo.js"
 import { ArrowLeft } from 'lucide-react';
 
 const Foro = () => {
@@ -119,16 +120,17 @@ const Foro = () => {
   if (error) return <p className="text-center text-red-500">{error}</p>;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white">
+    <div className="h-screen bg-gradient-to-b from-teal-50 to-white flex flex-col">
 
       <HeaderForo/>
 
-      <main className="max-w-4xl mx-auto px-4 pt-24 pb-32">
+      <main className="flex-grow w-full max-w-3xl px-6 py-10 mx-auto">
+
         <button
           onClick={() => navigate(-1)}
-          className="mb-6 flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium self-start"
+          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition font-medium mb-6"
         >
-        <ArrowLeft className="w-6 h-6" />
+        <ArrowLeft className="w-5 h-5" />
         <span>Volver a la lista de foros</span>
       </button>
 
@@ -187,6 +189,9 @@ const Foro = () => {
             )}
         </div>
       </main>
+
+      < FooterForo />
+
     </div>
   );
 };

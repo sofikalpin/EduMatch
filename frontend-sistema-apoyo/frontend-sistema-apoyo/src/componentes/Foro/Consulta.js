@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import HeaderForo from "./HeaderForo";
 import { Plus, ChevronRight, User } from "lucide-react";
+import FooterForo from "./FooterForo";
 import logo from "../../logo/LogoInicio.png";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useUser } from "../../context/userContext";
@@ -19,7 +20,7 @@ const Consulta = () => {
   const [respuestas, setRespuestas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
+  
   useEffect(() => {
     if (!consulta && location.state){
       setConsulta(location.state.consulta);
@@ -109,11 +110,10 @@ const Consulta = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white p-4">
-
+    <div className="h-screen bg-gradient-to-b from-teal-50 to-white flex flex-col">
       <HeaderForo/>
 
-      <main className="max-w-4xl mx-auto px-4 pt-24 pb-32">
+      <main className="flex-grow w-full max-w-3xl px-6 py-10 mx-auto">
           <button
             onClick={() => navigate(-1)}
             className="mb-6 flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium self-start mt-3"
@@ -138,7 +138,7 @@ const Consulta = () => {
               `}
             >
               <Plus className="w-5 h-5" />
-              <span>Nueva Consulta</span>
+              <span>Nueva Respuesta</span>
             </button>
           </div>
 
@@ -170,6 +170,7 @@ const Consulta = () => {
           )}
         </div>
       </main>
+        < FooterForo />
     </div>
   );
 };

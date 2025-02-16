@@ -86,10 +86,9 @@ namespace SistemaApoyo.Utility
 
             CreateMap<ReseñaAlumnoDTO, Reseña>();
 
-            CreateMap<Reseñapagina, ReseñaDTO>()
-                .ForMember(dest => dest.NombreUsuario, opt => opt.MapFrom(src =>
-                    src.IdusuaroNavigation != null ? src.IdusuaroNavigation.Nombrecompleto : null))
-                .ReverseMap();
+            CreateMap<Reseñapagina, ReseñaDTO>();
+
+
             #endregion Reseña
 
 

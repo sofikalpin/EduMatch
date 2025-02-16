@@ -12,7 +12,6 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
         Task<List<ReseñaAlumnoDTO>> ObtenerTodasReseñas();
         Task<ReseñaAlumnoDTO> ObtenerPorId(int id);
         Task<bool> CrearReseña(ReseñaAlumnoDTO reseñaDTO);
-        Task<bool> EliminarAsync(int id);
 
 
 

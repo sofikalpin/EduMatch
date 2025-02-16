@@ -1183,41 +1183,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "rese\u00F1aDTO",
+        "Name": "rese\u00F1aAluDTO",
         "Type": "SistemaApoyo.DTO.Rese\u00F1aAlumnoDTO",
         "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "SistemaApoyo.API.Controllers.Rese\u00F1aController",
-    "Method": "EliminarRese\u00F1a",
-    "RelativePath": "API/Rese\u00F1a/EliminarRese\u00F1a",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "WebApiApoyo.Controllers.Rese\u00F1aController",
-    "Method": "EliminarRese\u00F1a",
-    "RelativePath": "API/Rese\u00F1a/EliminarRese\u00F1aAlumno",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
       }
     ],
     "ReturnTypes": []

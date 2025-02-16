@@ -67,11 +67,8 @@ namespace SistemaApoyo.BLL.Servicios
                 }
 
                 var reseña = _mapper.Map<Reseña>(reseñaDTO);
-                var resultado = await _resenaRepositorio.Crear(reseña);
-                if (resultado == null)
-                {
-                    throw new Exception("Error al crear la reseña");
-                }
+                await _resenaRepositorio.Crear(reseña);
+
                 return true;
             }
             catch (Exception ex)
@@ -80,23 +77,6 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        public async Task<bool> EliminarAsync(int id)
-        {
-            try
-            {
-                var reseñaEncontrada = await _resenaRepositorio.Obtener(r => r.IdReseña == id);
-                if (reseñaEncontrada == null)
-                    throw new TaskCanceledException("Reseña no encontrada.");
 
-                bool resultado = await _resenaRepositorio.Eliminar(reseñaEncontrada);
-                if (!resultado)
-                    throw new TaskCanceledException("No se pudo eliminar la reseña.");
-                return resultado;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al eliminar la reseña", ex);
-            }
-        }
     }
 }

@@ -3,28 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import { Facebook, Instagram, Twitter, Youtube, Linkedin } from 'lucide-react';
 
 const socialIcons = [
-  { name: 'Facebook', icon: Facebook, color: 'hover:text-blue-500', link: 'https://facebook.com' },
-  { name: 'Instagram', icon: Instagram, color: 'hover:text-pink-500', link: 'https://instagram.com' },
+  { name: 'Facebook', icon: Facebook, color: 'hover:text-blue-500', link: 'https://www.facebook.com/profile.php?id=61573209179555 ' },
+  { name: 'Instagram', icon: Instagram, color: 'hover:text-pink-500', link: 'https://www.instagram.com/edumatch.ingles?igsh=MTFndjJidGZuc2dndQ%3D%3D&utm_source=qr' },
   { name: 'Twitter', icon: Twitter, color: 'hover:text-blue-400', link: 'https://twitter.com' },
   { name: 'Youtube', icon: Youtube, color: 'hover:text-red-500', link: 'https://youtube.com' },
-  { name: 'Linkedin', icon: Linkedin, color: 'hover:text-blue-700', link: 'https://linkedin.com' },
+  { name: 'Linkedin', icon: Linkedin, color: 'hover:text-blue-700', link: 'https://www.linkedin.com/in/edumatch-ingles-aaa69a351?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app' },
 ];
 
 const footerSections = {
   section1: {
-    title: "Información",
+    title: "Danos tu opinión sobre EduMatch",
     links: [
-      { name: "Sobre Nosotros", path: "/informacion" },
-      { name: "Términos y Condiciones", path: "/informacion" },
-      { name: "Contacto", path: "/informacion" },
-    ],
-  },
-  section2: {
-    title: "Programas",
-    links: [
-      { name: "Nivel Inicial", path: "/NivelInicial" },
-      { name: "Nivel Intermedio", path: "/NivelIntermedio" },
-      { name: "Nivel Avanzado", path: "/NivelAvanzado" },
+      { name: "Junto a ArgyReviews", path: "/resena" },
+    
     ],
   },
 };

@@ -7,8 +7,7 @@ namespace SistemaApoyo.Model;
 
 public partial class Reseñapagina
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    
     public int IdReseñaP { get; set; }
 
     public int Idusuaro { get; set; }

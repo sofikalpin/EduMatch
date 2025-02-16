@@ -100,25 +100,8 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        public async Task<bool> EliminarReseña(int id)
-        {
-            try
-            {
-                var ReseñaEncontrada = await _reseñaRepositorio.Obtener(a => a.IdReseñaP == id);
-                if (ReseñaEncontrada == null)
-                    throw new TaskCanceledException("Reseña no encontrada.");
 
-                bool respuesta = await _reseñaRepositorio.Eliminar(ReseñaEncontrada);
-                if (!respuesta)
-                    throw new TaskCanceledException("No se pudo eliminar");
-                return respuesta;
-            }
-            catch
-            {
-                throw;
-            }
-        }
 
-        
+
     }
 }

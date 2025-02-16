@@ -96,28 +96,6 @@ namespace SistemaApoyo.API.Controllers
         }
 
 
-        [HttpDelete]
-        [Route("EliminarReseña")]
-        public async Task<IActionResult> EliminarReseña(int id)
-        {
-            if (id <= 0)
-            {
-                return BadRequest("El ID proporcionado no es válido.");
-            }
 
-            var rsp = new Response<string>();
-            try
-            {
-                var eli = await _reseñaService.EliminarReseña(id);
-                rsp.status = true;
-                rsp.value = "Se elimino con exito";
-            }
-            catch (Exception ex)
-            {
-                rsp.status = false;
-                _logger.LogError(ex, "Error al eliminar la reseña");
-            }
-            return Ok(rsp);
-        }
     }
 }

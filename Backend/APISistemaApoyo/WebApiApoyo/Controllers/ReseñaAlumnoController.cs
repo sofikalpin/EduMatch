@@ -50,7 +50,7 @@ namespace WebApiApoyo.Controllers
             if (id <= 0)
             {
                 return BadRequest("El id proporcionado no es valido");
-                
+
             }
 
             var rsp = new Response<ReseñaAlumnoDTO>();
@@ -62,32 +62,32 @@ namespace WebApiApoyo.Controllers
             catch (Exception ex)
             {
                 rsp.status = false;
-                
+
                 _logger.LogWarning(ex, "Reseña no encontrada");
-               
+
             }
             return Ok(rsp);
         }
 
         [HttpPost]
         [Route("CrearReseñaAlumno")]
-        public async Task<IActionResult> CrearReseña([FromBody] ReseñaAlumnoDTO reseñaDTO)
+        public async Task<IActionResult> CrearReseña([FromBody] ReseñaAlumnoDTO reseñaAluDTO)
         {
-            var idMaximo = await _context.Reseñapaginas.MaxAsync(r => r.IdReseñaP) + 1;
+            var idMaximo = await _context.Reseñas.MaxAsync(r => r.IdReseña) + 1;
             var rsp = new Response<string>();
             try
             {
-                if (reseñaDTO.IdReseña == 0)
+                if (reseñaAluDTO.IdReseña == 0)
                 {
-                    reseñaDTO.IdReseña = idMaximo;
+                    reseñaAluDTO.IdReseña = idMaximo;
                     rsp.status = true;
-                    var resultado = await _reseñaService.CrearReseña(reseñaDTO);
+                    var resultado = await _reseñaService.CrearReseña(reseñaAluDTO);
                     rsp.value = "Reseña creada con exito";
                 }
                 else
                 {
                     rsp.status = false;
-                    rsp.value = "Error al guardar reseña";
+                    rsp.value = "El valor de idreseña debe ser 0";
                 }
             }
             catch (Exception ex)
@@ -98,38 +98,5 @@ namespace WebApiApoyo.Controllers
             return Ok(rsp);
         }
 
-        [HttpDelete]
-        [Route("EliminarReseñaAlumno")]
-        public async Task<IActionResult> EliminarReseña(int id)
-        {
-            if (id <= 0)
-            {
-                return BadRequest(new Response<string>
-                {
-                    status = false,
-                    msg = "El ID proporcionado no es válido."
-                });
-            }
-
-            var rsp = new Response<string>();
-            try
-            {
-                var eli = await _reseñaService.EliminarAsync(id);
-               
-               
-                    rsp.status = true;
-                    rsp.value = "Se elimino con exito";
-                
-            }
-            catch (TaskCanceledException ex)
-            {
-                rsp.status = false;
-              
-                _logger.LogWarning(ex, "Reseña no encontrada para eliminar");
-
-            }
-           
-            return Ok(rsp);
-        }
     }
 }

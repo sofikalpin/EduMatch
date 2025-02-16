@@ -50,7 +50,7 @@ const Examen = () => {
 
   const hadleNuevoExamen = () => {
     if (user.nivel < id) {
-      error("Su nivel de perfil es menor al nivel correspondiente al examen que desea crear. Por favor cree examenes con su nivel o menor a este.")
+      alert("Su nivel de perfil es menor al nivel correspondiente al examen que desea crear. Por favor cree examenes con su nivel o menor a este.")
     }else{
       navigate("/crear-examen", { state: { id } })
     }
@@ -102,7 +102,6 @@ const Examen = () => {
           {/* Botón "Crear nuevo examen" en la misma línea */}
           <button 
             onClick={() => hadleNuevoExamen()}
-            disabled={user.nivel < id}
             className={ `py-2 px-6 rounded-full text-lg transition-all 
               ${user.nivel < id 
                 ? "bg-gray-400 cursor-not-allowed text-gray-200" 

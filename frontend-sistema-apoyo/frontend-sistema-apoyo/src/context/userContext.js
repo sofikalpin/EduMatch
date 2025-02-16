@@ -65,7 +65,11 @@ export const UserProvider = ({ children }) => {
       console.log("Redirigiendo según el rol:", user.rol);
       switch (user.rol) {
         case 1:
-          navigate("/profesor");
+          if (user.autoProf == true) {
+            navigate("/profesor");
+          }else{
+            navigate("/profesor-noAutorizado");
+          }
           break;
         case 2:
           navigate("/alumno");

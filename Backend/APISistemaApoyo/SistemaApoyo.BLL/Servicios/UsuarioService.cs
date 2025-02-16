@@ -71,9 +71,15 @@ namespace SistemaApoyo.BLL.Servicios
         public async Task<bool> Editar(UsuarioDTO modelo)
         {
             try
-            {
+            {   if (modelo == null)
+                {
+                    throw new ArgumentNullException("El modelo de usuario es nulo.");
+                }
+
                 var usuarioModelo = _mapper.Map<Usuario>(modelo);
+                
                 var usuarioEncontrado = await _usuarioRepositorio.Obtener(u => u.Idusuario == usuarioModelo.Idusuario);
+                
                 if (usuarioEncontrado == null)
                 {
                     throw new InvalidOperationException("El usuario no existe");
@@ -199,6 +205,7 @@ namespace SistemaApoyo.BLL.Servicios
                         Correo = usuario.Correo,
                         Rol = usuario.Idrol,
                         Nivel = usuario.Idnivel,
+                        AutoProf = usuario.AutProf,
                     };
                 }
                 throw new UnauthorizedAccessException("Credenciales inválidas");
@@ -259,6 +266,11 @@ namespace SistemaApoyo.BLL.Servicios
 
         public string CubreContrasena(string contrasena)
         {
+            if (string.IsNullOrEmpty(contrasena))
+            {
+                throw new ArgumentException("La contraseña no puede ser nula o vacía.");
+            }
+
             var salt = new byte[16];
             using (var rng = RandomNumberGenerator.Create())
                 rng.GetBytes(salt);
@@ -275,18 +287,29 @@ namespace SistemaApoyo.BLL.Servicios
 
         public bool VerificarContrasena(string contrasena, string hashAlmacenado)
         {
-            var datosHash = Convert.FromBase64String(hashAlmacenado);
-            var salt = datosHash[..16];
-            var hashOriginal = datosHash[16..];
+            try
+            { 
+                var datosHash = Convert.FromBase64String(hashAlmacenado);
+                if (datosHash.Length < 48) // 16 bytes de salt + 32 bytes de hash
+                {
+                    throw new ArgumentException("Hash almacenado inválido.");
+                }
 
-            using (var pbkdf2 = new Rfc2898DeriveBytes(contrasena, salt, 10000, HashAlgorithmName.SHA256))
+                var salt = datosHash[..16];
+                var hashOriginal = datosHash[16..];
+
+                    using (var pbkdf2 = new Rfc2898DeriveBytes(contrasena, salt, 10000, HashAlgorithmName.SHA256))
+                    {
+                        var hashRecalculado = pbkdf2.GetBytes(32);
+                        return hashOriginal.SequenceEqual(hashRecalculado);
+                    }
+            }
+            catch (Exception ex)
             {
-                var hashRecalculado = pbkdf2.GetBytes(32);
-                return hashOriginal.SequenceEqual(hashRecalculado);
+                Console.WriteLine($"Error al verificar la contraseña: {ex.Message}");
+                return false;
             }
         }
-
-
 
         public async Task<bool> ReestablecerContraseña(string token, string nuevaContraseña)
         {

@@ -42,6 +42,9 @@ import CrearArticulo from "./componentes/Profesor/Articulo/CrearArticulo";
 import ExamenDetalleProfesor from "./componentes/Profesor/Examen/ExamenDetalle";
 import CrearExamen from "./componentes/Profesor/Examen/CrearExamen";
 
+//Profesor no autorizado
+import InicioNoAutoProfesor from "./componentes/Profesor/InicioNoAutoProfesor";
+
 //Foro
 import ListaForos from "./componentes/Foro/ListaForos";
 import Foro from "./componentes/Foro/Foro";
@@ -105,6 +108,9 @@ function App() {
             <Route path="/administrador/listaAlumnos/nuevoAlumno" element={<ProtegerRuta><NuevoAlumno /></ProtegerRuta>} />
             <Route path="/administrador/listaAlumnos/editarAlumno" element={<ProtegerRuta><EditarAlumno /></ProtegerRuta>} />
 
+            {/* Profesor no autorizado */}
+            <Route path="/profesor-noAutorizado" element={<ProtegerRuta><InicioNoAutoProfesor /></ProtegerRuta>} />
+            
             {/* Profesor */}
             <Route path="/profesor" element={<ProtegerRuta><InicioProfesorPage /></ProtegerRuta>} />
             <Route path="/profesor/alumnos" element={<ProtegerRuta><AlumnosProfesor /></ProtegerRuta>} />

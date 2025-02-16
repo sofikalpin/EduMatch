@@ -1154,28 +1154,6 @@
         }
       }
     },
-    "/API/Menu/Lista Roles": {
-      "get": {
-        "tags": [
-          "Menu"
-        ],
-        "parameters": [
-          {
-            "name": "idUsuario",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/API/Nivel/Listar Niveles": {
       "get": {
         "tags": [
@@ -1750,6 +1728,180 @@
       "delete": {
         "tags": [
           "ProfesorArticulo"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/Reseña/ListaReseñas": {
+      "get": {
+        "tags": [
+          "Reseña"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/Reseña/ReseñaID": {
+      "get": {
+        "tags": [
+          "Reseña"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/Reseña/CrearReseña": {
+      "post": {
+        "tags": [
+          "Reseña"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReseñaDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReseñaDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReseñaDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/Reseña/EliminarReseña": {
+      "delete": {
+        "tags": [
+          "Reseña"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/Reseña/ListaReseñasAlumno": {
+      "get": {
+        "tags": [
+          "Reseña"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/Reseña/ReseñaIDAlumno": {
+      "get": {
+        "tags": [
+          "Reseña"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/Reseña/CrearReseñaAlumno": {
+      "post": {
+        "tags": [
+          "Reseña"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReseñaAlumnoDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReseñaAlumnoDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReseñaAlumnoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/Reseña/EliminarReseñaAlumno": {
+      "delete": {
+        "tags": [
+          "Reseña"
         ],
         "parameters": [
           {
@@ -2460,6 +2612,66 @@
             "nullable": true
           },
           "nuevaContraseña": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReseñaAlumnoDTO": {
+        "type": "object",
+        "properties": {
+          "idReseña": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idusuario": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombreUsuario": {
+            "type": "string",
+            "nullable": true
+          },
+          "idProfesor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombreProfesor": {
+            "type": "string",
+            "nullable": true
+          },
+          "rating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "comentario": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReseñaDTO": {
+        "type": "object",
+        "properties": {
+          "idReseñaP": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idusuaro": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombreUsuario": {
+            "type": "string",
+            "nullable": true
+          },
+          "rating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "comentario": {
             "type": "string",
             "nullable": true
           }

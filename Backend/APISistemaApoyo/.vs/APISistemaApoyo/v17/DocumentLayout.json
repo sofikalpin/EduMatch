@@ -1,38 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\80VERSIONCONBACK - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\",
+  "WorkspaceRootPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9460B94E-E91D-42F2-9955-16CC6B649E6F}|SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj|c:\\users\\usuario\\desktop\\desarrollo 2024\\desarrollo de software\\80versionconback - sofiraggi\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.utility\\automapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9460B94E-E91D-42F2-9955-16CC6B649E6F}|SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj|solutionrelative:sistemaapoyo.utility\\automapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|c:\\users\\sofia\\documents\\utn\\3 a\u00F1o - 2024\\desarrollosoftware\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.bll\\servicios\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|solutionrelative:sistemaapoyo.bll\\servicios\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C68C8A65-928A-4797-A7DF-CD66815A4F1C}|SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj|c:\\users\\usuario\\desktop\\desarrollo 2024\\desarrollo de software\\80versionconback - sofiraggi\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.dto\\crearrese\u00F1aalumnodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C68C8A65-928A-4797-A7DF-CD66815A4F1C}|SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj|solutionrelative:sistemaapoyo.dto\\crearrese\u00F1aalumnodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\sofia\\documents\\utn\\3 a\u00F1o - 2024\\desarrollosoftware\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\usuarios\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\usuarios\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C68C8A65-928A-4797-A7DF-CD66815A4F1C}|SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj|c:\\users\\usuario\\desktop\\desarrollo 2024\\desarrollo de software\\80versionconback - sofiraggi\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.dto\\rese\u00F1aalumnodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C68C8A65-928A-4797-A7DF-CD66815A4F1C}|SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj|solutionrelative:sistemaapoyo.dto\\rese\u00F1aalumnodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AE01D784-12AF-4AC9-83F8-054CE9B1B833}|SistemaApoyo.Model\\SistemaApoyo.Model.csproj|c:\\users\\usuario\\desktop\\desarrollo 2024\\desarrollo de software\\80versionconback - sofiraggi\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.model\\rese\u00F1a.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AE01D784-12AF-4AC9-83F8-054CE9B1B833}|SistemaApoyo.Model\\SistemaApoyo.Model.csproj|solutionrelative:sistemaapoyo.model\\rese\u00F1a.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AE01D784-12AF-4AC9-83F8-054CE9B1B833}|SistemaApoyo.Model\\SistemaApoyo.Model.csproj|c:\\users\\usuario\\desktop\\desarrollo 2024\\desarrollo de software\\80versionconback - sofiraggi\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.model\\respuesta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AE01D784-12AF-4AC9-83F8-054CE9B1B833}|SistemaApoyo.Model\\SistemaApoyo.Model.csproj|solutionrelative:sistemaapoyo.model\\respuesta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AE01D784-12AF-4AC9-83F8-054CE9B1B833}|SistemaApoyo.Model\\SistemaApoyo.Model.csproj|c:\\users\\usuario\\desktop\\desarrollo 2024\\desarrollo de software\\80versionconback - sofiraggi\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.model\\rese\u00F1apagina.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AE01D784-12AF-4AC9-83F8-054CE9B1B833}|SistemaApoyo.Model\\SistemaApoyo.Model.csproj|solutionrelative:sistemaapoyo.model\\rese\u00F1apagina.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\desktop\\desarrollo 2024\\desarrollo de software\\80versionconback - sofiraggi\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\rese\u00F1acontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\rese\u00F1acontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|c:\\users\\usuario\\desktop\\desarrollo 2024\\desarrollo de software\\80versionconback - sofiraggi\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.bll\\servicios\\rese\u00F1aservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|solutionrelative:sistemaapoyo.bll\\servicios\\rese\u00F1aservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C68C8A65-928A-4797-A7DF-CD66815A4F1C}|SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj|c:\\users\\sofia\\documents\\utn\\3 a\u00F1o - 2024\\desarrollosoftware\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.dto\\sesiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C68C8A65-928A-4797-A7DF-CD66815A4F1C}|SistemaApoyo.DTO\\SistemaApoyo.DTO.csproj|solutionrelative:sistemaapoyo.dto\\sesiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,12 +22,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 119,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -57,107 +33,46 @@
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CrearRese\u00F1aAlumnoDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\80VERSIONCONBACK - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\CrearRese\u00F1aAlumnoDTO.cs",
-              "RelativeDocumentMoniker": "SistemaApoyo.DTO\\CrearRese\u00F1aAlumnoDTO.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\80VERSIONCONBACK - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\CrearRese\u00F1aAlumnoDTO.cs",
-              "RelativeToolTip": "SistemaApoyo.DTO\\CrearRese\u00F1aAlumnoDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T19:25:53.642Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Rese\u00F1aAlumnoDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\80VERSIONCONBACK - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\Rese\u00F1aAlumnoDTO.cs",
-              "RelativeDocumentMoniker": "SistemaApoyo.DTO\\Rese\u00F1aAlumnoDTO.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\80VERSIONCONBACK - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\Rese\u00F1aAlumnoDTO.cs",
-              "RelativeToolTip": "SistemaApoyo.DTO\\Rese\u00F1aAlumnoDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Title": "SesionDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SesionDTO.cs",
+              "RelativeDocumentMoniker": "SistemaApoyo.DTO\\SesionDTO.cs",
+              "ToolTip": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DTO\\SesionDTO.cs",
+              "RelativeToolTip": "SistemaApoyo.DTO\\SesionDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T19:25:45.375Z",
+              "WhenOpened": "2025-02-16T04:52:21.267Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Rese\u00F1a.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\80VERSIONCONBACK - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\Rese\u00F1a.cs",
-              "RelativeDocumentMoniker": "SistemaApoyo.Model\\Rese\u00F1a.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\80VERSIONCONBACK - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\Rese\u00F1a.cs",
-              "RelativeToolTip": "SistemaApoyo.Model\\Rese\u00F1a.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "UsuarioController.cs",
+              "DocumentMoniker": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "ToolTip": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAEgAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T19:25:34.508Z",
+              "WhenOpened": "2025-02-16T04:51:32.172Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AutoMapperProfile.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\80VERSIONCONBACK - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\AutoMapperProfile.cs",
-              "RelativeDocumentMoniker": "SistemaApoyo.Utility\\AutoMapperProfile.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\80VERSIONCONBACK - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\AutoMapperProfile.cs",
-              "RelativeToolTip": "SistemaApoyo.Utility\\AutoMapperProfile.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAqwFYAAAAxAAAAAAAAAA==",
+              "Title": "UsuarioService.cs",
+              "DocumentMoniker": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\UsuarioService.cs",
+              "RelativeDocumentMoniker": "SistemaApoyo.BLL\\Servicios\\UsuarioService.cs",
+              "ToolTip": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\UsuarioService.cs",
+              "RelativeToolTip": "SistemaApoyo.BLL\\Servicios\\UsuarioService.cs",
+              "ViewState": "AgIAAK8AAAAAAAAAAAAmwLcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T19:25:10.23Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Respuesta.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\80VERSIONCONBACK - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\Respuesta.cs",
-              "RelativeDocumentMoniker": "SistemaApoyo.Model\\Respuesta.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\80VERSIONCONBACK - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\Respuesta.cs",
-              "RelativeToolTip": "SistemaApoyo.Model\\Respuesta.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T19:25:32.757Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Rese\u00F1apagina.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\80VERSIONCONBACK - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\Rese\u00F1apagina.cs",
-              "RelativeDocumentMoniker": "SistemaApoyo.Model\\Rese\u00F1apagina.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\80VERSIONCONBACK - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Model\\Rese\u00F1apagina.cs",
-              "RelativeToolTip": "SistemaApoyo.Model\\Rese\u00F1apagina.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T19:25:31.871Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Rese\u00F1aController.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\80VERSIONCONBACK - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Rese\u00F1aController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Rese\u00F1aController.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\80VERSIONCONBACK - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Rese\u00F1aController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\Rese\u00F1aController.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAAGUAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T19:17:28.246Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Rese\u00F1aService.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\80VERSIONCONBACK - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\Rese\u00F1aService.cs",
-              "RelativeDocumentMoniker": "SistemaApoyo.BLL\\Servicios\\Rese\u00F1aService.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\80VERSIONCONBACK - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\Rese\u00F1aService.cs",
-              "RelativeToolTip": "SistemaApoyo.BLL\\Servicios\\Rese\u00F1aService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T19:17:04.223Z",
+              "WhenOpened": "2025-02-15T23:30:09.09Z",
               "EditorCaption": ""
             }
           ]

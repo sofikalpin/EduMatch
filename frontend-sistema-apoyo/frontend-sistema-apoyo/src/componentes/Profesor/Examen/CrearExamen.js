@@ -92,12 +92,6 @@ const CrearExamen = () => {
     }
   };
 
-  const [archivoSeleccionado, setArchivoSeleccionado] = useState(null);
-
-  const handleArchivoSeleccionado = (event) => {
-    const archivo = event.target.files[0];
-    setArchivoSeleccionado(archivo);
-  };
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
@@ -139,7 +133,7 @@ const CrearExamen = () => {
                 <label className="block text-lg font-semibold text-[#2c7a7b] mb-3">
                   Calificación máxima del examen 
                 </label>
-                <textarea
+                <input
                   className="w-full p-4 border-2 border-gray-200 rounded-xl shadow-sm focus:ring-4 focus:ring-teal-200 focus:border-teal-400 transition duration-300 bg-white"
                   value={descripcion}
                   onChange={(e) => setDescripcion(e.target.value)}
@@ -151,7 +145,7 @@ const CrearExamen = () => {
                 <label className="block text-lg font-semibold text-[#2c7a7b] mb-4">
                   Adjuntar
                 </label>
-                <div className="flex items-center gap-4 w-full">
+                <div className="flex items-center gap-5 w-full">
                   <input
                     type="text"
                     placeholder="Ingrese URL..."
@@ -168,7 +162,7 @@ const CrearExamen = () => {
                   </button>
                 </div>
 
-                <div className="flex gap-4 mt-4 items-center">
+                <div className="flex gap-5 mt-4 items-center">
                   <button
                     type="button"
                     className="p-6 bg-white rounded-xl hover:bg-gray-50 shadow-md hover:shadow-lg transform hover:-translate-y-1"
@@ -190,20 +184,6 @@ const CrearExamen = () => {
                   >
                     <img src={googleform} alt="Google Forms" className="h-8 w-8" />
                   </button>
-                  
-                  <input
-                    type="file"
-                    accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
-                    onChange={handleArchivoSeleccionado}
-                    className="hidden"
-                    id="archivo"
-                  />
-                  <label 
-                    htmlFor="archivo" 
-                    className="p-6 bg-white rounded-xl hover:bg-gray-50 shadow-md hover:shadow-lg transform hover:-translate-y-1"
-                  >
-                    <Upload size={30} className="text-gray-600" />
-                  </label>
                   
                   <button 
                     type="button" 
@@ -233,7 +213,7 @@ const CrearExamen = () => {
                             className="text-red-500 hover:text-red-700 text-lg"
                             aria-label="Eliminar URL"
                           >
-                            <i className="fas fa-times-circle"></i>
+                            X
                           </button>
                         </li>
                       ))}

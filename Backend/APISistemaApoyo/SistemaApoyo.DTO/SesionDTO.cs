@@ -17,6 +17,8 @@ namespace SistemaApoyo.DTO
         public int? Rol { get; set; } 
 
         public int? Nivel { get; set; }
+
+        public bool? AutoProf {  get; set; }
         
     }
 }

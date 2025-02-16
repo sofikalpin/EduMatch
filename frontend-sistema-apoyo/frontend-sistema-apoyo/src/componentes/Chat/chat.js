@@ -25,7 +25,7 @@ const Chat = () => {
             <header className="flex items-center justify-between p-4 bg-[#00A89F] text-white shadow-md">
                 <Link to="/profesor">
                 <img src={logo} alt="Logo" className="h-10" />
-                 </Link>
+                </Link>
                 <h1 className="text-xl font-semibold">Chats</h1>
                 <button 
                     className="bg-white text-blue-600 font-bold px-4 py-2 rounded-full shadow-md hover:bg-gray-200 transition"

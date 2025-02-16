@@ -38,6 +38,7 @@ export const EditarPerfil = ({ onUpdate }) => {
                 
                 if (!response.data || !response.data.value) throw new Error("No se encontraron datos del perfil.");
                 const perfilData = response.data.value;
+                console.log(response.data.value);
 
                 const [nombre, ...apellidoPartes] = perfilData.nombrecompleto.split(" ");
                 setNombre(nombre || "");
@@ -68,21 +69,25 @@ export const EditarPerfil = ({ onUpdate }) => {
         try {
             const nivelId = niveles[nivel];
             const datosActualizados = {
-                idusuario: user.idUsuario,
+                idusuario: perfil.idusuario,
                 nombrecompleto: `${nombre.trim()} ${apellido.trim()}`,
-                contraseñaHash: contraseñaHash.trim() || undefined,
                 fecharegistro: perfil.fecharegistro,
                 correo: email.trim(),
+                contraseñaHash: perfil.contraseñaHash,
                 idnivel: nivelId,
-                idrol: user.rol,
+                idrol: perfil.idrol,
+                autProf: perfil.autProf,
                 tokenRecuperacion: perfil.tokenRecuperacion,
                 tokenExpiracion: perfil.tokenExpiracion,
                 cvRuta: perfil.cvRuta,
                 fotoRuta: perfil.fotoRuta,
             };
+
             console.log(datosActualizados); 
+            setLoading(true);
+            
             const response = await axios.put(
-                `http://localhost:5228/API/Usuario/EditarUsuario?id=${idusuario}`,
+                `http://localhost:5228/API/Usuario/EditarUsuario?id=${perfil.idusuario}`,
                 datosActualizados
             );
             if (response.data.status) {
@@ -90,13 +95,15 @@ export const EditarPerfil = ({ onUpdate }) => {
                 console.log(datosActualizados);
                 setTimeout(() => {
                     alert("Perfil actualizado con éxito. Debes volver a iniciar sesión.");
-                    navigate("/iniciarsession"); // Redirigir a login
+                    navigate("/iniciarsesion"); // Redirigir a login
                 }, 1500);
             } else {
                 alert("No se pudo actualizar el perfil.");
             }
         } catch (error) {
             console.error("Error al actualizar el perfil:", error);
+        } finally {
+            setLoading(false);  // Ensure loading state is turned off after the API call
         }
     };
 
@@ -139,11 +146,6 @@ export const EditarPerfil = ({ onUpdate }) => {
                         <label className="block text-sm font-medium text-gray-700 mb-2">Correo Electrónico</label>
                         <input value={email} onChange={(e) => setEmail(e.target.value)}
                             type="email" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-[#00A89F]" />
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Cambiar Contraseña</label>
-                        <input value={contraseñaHash} onChange={(e) => setContraseñaHash(e.target.value)}
-                            type="text" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-[#00A89F]" />
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Nivel</label>

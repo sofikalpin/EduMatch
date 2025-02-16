@@ -51,9 +51,9 @@ const Actividad = () => {
 
   const hadleNuevaActividad = () => {
     if (user.nivel < id) {
-      error("Su nivel de perfil es menor al nivel correspondiente a la actividad que desea crear. Por favor cree actividades con su nivel o menor a este.")
+      alert("Su nivel de perfil es menor al nivel correspondiente a la actividad que desea crear. Por favor cree actividades con su nivel o menor a este.")
     } else {
-       navigate("/crear-actividad", {state: { id }})
+      navigate("/crear-actividad", {state: { id }})
     }
   }
 
@@ -102,7 +102,6 @@ const Actividad = () => {
           {/* Botón "Crear nueva actividad" en la misma línea */}
           <button 
             onClick={() => hadleNuevaActividad()}
-            disabled={user.nivel < id}
             className={ `py-2 px-6 rounded-full text-lg transition-all 
               ${user.nivel < id 
                 ? "bg-gray-400 cursor-not-allowed text-gray-200" 

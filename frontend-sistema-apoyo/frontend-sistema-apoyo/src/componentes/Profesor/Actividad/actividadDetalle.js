@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 import actividadImg from "../Imagenes/actividad.jpg";
 import { useUser } from '../../../context/userContext';
 import deleteIcon from "../Imagenes/delete.png";
@@ -110,9 +111,11 @@ const ActividadDetalle = () => {
               className="h-48 w-auto rounded-lg shadow-md object-cover" />
             </div>
 
-            <div className="space-y-4 mb-6">
+            <div className="space-y-4">
               <h2 className="text-xl font-semibold text-gray-900">Descripción</h2>
-              <p className="text-gray-600 leading-relaxed ">{actividad?.descripcion}</p>
+              <ReactMarkdown className="text-gray-600 text-justify" breaks={true}>
+                {actividad?.descripcion}
+              </ReactMarkdown>
             </div>
 
             <div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 import logoactividad from "../Imagenes/actividades.png";
 import { ArrowLeft } from "lucide-react";
 import Header from "../HeaderAlumno";
@@ -65,7 +66,13 @@ const ActividadDetalle = () => {
             <img src={logoactividad} alt="Actividad" className="w-40 h-auto rounded-lg shadow-md mx-auto my-4" />
           </div>
 
-          <p className="text-lg leading-relaxed text-gray-600">{actividad?.descripcion}</p>
+          <div className="space-y-4">
+              <h2 className="text-xl font-semibold text-gray-900">Descripción</h2>
+              <ReactMarkdown className="text-gray-600 text-justify" breaks={true}>
+                {actividad?.descripcion}
+              </ReactMarkdown>
+            </div>
+
 
           <div className="border-t border-gray-200 mt-8 pt-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Archivo de la Actividad</h2>

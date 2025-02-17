@@ -76,7 +76,7 @@ const toggleConfirmPasswordVisibility = () => {
     }
 
     if (formData.userType === "profesor" && !formData.fileSelected) {
-      newErrors.file = "Debes seleccionar un archivo";
+      newErrors.file = "Debe seleccionar un archivo el cual obtenga su CV para registrarse al rol de Profesor";
     } else {
       newErrors.file = "";
     }
@@ -229,7 +229,7 @@ const toggleConfirmPasswordVisibility = () => {
               </select>
             </label>
             {errors.userType && (
-              <span className="text-red-500 text-[12px] mt-1 block">
+              <span className="text-red-500 text-[15px] mt-1 block">
                 {errors.userType}
               </span>
             )}
@@ -244,7 +244,7 @@ const toggleConfirmPasswordVisibility = () => {
                   } text-white rounded-md w-full mb-4`}
                   onClick={() => document.getElementById("fileInput").click()}
                 >
-                  Ingresar archivo
+                  Ingresar archivo de CV
                 </button>
                 <input
                   id="fileInput"
@@ -255,7 +255,7 @@ const toggleConfirmPasswordVisibility = () => {
               </div>
             )}
             {errors.file && (
-              <span className="text-red-500 text-[12px] mt-1 block">
+              <span className="text-red-500 text-[15px] mt-1 block">
                 {errors.file}
               </span>
             )}
@@ -304,7 +304,7 @@ const toggleConfirmPasswordVisibility = () => {
               </select>
             </label>
             {errors.nivel && (
-              <span className="text-red-500 text-[12px] mt-1 block">
+              <span className="text-red-500 text-[15px] mt-1 block">
                 {errors.nivel}
               </span>
             )}
@@ -325,7 +325,7 @@ const toggleConfirmPasswordVisibility = () => {
               />
             </label>
             {errors.name && (
-              <span className="text-red-500 text-[12px] mt-1 block">
+              <span className="text-red-500 text-[15px] mt-1 block">
                 {errors.name}
               </span>
             )}
@@ -365,7 +365,7 @@ const toggleConfirmPasswordVisibility = () => {
               />
             </label>
             {errors.email && (
-              <span className="text-red-500 text-[12px] mt-1 block">
+              <span className="text-red-500 text-[15px] mt-1 block">
                 {errors.email}
               </span>
             )}

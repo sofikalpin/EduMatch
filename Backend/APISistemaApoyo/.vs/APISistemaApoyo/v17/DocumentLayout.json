@@ -1,40 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\bolsatrabajocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\bolsatrabajocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E9C332F1-56F5-4D50-B82E-9AFDF3C33349}|SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.dal\\dbcontext\\s31grupo2aprendizajeyapoyodeinglescontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E9C332F1-56F5-4D50-B82E-9AFDF3C33349}|SistemaApoyo.DAL\\SistemaApoyo.DAL.csproj|solutionrelative:sistemaapoyo.dal\\dbcontext\\s31grupo2aprendizajeyapoyodeinglescontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{75B98C71-F23C-4FF6-91AD-5DDF75A50234}|Sistema Apoyo.IOC\\Sistema Apoyo.IOC.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\sistema apoyo.ioc\\dependencia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{75B98C71-F23C-4FF6-91AD-5DDF75A50234}|Sistema Apoyo.IOC\\Sistema Apoyo.IOC.csproj|solutionrelative:sistema apoyo.ioc\\dependencia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.bll\\servicios\\bolsatrabajoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|solutionrelative:sistemaapoyo.bll\\servicios\\bolsatrabajoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.bll\\servicios\\contrato\\ibolsatrabajoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|solutionrelative:sistemaapoyo.bll\\servicios\\contrato\\ibolsatrabajoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\webapiapoyo.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\webapiapoyo.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Users\\Sofia\\Documents\\UTN\\3 A\u00F1o - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -42,12 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 119,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -62,109 +25,7 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BolsatrabajoController.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\BolsatrabajoController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\BolsatrabajoController.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\BolsatrabajoController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\BolsatrabajoController.cs",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAcwGUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T17:31:34.756Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Dependencia.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\Sistema Apoyo.IOC\\Dependencia.cs",
-              "RelativeDocumentMoniker": "Sistema Apoyo.IOC\\Dependencia.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\Sistema Apoyo.IOC\\Dependencia.cs",
-              "RelativeToolTip": "Sistema Apoyo.IOC\\Dependencia.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAYwDQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T17:08:52.677Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "S31Grupo2AprendizajeYApoyoDeInglesContext.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\DBContext\\S31Grupo2AprendizajeYApoyoDeInglesContext.cs",
-              "RelativeDocumentMoniker": "SistemaApoyo.DAL\\DBContext\\S31Grupo2AprendizajeYApoyoDeInglesContext.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.DAL\\DBContext\\S31Grupo2AprendizajeYApoyoDeInglesContext.cs",
-              "RelativeToolTip": "SistemaApoyo.DAL\\DBContext\\S31Grupo2AprendizajeYApoyoDeInglesContext.cs",
-              "ViewState": "AgIAAIoAAAAAAAAAAAAIwC8AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T17:06:14.115Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BolsatrabajoService.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\BolsatrabajoService.cs",
-              "RelativeDocumentMoniker": "SistemaApoyo.BLL\\Servicios\\BolsatrabajoService.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\BolsatrabajoService.cs",
-              "RelativeToolTip": "SistemaApoyo.BLL\\Servicios\\BolsatrabajoService.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAwwGkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T17:11:24.225Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IBolsatrabajoService.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\Contrato\\IBolsatrabajoService.cs",
-              "RelativeDocumentMoniker": "SistemaApoyo.BLL\\Servicios\\Contrato\\IBolsatrabajoService.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\Contrato\\IBolsatrabajoService.cs",
-              "RelativeToolTip": "SistemaApoyo.BLL\\Servicios\\Contrato\\IBolsatrabajoService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T17:03:09.224Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "WebApiApoyo",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\WebApiApoyo.csproj",
-              "RelativeDocumentMoniker": "WebApiApoyo\\WebApiApoyo.csproj",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\WebApiApoyo.csproj",
-              "RelativeToolTip": "WebApiApoyo\\WebApiApoyo.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-02-17T17:30:55.747Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Program.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Program.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Program.cs",
-              "RelativeToolTip": "WebApiApoyo\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T17:14:58.905Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Properties\\launchSettings.json",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Properties\\launchSettings.json",
-              "RelativeToolTip": "WebApiApoyo\\Properties\\launchSettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-02-17T17:07:02.834Z"
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             }
           ]
         }

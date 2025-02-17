@@ -222,7 +222,7 @@ const ArticulosProfesor = () => {
         </div>
 
         {/* Artículos filtrados */}
-        <div className="w-full max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+        <div className="w-full max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5">
           {loading ? (
             <div className="col-span-full text-center py-8">
               <p className="text-lg text-gray-600">Cargando artículos...</p>
@@ -264,12 +264,11 @@ const ArticulosProfesor = () => {
                       <h3 className="text-xl font-semibold text-[#2c7a7b] mb-2">
                         {articulo.titulo || articulo.nombre || "Artículo sin título"}
                       </h3>
-                      <p className="text-sm text-gray-600 mb-2 line-clamp-3 truncate">
-                        {articulo.descripcion || "Sin descripción"}...
+                      <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                        {articulo.descripcion}
                       </p>
                     </div>
                     <div className="flex gap-2 mt-auto">
-                      
                       <button 
                         onClick={() => handleViewArticle(articulo)}
                         className="w-full py-2 px-3 bg-teal-600 text-white rounded-lg text-sm hover:bg-teal-700 transition-colors duration-300"

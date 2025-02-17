@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import LogoInicio from "../../../logo/LogoInicio.png";
 import chatIcon from "../Imagenes/chat.png";
+import ReactMarkdown from "react-markdown";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import articuloImagen from "../Imagenes/articulo.png"
@@ -69,7 +70,13 @@ const ArticuloDetalle = () => {
             <img src={articuloImagen} alt="Actividad" className="w-40 h-auto rounded-lg shadow-md mx-auto my-4" />
           </div>
 
-          <p className="text-lg leading-relaxed text-gray-600">{articulo?.descripcion}</p>
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold text-gray-900">Descripción</h2>
+            <ReactMarkdown className="text-gray-600 text-justify" breaks={true}>
+              {articulo?.descripcion}
+            </ReactMarkdown>
+          </div>
+
 
           <div className="border-t border-gray-200 mt-8 pt-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Archivo del articulo</h2>

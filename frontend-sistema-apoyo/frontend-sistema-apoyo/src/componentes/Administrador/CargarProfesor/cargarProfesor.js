@@ -110,7 +110,7 @@ const CargarProfesor = () => {
                         onClick={handleRedirectToProfesores}
                         className="bg-[#00A89F] hover:bg-[#008F8C] active:bg-[#007C79] text-white px-6 py-2 rounded-md ml-4 transition-all"
                     >
-                        Ver Profesores en espera
+                        Ver Profesores de JellyJobs
                     </button>
                 </div>
 

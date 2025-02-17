@@ -245,20 +245,23 @@ const ActividadesProfesor = () => {
                   />
                 </div>
                 <div className="flex flex-col flex-grow justify-between">
-                  <div>
-                    <h3 className="text-xl font-semibold text-[#2c7a7b] mb-2">
-                      {actividad.nombre || "Actividad sin título"}
-                    </h3>
+                    <div>
+                      <h3 className="text-xl font-semibold text-[#2c7a7b] mb-2">
+                        {actividad.nombre || "Actividad sin título"}
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                        {actividad.descripcion}
+                      </p>
+                    </div>
+                    <div className="flex gap-2 mt-auto">
+                      <button 
+                        onClick={() => handleViewActividad(actividad)}
+                        className="w-full py-2 px-3 bg-teal-600 text-white rounded-lg text-sm hover:bg-teal-700 transition-colors duration-300"
+                      >
+                        Ver artículo
+                      </button>
+                    </div>
                   </div>
-                  <div className="flex gap-2 mt-auto">
-                    <button 
-                      onClick={() => handleViewActividad(actividad)}
-                      className="w-full py-2 px-3 bg-teal-600 text-white rounded-lg text-sm hover:bg-teal-700 transition-colors duration-300"
-                    >
-                      Ver actividad
-                    </button>
-                  </div>
-                </div>
               </div>
             );
           })

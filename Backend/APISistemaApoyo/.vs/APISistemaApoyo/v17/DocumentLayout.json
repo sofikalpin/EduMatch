@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\95 CASILISTO - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|c:\\users\\usuario\\desktop\\desarrollo 2024\\desarrollo de software\\95 casilisto - sofiraggi\\edumatch\\backend\\apisistemaapoyo\\sistemaapoyo.bll\\servicios\\rese\u00F1aservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73FBA5A1-B2EC-40FD-83A7-7B3BAFC0AAE9}|SistemaApoyo.BLL\\SistemaApoyo.BLL.csproj|solutionrelative:sistemaapoyo.bll\\servicios\\rese\u00F1aservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\desktop\\desarrollo 2024\\desarrollo de software\\95 casilisto - sofiraggi\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\rese\u00F1acontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\rese\u00F1acontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\desktop\\desarrollo 2024\\desarrollo de software\\95 casilisto - sofiraggi\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\webapiapoyo.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\webapiapoyo.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\usuario\\desktop\\desarrollo 2024\\desarrollo de software\\95 casilisto - sofiraggi\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\bolsatrabajocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\bolsatrabajocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -18,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 119,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,7 +46,46 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Rese\u00F1aService.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\95 CASILISTO - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\Rese\u00F1aService.cs",
+              "RelativeDocumentMoniker": "SistemaApoyo.BLL\\Servicios\\Rese\u00F1aService.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\95 CASILISTO - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.BLL\\Servicios\\Rese\u00F1aService.cs",
+              "RelativeToolTip": "SistemaApoyo.BLL\\Servicios\\Rese\u00F1aService.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAABEAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T21:56:16.479Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Rese\u00F1aController.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\95 CASILISTO - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Rese\u00F1aController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Rese\u00F1aController.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\95 CASILISTO - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Rese\u00F1aController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\Rese\u00F1aController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T21:56:04.191Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "WebApiApoyo",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\95 CASILISTO - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\WebApiApoyo.csproj",
+              "RelativeDocumentMoniker": "WebApiApoyo\\WebApiApoyo.csproj",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\95 CASILISTO - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\WebApiApoyo.csproj",
+              "RelativeToolTip": "WebApiApoyo\\WebApiApoyo.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-02-17T21:53:20.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "ProfesorActividadController.cs",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\95 CASILISTO - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorActividadController.cs",
               "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Profesor\\ProfesorActividadController.cs",
@@ -42,18 +93,17 @@
               "RelativeToolTip": "WebApiApoyo\\Controllers\\Profesor\\ProfesorActividadController.cs",
               "ViewState": "AgIAALMAAAAAAAAAAAAAAM4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-17T20:33:37.451Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-17T20:33:37.451Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "BolsatrabajoController.cs",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\95 CASILISTO - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\BolsatrabajoController.cs",
               "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\BolsatrabajoController.cs",
               "ToolTip": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\95 CASILISTO - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\BolsatrabajoController.cs",
               "RelativeToolTip": "WebApiApoyo\\Controllers\\BolsatrabajoController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAAgAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-17T20:32:19.568Z",
               "EditorCaption": ""

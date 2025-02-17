@@ -12,7 +12,6 @@ namespace SistemaApoyo.DTO
 
         public int Idusuaro { get; set; }
 
-        public string NombreUsuario { get; set; }
 
         public int Rating { get; set; }
 

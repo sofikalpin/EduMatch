@@ -4,8 +4,7 @@ import Modal from "react-modal";
 import CrearChat from "../crearChat/crearChat.js";
 import nuevoChatIcon from "../chatIcons/newChatIcon.png";
 import { useUser } from "../../../context/userContext.js";
-import { useNavigate } from "react-router-dom"; 
-import { ArrowLeft } from 'lucide-react';
+import { useNavigate } from "react-router-dom"; // Importamos useNavigate
 
 const ListaChats = ({ onSelectChat, activeChat }) => {
     const { user } = useUser();

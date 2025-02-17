@@ -74,7 +74,7 @@ const CursoDetalle = () => {
       <div className="flex items-center mb-12 mt-6">
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium ml-10"
+            className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium ml-30"
           >
             <ArrowLeft className="w-6 h-6" />
             <span>Volver</span>

@@ -66,7 +66,7 @@ const ListaProfesores = () => {
     };
 
     return (
-        <div className="flex flex-col min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
+        <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
             <Header />
     
             <div className="flex items-center justify-start w-full mt-4 mb-0 px-20">
@@ -79,7 +79,7 @@ const ListaProfesores = () => {
                 </button>
             </div>
     
-            <div className="flex flex-col items-center mt-8 px-20 max-w-13xl mx-auto flex-grow mb-16">
+            <div className="flex flex-col items-center mt-8 px-20 max-w-13xl mx-auto flex-grow">
                 <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Lista de Profesores Registrados</h1>
     
                 {/* Campo de búsqueda */}

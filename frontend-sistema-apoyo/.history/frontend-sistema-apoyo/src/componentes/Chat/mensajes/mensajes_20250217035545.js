@@ -4,31 +4,18 @@ import hubConnection from "../../../signalRConnection.js";
 import { useUser } from "../../../context/userContext.js";
 
 const Mensajes = ({ usuarioId, chatId }) => {
+
     const { user } = useUser();
+
     const [mensajes, setMensajes] = useState([]);
     const [nuevoMensaje, setNuevoMensaje] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [enviando, setEnviando] = useState(false);
-    const [usuarioNombre, setUsuarioNombre] = useState("");
-    
     const inputRef = useRef(null);
     const messagesContainerRef = useRef(null);
+
     const usuarioid = user.idUsuario;
-
-    useEffect(() => {
-        const obtenerUsuario = async () => {
-            try {
-                const response = await axios.get(`http://localhost:5228/API/Usuario/${usuarioId}`);
-                setUsuarioNombre(response.data.nombre);
-            } catch (error) {
-                console.error("Error al obtener el usuario: ", error);
-                setUsuarioNombre("Usuario desconocido");
-            }
-        };
-
-        obtenerUsuario();
-    }, [usuarioId]);
 
     useEffect(() => {
         const cargarMensaje = async () => {
@@ -122,14 +109,13 @@ const Mensajes = ({ usuarioId, chatId }) => {
     
     return (
         <div className="flex flex-col h-full w-full p-4 bg-gray-100 rounded-lg shadow-md">
-           
             {loading && <p className="text-center text-gray-500">Cargando mensajes...</p>}
             
             <div className="flex-1 overflow-y-auto p-2 space-y-2" ref={messagesContainerRef}>
                 {mensajes.map((mensaje) => (
                     <div 
                         key={mensaje.idmensaje} 
-                        className={`p-2 rounded-lg max-w-xs ${mensaje.idusuario === usuarioid ? "bg-blue-500 text-white ml-auto text-right" : "bg-gray-300 text-black mr-auto text-left"}`}
+                        className={`p-2 rounded-lg max-w-xs ${mensaje.idusuario === usuarioid ? "bg-blue-500 text-white self-end" : "bg-gray-300 text-black self-start"}`}
                     >
                         <span>{mensaje.contenido}</span>
                     </div>

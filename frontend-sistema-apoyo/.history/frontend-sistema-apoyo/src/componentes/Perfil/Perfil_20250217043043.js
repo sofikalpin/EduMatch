@@ -154,7 +154,7 @@ const Perfil = () => {
 
       <button
                   onClick={() => navigate(-1)}
-                  className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium mt-5 ml-10"
+                  className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium mt-5"
                 >
                   <ArrowLeft className="w-6 h-6" />
                   <span>Volver</span>

@@ -4,8 +4,6 @@ import Modal from "react-modal";
 import CrearChat from "../crearChat/crearChat.js";
 import nuevoChatIcon from "../chatIcons/newChatIcon.png";
 import { useUser } from "../../../context/userContext.js";
-import { useNavigate } from "react-router-dom"; 
-import { ArrowLeft } from 'lucide-react';
 
 const ListaChats = ({ onSelectChat, activeChat }) => {
     const { user } = useUser();
@@ -18,7 +16,6 @@ const ListaChats = ({ onSelectChat, activeChat }) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const idusuario = user?.idUsuario;
-    const navigate = useNavigate(); // Creamos la instancia del hook de navegación
 
     useEffect(() => {
         const cargarChats = async () => {
@@ -88,14 +85,6 @@ const ListaChats = ({ onSelectChat, activeChat }) => {
     return (
         <div className="p-4 max-w-md mx-auto">
             <div className="flex justify-between items-center mb-4">
-            <button
-            onClick={() => navigate(-1)}
-            className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
-          >
-            <ArrowLeft className="w-6 h-6" />
-            <span>Volver</span>
-          </button>
-
                 <h2 className="text-xl font-bold text-gray-800">Mis Chats</h2>
                 <button onClick={openModal} className="bg-blue-500 p-2 rounded-full shadow-md hover:bg-blue-600 transition">
                     <img src={nuevoChatIcon} alt="Nuevo Chat" className="w-6 h-6" />
@@ -117,7 +106,7 @@ const ListaChats = ({ onSelectChat, activeChat }) => {
                     chatsExistentes={chats}
                 />
             </Modal>
-
+            
             <label htmlFor="rol-select" className="block text-sm font-medium text-gray-700">Filtro por rol:</label>
             <select
                 id="rol-select"
@@ -130,7 +119,7 @@ const ListaChats = ({ onSelectChat, activeChat }) => {
                 <option value="2">Alumnos</option>
                 <option value="3">Administrador</option>
             </select>
-
+            
             <input 
                 type="text"
                 placeholder="Buscar nombre del chat..."
@@ -186,6 +175,6 @@ const ListaChats = ({ onSelectChat, activeChat }) => {
             )}
         </div>
     );
-};
+}
 
 export default ListaChats;

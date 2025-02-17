@@ -66,46 +66,45 @@ const ListaProfesores = () => {
     };
 
     return (
-        <div className="flex flex-col min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
-            <Header />
+        <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
+        <Header />
     
-            <div className="flex items-center justify-start w-full mt-4 mb-0 px-20">
-                <button
-                    onClick={() => navigate(-1)}
-                    className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
-                >
-                    <ArrowLeft className="w-6 h-6" />
-                    <span>Volver</span>
-                </button>
-            </div>
-    
-            <div className="flex flex-col items-center mt-8 px-20 max-w-13xl mx-auto flex-grow mb-16">
-                <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Lista de Profesores Registrados</h1>
-    
-                {/* Campo de búsqueda */}
-                <input
-                    type="text"
-                    placeholder="Buscar por nombre de profesor..."
-                    value={busqueda}
-                    onChange={(e) => setBusqueda(e.target.value)}
-                    className="mb-4 p-2 border border-gray-300 rounded w-full"
-                    autoComplete="off"
-                />
-    
-                {/* Mostrar mensaje de eliminación, error o la tabla */}
-                <div>
-                    {mensajeEliminacion && <div className="text-green-500 mb-4">{mensajeEliminacion}</div>}
-                    {error && <div className="text-red-500 mb-4">{error}</div>}
-                    {loading ? (
-                        <div className="text-gray-600">Cargando...</div>
-                    ) : (
-                        <TablaProfesoresT data={profesorFiltro} onDelete={handleDeleteProfesor} />
-                    )}
-                </div>
-            </div>
-    
-            <Footer />
+        <div className="flex items-center justify-start w-full mt-4 mb-0 px-20">
+            <button
+                onClick={() => navigate(-1)}
+                className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
+            >
+                <ArrowLeft className="w-6 h-6" />
+                <span>Volver</span>
+            </button>
         </div>
+    
+        <div className="flex flex-col items-center mt-8 px-20 max-w-13xl mx-auto">
+            <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Lista de Profesores Registrados</h1>
+    
+            {/* Campo de búsqueda */}
+            <input
+                type="text"
+                placeholder="Buscar por nombre de profesor..."
+                value={busqueda}
+                onChange={(e) => setBusqueda(e.target.value)}
+                className="mb-4 p-2 border border-gray-300 rounded w-full"
+                autoComplete="off"
+            />
+    
+            {/* Mostrar mensaje de eliminación, error o la tabla */}
+            <div>
+                {mensajeEliminacion && <div className="text-green-500 mb-4">{mensajeEliminacion}</div>}
+                {error && <div className="text-red-500 mb-4">{error}</div>}
+                {loading ? (
+                    <div className="text-gray-600">Cargando...</div>
+                ) : (
+                    <TablaProfesoresT data={profesorFiltro} onDelete={handleDeleteProfesor} />
+                )}
+            </div>
+        </div>
+          <Footer className="mt-12" />
+    </div>
     );
 };
 

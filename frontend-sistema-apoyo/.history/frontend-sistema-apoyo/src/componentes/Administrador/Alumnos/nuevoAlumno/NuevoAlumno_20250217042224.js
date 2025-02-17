@@ -3,14 +3,13 @@ import logo from "../../../../logo/LogoInicio.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-export const NuevoProfesor = () => {
+export const NuevoAlumno = () => {
   const [email, setEmail] = useState('');
   const [clave, setClave] = useState('');
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [nivel, setNivel] = useState('');
-  const [rol, setRol] = useState('profesor');
-  const [mensajeCreado, setmensajeCreado] = useState("");
+  const [mensajeCreado, setMensajeCreado] = useState("");
 
   const navigate = useNavigate();
 
@@ -19,7 +18,7 @@ export const NuevoProfesor = () => {
   };
 
   const cancelar = () => {
-    navigate("/administrador/listaProfesores", { replace: true })
+    navigate("/administrador/listaAlumnos", { replace: true })
   }
 
   const handleRegistrar = async (e) => {
@@ -33,37 +32,40 @@ export const NuevoProfesor = () => {
     try {
       const nivelId = niveles[nivel];
 
-      const datosProfesor = {
+      const datosAlumno = {
         nombrecompleto: `${nombre.trim()} ${apellido.trim()}`,
         correo: email.trim(),
         contraseñaHash: clave.trim(),
         idnivel: nivelId,
-        idrol: 1,
+        idrol: 2,
       };
 
       const response = await axios.post(
-        "http://localhost:5228/API/AdministradorProfesor/CrearProfesor",
-        datosProfesor
+        "http://localhost:5228/API/AdministradorAlumno/CrearAlumno",
+        datosAlumno
       );
 
       if (response.data.status) {
-        // Mensaje de éxito
-        window.alert("Profesor creado con éxito.");
-        // Regresar a la página anterior
-        navigate(-1);
+        setMensajeCreado("Alumno creado con éxito.");
+        setTimeout(() => setMensajeCreado(""), 2000);
+        
+        setNombre("");
+        setApellido("");
+        setEmail("");
+        setClave("");
+        setNivel("");
       } else {
-        alert(response.data.msg || "No se pudo crear el profesor.");
+        alert(response.data.msg || "No se pudo crear el alumno.");
       }
     } catch (error) {
-      console.error("Error al registrar profesor:", error);
-      alert("Ocurrió un error al registrar el profesor. Por favor, intenta nuevamente.");
+      console.error("Error al registrar alumno:", error);
+      alert("Ocurrió un error al registrar el alumno. Por favor, intenta nuevamente.");
     }
   }
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 font-sans">
       <div className="w-full max-w-xl bg-white shadow-2xl rounded-3xl overflow-hidden">
-        {/* Header */}
         <div className="bg-[#00A89F] p-8 text-center relative flex flex-col items-center">
           <img 
             src={logo} 
@@ -71,11 +73,16 @@ export const NuevoProfesor = () => {
             className="w-40 h-auto object-contain mb-4" 
           />
           <h3 className="text-3xl font-bold text-white tracking-wide">
-            Registro de Profesor
+            Registro de Alumno
           </h3>
         </div>
-        
-        {/* Form */}
+
+        {mensajeCreado && (
+          <div className="bg-[#00A89F] text-white text-center p-4 animate-pulse">
+            {mensajeCreado}
+          </div>
+        )}
+
         <form onSubmit={handleRegistrar} className="p-10 space-y-6">
           <div className="grid grid-cols-2 gap-6">
             <div>
@@ -132,7 +139,7 @@ export const NuevoProfesor = () => {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Nivel de Profesor
+              Nivel de Alumno
             </label>
             <select 
               value={nivel} 
@@ -152,18 +159,14 @@ export const NuevoProfesor = () => {
           <div className="flex space-x-4 pt-4">
             <button 
               type="submit" 
-              className="w-full py-3 bg-[#00A89F] text-white rounded-lg 
-                         hover:bg-opacity-90 transition-all duration-300 
-                         transform hover:scale-[1.01] shadow-md hover:shadow-lg"
+              className="w-full py-3 bg-[#00A89F] text-white rounded-lg hover:bg-opacity-90 transition-all duration-300 transform hover:scale-[1.01] shadow-md hover:shadow-lg"
             >
-              Crear Profesor
+              Crear Alumno
             </button>
             <button 
               type="button" 
               onClick={cancelar}
-              className="w-full py-3 bg-gray-200 text-gray-700 rounded-lg 
-                         hover:bg-gray-300 transition-all duration-300 
-                         transform hover:scale-[1.01] shadow-md hover:shadow-lg"
+              className="w-full py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-all duration-300 transform hover:scale-[1.01] shadow-md hover:shadow-lg"
             >
               Cancelar
             </button>
@@ -174,4 +177,4 @@ export const NuevoProfesor = () => {
   );
 };
 
-export default NuevoProfesor;
+export default NuevoAlumno;

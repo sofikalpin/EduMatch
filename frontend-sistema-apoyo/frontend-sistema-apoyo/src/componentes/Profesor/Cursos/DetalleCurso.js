@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
+import { ArrowLeft } from 'lucide-react';
 import Header from "../HeaderProfesor";
 import Footer from "../FooterProfesor";
 import actividad from "../Imagenes/actividad.jpg";
@@ -17,9 +18,9 @@ const cursos = [
 ];
 
 const tarjetas = [
-  { id: 1, nombre: "Actividad", descripcion: "Ver actividades relacionadas", imagen: actividad, link: "actividad" },
-  { id: 2, nombre: "Artículos", descripcion: "Explorar artículos", imagen: articulos, link: "articulos" },
-  { id: 3, nombre: "Exámenes", descripcion: "Acceder al examen", imagen: examen, link: "examen" },
+  { id: 1, nombre: "Actividad", descripcion: "Ver actividades relacionadas", imagen: actividad},
+  { id: 2, nombre: "Artículos", descripcion: "Explorar artículos", imagen: articulos},
+  { id: 3, nombre: "Exámenes", descripcion: "Acceder al examen", imagen: examen},
 ];
 
 const CursoDetalle = () => {
@@ -27,12 +28,41 @@ const CursoDetalle = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");  // Mensaje de error
   const { nivel, nombre } = location.state || {}; // Datos del curso
-  const { id } = useParams();
-  const curso = cursos.find((c) => c.id === parseInt(id));
 
-  if (!curso) {
-    return <p>Curso no encontrado</p>;
-  }
+  console.log(nivel, nombre);
+
+  const DescripcionNivel = (nivel) => {
+    const cursoEncontrado = cursos.find((c) => c.id === nivel);
+    return cursoEncontrado ? cursoEncontrado.descripcion : "Nivel no encontrado";
+  };
+  
+
+  const handleCardClick = (option) => {
+    if (!nivel) {
+      setError("Debe seleccionar un curso de estudio");
+      return;
+    }
+
+    switch (option) {
+      case "Actividad":
+        navigate(`/profesor/cursos/detalle/actividad`, { state: { nivel, nombre } });
+        break;
+      case "Artículos":
+        navigate(`/profesor/cursos/detalle/articulos`, { state: { nivel, nombre } });
+        break;
+      case "Exámenes":
+        navigate(`/profesor/cursos/detalle/examen`, { state: { nivel, nombre } });
+        break;
+      case "Mis Cursos":
+        navigate("/profesor/cursos");
+        break;
+      case "INICIO":
+        navigate("/profesor");
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex flex-col">
@@ -41,14 +71,28 @@ const CursoDetalle = () => {
 
       {/* Contenido principal */}
       <div className="curso-detalles-container px-5 py-10 text-center bg-[#f0faf7] flex-grow  ">
-      <h1 className="text-5xl font-bold text-[#2c7a7b] mb-12 mt-10">{curso.nombre}</h1>
+      <div className="flex items-center mb-12 mt-6">
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
+          >
+            <ArrowLeft className="w-6 h-6" />
+            <span>Volver</span>
+          </button>
+          <h1 className="flex-grow text-5xl font-bold text-[#2c7a7b] text-center">
+             {nombre}
+          </h1>
+          
+        </div>
+        <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">{DescripcionNivel(nivel)}</p>
 
-        <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">{curso.descripcion}</p>
+         {/* Mostrar error si existe */}
+         {error && <div className="text-red-500 mb-4">{error}</div>}
 
         <div className="tarjetas-detalles flex justify-center gap-8 flex-wrap">
           {tarjetas.map((tarjeta) => (
-            <Link 
-              to={`/profesor/cursos/detalle/${id}/${tarjeta.link}`} 
+            <div 
+              onClick={() => handleCardClick(tarjeta.nombre)}
               key={tarjeta.id} 
               className="tarjeta-detalle bg-white border border-gray-200 rounded-xl shadow-lg p-6 w-64 text-center no-underline text-gray-800 transition-transform duration-300 ease-in-out hover:transform hover:-translate-y-2 hover:shadow-2xl flex flex-col justify-between"
             >
@@ -57,16 +101,9 @@ const CursoDetalle = () => {
                 <h3 className="text-2xl font-semibold text-[#2c7a7b] mb-2">{tarjeta.nombre}</h3>
                 <p className="text-base text-gray-600">{tarjeta.descripcion}</p>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
-
-        <Link 
-          to="/profesor/cursos" 
-          className="volver-link inline-block mt-16 bg-gradient-to-r from-green-500 to-green-600 text-white py-2 px-6 rounded-full text-lg hover:from-green-600 hover:to-green-700 transition-all"
-        >
-          Volver a Mis Cursos
-         </Link>
       </div>
 
       {/* Footer con margen superior */}

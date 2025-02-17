@@ -17,7 +17,7 @@ const MisCursos = () => {
   const [listaGeneral, setListaGeneral] = useState([]);
 
   const navegarACurso = (curso) => {
-    navigate("/profesor/cursos/detalle", { state: {nivel: curso.nivel, nombre: curso.nombre}})
+    navigate("/profesor/cursos/detalle", { state: {nivel: curso.id, nombre: curso.nombre}})
   };
 
  useEffect(() =>  {

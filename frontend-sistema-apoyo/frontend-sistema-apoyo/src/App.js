@@ -122,13 +122,13 @@ function App() {
             <Route path="/profesor/alumnos" element={<ProtegerRuta><AlumnosProfesor /></ProtegerRuta>} />
             <Route path="/profesor/cursos" element={<ProtegerRuta><CursosProfesor /></ProtegerRuta>} />
             <Route path="/profesor/cursos/detalle" element={<ProtegerRuta><CursoDetalle /></ProtegerRuta>} />
-            <Route path="/profesor/actividad" element={<ProtegerRuta><ActividadProfesor /></ProtegerRuta>} />
-            <Route path="/profesor/articulos" element={<ProtegerRuta><ArticuloProfesor /></ProtegerRuta>} />
-            <Route path="/profesor/examen" element={<ProtegerRuta><ExamenProfesor /></ProtegerRuta>} />
+            <Route path="/profesor/cursos/detalle/actividad" element={<ProtegerRuta><ActividadProfesor /></ProtegerRuta>} />
+            <Route path="/profesor/cursos/detalle/articulos" element={<ProtegerRuta><ArticuloProfesor /></ProtegerRuta>} />
+            <Route path="/profesor/cursos/detalle/examen" element={<ProtegerRuta><ExamenProfesor /></ProtegerRuta>} />
 
-            <Route path="/profesor/cursos/detalle/:id/actividad/:idactividad" element={<ProtegerRuta><ActividadDetalleProfesor /></ProtegerRuta>}/>
-            <Route path="/profesor/cursos/detalle/:id/articulos/:idarticulo" element={<ProtegerRuta><ArticuloDetalleProfesor /></ProtegerRuta> } />
-            <Route path="/profesor/cursos/detalle/:id/examen/:idexamen" element={<ProtegerRuta><ExamenDetalleProfesor /></ProtegerRuta>} />      
+            <Route path="/profesor/cursos/detalle/actividad/:idactividad" element={<ProtegerRuta><ActividadDetalleProfesor /></ProtegerRuta>}/>
+            <Route path="/profesor/cursos/detalle/articulos/:idarticulo" element={<ProtegerRuta><ArticuloDetalleProfesor /></ProtegerRuta> } />
+            <Route path="/profesor/cursos/detalle/examen/:idexamen" element={<ProtegerRuta><ExamenDetalleProfesor /></ProtegerRuta>} />      
             
             <Route path="/crear-actividad" element={<ProtegerRuta><CrearActividad /></ProtegerRuta>} />
             <Route path="/crear-articulo" element={<ProtegerRuta><CrearArticulo /></ProtegerRuta>} />

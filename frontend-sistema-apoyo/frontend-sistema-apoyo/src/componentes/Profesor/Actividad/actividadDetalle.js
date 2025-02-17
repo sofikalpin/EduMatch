@@ -37,28 +37,46 @@ const ActividadDetalle = () => {
   }, [idactividad]);
 
   const handleDelete = async () => {
-    if (!window.confirm("¿Está seguro que desea eliminar esta actividad?")) {
-      return;
+
+    if (user.idUsuario !== actividad?.idusuario) {
+      alert("No tienes permisos para eliminar esta actividad.");
+      return; // Detener la operación
     }
 
-    try {
-      setIsDeleting(true); // Establecer el estado de eliminación en true
-      const response = await axios.delete(`http://localhost:5228/API/Actividad/EliminarActividad?id=${idactividad}`);
-      if (response.data.status) {
-        alert("Actividad eliminada correctamente");
-        navigate("/actividades"); // Redirigir después de la eliminación
-      } else {
-        alert(response.data.message);
+    if (window.confirm("¿Está seguro que desea eliminar esta actividad?")) {
+      try {
+        setLoading(true);
+        const respuesta = await axios.delete(`http://localhost:5228/API/ProfesorActividad/EliminarActividad?id=${idactividad}`);
+        if (respuesta.data.status) {
+          alert("Actividad eliminada correctamente");
+          navigate(-1);
+        } else {
+          setError(respuesta.data.message);
+        }
+      } catch (error) {
+        setError("Error al eliminar el artículo, inténtelo más tarde.");
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      alert("Error al eliminar la actividad. Inténtelo más tarde.");
-    } finally {
-      setIsDeleting(false); // Restablecer el estado de eliminación
     }
   };
 
   if (loading) {
-    return <div>Cargando...</div>;
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <div className="text-lg text-gray-600 animate-pulse">Cargando...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="max-w-2xl mx-auto p-4">
+        <div className="bg-red-50 text-red-600 p-4 rounded-lg">
+          {error}
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -67,38 +85,40 @@ const ActividadDetalle = () => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-white rounded-lg shadow-lg mt-12 p-6 max-w-3xl mx-auto">
           <div className="bg-white p-6 rounded-lg shadow-md mb-6">
-            <span className="text-gray-600 text-xl">Fecha de Publicación: {actividad?.fechaCreacion}</span>
+            <span className="text-gray-600">Fecha de Publicación: {actividad?.fechaCreacion}</span>
           </div>
 
-          <div className="space-y-8">
-            <div className="flex items-center justify-between">
-              <h1 className="text-3xl font-bold text-gray-900">{actividad?.titulo}</h1>
-
-              {user && actividad && user.idUsuario === actividad.idusuario && (
-                <button
+          <div className="space-y-8 mb-6">
+            <div className="flex justify-between items-center">
+              <h1 className="text-3xl font-bold text-gray-900 leading-relaxed">{actividad?.nombre}</h1>
+                  <button
                   onClick={handleDelete}
+                  className={`p-2 rounded-full transition-colors duration-200 ml-4 ${
+                    user.idUsuario !== actividad?.idusuario
+                      ? "bg-red-200 cursor-not-allowed"
+                      : "bg-red-100 hover:bg-red-200"
+                  }`}
                   aria-label="Eliminar actividad"
-                  className={`p-2 ${isDeleting ? 'bg-gray-300 cursor-not-allowed' : 'bg-red-100 hover:bg-red-200'} rounded-full transition-colors duration-200`}
-                  disabled={isDeleting}
                 >
+
                   <img src={deleteIcon} alt="Eliminar" className="w-6 h-6" />
                 </button>
-              )}
             </div>
 
-            <div className="flex justify-center">
-              <img src={actividadImg} alt="Imagen de la actividad" className="h-48 w-auto rounded-lg shadow-md object-cover" />
+            <div className="flex justify-center mb-6">
+              <img src={actividadImg} alt="Imagen de la actividad" 
+              className="h-48 w-auto rounded-lg shadow-md object-cover" />
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-4 mb-6">
               <h2 className="text-xl font-semibold text-gray-900">Descripción</h2>
-              <p className="text-gray-600 leading-relaxed">{actividad?.descripcion}</p>
+              <p className="text-gray-600 leading-relaxed ">{actividad?.descripcion}</p>
             </div>
 
             <div>
               <h2 className="text-xl font-semibold text-gray-900 mb-4">Archivo de la Actividad</h2>
               {actividad?.url ? (
-                <a href={actividad.url} className="text-blue-600 hover:text-blue-800 hover:underline" target="_blank" rel="noopener noreferrer">
+                <a href={actividad.url} className="py-2 px-4 rounded bg-blue-500 hover:bg-blue-600 text-white font-bold" target="_blank" rel="noopener noreferrer">
                   Ver actividad
                 </a>
               ) : (

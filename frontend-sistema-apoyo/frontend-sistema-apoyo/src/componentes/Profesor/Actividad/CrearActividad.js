@@ -10,7 +10,7 @@ import { useUser } from "../../../context/userContext";
 
 const CrearActividad = () => {
   const location = useLocation();
-  const { id } = location.state;
+  const { nivel } = location.state;
 
   const { user } = useUser();
   const [nombre, setNombre] = useState("");
@@ -22,22 +22,26 @@ const CrearActividad = () => {
   const navigate = useNavigate();  
   
   const validarURL = (url) => {
-    const regex = /^(ftp|http|https):\/\/[^ "]+$/;  // Regex para validar URL
-    return regex.test(url);  // Retorna true si la URL es válida
-  }
+    const regex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    return regex.test(url);
+  };
 
   const handleAgregarUrl = () => {
-    if (nuevaUrl.trim() !== ""){
-      setActividadUrl([...actividadUrl, nuevaUrl]);
-      setNuevaUrl("");
+    if (nuevaUrl.trim() !== "") {
+      if (validarURL(nuevaUrl)) {
+        setActividadUrl([...actividadUrl, nuevaUrl]);
+        setNuevaUrl("");  // Limpiar el campo después de agregar
+      } else {
+        alert("URL no válida. Por favor ingrese una URL válida.");
+      }
     } else {
       alert("Ingrese un URL antes de agregar");
     }
-  }
+  };
 
   const handleConfirmarUrl = () => {
     
-    if (actividadUrl.length > 0 && actividadUrl[0].trim() !== "") {
+    if (actividadUrl.length > 0) {
       alert("URLs cargadas correctamente: " + actividadUrl.join(";"));
     } else {
       alert("No se han cargado URLs.");
@@ -56,11 +60,11 @@ const CrearActividad = () => {
         idusuario: user?.idUsuario,
         nombre: nombre.trim(),
         descripcion: descripcion.trim(),
-        idnivel: id,
+        idnivel: nivel,
         fechaCreacion: new Date().toISOString().split("T")[0],
-        url: actividadUrl.length > 0 ? actividadUrl.join(";") : "",
+        url: actividadUrl.length > 0 ? actividadUrl[0] : "",
       };
-
+      console.log(nuevaActividad);
       const response = await axios.post(
         "http://localhost:5228/API/ProfesorActividad/CrearActividad",
         nuevaActividad
@@ -93,12 +97,6 @@ const CrearActividad = () => {
     }
   };
 
-  const [archivoSeleccionado, setArchivoSeleccionado] = useState(null);
-
-  const handleArchivoSeleccionado = (event) => {
-    const archivo = event.target.files[0]; // Obtiene el archivo seleccionado
-    setArchivoSeleccionado(archivo);
-  };
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
@@ -191,21 +189,6 @@ const CrearActividad = () => {
                   >
                     <img src={youtube} alt="YouTube" className="h-8 w-8" />
                   </button>
-                  
-                  {/* Ícono de subir archivo */}
-                  <input
-                    type="file"
-                    accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
-                    onChange={handleArchivoSeleccionado}
-                    className="hidden"
-                    id="archivo"
-                  />
-                  <label 
-                    htmlFor="archivo" 
-                    className="p-6 bg-white rounded-xl hover:bg-gray-50 shadow-md hover:shadow-lg transform hover:-translate-y-1"
-                  >
-                    <Upload size={30} className="text-gray-600" /> {/* Solo el ícono de subida */}
-                  </label>
                   
                   <button 
                     type="button" 

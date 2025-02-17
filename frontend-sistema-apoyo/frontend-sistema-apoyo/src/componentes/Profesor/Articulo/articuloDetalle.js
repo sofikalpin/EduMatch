@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import ReactMarkdown from "react-markdown";
 import axios from 'axios';
 import { useUser } from '../../../context/userContext';
 import articuloImagen from "../Imagenes/articulo.jpg";
@@ -123,13 +124,16 @@ const ArticuloDetalle = () => {
 
             <div className="space-y-4">
               <h2 className="text-xl font-semibold text-gray-900">Descripción</h2>
-              <p className="text-gray-600 leading-relaxed">{articulo?.descripcion}</p>
+              <ReactMarkdown className="text-gray-600 text-justify" breaks={true}>
+                {articulo?.descripcion}
+              </ReactMarkdown>
             </div>
+
 
             <div>
               <h2 className="text-xl font-semibold text-gray-900 mb-4">Archivo del Artículo</h2>
               {articulo?.url ? (
-                <a href={articulo.url} className="text-blue-600 hover:text-blue-800 hover:underline" target="_blank" rel="noopener noreferrer">
+                <a href={articulo.url} className="py-2 px-4 rounded bg-blue-500 hover:bg-blue-600 text-white font-bold" target="_blank" rel="noopener noreferrer">
                   Ver archivo
                 </a>
               ) : (

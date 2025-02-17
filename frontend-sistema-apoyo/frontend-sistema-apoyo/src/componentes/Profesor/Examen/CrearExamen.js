@@ -72,7 +72,6 @@ const CrearExamen = () => {
         navigate(-1);
 
         setNombre("");
-        setDescripcion("");
         setExamenUrl([]);
 
         console.log("Examen creado exitosamente");

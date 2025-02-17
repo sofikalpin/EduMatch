@@ -106,11 +106,11 @@ const CrearChat = ({ idusuario, onChatCreado, onClose, chatsExistentes = [] }) =
   }
 
   return (
-    <div className="max-w-3xl w-full mx-auto bg-white rounded-xl shadow-lg">
+    <div className="max-w-screen-lg w-full mx-auto bg-white rounded-xl shadow-lg">
       <div className="p-10">
         <h1 className="text-3xl font-extrabold mb-6">Crear nuevo chat</h1>
-        <div className="space-y-4">
-          <div className="relative">
+        
+        <div className="mb-4">
             <input
               type="text"
               placeholder="Buscar contacto..."
@@ -185,7 +185,6 @@ const CrearChat = ({ idusuario, onChatCreado, onClose, chatsExistentes = [] }) =
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

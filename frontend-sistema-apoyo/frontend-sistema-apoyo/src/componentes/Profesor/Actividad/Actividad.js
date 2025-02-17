@@ -81,23 +81,19 @@ const ActividadesProfesor = () => {
   };
 
   useEffect(() => {
-    // Filtrar por título solo si hay un texto de búsqueda
-    const titlesFiltered = searchQuery
-      ? actividades.filter(
-          (actividad) => actividad.titulo?.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-      : actividades;  // Si no hay búsqueda, no aplicamos filtro por título
-    
-    // Aplicar filtro de creador solo si se seleccionó una opción
-    const filtered = opcionCreacion
-      ? titlesFiltered.filter(
-          (actividad) => actividad.idusuario && actividad.idusuario.toString() === opcionCreacion
-        )
-      : titlesFiltered;  // Si no hay filtro de creador, no filtramos por creador
-    
-    setFilteredActividades(filtered);
+    const titlesFiltered = actividades.filter(
+      (actividad) => actividad.nombre?.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+      
+    const filtered = titlesFiltered.filter(
+      (actividad) => 
+        opcionCreacion === "" || 
+        (actividad.idusuario && actividad.idusuario.toString() === opcionCreacion)
+      );
+      
+      setFilteredActividades(filtered);
   }, [searchQuery, opcionCreacion, actividades]);
-  
+    
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setIsFocused(true);
@@ -172,9 +168,9 @@ const ActividadesProfesor = () => {
                       {/* Usar onClick en lugar de Link para depuración */}
                       <div 
                         onClick={() => handleViewActividad(actividad)}
-                        className="block text-gray-700 cursor-pointer"
+                        className="flex text-gray-700 cursor-pointer"
                       >
-                        {actividad.titulo || "Actividad sin título"}
+                        {actividad.nombre || "Actividad sin título"}
                         {isOwnActividad(actividad) && (
                           <span className="ml-2 px-2 py-1 bg-teal-100 text-teal-800 text-xs rounded-full">Mi actividad</span>
                         )}
@@ -215,41 +211,59 @@ const ActividadesProfesor = () => {
 
         {/* Actividades filtradas */}
         <div className="w-full max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
-  {loading ? (
-    <div className="col-span-full text-center py-8">
-      <p className="text-lg text-gray-600">Cargando actividades...</p>
-    </div>
-  ) : error ? (
-    <div className="col-span-full text-center py-8">
-      <p className="text-lg text-red-500">{error}</p>
-    </div>
-  ) : filteredActividades.length > 0 ? (
-    filteredActividades.map((actividad) => (
-      <div key={actividad.idactividad} className="flex flex-col items-center justify-between bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-        <img src={actividadImg} alt="actividad" className="w-full h-46 object-cover" />
-        <div className="p-6 w-full">
-          <h3 className="font-semibold text-xl text-gray-800 truncate mb-2">{actividad.nombre || "Sin título"}</h3>
-          <p className="text-gray-600 text-sm mb-4">{actividad.descripcion || "Sin descripción"}</p>
-          <div className="flex justify-between items-center w-full">
-            {isOwnActividad(actividad) && (
-              <span className="px-2 py-1 bg-teal-100 text-teal-800 text-xs rounded-full">Mi actividad</span>
-            )}
-            <button
-              onClick={() => handleViewActividad(actividad)}
-              className="w-full py-2 px-3 bg-teal-600 text-white rounded-lg text-sm hover:bg-teal-700 transition-colors duration-300"
-            >
-              Ver actividad
-            </button>
-          </div>
+          {loading ? (
+            <div className="col-span-full text-center py-8">
+              <p className="text-lg text-gray-600">Cargando actividades...</p>
+            </div>
+          ) : error ? (
+            <div className="col-span-full text-center py-8">
+              <p className="text-lg text-red-500">{error}</p>
+            </div>
+          ) : filteredActividades.length === 0 ? (
+            <div className="col-span-full text-center py-8">
+              <p className="text-lg text-gray-500">No hay actividades disponibles para los criterios seleccionados.</p>
+            </div>
+          ) : ( filteredActividades.map((actividad) => {
+            const isUserActividad = isOwnActividad(actividad);
+            return (
+              <div 
+                key={actividad.idactividad} 
+                className={`bg-white shadow-xl rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300 ease-in-out flex flex-col h-[350px] p-4
+                  ${isUserActividad ? 'ring-2 ring-teal-500 bg-teal-50' : ''}`}
+              >
+                {isUserActividad && (
+                  <div className="absolute top-4 right-4 bg-teal-500 text-white px-3 py-1 rounded-full text-xs font-medium z-10">
+                    Mi actividad
+                  </div>
+                )}
+                
+                <div className="relative w-full h-[150px] mb-4">
+                  <img 
+                    src={actividadImg} 
+                    alt="Actividad" 
+                    className="w-auto h-full object-contain mx-auto rounded-lg"  
+                  />
+                </div>
+                <div className="flex flex-col flex-grow justify-between">
+                  <div>
+                    <h3 className="text-xl font-semibold text-[#2c7a7b] mb-2">
+                      {actividad.nombre || "Actividad sin título"}
+                    </h3>
+                  </div>
+                  <div className="flex gap-2 mt-auto">
+                    <button 
+                      onClick={() => handleViewActividad(actividad)}
+                      className="w-full py-2 px-3 bg-teal-600 text-white rounded-lg text-sm hover:bg-teal-700 transition-colors duration-300"
+                    >
+                      Ver actividad
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        )}
         </div>
-      </div>
-    ))
-  ) : (
-    <div className="col-span-full text-center py-8">
-      <p className="text-lg text-gray-600">No se encontraron actividades.</p>
-    </div>
-    )}
-      </div>
       </div>
 
       <Footer />

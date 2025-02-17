@@ -130,8 +130,8 @@ const Perfil = () => {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <div className="bg-white/70 backdrop-blur-lg border-b border-slate-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6">
+      <div className="bg-white/70 backdrop-blur-lg border-b border-slate-200 sticky top-0 z-50" style={{ backgroundColor: '#00A89F' }}>
+        <div className="max-w-7xl mx-auto px-6" >
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center gap-6">
               <img 
@@ -143,7 +143,7 @@ const Perfil = () => {
             </div>
             <button
               onClick={() => setShowLogoutModal(true)}
-              className="px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 rounded-lg transition-all duration-200 hover:shadow-md"
+              className="px-6 py-2.5 text-sm font-medium text-white hover:text-slate-900 border border-slate-200 hover:border-slate-300 rounded-lg transition-all duration-200 hover:shadow-md bg-red-600"
               aria-label="Cerrar sesión"
             >
               Cerrar sesión
@@ -153,17 +153,16 @@ const Perfil = () => {
       </div>
 
       <button
-                  onClick={() => navigate(-1)}
-                  className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium mt-5 ml-10"
-                >
-                  <ArrowLeft className="w-6 h-6" />
-                  <span>Volver</span>
-                </button>
-      
+        onClick={() => navigate(-1)}
+        className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium mt-5 ml-10"
+      >
+        <ArrowLeft className="w-6 h-6" />
+        <span>Volver</span>
+      </button>
 
       {/* Modal de confirmación para cerrar sesión */}
       {showLogoutModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-grey-800 bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
             <h3 className="text-lg font-semibold text-slate-800">¿Seguro que quieres cerrar sesión?</h3>
             <div className="mt-4 flex justify-between gap-4">
@@ -185,19 +184,15 @@ const Perfil = () => {
       )}
 
       <div className="max-w-6xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Card de Perfil Principal */}
-          <div className="lg:col-span-2">
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Información General del Usuario */}
+          <div className="flex-1">
             <div className="bg-white rounded-2xl shadow-sm border border-slate-200/60 overflow-hidden">
               <div className="relative h-48" style={{ backgroundColor: getRandomColor(user.correo) }}>
                 <div className="absolute -bottom-16 left-8 p-1.5 bg-white rounded-2xl shadow-lg">
                   <div className="h-32 w-32 rounded-xl overflow-hidden bg-slate-100">
                     {photoUrl ? (
-                      <img 
-                        src={photoUrl} 
-                        alt="Profile" 
-                        className="h-full w-full object-cover"
-                      />
+                      <img src={photoUrl} alt="Profile" className="h-full w-full object-cover" />
                     ) : (
                       <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
                         <span className="text-4xl font-bold text-slate-400">
@@ -210,9 +205,7 @@ const Perfil = () => {
               </div>
 
               <div className="pt-20 p-8">
-                <h2 className="text-3xl font-bold text-slate-800 mb-2">
-                  {user.nombreCompleto}
-                </h2>
+                <h2 className="text-3xl font-bold text-slate-800 mb-2">{user.nombreCompleto}</h2>
                 <div className="flex items-center gap-3 mb-6">
                   <span className={`inline-flex px-4 py-1.5 rounded-lg text-sm font-medium text-white ${getRoleBadgeColor(user.rol)}`}>
                     {getRoleText(user.rol)}
@@ -223,85 +216,59 @@ const Perfil = () => {
                     </span>
                   )}
                 </div>
-                <p className="text-lg text-slate-600">{user.correo}</p>
+                <p className="text-lg text-left text-slate-600"> Correo: {user.correo}</p>
               </div>
             </div>
           </div>
 
-          {/* Card de Gestión de Foto */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-2xl shadow-sm border border-slate-200/60 p-8">
-              <h3 className="text-xl font-semibold text-slate-800 mb-6">
-                Foto de Perfil
-              </h3>
+          {/* Opciones de edición a la derecha */}
+          <div className="flex flex-col gap-6 w-80">
+            {/* Tarjeta de Foto de Perfil */}
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-200/60 p-6 " style={{ backgroundColor: '#9cddc8' }}>
+              <h3 className="text-xl font-semibold text-slate-800 mb-4">Foto de Perfil</h3>
               <div className="space-y-4">
-                <div>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handlePhotoChange}
-                    className="hidden"
-                    id="photo-upload"
-                    aria-label="Seleccionar imagen"
-                  />
-                  <button
-                    onClick={() => document.getElementById('photo-upload').click()}
-                    className="w-full px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-xl transition-colors duration-200 flex items-center justify-center gap-2"
-                    aria-label="Cambiar foto"
-                  >
-                    Cambiar foto
-                  </button>
-                </div>
+                <input type="file" accept="image/*" onChange={handlePhotoChange} className="hidden" id="photo-upload" />
+                <button
+                  onClick={() => document.getElementById('photo-upload').click()}
+                  className="w-full px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-xl transition-colors"
+                >
+                  Cambiar foto
+                </button>
 
                 {photo && (
                   <div className="space-y-3">
                     <button
                       onClick={handleUpdatePhoto}
                       disabled={isUpdating}
-                      className="w-full px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-xl transition-colors duration-200 disabled:opacity-50"
+                      className="w-full px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-xl transition-colors disabled:opacity-50"
                     >
                       {isUpdating ? 'Actualizando...' : 'Guardar cambios'}
                     </button>
                     <button
                       onClick={handleDeletePhoto}
                       disabled={isUpdating}
-                      className="w-full px-6 py-3 text-red-600 hover:bg-red-50 font-medium rounded-xl transition-colors duration-200 border border-red-200 hover:border-red-300 disabled:opacity-50"
+                      className="w-full px-6 py-3 text-red-600 hover:bg-red-50 font-medium rounded-xl transition-colors border border-red-200 hover:border-red-300 disabled:opacity-50"
                     >
                       Eliminar foto
                     </button>
                   </div>
                 )}
 
-                {error && (
-                  <div className="p-4 bg-red-50 border border-red-200 rounded-xl">
-                    <p className="text-sm text-red-600">{error}</p>
-                  </div>
-                )}
+                {error && <p className="text-sm text-red-600">{error}</p>}
               </div>
-              
+            </div>
+
+            {/* Tarjeta de Edición de Perfil */}
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-200/60 p-6" style={{ backgroundColor: '#c5fec6' }}>
+              <h3 className="text-xl font-semibold text-slate-800 mb-4">Información de Perfil</h3>
+              <button
+                onClick={() => navigate("/editarperfil")}
+                className="w-full px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-xl transition-colors"
+              >
+                Editar Perfil
+              </button>
             </div>
           </div>
-
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-2xl shadow-sm border border-slate-200/60 p-8">
-              <h3 className="text-xl font-semibold text-slate-800 mb-6">
-                Informacion de Perfil
-              </h3>
-              <div className="space-y-4">
-                <div>
-                  <button
-                    onClick={() => navigate("/editarperfil")}
-                    className="w-full px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-xl transition-colors duration-200 flex items-center justify-center gap-2"
-                    aria-label="Cambiar foto"
-                  >
-                    Editar Perfil
-                  </button>
-                </div>
-              </div>
-              
-            </div>
-          </div>
-
         </div>
       </div>
     </div>

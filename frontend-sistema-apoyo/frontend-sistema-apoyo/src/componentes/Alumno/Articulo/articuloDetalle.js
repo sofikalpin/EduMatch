@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import LogoInicio from "../../../logo/LogoInicio.png";
 import chatIcon from "../Imagenes/chat.png";
+import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import articuloImagen from "../Imagenes/articulo.png"
 import Header from '../HeaderAlumno';
@@ -44,34 +45,52 @@ const ArticuloDetalle = () => {
   if (error) return <div className="text-center text-red-600">{error}</div>;
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
+<div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
       <Header />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-12">
-        <div className="flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8">
-        <div className="lg:w-2/3">
+      <main className="flex-grow max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-12">
         
-        <h1 className="text-3xl font-bold text-gray-900">{articulo?.titulo}</h1>
-        <div className="mt-6 flex justify-center">
-          <img src={articuloImagen} alt="Articulo" className="w-32 h-auto rounded-lg shadow-md mx-auto" />
+        <button
+          onClick={() => navigate(-1)}
+          className="mb-8 flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
+        >
+          <ArrowLeft className="w-6 h-6" />
+          <span>Volver</span>
+        </button>
+
+        <div className="bg-white rounded-lg shadow-lg p-8 max-w-3xl mx-auto">
+
+          <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+            <span className="text-gray-600">Fecha de Publicacion: {articulo.fechaCreacion || "No posee fecha"}</span>
+          </div>
+
+          <h1 className="text-4xl font-bold text-gray-900 mb-6 text-center">{articulo?.titulo}</h1>
+
+          <div className="mt-6 flex justify-center">
+            <img src={articuloImagen} alt="Actividad" className="w-40 h-auto rounded-lg shadow-md mx-auto my-4" />
+          </div>
+
+          <p className="text-lg leading-relaxed text-gray-600">{articulo?.descripcion}</p>
+
+          <div className="border-t border-gray-200 mt-8 pt-6">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">Archivo del articulo</h2>
+            {articulo?.url ? (
+              <a
+                href={articulo.url}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.open(articulo.url, "_blank");
+                }}
+                className="py-2 px-6 rounded bg-blue-500 hover:bg-blue-600 text-white font-bold shadow-md"
+              >
+                Ver archivo
+              </a>
+            ) : (
+              <p className="text-gray-500 italic">Este articulo no posee ningún archivo adjunto</p>
+            )}
+          </div>
         </div>
-          <p className="text-lg mt-6 font-semibold text-gray-800">Descripción:</p>
-          <p className="mt-2 text-gray-600">{articulo?.descripcion}</p>
-        <div className="mt-6">
-          <p className="text-gray-800">Archivo del Articulo:</p>
-          <a href={articulo.url || "#"} className="text-blue-500 hover:underline">
-            {articulo.url ? articulo.url : "La actividad no posee ningún link"}
-          </a>
-        </div>
-      </div>
-      <div className="lg:w-1/3">
-        <div className="bg-white p-6 rounded-lg shadow-md">
-        <span className="text-gray-600">Fecha de Publicacion: {articulo.fechaCreacion}</span>
-        </div>
-      </div>
-       
-      </div>
-    </div> 
-    <Footer />
+      </main>
+      <Footer />
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import logoactividad from "../Imagenes/actividades.png";
+import { ArrowLeft } from "lucide-react";
 import Header from "../HeaderAlumno";
 import Footer from "../FooterAlumno";
 import { useParams } from "react-router-dom";
@@ -42,32 +43,50 @@ const ActividadDetalle = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
       <Header />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-12">
-        <div className="flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8">
-        <div className="lg:w-2/3">
+      <main className="flex-grow max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-12">
         
-        <h1 className="text-3xl font-bold text-gray-900">{actividad?.nombre}</h1>
-        <div className="mt-6 flex justify-center">
-          <img src={logoactividad} alt="Actividad" className="w-32 h-auto rounded-lg shadow-md mx-auto" />
+        <button
+          onClick={() => navigate(-1)}
+          className="mb-8 flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
+        >
+          <ArrowLeft className="w-6 h-6" />
+          <span>Volver</span>
+        </button>
+
+        <div className="bg-white rounded-lg shadow-lg p-8 max-w-3xl mx-auto">
+
+          <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+            <span className="text-gray-600">Fecha de Publicacion: {actividad.fechaCreacion || "No posee fecha"}</span>
+          </div>
+
+          <h1 className="text-4xl font-bold text-gray-900 mb-6 text-center">{actividad?.nombre}</h1>
+
+          <div className="mt-6 flex justify-center">
+            <img src={logoactividad} alt="Actividad" className="w-40 h-auto rounded-lg shadow-md mx-auto my-4" />
+          </div>
+
+          <p className="text-lg leading-relaxed text-gray-600">{actividad?.descripcion}</p>
+
+          <div className="border-t border-gray-200 mt-8 pt-6">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">Archivo de la Actividad</h2>
+            {actividad?.url ? (
+              <a
+                href={actividad.url}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.open(actividad.url, "_blank");
+                }}
+                className="py-2 px-6 rounded bg-blue-500 hover:bg-blue-600 text-white font-bold shadow-md"
+              >
+                Ver archivo
+              </a>
+            ) : (
+              <p className="text-gray-500 italic">Esta actividad no posee ningún archivo adjunto</p>
+            )}
+          </div>
         </div>
-          <p className="text-lg mt-6 font-semibold text-gray-800">Descripción:</p>
-          <p className="mt-2 text-gray-600">{actividad?.descripcion}</p>
-        <div className="mt-6">
-          <p className="text-gray-800">Archivo de la actividad:</p>
-          <a href={actividad.url || "#"} className="text-blue-500 hover:underline">
-            {actividad.url ? actividad.url : "La actividad no posee ningún link"}
-          </a>
-        </div>
-      </div>
-      <div className="lg:w-1/3">
-        <div className="bg-white p-6 rounded-lg shadow-md">
-        <span className="text-gray-600">Fecha de Publicacion: {actividad.fechaCreacion}</span>
-        </div>
-      </div>
-       
-      </div>
-    </div> 
-    <Footer />
+      </main>
+      <Footer />
     </div>
   );
 };

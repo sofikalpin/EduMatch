@@ -21,7 +21,6 @@ const ExamenDetalle = () => {
         setLoading(true);
         const respuesta = await axios.get(`http://localhost:5228/api/examenes/ExamenID?id=${idexamen}`);
         if (respuesta.data.status) {
-          console.log("Respuesta completa de la API:", respuesta.data);
           setExamen(respuesta.data.value);
         } else {
           setError(respuesta.data.message);
@@ -35,7 +34,7 @@ const ExamenDetalle = () => {
     encontrarExamen();
   }, [idexamen]);
 
-  const handleDeleteArticulo = async () => {
+  const handleDelete = async () => {
 
     if (user.idUsuario !== examen?.idusuario) {
       alert("No tienes permisos para eliminar este examen.");
@@ -110,7 +109,7 @@ const ExamenDetalle = () => {
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-3xl font-bold text-gray-900">{examen?.titulo}</h1>
             <button
-              onClick={handleDeleteArticulo}
+              onClick={handleDelete}
               className={`p-2 rounded-full transition-colors duration-200 ml-4 ${
                 user.idUsuario !== examen?.idusuario
                   ? "bg-red-200 cursor-not-allowed"

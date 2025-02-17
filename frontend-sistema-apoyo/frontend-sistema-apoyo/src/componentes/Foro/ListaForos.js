@@ -53,7 +53,13 @@ const ListarForos = () => {
         cargarForos();
     }, []);
 
-    const handleNuevoForo = () => navigate("/crear-foro");
+    const handleNuevoForo = () => {
+        if (user.rol === 1){
+            navigate("/crear-foro");
+        }else{
+            alert("Los alumnos no tienen permitidos crear foros.")
+        }
+    }
 
     const foroNivel = foros.filter(
         (foro) => nivelSeleccionado === "" || (foro.idnivel && foro.idnivel.toString() === nivelSeleccionado)
@@ -67,7 +73,7 @@ const ListarForos = () => {
 
             <HeaderForo/>
 
-            <main className="w-full max-w-5xl px-6 py-10 mx-auto">
+            <main className="flex-grow w-full max-w-5xl px-6 py-10 mx-auto">
 
                 <button
                     onClick={() => navigate(-1)} // Redirigir a la página anterior
@@ -94,8 +100,8 @@ const ListarForos = () => {
                     </select>
 
                     <button
-                    onClick={handleNuevoForo}
-                    className="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-full transition focus:outline-none focus:ring focus:ring-teal-400"
+                        onClick={handleNuevoForo}
+                        className="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-full transition focus:outline-none focus:ring focus:ring-teal-400"
                     >
                         <Plus className="w-5 h-5" />
                         <span>Nuevo Foro</span>

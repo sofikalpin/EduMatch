@@ -261,11 +261,11 @@ const ArticulosProfesor = () => {
                   </div>
                   <div className="flex flex-col flex-grow justify-between">
                     <div>
-                      <h3 className="text-xl font-semibold text-[#2c7a7b] mb-2 truncate">
+                      <h3 className="text-xl font-semibold text-[#2c7a7b] mb-2">
                         {articulo.titulo || articulo.nombre || "Artículo sin título"}
                       </h3>
-                      <p className="text-sm text-gray-600 mb-2 line-clamp-3">
-                        {articulo.descripcion || "Sin descripción"}
+                      <p className="text-sm text-gray-600 mb-2 line-clamp-3 truncate">
+                        {articulo.descripcion || "Sin descripción"}...
                       </p>
                     </div>
                     <div className="flex gap-2 mt-auto">

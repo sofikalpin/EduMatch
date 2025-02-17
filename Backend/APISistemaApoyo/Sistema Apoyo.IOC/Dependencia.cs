@@ -43,6 +43,7 @@ namespace SistemaApoyo.IOC
             services.AddScoped<IAdministrador, AdministradorService>();
             services.AddScoped<IReseñaAlumnoService, ReseñaAlumnoService>();
             services.AddScoped<IReseñaService, ReseñaService>();
+            services.AddScoped<IBolsatrabajoService, BolsatrabajoService>();
             services.AddSignalR();
           
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

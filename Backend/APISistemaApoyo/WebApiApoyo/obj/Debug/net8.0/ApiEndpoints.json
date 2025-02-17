@@ -426,6 +426,58 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SistemaApoyo.API.Controllers.BolsatrabajoController",
+    "Method": "Create",
+    "RelativePath": "api/Bolsatrabajo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "SistemaApoyo.DTO.BolsatrabajoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SistemaApoyo.API.Controllers.BolsatrabajoController",
+    "Method": "GetAll",
+    "RelativePath": "api/Bolsatrabajo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SistemaApoyo.API.Controllers.BolsatrabajoController",
+    "Method": "GetById",
+    "RelativePath": "api/Bolsatrabajo/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SistemaApoyo.API.Controllers.BolsatrabajoController",
+    "Method": "GetProfesoresIngles",
+    "RelativePath": "api/Bolsatrabajo/ingles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WebApiApoyo.Controllers.ChatController",
     "Method": "ObtenerChatPorId",
     "RelativePath": "API/Chat/ChatporID",

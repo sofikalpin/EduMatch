@@ -17,9 +17,9 @@ public partial class Bolsatrabajo
 
     public string Especildad { get; set; } = null!;
 
-    public string Nivel { get; set; } = null!;
+    public string? Nivel { get; set; } 
 
-    public string? CvUrl { get; set; }
+    public string CvUrl { get; set; } = null!;
 
     public virtual Usuario IdusuarioNavigation { get; set; } = null!;
 }

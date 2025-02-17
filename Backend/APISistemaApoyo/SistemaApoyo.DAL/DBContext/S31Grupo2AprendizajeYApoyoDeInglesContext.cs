@@ -123,7 +123,7 @@ namespace SistemaApoyo.DAL.DBContext {
                 entity.ToTable("bolsatrabajo");
 
                 entity.Property(e => e.Idbolsa)
-                    .ValueGeneratedNever()
+                     .ValueGeneratedOnAdd()
                     .HasColumnName("idbolsa");
                 entity.Property(e => e.Correo)
                     .HasColumnType("character varying")

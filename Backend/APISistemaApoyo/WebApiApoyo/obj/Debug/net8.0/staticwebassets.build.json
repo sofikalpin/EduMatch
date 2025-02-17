@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3Bgs3ZGpSShMXo+rV4SNrEjSXDnnKEHtqnQjZcqnt2U=",
+  "Hash": "EUhbWnVFYiW/Qqk/LlKOyeEH0XnQUT2nPpEzi2EZxw8=",
   "Source": "WebApiApoyo",
   "BasePath": "_content/WebApiApoyo",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "WebApiApoyo\\wwwroot",
       "Source": "WebApiApoyo",
-      "ContentRoot": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\",
       "BasePath": "_content/WebApiApoyo",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\fotos\\foto_15_638753272166970647.jpg",
+      "Identity": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\fotos\\foto_15_638753272166970647.jpg",
       "SourceId": "WebApiApoyo",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\",
       "BasePath": "_content/WebApiApoyo",
       "RelativePath": "fotos/foto_15_638753272166970647#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -41,7 +41,7 @@
   "Endpoints": [
     {
       "Route": "fotos/foto_15_638753272166970647.iq0y28zagi.jpg",
-      "AssetFile": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\fotos\\foto_15_638753272166970647.jpg",
+      "AssetFile": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\fotos\\foto_15_638753272166970647.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -62,7 +62,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 16 Feb 2025 22:12:28 GMT"
+          "Value": "Mon, 17 Feb 2025 16:56:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -86,7 +86,7 @@
     },
     {
       "Route": "fotos/foto_15_638753272166970647.jpg",
-      "AssetFile": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\fotos\\foto_15_638753272166970647.jpg",
+      "AssetFile": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\fotos\\foto_15_638753272166970647.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -107,7 +107,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 16 Feb 2025 22:12:28 GMT"
+          "Value": "Mon, 17 Feb 2025 16:56:24 GMT"
         },
         {
           "Name": "Cache-Control",

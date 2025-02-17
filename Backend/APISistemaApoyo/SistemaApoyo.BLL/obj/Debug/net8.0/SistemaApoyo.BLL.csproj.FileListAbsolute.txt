@@ -278,3 +278,25 @@ C:\Users\Usuario\Desktop\Desarrollo 2024\Desarrollo de Software\90 INTERACCION M
 C:\Users\Usuario\Desktop\Desarrollo 2024\Desarrollo de Software\90 INTERACCION MAGUI\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\refint\SistemaApoyo.BLL.dll
 C:\Users\Usuario\Desktop\Desarrollo 2024\Desarrollo de Software\90 INTERACCION MAGUI\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.pdb
 C:\Users\Usuario\Desktop\Desarrollo 2024\Desarrollo de Software\90 INTERACCION MAGUI\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\ref\SistemaApoyo.BLL.dll
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.deps.json
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.dll
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.pdb
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DAL.dll
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DTO.dll
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Model.dll
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Utility.dll
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DAL.pdb
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DTO.pdb
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Model.pdb
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Utility.pdb
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.csproj.AssemblyReference.cache
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.AssemblyInfoInputs.cache
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.AssemblyInfo.cs
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.csproj.CoreCompileInputs.cache
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.sourcelink.json
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaA.12C0A08E.Up2Date
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.dll
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\refint\SistemaApoyo.BLL.dll
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.pdb
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\ref\SistemaApoyo.BLL.dll

@@ -1,6 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Sistema Apoyo.IOC",
+    "\\SistemaApoyo.BLL",
+    "\\SistemaApoyo.BLL\\Servicios",
+    "\\SistemaApoyo.BLL\\Validaciones",
+    "\\SistemaApoyo.DAL",
+    "\\SistemaApoyo.DAL\\DBContext",
+    "\\WebApiApoyo"
   ],
   "SelectedNode": "\\APISistemaApoyo.sln",
   "PreviewInSolutionExplorer": false

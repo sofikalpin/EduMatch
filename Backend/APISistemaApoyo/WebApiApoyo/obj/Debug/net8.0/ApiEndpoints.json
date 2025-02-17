@@ -469,6 +469,22 @@
   },
   {
     "ContainingType": "SistemaApoyo.API.Controllers.BolsatrabajoController",
+    "Method": "EliminarActividad",
+    "RelativePath": "api/Bolsatrabajo/EliminarBolsa",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SistemaApoyo.API.Controllers.BolsatrabajoController",
     "Method": "GetProfesoresIngles",
     "RelativePath": "api/Bolsatrabajo/ingles",
     "HttpMethod": "GET",

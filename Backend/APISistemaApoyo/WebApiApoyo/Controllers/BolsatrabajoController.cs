@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using SistemaApoyo.BLL.Servicios;
+using SistemaApoyo.API.Utilidad;
 
 namespace SistemaApoyo.API.Controllers
 {
@@ -16,7 +17,7 @@ namespace SistemaApoyo.API.Controllers
     public class BolsatrabajoController : Controller
     {
         private readonly IBolsatrabajoService _bolsaTrabajoService;
-        private readonly ILogger<BolsatrabajoController> _logger; // Inyectamos el logger
+        private readonly ILogger<BolsatrabajoController> _logger; 
 
         public BolsatrabajoController(IBolsatrabajoService bolsaTrabajoService, ILogger<BolsatrabajoController> logger)
         {
@@ -94,7 +95,7 @@ namespace SistemaApoyo.API.Controllers
 
 
 
-        // GET: api/Bolsatrabajo/{id}
+        
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -110,6 +111,31 @@ namespace SistemaApoyo.API.Controllers
 
             _logger.LogInformation("Bolsa de trabajo encontrada: {@BolsaTrabajo}", bolsaTrabajo);
             return Ok(bolsaTrabajo);
+        }
+
+        [HttpDelete]
+        [Route("EliminarBolsa")]
+        public async Task<IActionResult> EliminarActividad(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest("El ID proporcionado no es válido.");
+            }
+
+            var rsp = new Response<string>();
+
+            try
+            {
+                var eli = await _bolsaTrabajoService.Eliminar(id);
+                rsp.status = true;
+                rsp.value = "Se elimino JellyJobs con exito.";
+            }
+            catch (Exception ex)
+            {
+                rsp.status = false;
+                _logger.LogError(ex, "Error al eliminar JellyJobs");
+            }
+            return Ok(rsp);
         }
 
 

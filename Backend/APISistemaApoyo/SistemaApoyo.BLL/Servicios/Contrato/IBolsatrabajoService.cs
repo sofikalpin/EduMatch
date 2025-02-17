@@ -12,7 +12,8 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
         Task<BolsatrabajoDTO?> Create(BolsatrabajoDTO dto);
         Task<IEnumerable<BolsatrabajoDTO>> GetAll();
         Task<BolsatrabajoDTO?> GetById(int id);
-        Task<IEnumerable<BolsatrabajoDTO>> GetProfesoresIngles(); // Obtener solo profesores de inglés
+        Task<IEnumerable<BolsatrabajoDTO>> GetProfesoresIngles();
+        Task<bool> Eliminar(int id);
 
     }
 }

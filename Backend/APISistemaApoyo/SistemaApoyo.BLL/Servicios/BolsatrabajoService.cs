@@ -123,5 +123,23 @@ namespace SistemaApoyo.BLL.Servicios
 
             return bolsaTrabajoDTOs;
         }
+        public async Task<bool> Eliminar(int id)
+        {
+            try
+            {
+                var actividadEncontrada = await _bolsaTrabajoRepository.Obtener(a => a.Idbolsa == id);
+                if (actividadEncontrada == null)
+                    throw new TaskCanceledException("JellyJobs no encontrada.");
+
+                bool respuesta = await _bolsaTrabajoRepository.Eliminar(actividadEncontrada);
+                if (!respuesta)
+                    throw new TaskCanceledException("No se pudo eliminar");
+                return respuesta;
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

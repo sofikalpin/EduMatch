@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ghUSBld9FZHdIAib/FKuTyPDVFpY2Oyhstv0oxzNIB0=",
+  "Hash": "i8fKhxdpLsrbSs5WAqyQXbX2IM5tKle98+FE5gWhDBA=",
   "Source": "WebApiApoyo",
   "BasePath": "_content/WebApiApoyo",
   "Mode": "Default",
@@ -10,219 +10,49 @@
     {
       "Name": "WebApiApoyo\\wwwroot",
       "Source": "WebApiApoyo",
-      "ContentRoot": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\95 CASILISTO - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\",
       "BasePath": "_content/WebApiApoyo",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\fotos\\foto_15_638753272166970647.jpg",
+      "Identity": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\95 CASILISTO - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\fotos\\foto_15_638753272166970647.jpg",
       "SourceId": "WebApiApoyo",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\95 CASILISTO - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\",
       "BasePath": "_content/WebApiApoyo",
-      "RelativePath": "fotos/foto_15_638753272166970647#[.{fingerprint}]?.jpg",
+      "RelativePath": "fotos/foto_15_638753272166970647.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "iq0y28zagi",
-      "Integrity": "xrV5suYPpyHVy9+l9rFv3PtkTKlhhsv0ZiU/l7TYXwo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\fotos\\foto_15_638753272166970647.jpg"
     },
     {
-      "Identity": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\fotos\\foto_5_638754022455925407.jpg",
+      "Identity": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\95 CASILISTO - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\fotos\\foto_5_638754022455925407.jpg",
       "SourceId": "WebApiApoyo",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\Desarrollo 2024\\Desarrollo de Software\\95 CASILISTO - SOFIRAGGI\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\",
       "BasePath": "_content/WebApiApoyo",
-      "RelativePath": "fotos/foto_5_638754022455925407#[.{fingerprint}]?.jpg",
+      "RelativePath": "fotos/foto_5_638754022455925407.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
+      "AssetMergeBehavior": "PreferTarget",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "d5lwikb67k",
-      "Integrity": "EYVbws5FnWNqPwI+vMgRg/uuGeKtOJuhXN29OQW/kGs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\fotos\\foto_5_638754022455925407.jpg"
-    }
-  ],
-  "Endpoints": [
-    {
-      "Route": "fotos/foto_15_638753272166970647.iq0y28zagi.jpg",
-      "AssetFile": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\fotos\\foto_15_638753272166970647.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "6027"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"xrV5suYPpyHVy9+l9rFv3PtkTKlhhsv0ZiU/l7TYXwo=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 16 Feb 2025 22:12:28 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "iq0y28zagi"
-        },
-        {
-          "Name": "label",
-          "Value": "fotos/foto_15_638753272166970647.jpg"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-xrV5suYPpyHVy9+l9rFv3PtkTKlhhsv0ZiU/l7TYXwo="
-        }
-      ]
-    },
-    {
-      "Route": "fotos/foto_15_638753272166970647.jpg",
-      "AssetFile": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\fotos\\foto_15_638753272166970647.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "6027"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"xrV5suYPpyHVy9+l9rFv3PtkTKlhhsv0ZiU/l7TYXwo=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 16 Feb 2025 22:12:28 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-xrV5suYPpyHVy9+l9rFv3PtkTKlhhsv0ZiU/l7TYXwo="
-        }
-      ]
-    },
-    {
-      "Route": "fotos/foto_5_638754022455925407.d5lwikb67k.jpg",
-      "AssetFile": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\fotos\\foto_5_638754022455925407.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "25014"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"EYVbws5FnWNqPwI+vMgRg/uuGeKtOJuhXN29OQW/kGs=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 17 Feb 2025 18:24:45 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "d5lwikb67k"
-        },
-        {
-          "Name": "label",
-          "Value": "fotos/foto_5_638754022455925407.jpg"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-EYVbws5FnWNqPwI+vMgRg/uuGeKtOJuhXN29OQW/kGs="
-        }
-      ]
-    },
-    {
-      "Route": "fotos/foto_5_638754022455925407.jpg",
-      "AssetFile": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\wwwroot\\fotos\\foto_5_638754022455925407.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "25014"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"EYVbws5FnWNqPwI+vMgRg/uuGeKtOJuhXN29OQW/kGs=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 17 Feb 2025 18:24:45 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-EYVbws5FnWNqPwI+vMgRg/uuGeKtOJuhXN29OQW/kGs="
-        }
-      ]
     }
   ]
 }

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react';
-import { Upload } from "lucide-react";
 import Header from "../HeaderProfesor";
 import drive from "../Imagenes/google-drive.png";
 import youtube from "../Imagenes/youtube.png";
@@ -11,8 +10,7 @@ import { useUser } from "../../../context/userContext";
 
 const CrearExamen = () => {
   const location = useLocation();
-  const { id } = location.state;
-
+  const { nivel } = location.state || {};
   const { user } = useUser();
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
@@ -23,26 +21,30 @@ const CrearExamen = () => {
   const navigate = useNavigate();  
   
   const validarURL = (url) => {
-    const regex = /^(ftp|http|https):\/\/[^ "]+$/;
+    const regex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
     return regex.test(url);
-  }
+  };
 
   const handleAgregarUrl = () => {
     if (nuevaUrl.trim() !== "") {
-      setExamenUrl([...examenUrl, nuevaUrl]);
-      setNuevaUrl("");
+      if (validarURL(nuevaUrl)) {
+        setExamenUrl([...examenUrl, nuevaUrl]);
+        setNuevaUrl("");  // Limpiar el campo después de agregar
+      } else {
+        alert("URL no válida. Por favor ingrese una URL válida.");
+      }
     } else {
       alert("Ingrese un URL antes de agregar");
     }
-  }
+  };
 
   const handleConfirmarUrl = () => {
-    if (examenUrl.length > 0 && examenUrl[0].trim() !== "") {
+    if (examenUrl.length > 0) {
       alert("URLs cargadas correctamente: " + examenUrl.join(";"));
     } else {
       alert("No se han cargado URLs.");
     }
-  }
+  };  
 
   const handleCrearExamen = async (e) => {
     e.preventDefault();
@@ -55,15 +57,16 @@ const CrearExamen = () => {
         idusuario: user?.idUsuario,
         titulo: nombre.trim(),
         calificacion: descripcion.trim(),
-        idnivel: id,
+        idnivel: nivel,
         fechaCreacion: new Date().toISOString().split("T")[0],
-        url: examenUrl.length > 0 ? examenUrl.join(";") : "",
+        url: examenUrl.length > 0 ? examenUrl[0] : "",
       };
-
+      console.log(nuevoExamen);
       const response = await axios.post(
         "http://localhost:5228/api/ProfeExamen/CrearExamen",
         nuevoExamen
       );
+
       if (response.data.status) {
         alert("Examen creado exitosamente");
         navigate(-1);
@@ -137,7 +140,7 @@ const CrearExamen = () => {
                   className="w-full p-4 border-2 border-gray-200 rounded-xl shadow-sm focus:ring-4 focus:ring-teal-200 focus:border-teal-400 transition duration-300 bg-white"
                   value={descripcion}
                   onChange={(e) => setDescripcion(e.target.value)}
-                  placeholder="Ingrese la calificación máxima del examen..."
+                  placeholder="Ingrese el valor numerico de la calificación máxima del examen..."
                 />
               </div>
 

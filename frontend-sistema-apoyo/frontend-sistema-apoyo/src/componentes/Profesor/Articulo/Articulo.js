@@ -1,151 +1,293 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import { FaSearch } from "react-icons/fa";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react';
-import { useNavigate, useParams } from "react-router-dom";  
+import articuloImg from "../Imagenes/articulo.jpg";
 import Header from "../HeaderProfesor";
-import Footer from "../FooterProfesor";  
-import articuloImg from "../Imagenes/articulo.jpg"; // Cambia la imagen por la de artículo
+import Footer from "../FooterProfesor";
 import axios from "axios";
 import { useUser } from "../../../context/userContext";
 
-const Articulo = () => {
-  const { id } = useParams();
-  const { user } = useUser();
+const ArticulosProfesor = () => {
+  const location = useLocation();
+  const { nivel, nombre } = location.state || {};
+  const [searchQuery, setSearchQuery] = useState("");
   const [articulos, setArticulos] = useState([]);
+  const [filteredArticles, setFilteredArticles] = useState([]);
+  const [isFocused, setIsFocused] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [opcionCreacion, setOpcionCreacion] = useState("");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const { user } = useUser();
 
   const idProfesor = user?.idUsuario;
 
-  // Cargar artículos desde una API al montar el componente
+  // Depuración: Mostrar el estado inicial
+  useEffect(() => {
+    console.log("Estado inicial - nivel:", nivel);
+    console.log("Estado inicial - nombre:", nombre);
+    console.log("Estado inicial - idProfesor:", idProfesor);
+  }, [nivel, nombre, idProfesor]);
+
   useEffect(() => {
     const fetchArticulos = async () => {
       setLoading(true);
+      setError("");
       try {
-        const response = await axios.get(`http://localhost:5228/API/Articulo/ArticulosPorNivel?idNivel=${id}`); // Ajusta la ruta de tu API
+        const idNivel = nivel;
+        // Depuración: Verificar el ID del nivel
+        console.log("Fetching artículos para nivel ID:", idNivel);
         
-        if (response.data.status && Array.isArray(response.data.value)){
-          setArticulos(response.data.value);
-        } else {
-          console.error("Error al cargar los artículos" + response.data.message);
-          setError(response.data.message);
+        if (!idNivel) {
+          throw new Error("El ID del nivel no está disponible.");
         }
 
+        const response = await axios.get(`http://localhost:5228/API/Articulo/ArticulosPorNivel?idNivel=${idNivel}`);
+        // Depuración: Verificar respuesta del servidor
+        console.log("Respuesta del servidor:", response.data);
+        
+        if (response.data.status && Array.isArray(response.data.value)) {
+          setArticulos(response.data.value);
+          setFilteredArticles(response.data.value);
+          // Depuración: Mostrar los artículos recibidos
+          console.log("Artículos recibidos:", response.data.value);
+        } else {
+          setError(response.data.message || "Error al cargar los artículos");
+        }
       } catch (error) {
-        console.error("Error al cargar los artículos: ", error);
-        setError("Error al conectar con el servidor.");
+        console.error("Error fetching articulos:", error);
+        setError("Error al conectar con el servidor, inténtelo más tarde.");
+        setArticulos([]);
+        setFilteredArticles([]);
       } finally {
         setLoading(false);
       }
     };
-    fetchArticulos();
-  }, [id]);
+    
+    if (nivel) {
+      fetchArticulos();
+    } else {
+      setError("No se ha especificado un nivel válido");
+      setLoading(false);
+    }
+  }, [nivel]);
 
-  const articuloCreador = articulos.filter(
-    (articulo) => 
-      opcionCreacion === "" || 
-      (articulo.idusuario && articulo.idusuario.toString() === opcionCreacion)
-  );
+
+  const handleViewArticle = (articulo) => {
+    // Navegar manualmente con toda la información necesaria
+    navigate(`/profesor/cursos/detalle/articulos/${articulo.idarticulo}`, {
+      state: {
+        nivel: nivel,
+        nombreNivel: nombre,
+        idArticulo: articulo.idarticulo,
+        fromListPage: true
+      }
+    });
+  };
+
+  useEffect(() => {
+    // Filtrar por título
+    const titlesFiltered = articulos.filter(
+      (articulo) => articulo.titulo?.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    
+    // Aplicar filtro de creador
+    const filtered = titlesFiltered.filter(
+      (articulo) => 
+        opcionCreacion === "" || 
+        (articulo.idusuario && articulo.idusuario.toString() === opcionCreacion)
+    );
+    
+    setFilteredArticles(filtered);
+  }, [searchQuery, opcionCreacion, articulos]);
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+    setIsFocused(true);
+  };
 
   const handleNuevoArticulo = () => {
-    if (user.nivel < id) {
-      alert("Su nivel de perfil es menor al nivel correspondiente al articulo que desea crear. Por favor cree articulos con su nivel o menor a este.")
+    if (user.nivel < nivel) {
+      alert("Su nivel de perfil es menor al nivel correspondiente al artículo que desea crear. Por favor cree artículos con su nivel o menor a este.");
     } else {
-      navigate("/crear-articulo", { state: { id } })
+      // Depuración: Verificar datos antes de navegar a crear artículo
+      console.log("Navegando a crear artículo con nivel:", nivel);
+      
+      navigate("/crear-articulo", { 
+        state: { 
+          id: nivel,
+          nivelNombre: nombre 
+        } 
+      });
     }
-  }
+  };
+
+  // Verificar si un artículo pertenece al profesor
+  const isOwnArticle = (articulo) => {
+    return articulo.idusuario && articulo.idusuario.toString() === idProfesor?.toString();
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 via-white to-blue-100">
-      {/* Se agrega el Header */}
       <Header />
-      
-      {/* Contenido principal */}
-      <div className="curso-detalles-container flex-grow px-12 py-16 text-center bg-[#f0faf7]">
+
+      <div className="flex-grow flex flex-col items-center justify-center px-5 py-10">
         
-        {/* Contenedor para el botón Volver y título */}
-        <div className="relative mt-[-20px]">
+        {/* Contenedor para "Volver" y el título */}
+        <div className="flex items-center justify-between w-full mb-6">
           <button
             onClick={() => navigate(-1)}
-            className="absolute left-0 -ml-2 flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
+            className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
           >
             <ArrowLeft className="w-6 h-6" />
             <span>Volver</span>
           </button>
 
-          <h1 className="text-5xl font-bold text-[#2c7a7b] text-center w-full">
-            Artículos
-          </h1>
+          <h1 className="text-5xl font-bold text-[#2c7a7b] text-center flex-grow">Artículos</h1>
         </div>
 
-        <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto mt-10">Explora y accede a los artículos disponibles.</p>
+        <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Explora y administra los artículos disponibles.</p>
 
-        {/* Filtro y botón de Crear nuevo artículo*/}
-        <div className="mb-4 flex items-center justify-between space-x-4">
-          <div className="flex items-center space-x-4">
-            <label htmlFor="nivel-select" className="text-base font-semibold text-gray-700">
-              Filtrar:
-            </label>
+        {/* Fila con buscador y botón de crear nuevo artículo */}
+        <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
+          {/* Buscador */}
+          <div className="relative w-full md:w-2/3">
+            <div className="relative">
+              <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Buscar artículo..."
+                className="w-full p-3 pl-12 border-2 border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300 bg-white"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setTimeout(() => setIsFocused(false), 200)}
+              />
+            </div>
+
+            {/* Lista desplegable de resultados del buscador */}
+            {isFocused && searchQuery && (
+              <ul className="absolute w-full bg-white shadow-lg rounded-lg mt-2 max-h-48 overflow-y-auto border border-gray-200 z-20">
+                {loading ? (
+                  <p className="text-center py-4">Cargando artículos...</p>
+                ) : error ? (
+                  <p className="text-center py-4 text-red-500">{error}</p>
+                ) : filteredArticles.length > 0 ? (
+                  filteredArticles.map((articulo) => (
+                    <li key={articulo.idarticulo} className="p-3 hover:bg-gray-100 cursor-pointer transition-all">
+                      {/* Usar onClick en lugar de Link para depuración */}
+                      <div 
+                        onClick={() => handleViewArticle(articulo)}
+                        className="block text-gray-700 cursor-pointer"
+                      >
+                        {articulo.titulo || "Artículo sin título"}
+                        {isOwnArticle(articulo) && (
+                          <span className="ml-2 px-2 py-1 bg-teal-100 text-teal-800 text-xs rounded-full">Mi artículo</span>
+                        )}
+                      </div>
+                    </li>
+                  ))
+                ) : (
+                  <li className="p-3 text-center text-gray-500">No se encontraron resultados</li>
+                )}
+              </ul>
+            )}
+          </div>
+
+          {/* Filtro de "Mis artículos" */}
+          <div className="flex items-center gap-3 w-full md:w-auto">
             <select
               id="nivel-select"
               value={opcionCreacion}
               onChange={(e) => setOpcionCreacion(e.target.value)}
-              className="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-lg w-60"
+              className="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base w-full md:w-48"
             >
               <option value="">Todos los artículos</option>
               <option value={idProfesor?.toString()}>Mis artículos</option>
             </select>
-          </div>
 
-          {/* Botón "Crear nuevo artículo" en la misma línea */}
-          <button 
-            onClick={() => handleNuevoArticulo()}
-            className={ `py-2 px-6 rounded-full text-lg transition-all 
-              ${user.nivel < id 
-                ? "bg-gray-400 cursor-not-allowed text-gray-200" 
-                : "bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700"}
-            `}
-          >
-            Crear nuevo articulo
-          </button>
+            {/* Botón "Crear nuevo artículo" */}
+            <button 
+              onClick={handleNuevoArticulo}
+              className={`py-2 px-4 rounded-lg text-base transition-all whitespace-nowrap
+                ${user.nivel < nivel 
+                  ? "bg-gray-400 cursor-not-allowed text-gray-200" 
+                  : "bg-gradient-to-r from-teal-500 to-teal-600 text-white hover:from-teal-600 hover:to-teal-700"}
+              `}
+            >
+              Crear artículo
+            </button>
+          </div>
         </div>
 
-        <div className="tarjetas-detalles flex justify-center gap-8 flex-wrap grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {/* Artículos filtrados */}
+        <div className="w-full max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
           {loading ? (
-            <p>Cargando artículos ...</p>
+            <div className="col-span-full text-center py-8">
+              <p className="text-lg text-gray-600">Cargando artículos...</p>
+            </div>
           ) : error ? (
-            <p className="text-red-500">{error}</p>
-          ) : articuloCreador.length > 0 ? (
-            articuloCreador.map((articulo) => (
-              <div 
-                key={articulo.idarticulo} 
-                className="tarjeta-detalle bg-white border border-gray-200 rounded-xl shadow-lg p-6 text-center no-underline text-gray-800 transition-transform duration-300 ease-in-out hover:transform hover:-translate-y-2 hover:shadow-2xl flex flex-col justify-between"
-              >
-                <img src={articuloImg} alt="Imagen de artículo" className="tarjeta-imagen w-full h-40 object-cover rounded-lg mb-4" />
-                <div className="tarjeta-texto">
-                  <h3 className="text-2xl font-semibold text-[#2c7a7b] mb-2">{articulo.nombre}</h3>
-                  <p className="text-base text-gray-600">{articulo.descripcion}</p>
-                </div>
-                <button 
-                  onClick={() => navigate(`/articulo/${articulo.idarticulo}`)}
-                  className="mt-4 py-2 px-4 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
-                >
-                  Acceder
-                </button>
-              </div>
-            ))
+            <div className="col-span-full text-center py-8">
+              <p className="text-lg text-red-500">{error}</p>
+            </div>
+          ) : filteredArticles.length === 0 ? (
+            <div className="col-span-full text-center py-8">
+              <p className="text-lg text-gray-500">No hay artículos disponibles para los criterios seleccionados.</p>
+            </div>
           ) : (
-            <p className="text-center text-gray-500 text-xl">No hay artículos disponibles</p>
+            filteredArticles.map((articulo) => {
+              const isUserArticle = isOwnArticle(articulo);
+              return (
+                <div 
+                  key={articulo.idarticulo} 
+                  className={`bg-white shadow-xl rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300 ease-in-out flex flex-col h-[350px] p-4
+                    ${isUserArticle ? 'ring-2 ring-teal-500 bg-teal-50' : ''}
+                  `}
+                >
+                  {/* Etiqueta "Mi artículo" - Solo visible para artículos del usuario */}
+                  {isUserArticle && (
+                    <div className="absolute top-4 right-4 bg-teal-500 text-white px-3 py-1 rounded-full text-xs font-medium z-10">
+                      Mi artículo
+                    </div>
+                  )}
+                  
+                  <div className="relative w-full h-[150px] mb-4"> {/* Contenedor para la imagen */}
+                    <img 
+                      src={articuloImg} 
+                      alt="Artículo" 
+                      className="w-auto h-full object-contain mx-auto rounded-lg"  
+                    />
+                  </div>
+                  <div className="flex flex-col flex-grow justify-between">
+                    <div>
+                      <h3 className="text-xl font-semibold text-[#2c7a7b] mb-2 truncate">
+                        {articulo.titulo || articulo.nombre || "Artículo sin título"}
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-2 line-clamp-3">
+                        {articulo.descripcion || "Sin descripción"}
+                      </p>
+                    </div>
+                    <div className="flex gap-2 mt-auto">
+                      
+                      <button 
+                        onClick={() => handleViewArticle(articulo)}
+                        className="w-full py-2 px-3 bg-teal-600 text-white rounded-lg text-sm hover:bg-teal-700 transition-colors duration-300"
+                      >
+                        Ver artículo
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })
           )}
-
         </div>
       </div>
 
-      {/* Footer al final de la página */}
       <Footer />
     </div>
   );
 };
 
-export default Articulo;
+export default ArticulosProfesor;

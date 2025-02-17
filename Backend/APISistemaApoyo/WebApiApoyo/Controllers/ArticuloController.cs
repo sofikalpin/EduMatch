@@ -88,7 +88,7 @@ namespace SistemaApoyo.API.Controllers
         [Route("ArticulosPorNivel")]
         public async Task<IActionResult> ListaArticuloporNivel(int idNivel)
         {
-            if (idNivel <= 0 || idNivel >= 6)
+            if (idNivel <= 0 || idNivel > 6)
             {
                 return BadRequest("El ID proporcionado no es válido.");
             }

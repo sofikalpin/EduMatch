@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, X } from 'lucide-react';
 import Header from "../HeaderProfesor";
 import drive from "../Imagenes/google-drive.png";
 import youtube from "../Imagenes/youtube.png";
@@ -22,47 +22,67 @@ const CrearArticulo = () => {
   const navigate = useNavigate();
 
   const validarURL = (url) => {
-    const regex = /^(ftp|http|https):\/\/[^ "]+$/;  // Regex para validar URL
-    return regex.test(url);  // Retorna true si la URL es válida
+    const regex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    return regex.test(url);
   }
 
   const handleAgregarUrl = () => {
-    if (nuevaUrl.trim() !== ""){
-      setArticuloUrl([...articulodUrl, nuevaUrl]);
-      setNuevaUrl("");
+    if (nuevaUrl.trim() !== "") {
+      if (validarURL(nuevaUrl)) {
+        setArticuloUrl([...articulodUrl, nuevaUrl]);
+        setNuevaUrl("");
     } else {
-      alert("Ingrese un URL antes de agregar");
+      alert("Por favor, ingrese una URL válida");
     }
+  } else {
+    alert("Ingrese un URL antes de agregar");
+  }
+};
+
+  const handleEliminarUrl = (indexToDelete) => {
+    setArticuloUrl(articulodUrl.filter((_, index) => index !== indexToDelete));
   }
 
   const handleConfirmarUrl = () => {
-    if (articulodUrl.length > 0 && articulodUrl[0].trim() !== "") {
+    if (articulodUrl.length > 0) {
       alert("URLs cargadas correctamente: " + articulodUrl.join(";"));
     } else {
       alert("No se han cargado URLs.");
     }
-  }
+  }    
 
   const handleCrearArticulo = async (e) => {
     e.preventDefault();
 
-    setLoading(true);
-    
+    setLoading(true); 
+
     try {
+
+      if (!titulo.trim()) {
+        alert("El título es requerido");
+      }
+    
+      if (!descripcion.trim() || descripcion.trim().length < 30){
+        alert("La descripcion es requerida y maxima de 30 caracteres");
+      }
+
       const nuevoArticulo = {
         idarticulo: 0,
         titulo: titulo.trim(),
         descripcion: descripcion.trim(),
-        url: articulodUrl.length > 0 ? articulodUrl.join(";") : "",
+        url: articulodUrl.length > 0 ? articulodUrl[0] : "",
         idusuario: user?.idUsuario,
         idnivel: id,
-        fechaCreacion: new Date().toISOString().split("T")[0],
+        fechaCreacion: new Date().toISOString().split("T")[0]
       };
 
+      console.log(nuevoArticulo);
+   
       const response = await axios.post(
-        "http://localhost:5228/API/Articulo/CrearArticulo",
-        nuevoArticulo
+        "http://localhost:5228/API/ProfesorArticulo/CrearArticulo",
+        nuevoArticulo,
       );
+      
       if (response.data.status) {
         alert("Artículo creado exitosamente");
         navigate(-1);
@@ -76,6 +96,7 @@ const CrearArticulo = () => {
       }
     } catch (error) {
       console.error("Error al crear el artículo:", error);
+      alert("Error al crear el artículo: " + (error.response?.data?.message || "Error de conexión"));
     } finally {
       setLoading(false);
     }
@@ -90,18 +111,10 @@ const CrearArticulo = () => {
     }
   };
 
-  const [archivoSeleccionado, setArchivoSeleccionado] = useState(null);
-
-  const handleArchivoSeleccionado = (event) => {
-    const archivo = event.target.files[0];
-    setArchivoSeleccionado(archivo);
-  };
-  
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
       <Header />
 
-      {/* Botón de Volver */}
       <button
         onClick={() => navigate(-1)}
         className="mb-6 flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium self-start mt-3"
@@ -110,7 +123,6 @@ const CrearArticulo = () => {
         <span>Volver</span>
       </button>
 
-      {/* Contenedor con los detalles */}
       <div className="curso-detalles-container px-5 py-10 bg-[#f0faf7] -mt-10">
         <div className="max-w-5xl mx-auto bg-white rounded-xl shadow-lg p-8">
           <h1 className="text-5xl font-bold text-center text-[#2c7a7b] mb-8">
@@ -119,7 +131,6 @@ const CrearArticulo = () => {
           
           <form onSubmit={handleCrearArticulo} className="space-y-10">
             <div className="grid md:grid-cols-2 gap-12">
-              {/* Left Column */}
               <div className="space-y-8">
                 <div className="group">
                   <label className="block text-lg font-semibold text-[#2c7a7b] mb-3">
@@ -153,7 +164,6 @@ const CrearArticulo = () => {
                   Adjuntar
                 </label>
 
-                {/* Input y botón Agregar URL */}
                 <div className="flex items-center gap-4 w-full">
                   <input
                     type="text"
@@ -164,75 +174,58 @@ const CrearArticulo = () => {
                   />
                   <button 
                     type="button" 
-                    className="bg-teal-500 text-white text-ls px-6 py-4 rounded-xl shadow-lg w-auto"
+                    className="bg-teal-500 text-white text-ls px-6 py-4 rounded-xl shadow-lg w-auto hover:bg-teal-600 transition-colors"
                     onClick={handleAgregarUrl}
                   >
                     Agregar URL
                   </button>
                 </div>
 
-                {/* Botones Google Drive, YouTube, y Subir Archivo */}
                 <div className="flex gap-4 mt-4 items-center">
                   <button
                     type="button"
-                    className="p-6 bg-white rounded-xl hover:bg-gray-50 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+                    className="p-6 bg-white rounded-xl hover:bg-gray-50 shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all"
                     onClick={handleAgregarEnlace}
                   >
                     <img src={drive} alt="Google Drive" className="h-8 w-8" />
                   </button>
                   <button
                     type="button"
-                    className="p-6 bg-white rounded-xl hover:bg-gray-50 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+                    className="p-6 bg-white rounded-xl hover:bg-gray-50 shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all"
                     onClick={handleAgregarEnlace}
                   >
                     <img src={youtube} alt="YouTube" className="h-8 w-8" />
                   </button>
 
-                  {/* Ícono de subir archivo */}
-                  <input
-                    type="file"
-                    accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
-                    onChange={handleArchivoSeleccionado}
-                    className="hidden"
-                    id="archivo"
-                  />
-                  <label 
-                    htmlFor="archivo" 
-                    className="p-6 bg-white rounded-xl hover:bg-gray-50 shadow-md hover:shadow-lg transform hover:-translate-y-1"
-                  >
-                    <img src={subir} alt="Subir" className="h-8 w-8" />
-                  </label>
-
                   <button 
                     type="button" 
                     onClick={handleConfirmarUrl} 
-                    className="bg-teal-500 text-white text-ls px-6 py-4 rounded-xl shadow-lg flex items-center gap-2"
+                    className="bg-teal-500 text-white text-ls px-6 py-4 rounded-xl shadow-lg flex items-center gap-2 hover:bg-teal-600 transition-colors"
                   >
                     Confirmar URLs
                   </button>
                 </div>
 
-                {/* Mostrar URLs cargadas */}
                 {articulodUrl.length > 0 && (
                   <div className="mt-4">
                     <p className="text-lg font-semibold text-teal-500">URLs cargadas:</p>
                     <ul className="mt-4 space-y-2">
                       {articulodUrl.map((url, index) => (
-                        <li key={index} className="flex justify-between items-center">
+                        <li key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg group hover:bg-gray-100 transition-colors">
                           <a
                             href={url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 underline text-sm hover:text-blue-800"
+                            className="text-blue-600 hover:text-blue-800 text-sm truncate max-w-[80%]"
                           >
                             {url}
                           </a>
                           <button
-                            onClick={() => setArticuloUrl(articulodUrl.filter((_, i) => i !== index))}
-                            className="text-red-500 hover:text-red-700 text-lg"
+                            onClick={() => handleEliminarUrl(index)}
+                            className="text-gray-400 hover:text-red-500 transition-colors"
                             aria-label="Eliminar URL"
                           >
-                            <i className="fas fa-times-circle"></i> {/* Icono de eliminar */}
+                            <X className="w-5 h-5" />
                           </button>
                         </li>
                       ))}

@@ -88,7 +88,7 @@ namespace WebApiApoyo.Controllers
         [Route("ActividadesPorNivel")]
         public async Task<IActionResult> ListaActividadporNivel(int idNivel)
         {
-            if (idNivel<= 0 || idNivel>=6)
+            if (idNivel<= 0 || idNivel > 6)
             {
                 return BadRequest("El ID proporcionado no es válido.");
             }

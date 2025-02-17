@@ -71,22 +71,25 @@ namespace SistemaApoyo.BLL.Servicios
         public async Task<bool> Editar(UsuarioDTO modelo)
         {
             try
-            {   if (modelo == null)
+            {
+                if (modelo == null)
                 {
                     throw new ArgumentNullException("El modelo de usuario es nulo.");
                 }
 
                 var usuarioModelo = _mapper.Map<Usuario>(modelo);
-                
+
                 var usuarioEncontrado = await _usuarioRepositorio.Obtener(u => u.Idusuario == usuarioModelo.Idusuario);
-                
+
                 if (usuarioEncontrado == null)
                 {
                     throw new InvalidOperationException("El usuario no existe");
                 }
 
                 // Si la contraseña está vacía o nula, no la actualizamos
-                if (!string.IsNullOrEmpty(usuarioModelo.ContraseñaHash))
+                // O si la contraseña es igual a la que ya está hasheada, tampoco la actualizamos
+                if (!string.IsNullOrEmpty(usuarioModelo.ContraseñaHash) &&
+                    usuarioModelo.ContraseñaHash != usuarioEncontrado.ContraseñaHash)
                 {
                     usuarioEncontrado.ContraseñaHash = CubreContrasena(usuarioModelo.ContraseñaHash);
                 }

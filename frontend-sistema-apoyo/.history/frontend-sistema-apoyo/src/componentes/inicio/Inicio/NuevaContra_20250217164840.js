@@ -1,85 +1,71 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import logo from '../../../logo/LogoInicio.png';
 
 const ResetPassword = () => {
   const location = useLocation();
-  const navigate = useNavigate();
+  const queryParams = new URLSearchParams(location.search);
+  const token = queryParams.get('token');
+
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
-  // Get and validate token on component mount
-  useEffect(() => {
-    const queryParams = new URLSearchParams(location.search);
-    const token = queryParams.get('token');
-    if (!token) {
-      setMessage('Token no encontrado. Por favor solicite un nuevo enlace de restablecimiento.');
-      setTimeout(() => navigate('/login'), 3000);
-    }
-  }, [location, navigate]);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    setMessage('');
-
-    // Client-side validations
-    if (newPassword.length < 6) {
-      setMessage('La contraseña debe tener al menos 6 caracteres.');
-      setIsLoading(false);
-      return;
-    }
 
     if (newPassword !== confirmPassword) {
       setMessage('Las contraseñas no coinciden.');
-      setIsLoading(false);
       return;
     }
 
     try {
-      const token = new URLSearchParams(location.search).get('token');
-      if (!token) {
-        throw new Error('Token no encontrado');
-      }
+      console.log("Token:", token);
+      console.log("Nueva contraseña:", newPassword);
 
       const response = await fetch('http://localhost:5228/API/Usuario/reestablecer-contrasena', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          Token: token,
-          NuevaContraseña: newPassword
-        }),
+        body: JSON.stringify({ Token: token, NuevaContraseña: newPassword }),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.msg || 'Error al restablecer la contraseña');
+        const errorText = await response.text();
+        console.error("Error del servidor:", errorText);
+        throw new Error(errorText || 'Error al restablecer la contraseña');
       }
 
-      setMessage('Contraseña restablecida con éxito. Redirigiendo...');
-      setTimeout(() => navigate('/login'), 2000);
+      const data = await response.json();
+      setMessage(data.message || 'Contraseña restablecida con éxito.');
+
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
 
     } catch (error) {
       setMessage(error.message);
-    } finally {
-      setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#00A89F]">
+    <div className="min-h-screen flex flex-col items-center justify-center" style={{ backgroundColor: '#00A89F' }}>
+      <div className="absolute top-0 left-0 p-6">
+        <img
+          src={logo}
+          alt="Logo"
+          className="h-12"
+        />
+      </div>
+
       <div className="bg-white p-10 rounded-lg shadow-lg w-full max-w-lg">
-        <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">
-          Restablecer Contraseña
-        </h2>
-        
+        <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">Restablecer Contraseña</h2>
         <form onSubmit={handleSubmit} className="space-y-8">
           <div>
             <label htmlFor="newPassword" className="block text-lg font-medium text-gray-700">
@@ -92,7 +78,6 @@ const ResetPassword = () => {
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 required
-                minLength={6}
                 className="mt-2 block w-full px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg pr-10"
               />
               <button
@@ -116,7 +101,6 @@ const ResetPassword = () => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
-                minLength={6}
                 className="mt-2 block w-full px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg pr-10"
               />
               <button
@@ -131,18 +115,15 @@ const ResetPassword = () => {
 
           <button
             type="submit"
-            disabled={isLoading}
-            className={`w-full text-white py-3 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-lg
-              ${isLoading ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
+            className="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-lg"
           >
-            {isLoading ? 'Procesando...' : 'Cambiar Contraseña'}
+            Cambiar Contraseña
           </button>
         </form>
-        
         {message && (
-          <p className={`mt-6 text-center text-lg ${
-            message.includes('éxito') ? 'text-green-600' : 'text-red-600'
-          }`}>
+          <p
+            className={`mt-6 text-center text-lg ${message.includes('éxito') ? 'text-green-600' : 'text-red-600'}`}
+          >
             {message}
           </p>
         )}

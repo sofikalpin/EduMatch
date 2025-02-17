@@ -145,7 +145,7 @@ public class UsuarioController : ControllerBase
         var rsp = new Response<UsuarioDTO>();
         try
         {
-            // Verificación de que el login no sea nulo y los campos necesarios estén presentes
+            
             if (login == null || string.IsNullOrEmpty(login.Correo) || string.IsNullOrEmpty(login.ContrasenaHash))
             {
                 rsp.status = false;
@@ -182,7 +182,7 @@ public class UsuarioController : ControllerBase
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.UTF8.GetBytes(_configuration["JwtConfig:Secret"]);
 
-        // Asegúrate de que la clave tenga al menos 128 bits (16 bytes)
+        
         if (key.Length < 16)
         {
             throw new ArgumentException("La clave secreta para JWT debe tener al menos 128 bits (16 bytes).");

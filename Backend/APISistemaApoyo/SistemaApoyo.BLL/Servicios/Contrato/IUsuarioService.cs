@@ -27,5 +27,7 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
         Task EnviarCorreoRecuperacion(string correoDestino, string token);
         Task<bool> GenerarTokenRecuperacion(string correo);
 
+        Task<bool> ActualizarCvRuta(int idUsuario, string cvRuta);
+
     }
 }

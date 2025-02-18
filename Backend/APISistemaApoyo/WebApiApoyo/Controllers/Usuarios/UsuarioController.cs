@@ -364,7 +364,7 @@ public class UsuarioController : ControllerBase
             return BadRequest(rsp);
         }
 
-        // Validar el tipo de archivo (solo permitir PDF)
+        
         var allowedExtensions = new[] { ".pdf" };
         var fileExtension = Path.GetExtension(archivo.FileName).ToLowerInvariant();
         if (!allowedExtensions.Contains(fileExtension))
@@ -376,7 +376,7 @@ public class UsuarioController : ControllerBase
 
         try
         {
-            // Buscar el usuario en la base de datos antes de guardar el archivo
+            
             var usuario = await _usuarioService.ObtenerUsuarioPorID(idUsuario);
             if (usuario == null || usuario.Idrol != 1)
             {
@@ -402,9 +402,11 @@ public class UsuarioController : ControllerBase
                 await archivo.CopyToAsync(stream);
             }
 
-            // Guardar la ruta en la base de datos, la cual es una ruta relativa para servirlo en el frontend
-            usuario.CvRuta = $"/uploads/{nombreArchivo}";
-            var actualizado = await _usuarioService.Editar(usuario);
+            // Actualizar solo la ruta del CV en el usuario
+            string rutaRelativa = $"/uploads/{nombreArchivo}";
+
+            // Llamar al servicio para actualizar solo el campo CvRuta
+            var actualizado = await _usuarioService.ActualizarCvRuta(usuario.Idusuario, rutaRelativa);
             if (!actualizado)
             {
                 if (System.IO.File.Exists(rutaCompleta))
@@ -419,7 +421,7 @@ public class UsuarioController : ControllerBase
 
             rsp.status = true;
             rsp.msg = "CV subido exitosamente.";
-            rsp.value = usuario.CvRuta;
+            rsp.value = rutaRelativa;
             return Ok(rsp);
         }
         catch (Exception ex)

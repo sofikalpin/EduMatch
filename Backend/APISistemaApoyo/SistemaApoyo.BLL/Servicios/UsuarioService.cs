@@ -369,6 +369,32 @@ namespace SistemaApoyo.BLL.Servicios
                 throw;
             }
         }
+        public async Task<bool> ActualizarCvRuta(int idUsuario, string cvRuta)
+        {
+            try
+            {
+                
+                var usuario = await _context.Usuarios.FindAsync(idUsuario);
+                if (usuario == null)
+                {
+                    throw new InvalidOperationException("Usuario no encontrado.");
+                }
+
+                
+                usuario.CvRuta = cvRuta;
+
+                
+                _context.Usuarios.Update(usuario);
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al actualizar la ruta del CV para el usuario {idUsuario}", idUsuario);
+                throw;
+            }
+        }
 
         public async Task EnviarCorreoRecuperacion(string correoDestino, string token)
         {

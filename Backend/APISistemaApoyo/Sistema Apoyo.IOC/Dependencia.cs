@@ -25,6 +25,7 @@ namespace SistemaApoyo.IOC
 
             services.AddAutoMapper(typeof(AutoMapperProfile));
 
+           
             services.AddScoped<IRolService, RolService>();
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IExamenService, ExamenService>();

@@ -145,7 +145,7 @@ public class UsuarioController : ControllerBase
         var rsp = new Response<UsuarioDTO>();
         try
         {
-            
+            // Verificación de que el login no sea nulo y los campos necesarios estén presentes
             if (login == null || string.IsNullOrEmpty(login.Correo) || string.IsNullOrEmpty(login.ContrasenaHash))
             {
                 rsp.status = false;
@@ -182,7 +182,7 @@ public class UsuarioController : ControllerBase
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.UTF8.GetBytes(_configuration["JwtConfig:Secret"]);
 
-        
+        // Asegúrate de que la clave tenga al menos 128 bits (16 bytes)
         if (key.Length < 16)
         {
             throw new ArgumentException("La clave secreta para JWT debe tener al menos 128 bits (16 bytes).");
@@ -382,15 +382,6 @@ public class UsuarioController : ControllerBase
             return BadRequest(rsp);
         }
 
-        // Validar el tamaño máximo del archivo
-        long maxSize = 10 * 1024 * 1024; // 10 MB
-        if (archivo.Length > maxSize)
-        {
-            rsp.status = false;
-            rsp.msg = "El archivo excede el tamaño máximo permitido de 10 MB.";
-            return BadRequest(rsp);
-        }
-
         try
         {
             // Buscar el usuario en la base de datos antes de guardar el archivo
@@ -403,14 +394,14 @@ public class UsuarioController : ControllerBase
             }
 
             // Definir la carpeta donde se guardarán los CVs (dentro de wwwroot/uploads)
-            string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
+            string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
             if (!Directory.Exists(uploadsFolder))
             {
                 Directory.CreateDirectory(uploadsFolder);
             }
 
-            // Crear un nombre de archivo único (cv_{idUsuario}.pdf)
-            string nombreArchivo = $"cv_{idUsuario}_{Guid.NewGuid()}{fileExtension}";
+            // Crear un nombre de archivo único (cv_{id}.pdf)
+            string nombreArchivo = $"cv_{idUsuario}{fileExtension}";
             string rutaCompleta = Path.Combine(uploadsFolder, nombreArchivo);
 
             // Guardar el archivo en el servidor
@@ -420,7 +411,7 @@ public class UsuarioController : ControllerBase
             }
 
             // Guardar la ruta en la base de datos
-            usuario.CvRuta = $"/uploads/{nombreArchivo}";
+            usuario.CvRuta = $"/uploads/{nombreArchivo}"; // Guardar una ruta relativa para servirlo en el frontend
             var actualizado = await _usuarioService.Editar(usuario);
             if (!actualizado)
             {
@@ -449,6 +440,7 @@ public class UsuarioController : ControllerBase
         }
     }
 
+
     [HttpGet("ObtenerCV")]
     public async Task<IActionResult> ObtenerCV(int idUsuario)
     {
@@ -457,16 +449,14 @@ public class UsuarioController : ControllerBase
         try
         {
             var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Idusuario == idUsuario);
-            if (usuario == null || string.IsNullOrEmpty(usuario.CvRuta))
+            if (usuario == null || string.IsNullOrEmpty(usuario.CvRuta) || usuario.Idrol != 1)
             {
                 rsp.status = false;
-                rsp.msg = "CV no encontrado.";
+                rsp.msg = "CV no encontrado o el id del usuario buscado no corresponde aun profesor.";
                 return NotFound(rsp);
             }
 
-            string rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", usuario.CvRuta.TrimStart('/'));
-
-            _logger.LogError(rutaArchivo);
+            string rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), usuario.CvRuta.Replace("\\", "/"));
             if (!System.IO.File.Exists(rutaArchivo))
             {
                 return NotFound(new Response<string> { status = false, msg = "El archivo no existe en el servidor." });

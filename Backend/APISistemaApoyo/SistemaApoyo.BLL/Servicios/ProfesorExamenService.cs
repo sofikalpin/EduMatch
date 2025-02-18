@@ -25,6 +25,61 @@ namespace SistemaApoyo.BLL.Servicios
             _mapper = mapper;
         }
 
+        public async Task<List<ExamenDTO>> ConsultarExamen()
+        {
+            try
+            {
+                var consulta = await _examenRepositorio.Consultar();
+                var listaExamen = await consulta.ToListAsync();
+                return _mapper.Map<List<ExamenDTO>>(listaExamen);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la actividad.", ex);
+            }
+        }
+        public async Task<List<ExamenDTO>> ConsultarPorTitulo(string titulo)
+        {
+            try
+            {
+                var Actividadquery = await _examenRepositorio.Consultar();
+                if (!string.IsNullOrEmpty(titulo))
+                {
+                    Actividadquery = Actividadquery.Where(v => v.Titulo == titulo);
+                }
+
+
+                var listaResultado = await Actividadquery.ToListAsync();
+                return _mapper.Map<List<ExamenDTO>>(listaResultado);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la actividad por nombre.", ex);
+            }
+        }
+
+
+
+
+        public async Task<List<ExamenDTO>> ObteneExamenrPorIdProfesor(int id)
+        {
+            try
+            {
+                var examen = await _examenRepositorio.ObtenerTodos(a => a.Idusuario == id);
+                if (examen == null)
+                {
+                    throw new InvalidOperationException("Examen no encontrado.");
+                }
+                return _mapper.Map<List<ExamenDTO>>(examen);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el examen por id.", ex);
+            }
+        }
+
+
+
         public async Task<bool> CrearExamen(ExamenDTO examenes)
         {
             try
@@ -79,58 +134,5 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        //Lista de examenes
-        public async Task<List<ExamenDTO>> ConsultarExamen()
-        {
-            try
-            {
-                var consulta = await _examenRepositorio.Consultar();
-                var listaExamen = await consulta.ToListAsync();
-                return _mapper.Map<List<ExamenDTO>>(listaExamen);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener la actividad.", ex);
-            }
-        }
-
-        //Buscar examen segun nombre
-        public async Task<List<ExamenDTO>> ConsultarPorTitulo(string titulo)
-        {
-            try
-            {
-                var Actividadquery = await _examenRepositorio.Consultar();
-                if (!string.IsNullOrEmpty(titulo))
-                {
-                    Actividadquery = Actividadquery.Where(v => v.Titulo == titulo);
-                }
-
-
-                var listaResultado = await Actividadquery.ToListAsync();
-                return _mapper.Map<List<ExamenDTO>>(listaResultado);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener la actividad por nombre.", ex);
-            }
-        }
-
-        //Obtener examenes de un profesor por id
-        public async Task<List<ExamenDTO>> ObteneExamenrPorIdProfesor(int id)
-        {
-            try
-            {
-                var examen = await _examenRepositorio.ObtenerTodos(a => a.Idusuario == id);
-                if (examen == null)
-                {
-                    throw new InvalidOperationException("Examen no encontrado.");
-                }
-                return _mapper.Map<List<ExamenDTO>>(examen);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener el examen por id.", ex);
-            }
-        }
     }
 }

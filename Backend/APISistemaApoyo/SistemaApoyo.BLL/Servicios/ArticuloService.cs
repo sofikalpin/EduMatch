@@ -24,7 +24,6 @@ namespace SistemaApoyo.BLL.Servicios
             _mapper = mapper;
         }
 
-        //Lista de articulos 
         public async Task<List<ArticuloDTO>> ConsultarArticulo()
         {
             try
@@ -32,14 +31,15 @@ namespace SistemaApoyo.BLL.Servicios
                 var consulta = await _articuloRepository.Consultar();
                 var listaArticulo= await consulta.ToListAsync();
                 return _mapper.Map<List<ArticuloDTO>>(listaArticulo);
+
             }
             catch
             {
                 throw;
+
             }
         }
 
-        //Lista de articulos segun nombre
         public async Task<List<ArticuloDTO>> ConsultarPorTitulo(string titulo)
         {
             try
@@ -50,6 +50,7 @@ namespace SistemaApoyo.BLL.Servicios
                     Articuloquery = Articuloquery.Where(v => v.Titulo == titulo);
                 }
 
+
                 var listaResultado = await Articuloquery.ToListAsync();
                 return _mapper.Map<List<ArticuloDTO>>(listaResultado);
             }
@@ -59,7 +60,7 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        //Obtener articulo por valor id
+
         public async Task<ArticuloDTO> ObtenerPorId(int id)
         {
             try
@@ -73,7 +74,6 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        //Obtener articulos por su valor nivel
         public async Task<List<ArticuloDTO>> ObtenerPorNivel(int idNivel)
         {
             try

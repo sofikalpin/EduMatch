@@ -715,28 +715,6 @@
         }
       }
     },
-    "/api/Bolsatrabajo/EliminarBolsa": {
-      "delete": {
-        "tags": [
-          "Bolsatrabajo"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/API/Chat/ListaContactos": {
       "get": {
         "tags": [
@@ -2754,6 +2732,10 @@
           "idusuaro": {
             "type": "integer",
             "format": "int32"
+          },
+          "nombreUsuario": {
+            "type": "string",
+            "nullable": true
           },
           "rating": {
             "type": "integer",

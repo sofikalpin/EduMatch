@@ -30,6 +30,57 @@ namespace SistemaApoyo.BLL.Servicios
             _chatHubContext = chatHubContext; 
         }
 
+        public async Task<List<UsuarioDTO>> ListaContactos()
+        {
+            try
+            {
+                var consulta = await _usuarioRepository.Consultar();
+                var listadeUsuarios = await consulta.ToListAsync();
+                return _mapper.Map<List<UsuarioDTO>>(listadeUsuarios);
+            }
+            catch (Exception ex) 
+            {
+                throw new Exception("Error al obtener los usuarios", ex);
+            }
+        }
+
+        public async Task<IEnumerable<ChatDTO>> ObtenerChatsPorUsuarioId(int userId)
+        {
+            try
+            {
+                var chats = await _chatRepository.Consultar(c => c.Idusuario1 == userId || c.Idusuario2 == userId);
+                if (chats == null)
+                {
+                    throw new InvalidOperationException("Chat no encontrado");
+                }
+
+                return _mapper.Map<IEnumerable<ChatDTO>>(chats);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el chat por id.", ex);
+            }
+        }
+        public async Task<ChatDTO> ObtenerChatPorId(int chatId)
+        {
+            try
+            {
+                
+                var chat = await _chatRepository.Obtener(c => c.Idchat == chatId);
+                if (chat == null)
+                {
+                    throw new InvalidOperationException("Chat no encontrado");
+                }
+
+                
+                return _mapper.Map<ChatDTO>(chat);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el chat por id.", ex);
+            }
+        }
+
         public async Task<bool> CrearChat(ChatDTO chat)
         {
             try
@@ -53,61 +104,5 @@ namespace SistemaApoyo.BLL.Servicios
                 throw new Exception("Error al crear el chat.", ex);
             }
         }
-        
-        //Lista de usuarios para seleccionar como contacto
-        public async Task<List<UsuarioDTO>> ListaContactos()
-        {
-            try
-            {
-                var consulta = await _usuarioRepository.Consultar();
-                var listadeUsuarios = await consulta.ToListAsync();
-                return _mapper.Map<List<UsuarioDTO>>(listadeUsuarios);
-            }
-            catch (Exception ex) 
-            {
-                throw new Exception("Error al obtener los usuarios", ex);
-            }
-        }
-
-        //Obtener los chats correspondientes a un idusuario
-        public async Task<IEnumerable<ChatDTO>> ObtenerChatsPorUsuarioId(int userId)
-        {
-            try
-            {
-                var chats = await _chatRepository.Consultar(c => c.Idusuario1 == userId || c.Idusuario2 == userId);
-                if (chats == null)
-                {
-                    throw new InvalidOperationException("Chat no encontrado");
-                }
-
-                return _mapper.Map<IEnumerable<ChatDTO>>(chats);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener el chat por id.", ex);
-            }
-        }
-
-        //Obtener un chat por valor id
-        public async Task<ChatDTO> ObtenerChatPorId(int chatId)
-        {
-            try
-            {
-                
-                var chat = await _chatRepository.Obtener(c => c.Idchat == chatId);
-                if (chat == null)
-                {
-                    throw new InvalidOperationException("Chat no encontrado");
-                }
-
-                
-                return _mapper.Map<ChatDTO>(chat);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener el chat por id.", ex);
-            }
-        }
-        
     }
 }

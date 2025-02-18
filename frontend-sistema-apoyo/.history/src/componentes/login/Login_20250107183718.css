@@ -1,0 +1,212 @@
+/* Estilos generales: diseño full-screen adaptable */
+.login-container {
+  display: flex;
+  flex-direction: row;
+  width: 100vw; /* Ancho total */
+  height: 100vh; /* Alto total */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+
+/* Panel izquierdo */
+.left-panel {
+  flex: 1;
+  background: url('./Mujer\ con\ Computadora.jpg') no-repeat center/cover;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea el contenido a la izquierda */
+  justify-content: flex-start; /* Alinea el contenido hacia arriba */
+  text-align: left; /* Alinea el texto a la izquierda */
+  padding: 50px 20px; /* Ajusta el espacio interno: arriba/abajo 10px, izquierda/derecha 20px */
+}
+.logo {
+  display: block;
+  margin-top: 0%;
+  width: 320px; /* Cambia este valor para ajustar el ancho */
+  height: auto; /* Mantén la proporción del logo */
+}
+
+
+/* Panel derecho */
+.right-panel {
+  flex: 1;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 400px; /* Ajuste del ancho máximo */
+}
+.login-form {
+  width: 100%;
+  max-width: 28rem;
+  margin: 0 auto;
+  margin-top: -10%;
+}
+
+.login-card {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.card-header {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 5%;
+}
+
+.card-subtitle {
+  color: #6b7280;
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
+.card-content {
+  margin-top: -8%;
+  padding: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 0.2rem; /* Aumenta el relleno vertical (arriba y abajo) */
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  margin-bottom: 0.75rem;
+  font-size: 1rem; /* Mantener un tamaño de fuente adecuado */
+}
+
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.login-button {
+  width: 100%;
+  background: black;
+  color: white;
+  padding: 0.625rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.divider {
+  position: relative;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+.divider-text {
+  position: relative;
+  background: white;
+  padding: 0 0.5rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.google-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  background: white;
+  gap: 0.5rem;
+}
+
+.signup-text {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 1rem;
+}
+
+.link {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #1d4ed8;
+}
+
+/* Media Query para resolución específica: 1349px x 731px */
+@media screen and (max-width: 1349px) and (max-height: 731px) {
+  .left-panel {
+    flex: 1;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .left-panel h1 {
+    font-size: 2rem; /* Ajustar el tamaño del texto */
+  }
+
+  .left-panel p {
+    font-size: 1rem; /* Reducir el tamaño del párrafo */
+  }
+
+  .right-panel {
+    flex: 1;
+    padding: 20px;
+  }
+
+  .login-form {
+    max-width: 300px; /* Reducir el formulario para esta resolución */
+  }
+
+  .login-form input {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .login-button,
+  .register-button {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}

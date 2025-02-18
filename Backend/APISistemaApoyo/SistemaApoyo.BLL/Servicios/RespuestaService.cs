@@ -28,21 +28,6 @@ namespace SistemaApoyo.BLL.servicios
             _mapper = mapper;
         }
 
-        public async Task<bool> CrearRespuesta(RespuestaDTO respuestas)
-        {
-            try
-            {
-                var respuesta = _mapper.Map<Respuesta>(respuestas);
-                await _respuestaRepositorio.Crear(respuesta);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al crear la respuesta.", ex);
-            }
-        }
-
-        //Obtener lista de respuestas
         public async Task<List<RespuestaDTO>> ConsultarRespuesta()
         {
             try
@@ -57,7 +42,6 @@ namespace SistemaApoyo.BLL.servicios
             }
         }
 
-        //Obtener respuesta por un valor id
         public async Task<RespuestaDTO> ObteneRespuestarPorId(int id)
         {
             try
@@ -72,6 +56,20 @@ namespace SistemaApoyo.BLL.servicios
             catch (Exception ex)
             {
                 throw new Exception("Error al obtener la respuesta por id.", ex);
+            }
+        }
+
+        public async Task<bool> CrearRespuesta(RespuestaDTO respuestas)
+        {
+            try
+            {
+                var respuesta = _mapper.Map<Respuesta>(respuestas);
+                await _respuestaRepositorio.Crear(respuesta);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al crear la respuesta.", ex);
             }
         }
     }

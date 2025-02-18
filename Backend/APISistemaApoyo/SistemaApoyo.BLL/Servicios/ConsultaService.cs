@@ -24,21 +24,6 @@ namespace SistemaApoyo.BLL.Servicios
             _mapper = mapper;
         }
 
-        public async Task<bool> CrearConsulta(ConsultaDTO consultaDto)
-        {
-            try
-            {
-                var consulta = _mapper.Map<Consulta>(consultaDto);
-                await _consultaRepositorio.Crear(consulta);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al crear la consulta.", ex);
-            }
-        }
-        
-        //Lista de consultas
         public async Task<List<ConsultaDTO>> ConsultarConsultas()
         {
             try
@@ -53,7 +38,6 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        //Lista de consultas segun una valor titulo
         public async Task<List<ConsultaDTO>> ConsultarPorTitulo(string titulo)
         {
             try
@@ -73,7 +57,6 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        //Obtener consulta por valor id
         public async Task<ConsultaDTO> ObtenerConsultaPorId(int idconsulta)
         {
             try
@@ -92,7 +75,20 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        //Obtener las respuestas de una consulta 
+        public async Task<bool> CrearConsulta(ConsultaDTO consultaDto)
+        {
+            try
+            {
+                var consulta = _mapper.Map<Consulta>(consultaDto);
+                await _consultaRepositorio.Crear(consulta);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al crear la consulta.", ex);
+            }
+        }
+
         public async Task<List<RespuestaDTO>> RespuestasDeConsultaID(int idConsulta)
         {
             try

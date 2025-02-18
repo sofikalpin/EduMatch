@@ -86,9 +86,11 @@ namespace SistemaApoyo.Utility
 
             CreateMap<ReseñaAlumnoDTO, Reseña>();
 
-            CreateMap<Reseñapagina, ReseñaDTO>()
-                .ReverseMap(); 
+            CreateMap<Reseñapagina, ReseñaDTO>();
+
+
             #endregion Reseña
+
 
 
         }

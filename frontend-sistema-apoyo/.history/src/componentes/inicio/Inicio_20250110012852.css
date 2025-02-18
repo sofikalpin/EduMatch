@@ -1,0 +1,383 @@
+/* General Layout */
+.min-h-screen {
+    min-height: 100vh;
+  }
+  
+  /* Header */
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 50;
+  }
+  
+
+  header .button-group {
+    display: flex;
+    gap: 20px;
+    margin-bottom: auto;
+  }
+  
+  header .login-button {
+    padding: 8px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  header .login-button {
+    border: 2px solid #ffffff;
+    color: #000000;
+    background-color: #ffffff;
+    margin-top: 10%;
+  }
+  
+ 
+  
+  header .login-button:hover {
+    background-color: #ffffff;
+    color: #3182ce(14, 13, 13);
+  }
+  
+  
+  
+  /* Hero Section */
+  .hero {
+    height: 100vh;
+    background: url('./pexels-katerina-holmes-5905709.jpg') no-repeat center center;
+    background-size: cover; /* Asegura que la imagen cubra toda el área */
+    background-attachment: fixed; /* Opcional: Para efecto de paralaje */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    text-align: center;
+}
+
+  
+  .hero .hero-content {
+    max-width: 1349px;
+    color: rgb(255, 255, 255);
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 24px;
+  }
+  
+  .hero p {
+    font-size: 1.25rem;
+    margin-bottom: 32px;
+    opacity: 0.9;
+  }
+  
+  .hero .button-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+  
+  .hero .button {
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-size: 1.125rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .hero .button-white {
+    background-color: white;
+    color: #000000;
+  }
+  
+  .hero .button-white:hover {
+    background-color: #edf2f7;
+  }
+  
+  .hero .button-border {
+    border: 2px solid #3182ce(0, 0, 0);
+    color: #3182ce(0, 0, 0);
+  }
+  
+  .hero .button-border:hover {
+    background-color: rgb(245, 245, 245);
+    color: #3182ce;
+  }
+  
+  /* Modal Styles */
+  .modal-background {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 50;
+  }
+  
+  .modal-container {
+    background-color: white;
+    border-radius: 12px;
+    padding: 24px;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    color: #4a5568;
+    cursor: pointer;
+  }
+  
+  .modal-close:hover {
+    color: #2d3748;
+  }
+  
+  .modal-header {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 24px;
+  }
+  
+  .modal-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .modal-form .input-group {
+    margin-bottom: 16px;
+  }
+  
+  .modal-form .input-group input {
+    padding: 12px;
+    width: 100%;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .modal-form .input-group input:focus {
+    border-color: #3182ce;
+  }
+  
+  .modal-form .input-error {
+    color: #e53e3e;
+    font-size: 0.875rem;
+    margin-top: 4px;
+  }
+  
+  .modal-form .submit-button {
+    padding: 12px;
+    background-color: #3182ce;
+    color: white;
+    border-radius: 8px;
+    font-size: 1.125rem;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+  
+  .modal-form .submit-button:hover {
+    background-color: #2b6cb0;
+  }
+  
+  .navigation {
+    display: flex;
+    gap: 15px; /* Espacio entre los elementos de navegación */
+    margin-left: 20px; /* Alinea cerca del logo */
+    flex-grow: 1; /* Ocupa el espacio disponible a la izquierda */
+    justify-content: flex-start; /* Alinea elementos a la izquierda */
+}
+
+
+.navigation ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    gap: 30px; /* Espacio entre los elementos de navegación */
+    padding: 0; /* Eliminar padding y márgenes por defecto */
+}
+
+
+.navigation li {
+    margin: 0px; /* Espacio entre los elementos de navegación */
+}
+
+
+.navigation li:last-child {  
+    margin-right:20px; /* Sin margen en el último elemento */  
+   }  
+
+
+.navigation a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em; /* Aumenta el tamaño de la letra */
+    margin-right: 0px; /* Añadir margen a la izquierda para separar de la barra */
+   
+}
+
+.seccion2 {
+    display: flex;
+    justify-content: space-between; /* Alinea el contenido */
+    align-items: center; /* Centra verticalmente */
+  }
+  
+  .panel-derecha {
+    flex: 1; /* Ocupa el espacio disponible */
+  }
+  
+  .panel-izquierda {
+    flex: 1; /* Ocupa el espacio disponible */
+    text-align: right; /* Alinea la imagen a la derecha */
+
+  }
+  
+  .panel-izquierda img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px !important; /* Forza el redondeo */
+}
+
+
+
+
+
+  
+
+/* EnglishPlatform.module.css */
+.container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .content {
+    flex: 1;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  
+  .subtitle {
+    color: #4a4a4a;
+    margin-bottom: 2rem;
+  }
+  
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 1px solid #eaeaea;
+  }
+  
+  .cardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .cardTitle {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 600;
+  }
+  
+  .iconGroup {
+    display: flex;
+    margin-right: 0.5rem;
+  }
+  
+  .icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    margin-right: -4px;
+  }
+  
+  .iconGreen {
+    background: #4ade80;
+  }
+  
+  .iconBlue {
+    background: #22d3ee;
+  }
+  
+  .chevron {
+    color: #f97316;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .chevron.active {
+    transform: rotate(180deg);
+  }
+  
+  .cardContent {
+    color: #4a4a4a;
+    line-height: 1.6;
+  }
+  
+  .highlight {
+    font-weight: 700;
+  }
+  
+  .phoneContainer {
+    flex: 1;
+    position: relative;
+  }
+  
+  .phone {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .statusBar {
+    background: #000;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+  
+  .screen {
+    aspect-ratio: 9/16;
+    background: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+    
+    .title {
+      font-size: 2rem;
+    }
+  }

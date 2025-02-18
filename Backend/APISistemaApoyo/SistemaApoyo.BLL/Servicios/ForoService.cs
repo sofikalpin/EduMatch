@@ -26,22 +26,6 @@ namespace SistemaApoyo.BLL.Servicios
             _mapper = mapper;
         }
 
-        public async Task<bool> CrearForo(ForoDTO foros)
-        {
-            try
-            {
-                var foro = _mapper.Map<Foro>(foros);
-                await _foroRepositorio.Crear(foro);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al crear el foro.", ex);
-            }
-        }
-        
-
-        //Lista de foros
         public async Task<List<ForoDTO>> ConsultarForos()
         {
             try
@@ -56,7 +40,6 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        //Lista de foros segun valor nivel
         public async Task<List<ForoDTO>> ConsultarForoNivel(int idNivel)
         {
             try
@@ -75,7 +58,6 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        //Lista de foros segun valor de nombre
         public async Task<List<ForoDTO>> ConsultarPorNombre(string nombre)
         {
             try
@@ -94,7 +76,6 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        //Obtener un foro segun valor de id
         public async Task<ForoDTO> ObtenerForoPorId(int id)
         {
             try
@@ -112,7 +93,6 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        //Obtener lista de consultas de un foro
         public async Task<List<ConsultaDTO>> ObtenerConsultasPorForo(int idForo)
         {
             try
@@ -132,6 +112,19 @@ namespace SistemaApoyo.BLL.Servicios
                 throw new Exception("Error al obtener las consultas del foro.", ex);
             }
         }
-        
+
+        public async Task<bool> CrearForo(ForoDTO foros)
+        {
+            try
+            {
+                var foro = _mapper.Map<Foro>(foros);
+                await _foroRepositorio.Crear(foro);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al crear el foro.", ex);
+            }
+        }
     }
 }

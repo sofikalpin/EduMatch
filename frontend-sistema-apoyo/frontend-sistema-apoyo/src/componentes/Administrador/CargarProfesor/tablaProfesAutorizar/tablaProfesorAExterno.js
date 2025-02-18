@@ -64,7 +64,7 @@ const TablaProfesAExterno = ({ data, onDelete, onAutorizar }) => {
                         {isDataValid ? (
                             profesorNivel.map((profesor) => (
                                 <FilaProfesor
-                                    key={profesor.idbolsa}
+                                    key={`${profesor.idusuario}-${profesor.correo}`}
                                     profesor={profesor}
                                     onDelete={onDelete}
                                     onAutorizar={onAutorizar}

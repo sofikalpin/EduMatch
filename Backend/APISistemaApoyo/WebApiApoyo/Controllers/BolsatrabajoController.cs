@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using SistemaApoyo.BLL.Servicios;
+using SistemaApoyo.API.Utilidad;
 
 namespace SistemaApoyo.API.Controllers
 {
@@ -35,6 +36,7 @@ namespace SistemaApoyo.API.Controllers
                 return BadRequest("Los datos proporcionados son incorrectos.");
             }
 
+            // Agrega esta validación
             if (dto.Idbolsa != 0)
             {
                 _logger.LogWarning("Intento de crear bolsa de trabajo con ID predefinido.");
@@ -52,6 +54,7 @@ namespace SistemaApoyo.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = createdBolsaTrabajo.Idbolsa }, createdBolsaTrabajo);
         }
 
+        // GET: api/Bolsatrabajo
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -69,6 +72,7 @@ namespace SistemaApoyo.API.Controllers
             return Ok(bolsaTrabajoList);
         }
 
+        // GET: api/Bolsatrabajo/ingles
         [HttpGet("ingles")]
         public async Task<IActionResult> GetProfesoresIngles()
         {
@@ -86,6 +90,12 @@ namespace SistemaApoyo.API.Controllers
             return Ok(bolsaTrabajoList);
         }
 
+
+
+
+
+
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -102,5 +112,32 @@ namespace SistemaApoyo.API.Controllers
             _logger.LogInformation("Bolsa de trabajo encontrada: {@BolsaTrabajo}", bolsaTrabajo);
             return Ok(bolsaTrabajo);
         }
+
+        [HttpDelete]
+        [Route("EliminarBolsa")]
+        public async Task<IActionResult> EliminarActividad(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest("El ID proporcionado no es válido.");
+            }
+
+            var rsp = new Response<string>();
+
+            try
+            {
+                var eli = await _bolsaTrabajoService.Eliminar(id);
+                rsp.status = true;
+                rsp.value = "Se elimino JellyJobs con exito.";
+            }
+            catch (Exception ex)
+            {
+                rsp.status = false;
+                _logger.LogError(ex, "Error al eliminar JellyJobs");
+            }
+            return Ok(rsp);
+        }
+
+
     }
 }

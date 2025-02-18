@@ -13,6 +13,7 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
         Task<IEnumerable<BolsatrabajoDTO>> GetAll();
         Task<BolsatrabajoDTO?> GetById(int id);
         Task<IEnumerable<BolsatrabajoDTO>> GetProfesoresIngles();
+        Task<bool> Eliminar(int id);
 
     }
 }

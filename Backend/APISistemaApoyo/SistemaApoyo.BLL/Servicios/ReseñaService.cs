@@ -17,7 +17,9 @@ namespace SistemaApoyo.BLL.Servicios
         private readonly IGenericRepository<Usuario> _usuarioRepositorio;
         private readonly IMapper _mapper;
 
-        public ReseñaService(IGenericRepository<Reseñapagina> reseñaRepositorio, IGenericRepository<Usuario> usuarioRepository, IMapper mapper)
+        public ReseñaService(
+            IGenericRepository<Reseñapagina> reseñaRepositorio,
+            IGenericRepository<Usuario> usuarioRepository, IMapper mapper)
         {
             _reseñaRepositorio = reseñaRepositorio;
             _usuarioRepositorio = usuarioRepository;
@@ -97,5 +99,9 @@ namespace SistemaApoyo.BLL.Servicios
                 throw new Exception("Error al crear la reseña", ex);
             }
         }
+
+
+
+
     }
 }

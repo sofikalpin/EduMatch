@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,10 +25,10 @@ namespace SistemaApoyo.BLL.Servicios
         private readonly ILogger<UsuarioService> _logger;
 
         public UsuarioService(
-     IGenericRepository<Usuario> usuarioRepositorio,
-     IMapper mapper,
-     IConfiguration configuration,
-     ILogger<UsuarioService> logger) // Agrega este parámetro
+            IGenericRepository<Usuario> usuarioRepositorio,
+            IMapper mapper,
+            IConfiguration configuration,
+            ILogger<UsuarioService> logger) // Agrega este parámetro
         {
             _usuarioRepositorio = usuarioRepositorio;
             _mapper = mapper;
@@ -113,7 +113,6 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-
         public async Task<bool> Eliminar(int id)
         {
             try
@@ -149,7 +148,7 @@ namespace SistemaApoyo.BLL.Servicios
                 throw;
             }
         }
-        
+
         public async Task<UsuarioDTO> ObtenerUsuarioPorID(int idusuario)
         {
             try
@@ -158,7 +157,6 @@ namespace SistemaApoyo.BLL.Servicios
                 if (usuario == null)
                 {
                     Console.WriteLine($"Usuario con id {idusuario} no encontrado.");
-                    
                     throw new InvalidOperationException("Usuario no encontrado");
                 }
 
@@ -288,7 +286,7 @@ namespace SistemaApoyo.BLL.Servicios
         public bool VerificarContrasena(string contrasena, string hashAlmacenado)
         {
             try
-            { 
+            {
                 var datosHash = Convert.FromBase64String(hashAlmacenado);
                 if (datosHash.Length < 48) // 16 bytes de salt + 32 bytes de hash
                 {
@@ -298,11 +296,11 @@ namespace SistemaApoyo.BLL.Servicios
                 var salt = datosHash[..16];
                 var hashOriginal = datosHash[16..];
 
-                    using (var pbkdf2 = new Rfc2898DeriveBytes(contrasena, salt, 10000, HashAlgorithmName.SHA256))
-                    {
-                        var hashRecalculado = pbkdf2.GetBytes(32);
-                        return hashOriginal.SequenceEqual(hashRecalculado);
-                    }
+                using (var pbkdf2 = new Rfc2898DeriveBytes(contrasena, salt, 10000, HashAlgorithmName.SHA256))
+                {
+                    var hashRecalculado = pbkdf2.GetBytes(32);
+                    return hashOriginal.SequenceEqual(hashRecalculado);
+                }
             }
             catch (Exception ex)
             {
@@ -351,7 +349,6 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-
         public async Task EnviarCorreoRecuperacion(string correoDestino, string token)
         {
             try
@@ -364,8 +361,9 @@ namespace SistemaApoyo.BLL.Servicios
                     EnableSsl = true // Asegúrate de habilitar SSL/TLS para STARTTLS
                 };
 
-                // Aquí construyes el enlace con el token como parámetro
-                var resetUrl = $"http://localhost:3000/contra?token={token}";  // Asegúrate de que la ruta sea correcta
+                // Codificar el token para evitar problemas con caracteres especiales como '+'
+                var tokenCodificado = Uri.EscapeDataString(token);
+                var resetUrl = $"http://localhost:3000/contra?token={tokenCodificado}";  // Asegúrate de que la ruta sea correcta
 
                 var mensaje = new MailMessage
                 {
@@ -394,6 +392,5 @@ namespace SistemaApoyo.BLL.Servicios
                 throw;
             }
         }
-
     }
 }

@@ -6,13 +6,12 @@ import drive from "../Imagenes/google-drive.png";
 import youtube from "../Imagenes/youtube.png";
 import googleform from "../Imagenes/google-forms.png";
 import axios from "axios";
-import { useUser } from "../../../context/userContext";
+import { useUser } from "../../../Context/UserContext";
 
 const CrearExamen = () => {
   const location = useLocation();
   const { nivel } = location.state || {};
 
-  // Estados para manejar los datos del examen
   const { user } = useUser();
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
@@ -22,13 +21,11 @@ const CrearExamen = () => {
 
   const navigate = useNavigate();  
   
-  // Validar si una URL tiene un formato correcto
   const validarURL = (url) => {
     const regex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
     return regex.test(url);
   };
 
-  // Agregar una nueva URL a la lista
   const handleAgregarUrl = () => {
     if (nuevaUrl.trim() !== "") {
       if (validarURL(nuevaUrl)) {
@@ -42,12 +39,10 @@ const CrearExamen = () => {
     }
   };
 
-  // Eliminar la URL
   const handleEliminarUrl = (indexToDelete) => {
     setExamenUrl(examenUrl.filter((_, index) => index !== indexToDelete));
   }
 
-  // Confirmar las URLs cargadas
   const handleConfirmarUrl = () => {
     if (examenUrl.length > 0) {
       alert("URLs cargadas correctamente: " + examenUrl.join(";"));
@@ -56,7 +51,6 @@ const CrearExamen = () => {
     }
   };  
 
-  // Crear un nuevo examen
   const handleCrearExamen = async (e) => {
     e.preventDefault();
 
@@ -95,7 +89,6 @@ const CrearExamen = () => {
     }
   };
 
-  // Agregar un enlace ingresado por el usuario
   const handleAgregarEnlace = () => {
     const enlace = prompt("Ingrese el enlace:");
     
@@ -111,7 +104,6 @@ const CrearExamen = () => {
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
       <Header />
 
-      {/* Boton para volver */}
       <button
         onClick={() => navigate(-1)}
         className="mb-6 flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium self-start mt-3"
@@ -120,7 +112,6 @@ const CrearExamen = () => {
         <span>Volver</span>
       </button>
 
-      {/* Formulario para crear examen */}
       <div className="curso-detalles-container px-5 py-10 bg-[#f0faf7] -mt-10">
         <div className="max-w-5xl mx-auto bg-white rounded-xl shadow-lg p-8">
           <h1 className="text-5xl font-bold text-center text-[#2c7a7b] mb-8">
@@ -131,7 +122,6 @@ const CrearExamen = () => {
             <div className="grid md:grid-cols-2 gap-12">
               <div className="space-y-8">
 
-                {/* Nombre del examen */}
                 <div className="group">
                   <label className="block text-lg font-semibold text-[#2c7a7b] mb-3">
                     Nombre del Examen
@@ -147,7 +137,6 @@ const CrearExamen = () => {
                 </div>
               </div>
 
-              {/* Calificación máxima del examen */}
               <div className="group">
                 <label className="block text-lg font-semibold text-[#2c7a7b] mb-3">
                   Calificación máxima del examen 
@@ -160,13 +149,11 @@ const CrearExamen = () => {
                 />
               </div>
 
-              {/* Adjuntar enlaces */}
               <div>
                 <label className="block text-lg font-semibold text-[#2c7a7b] mb-4">
                   Adjuntar
                 </label>
 
-                {/* Input y botón para agregar URL */}
                 <div className="flex items-center gap-5 w-full">
                   <input
                     type="text"
@@ -184,7 +171,6 @@ const CrearExamen = () => {
                   </button>
                 </div>
 
-                {/* Botones para agregar enlaces desde Drive y Youtube  */}
                 <div className="flex gap-5 mt-4 items-center">
                   <button
                     type="button"
@@ -208,7 +194,6 @@ const CrearExamen = () => {
                     <img src={googleform} alt="Google Forms" className="h-8 w-8" />
                   </button>
 
-                  {/* Botón para confirmar URLs */}
                   <button 
                     type="button" 
                     onClick={handleConfirmarUrl} 
@@ -218,7 +203,6 @@ const CrearExamen = () => {
                   </button>
                 </div>
 
-                {/* Mostrar URLs cargadas */}
                 {examenUrl.length > 0 && (
                   <div className="mt-4">
                     <p className="text-lg font-semibold text-teal-500">URLs cargadas:</p>
@@ -248,7 +232,6 @@ const CrearExamen = () => {
               </div>
             </div>
 
-            {/* Botón para enviar el formulario */}
             <div className="flex justify-end pt-8">
               <button 
                 type="submit"

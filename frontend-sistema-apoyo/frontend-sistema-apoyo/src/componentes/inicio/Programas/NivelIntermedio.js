@@ -130,21 +130,15 @@ const B2CourseContentPage = () => {
         logo={logo}
       />
 
-      
       <div>
-   
         <B1CourseContent />
-
-        
         <div className="text-center py-8">
           <hr className="w-[80%] mx-auto border-t-2 border-gray-300" />
         </div>
-      
         <B2CourseContent />
-      
       <div className="mt-16" /> 
-      </div>
 
+      </div>
       <Footer 
         socialIcons={socialIcons}
         footerSections={footerSections}

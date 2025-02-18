@@ -72,11 +72,9 @@ const ExamenDetalle = () => {
 
           <p className="text-lg leading-relaxed text-gray-600">Calificacion maxima: {examen?.calificacion}</p>
 
-  
           <div className="border-t border-gray-200 mt-8 pt-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Archivo del Examen</h2>
 
-        
             {examen?.url ? (
               <a
                 href={examen.url}

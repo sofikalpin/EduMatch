@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { ArrowLeft, Send } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { useUser } from "../../context/userContext.js";
-import HeaderForo from './HeaderForo.js';
+import { useUser } from "../../../Context/UserContext";
+import HeaderForo from '../HeaderForo.js';
 
 const Card = ({ children, className }) => (
   <div className={`bg-white rounded-xl shadow-lg overflow-hidden ${className}`}>
@@ -87,7 +87,7 @@ const Respuesta = () => {
       if (response?.status === 200) {
         setMensaje("Respuesta creada con éxito.");
         setContenido("");
-        navigate(-1); // Redirige inmediatamente a la página anterior
+        navigate(-1);
       } else {
         alert(response?.data?.msg || "No se pudo crear la respuesta.");
       }

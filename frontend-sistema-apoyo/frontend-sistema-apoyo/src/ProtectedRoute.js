@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { useUser } from "./context/userContext";
+import { useUser } from "./Context/UserContext";
 
 const ProtegerRuta = ({ children }) => {
     //Ayuda para evitar que usuarios no autenticados accedan a paginas

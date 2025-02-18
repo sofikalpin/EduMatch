@@ -8,17 +8,16 @@ const FilaProfesor = ({ profesor, onDelete, onAutorizar }) => {
     const obtenerCV = async (idUsuario) => {
         try {
             const response = await axios.get(`http://localhost:5228/API/Usuario/ObtenerCV?idUsuario=${idUsuario}`, {
-                responseType: 'arraybuffer', // Necesario para manejar archivos binarios
+                responseType: 'arraybuffer', 
             });
     
             if (response.data && response.data.byteLength > 0) {
                 const file = new Blob([response.data], { type: 'application/pdf' });
                 const fileURL = URL.createObjectURL(file);
     
-                // Crear un enlace de descarga automático
                 const link = document.createElement('a');
                 link.href = fileURL;
-                link.download = `cv_${idUsuario}.pdf`; // Nombre del archivo a descargar
+                link.download = `cv_${idUsuario}.pdf`; 
                 link.click();
             } else {
                 alert("El archivo no está disponible.");

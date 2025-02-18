@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../logo/LogoInicio.png";
 import Foto from './Mujer con Computadora.jpg';
-import { useUser } from "../../context/userContext";
+import { useUser } from "../../Context/UserContext";
 import { useNavigate, Link } from 'react-router-dom';
 import ForgotPassword from './ForgotPassword'; 
 

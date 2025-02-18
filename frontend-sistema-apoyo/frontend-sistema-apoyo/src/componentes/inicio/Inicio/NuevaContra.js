@@ -6,7 +6,7 @@ import logo from '../../../logo/LogoInicio.png';
 const ResetPassword = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  // Se obtiene y se limpia el token
+ 
   let token = queryParams.get('token');
   if (token) {
     token = decodeURIComponent(token).trim();
@@ -23,7 +23,6 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    
     if (!token) {
       setMessage('Token inválido. Por favor, solicita restablecer la contraseña de nuevo.');
       return;

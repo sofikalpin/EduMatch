@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import logo from "../../logo/LogoInicio.png";
 import { AiOutlineMessage } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../../context/userContext";
+import { useUser } from "../../Context/UserContext";
 
 const Header = () => {
   const { user } = useUser();
@@ -26,7 +26,6 @@ const Header = () => {
   return (
     <div className="flex flex-col w-full">
 
-     
       <div className="bg-white py-2 flex justify-end items-center px-6">
         <div className="max-w-7xl mx-auto flex items-center justify-center">
           <img 
@@ -65,7 +64,6 @@ const Header = () => {
               </a>
             </nav>
 
-         
             <div className="flex items-center space-x-3 relative">
               <button onClick={goToChat} className="text-white text-2xl">
                 <AiOutlineMessage />
@@ -80,7 +78,6 @@ const Header = () => {
                 {userInitial}
               </div>
 
-            
               {isMenuOpen && (
                 <div className="absolute top-12 right-0 bg-white shadow-lg rounded-lg w-48 p-4 mt-2">
                   <ul className="space-y-3">
@@ -106,7 +103,6 @@ const Header = () => {
         </div>
       </div>
 
-     
       {isLogoutModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg w-80 shadow-lg">

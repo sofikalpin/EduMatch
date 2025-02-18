@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react';
 import articuloImg from "../Imagenes/articulo.jpg";
 import Header from "../HeaderProfesor";
 import Footer from "../FooterProfesor";
 import axios from "axios";
-import { useUser } from "../../../context/userContext";
+import { useUser } from "../../../Context/UserContext";
 
 const ArticulosProfesor = () => {
   const location = useLocation();
@@ -23,14 +23,12 @@ const ArticulosProfesor = () => {
 
   const idProfesor = user?.idusuario;
 
-  // Depuración: Mostrar el estado inicial
   useEffect(() => {
     console.log("Estado inicial - nivel:", nivel);
     console.log("Estado inicial - nombre:", nombre);
     console.log("Estado inicial - idProfesor:", idProfesor);
   }, [nivel, nombre, idProfesor]);
 
-  //Obtener los articulos
   useEffect(() => {
     const fetchArticulos = async () => {
       setLoading(true);
@@ -68,7 +66,6 @@ const ArticulosProfesor = () => {
     }
   }, [nivel]);
 
-  // Función para manejar a detalle del articulo
   const handleViewArticle = (articulo) => {
     navigate(`/profesor/cursos/detalle/articulos/${articulo.idarticulo}`, {
       state: {
@@ -80,7 +77,6 @@ const ArticulosProfesor = () => {
     });
   };
 
-  // Filtrar los articulos
   useEffect(() => {
     const titlesFiltered = articulos.filter(
       (articulo) => articulo.titulo?.toLowerCase().includes(searchQuery.toLowerCase())
@@ -92,17 +88,14 @@ const ArticulosProfesor = () => {
         (articulo.idusuario && articulo.idusuario.toString() === opcionCreacion)
     );
     
-    // Actualizar el estado con los articulos filtrados
     setFilteredArticles(filtered);
   }, [searchQuery, opcionCreacion, articulos]);
 
-  // Manejar el cambio de estado en la busqueda
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setIsFocused(true);
   };
 
-  // Función para crear nuevo articulo
   const handleNuevoArticulo = () => {
     if (user.idnivel < nivel) {
       alert("Su nivel de perfil es menor al nivel correspondiente al artículo que desea crear. Por favor cree artículos con su nivel o menor a este.");
@@ -116,7 +109,6 @@ const ArticulosProfesor = () => {
     }
   };
 
-  // Verificar si un artículo pertenece al profesor
   const isOwnArticle = (articulo) => {
     return articulo.idusuario && articulo.idusuario.toString() === idProfesor?.toString();
   };
@@ -127,7 +119,6 @@ const ArticulosProfesor = () => {
 
       <div className="flex-grow flex flex-col items-center justify-center px-5 py-10">
         
-        {/* Contenedor para el volver y el título */}
         <div className="flex items-center justify-between w-full mb-6">
           <button
             onClick={() => navigate(-1)}
@@ -142,10 +133,8 @@ const ArticulosProfesor = () => {
 
         <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Explora y administra los artículos disponibles.</p>
 
-        {/* Contenedor con la barra de búsqueda y botón de crear nuevo artículo */}
         <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
           
-          {/* Buscador de articulos*/}
           <div className="relative w-full md:w-2/3">
             <div className="relative">
               <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -160,7 +149,6 @@ const ArticulosProfesor = () => {
               />
             </div>
 
-            {/* Lista desplegable de resultados de la búsqueda */}
             {isFocused && searchQuery && (
               <ul className="absolute w-full bg-white shadow-lg rounded-lg mt-2 max-h-48 overflow-y-auto border border-gray-200 z-20">
                 {loading ? (
@@ -189,7 +177,6 @@ const ArticulosProfesor = () => {
             )}
           </div>
 
-          {/* Filtro para mis artículos */}
           <div className="flex items-center gap-3 w-full md:w-auto">
             <select
               id="nivel-select"
@@ -201,7 +188,6 @@ const ArticulosProfesor = () => {
               <option value={idProfesor?.toString()}>Mis artículos</option>
             </select>
 
-            {/* Botón para crear un nuevo artículo */}
             <button 
               onClick={handleNuevoArticulo}
               className={`py-2 px-4 rounded-lg text-base transition-all whitespace-nowrap
@@ -215,7 +201,6 @@ const ArticulosProfesor = () => {
           </div>
         </div>
 
-        {/* Artículos filtrados */}
         <div className="w-full max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5">
           {loading ? (
             <div className="col-span-full text-center py-8">
@@ -239,7 +224,7 @@ const ArticulosProfesor = () => {
                     ${isUserArticle ? 'ring-2 ring-teal-500 bg-teal-50' : ''}
                   `}
                 >
-                  {/* Etiqueta mi artículo, solo visible para artículos del usuario */}
+
                   {isUserArticle && (
                     <div className="absolute top-4 right-4 bg-teal-500 text-white px-3 py-1 rounded-full text-xs font-medium z-10">
                       Mi artículo

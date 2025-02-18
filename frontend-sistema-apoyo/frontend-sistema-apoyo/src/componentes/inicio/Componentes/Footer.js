@@ -5,8 +5,8 @@ import { Facebook, Instagram, Twitter, Youtube, Linkedin } from 'lucide-react';
 const socialIcons = [
   { name: 'Facebook', icon: Facebook, color: 'hover:text-blue-500', link: 'https://www.facebook.com/profile.php?id=61573209179555 ' },
   { name: 'Instagram', icon: Instagram, color: 'hover:text-pink-500', link: 'https://www.instagram.com/edumatch.ingles?igsh=MTFndjJidGZuc2dndQ%3D%3D&utm_source=qr' },
-  { name: 'Twitter', icon: Twitter, color: 'hover:text-blue-400', link: 'https://twitter.com' },
-  { name: 'Youtube', icon: Youtube, color: 'hover:text-red-500', link: 'https://youtube.com' },
+  { name: 'Twitter', icon: Twitter, color: 'hover:text-blue-400', link: 'https://twitter.com/EduMatch2024' },
+  { name: 'Youtube', icon: Youtube, color: 'hover:text-red-500', link: 'https://www.youtube.com/@EduMatch2024' },
   { name: 'Linkedin', icon: Linkedin, color: 'hover:text-blue-700', link: 'https://www.linkedin.com/in/edumatch-ingles-aaa69a351?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app' },
 ];
 
@@ -41,6 +41,7 @@ const UpdatedFooter = ({ socialIcons = [], footerSections = {}, navigate }) => {
   return (
     <footer className="bg-blue-900 text-white">
       <div className="max-w-6xl mx-auto py-12 px-4 text-center pl-30 ">
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 justify-center pl-20">
           {Object.values(footerSections).map((section, index) => (
             <div key={index} className="text-center">
@@ -59,6 +60,7 @@ const UpdatedFooter = ({ socialIcons = [], footerSections = {}, navigate }) => {
               </ul>
             </div>
           ))}
+
           <div className="text-center">
             <h3 className="font-semibold text-lg mb-4">Redes Sociales</h3>
             <div className="flex justify-center space-x-4">

@@ -16,12 +16,10 @@ const MisCursos = () => {
   const [cantidadAlumnos, setCantidadAlumnos] = useState(0);
   const [listaGeneral, setListaGeneral] = useState([]);
 
-  // Función para navegar a los detalles del curso seleccionado
   const navegarACurso = (curso) => {
     navigate("/profesor/cursos/detalle", { state: {nivel: curso.id, nombre: curso.nombre}})
   };
 
-// Cargar la lista de usuarios desde la API
  useEffect(() =>  {
     const cargarUsuarios = async () => {
     try {
@@ -41,10 +39,8 @@ const MisCursos = () => {
   cargarUsuarios();
 }, []) 
 
-  // Se ejecutará cuando la lista de usuarios cambia
   useEffect(() => {
     if (listaGeneral.length > 0) {
-      // Si la lista de usuarios tiene datos
       const calcularAlumnos = () => {
         let nuevaCantidad = {};
 
@@ -62,7 +58,6 @@ const MisCursos = () => {
     }
   }, [listaGeneral]);
 
-  // Definir los cursos con sus datos
   const cursos = [
     { id:1, nombre: "A1: Curso Principiante", imagen: logoA1 },
     { id:2, nombre: "A2: Curso Básico", imagen: logoA2 },
@@ -76,15 +71,12 @@ const MisCursos = () => {
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex flex-col">
       <Header />
 
-      {/* Contenedor principal de cursos */}
       <div className="mis-cursos pt-10 px-6 flex-grow">
         
-        {/* Título */}
         <h1 className="text-center text-5xl font-bold text-[#2c7a7b] mb-12">
           Mis Cursos
         </h1>
 
-        {/* Tarjetas por cada cursos */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {cursos.map((curso) => (
             <div
@@ -97,7 +89,6 @@ const MisCursos = () => {
                 className="w-full h-64 object-cover object-center"
               />
 
-              {/* Contenido de la tarjeta con detalles del curso */}
               <div className="p-6">
                 <h2 className="text-2xl font-bold text-gray-800 mb-3">
                   {curso.nombre}

@@ -44,7 +44,7 @@ const SubirCV = () => {
     }
 
     setArchivo(file);
-    setArchivoURL(URL.createObjectURL(file)); // Crear una URL para la previsualización
+    setArchivoURL(URL.createObjectURL(file)); 
     setMensaje("");
   };
 
@@ -82,13 +82,12 @@ const SubirCV = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
       <div className="w-full max-w-lg bg-white shadow-lg rounded-2xl overflow-hidden p-6">
-        {/* Header */}
+    
         <div className="bg-[#00A89F] p-6 text-center flex flex-col items-center">
           <img src={logo} alt="Logo" className="w-28 h-auto object-contain mb-3" />
           <h3 className="text-2xl font-bold text-white">Registro de Profesor</h3>
         </div>
 
-        {/* Formulario */}
         <div className="mt-6">
           <label className="block text-gray-700 font-medium mb-2" htmlFor="email">
             Confirmar correo electrónico
@@ -109,7 +108,6 @@ const SubirCV = () => {
           </button>
         </div>
 
-        {/* Sección de carga de archivo */}
         {idUsuario && (
           <div className="mt-6">
             <h2 className="text-lg font-bold text-gray-700">Subir CV</h2>
@@ -119,14 +117,12 @@ const SubirCV = () => {
                 <input type="file" accept=".pdf" onChange={handleFileChange} className="hidden" />
               </label>
 
-              {/* Mostrar nombre del archivo */}
               {archivo && (
                 <p className="text-sm text-gray-700 mt-2">
                   Archivo seleccionado: <strong>{archivo.name}</strong>
                 </p>
               )}
 
-              {/* Vista previa del PDF */}
               {archivoURL && (
                 <iframe
                   src={archivoURL}
@@ -146,7 +142,6 @@ const SubirCV = () => {
           </div>
         )}
 
-        {/* Mensaje de respuesta */}
         {mensaje && (
           <p className="text-center mt-4 text-sm font-medium text-red-600">{mensaje}</p>
         )}

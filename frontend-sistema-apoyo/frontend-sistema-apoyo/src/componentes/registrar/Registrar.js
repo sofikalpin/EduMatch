@@ -158,7 +158,6 @@ export const Registrar = () => {
 
   const handleBack = () => setStep(step - 1);
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (await validateStep()) {
@@ -171,7 +170,6 @@ export const Registrar = () => {
           rol => rol.descripcion === formData.userType
         );
   
-       
         const usuarioData = {
           idusuario: 0,
           nombrecompleto: formData.name,
@@ -187,7 +185,6 @@ export const Registrar = () => {
           fotoRuta: "string" 
         };
    
-    
         console.log('Datos a enviar:', usuarioData); 
   
         const response = await fetch("http://localhost:5228/API/Usuario/GuardarUsuario", {

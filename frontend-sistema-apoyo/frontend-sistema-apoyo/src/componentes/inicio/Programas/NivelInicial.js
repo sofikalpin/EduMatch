@@ -129,21 +129,14 @@ const A1A2CourseContentPage = () => {
 
 
       <div>
-       
         <A1CourseContent />
-
-     
         <div className="text-center py-8">
           <hr className="w-[80%] mx-auto border-t-2 border-gray-300" />
         </div>
-
-    
         <A2CourseContent />
-      
       <div className="mt-16" /> 
 
       </div>
-
       <Footer 
         socialIcons={socialIcons}
         footerSections={footerSections}

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import ListaChat from "./ListaChats/ListaChats.js";
-import Mensajes from "./Mensajes/Mensajes.js";
+import ListaChat from "./listaChats/ListaChats.js";
+import Mensajes from "./mensajes/Mensajes.js";
 import logo from "../../logo/LogoInicio.png";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../../context/userContext.js";
+import { useUser } from "../../Context/UserContext.js";
 
 const Chat = () => {
     const { user } = useUser();

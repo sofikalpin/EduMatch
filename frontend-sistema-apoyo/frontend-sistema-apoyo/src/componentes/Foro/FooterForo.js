@@ -41,6 +41,7 @@ const UpdatedFooter = ({ socialIcons = [], footerSections = {}, navigate }) => {
   return (
     <footer className="bg-blue-900 text-white">
       <div className="max-w-6xl mx-auto py-12 px-4 text-center">
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 justify-center">
           {Object.values(footerSections).map((section, index) => (
             <div key={index} className="text-center">
@@ -59,6 +60,7 @@ const UpdatedFooter = ({ socialIcons = [], footerSections = {}, navigate }) => {
               </ul>
             </div>
           ))}
+
           <div className="text-center">
             <h3 className="font-semibold text-lg mb-4">Redes Sociales</h3>
             <div className="flex justify-center space-x-4">

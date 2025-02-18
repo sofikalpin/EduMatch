@@ -2,13 +2,10 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-//Crear contexto
 const UserContext = createContext();
 
-//Hook para usar el contexto
 export const useUser = () => useContext(UserContext);
 
-//Proveedor del contexto 
 export const UserProvider = ({ children }) => {
 
   const [ user, setUser ] = useState(null);
@@ -19,8 +16,7 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     console.log("Estado del usuario actualizado: ", user);
   }, [user]);
-  
-  // Función para iniciar sesión y obtener datos del usuario
+
   const login = async ({ email, password }) => {
     try {
       sessionStorage.removeItem("authToken");
@@ -51,7 +47,6 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  //Cargar usuario desde el token
   useEffect(() => {
     const storedUser = sessionStorage.getItem("userData");
     if (storedUser) {

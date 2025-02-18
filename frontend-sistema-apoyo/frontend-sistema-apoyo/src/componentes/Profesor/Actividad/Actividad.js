@@ -6,7 +6,7 @@ import actividadImg from "../Imagenes/actividad.jpg";
 import Header from "../HeaderProfesor";
 import Footer from "../FooterProfesor";
 import axios from "axios";
-import { useUser } from "../../../context/userContext";
+import { useUser } from "../../../Context/UserContext";
 
 const ActividadesProfesor = () => {
   const location = useLocation();
@@ -23,14 +23,12 @@ const ActividadesProfesor = () => {
 
   const idProfesor = user?.idusuario;
 
-
   useEffect(() => {
     console.log("Estado inicial - nivel:", nivel);
     console.log("Estado inicial - nombre:", nombre);
     console.log("Estado inicial - idProfesor:", idProfesor);
   }, [nivel, nombre, idProfesor]);
 
- 
   useEffect(() => {
     const fetchActividades = async () => {
       setLoading(true);
@@ -74,7 +72,6 @@ const ActividadesProfesor = () => {
       state: { nivel, nombre }
     });
   };
-
 
   useEffect(() => {
     const titlesFiltered = actividades.filter(

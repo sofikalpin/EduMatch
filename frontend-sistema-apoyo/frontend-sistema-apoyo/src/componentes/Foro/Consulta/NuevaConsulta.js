@@ -1,18 +1,9 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Send } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom'; 
-import logo from '../../logo/LogoInicio.png';
 import axios from 'axios';
-import { useUser } from "../../context/userContext.js";
-import HeaderForo from './HeaderForo.js';
-
-const socialIcons = [
-  { name: 'Facebook', color: 'hover:text-blue-500' },
-  { name: 'Instagram', color: 'hover:text-pink-500' },
-  { name: 'Twitter', color: 'hover:text-blue-400' },
-  { name: 'Youtube', color: 'hover:text-red-500' },
-  { name: 'Linkedin', color: 'hover:text-blue-700' }
-];
+import { useUser } from "../../../Context/UserContext.js";
+import HeaderForo from '../HeaderForo.js';
 
 const NuevaConsulta = () => {
   const { user } = useUser();
@@ -54,7 +45,7 @@ const NuevaConsulta = () => {
           titulo: titulo.trim(),
           contenido: contenido.trim(),
           idusuario: idusuario,
-          idForo: parseInt(idForo), // Convert to number since URL params are strings
+          idForo: parseInt(idForo), 
           fechahora: new Date().toISOString(),
         };
 

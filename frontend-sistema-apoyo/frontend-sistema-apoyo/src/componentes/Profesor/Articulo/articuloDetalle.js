@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from "react-markdown";
 import axios from 'axios';
-import { useUser } from '../../../context/userContext';
+import { useUser } from '../../../Context/UserContext';
 import articuloImagen from "../Imagenes/articulo.jpg";
 import deleteIcon from "../Imagenes/delete.png";
 import Header from "../HeaderProfesor";
@@ -18,7 +18,6 @@ const ArticuloDetalle = () => {
   const [error, setError] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Cargar el articulo
   useEffect(() => {
     const encontrarArticulo = async () => {
       try {
@@ -42,7 +41,6 @@ const ArticuloDetalle = () => {
     encontrarArticulo();
   }, [idarticulo]);
 
-  // Función para eliminar un articulo
   const handleDelete = async () => {
     if (!window.confirm("¿Está seguro que desea eliminar este artículo?")) {
       return;
@@ -65,7 +63,6 @@ const ArticuloDetalle = () => {
     }
   };
   
-  // Mostrar en pantalla de la carga si el articulo no fue cargado
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
@@ -80,7 +77,6 @@ const ArticuloDetalle = () => {
     );
   }
 
-  // Mostrar mensaje de error si ocurrió algún problema
   if (error) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
@@ -102,19 +98,15 @@ const ArticuloDetalle = () => {
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="bg-white rounded-lg shadow-lg mt-12 p-6 max-w-3xl mx-auto">
           
-        { /* Sección para la fecha de publicación */}
           <div className="bg-white p-6 rounded-lg shadow-md mb-6">
             <span className="text-gray-600 text-xl">Fecha de Publicación: {articulo?.fechaCreacion}</span>
           </div>
 
-          {/* Contenedor principal del articulo */}
           <div className="space-y-8">
             <div className="flex items-center justify-between">
 
-              {/* Titulo del articulo*/}
               <h1 className="text-3xl font-bold text-gray-900">{articulo?.titulo}</h1>
               
-              {/* Boton para eliminar la actividad */}
               {user && articulo && user.idusuario === articulo.idusuario && (
                 <button 
                   onClick={handleDelete}
@@ -128,12 +120,10 @@ const ArticuloDetalle = () => {
               )}
             </div>
 
-            {/*Imagen del articulo */}
             <div className="flex justify-center">
               <img src={articuloImagen} alt="Imagen del artículo" className="h-48 w-auto rounded-lg shadow-md object-cover" />
             </div>
 
-            {/*Sección de la descripción */}
             <div className="space-y-4">
               <h2 className="text-xl font-semibold text-gray-900">Descripción</h2>
               <ReactMarkdown className="text-gray-600 text-justify" breaks={true}>
@@ -141,7 +131,6 @@ const ArticuloDetalle = () => {
               </ReactMarkdown>
             </div>
 
-            {/* Sección del archivo del articulo */}
             <div>
               <h2 className="text-xl font-semibold text-gray-900 mb-4">Archivo del Artículo</h2>
               {articulo?.url ? (
@@ -153,7 +142,6 @@ const ArticuloDetalle = () => {
               )}
             </div>
 
-            {/* Botón para volver a la lista de articulos */}
             <button
               onClick={() => navigate(-1)}
               className="py-3 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium"

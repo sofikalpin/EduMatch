@@ -24,13 +24,11 @@ const ProfesorCVExterno = () => {
     );
   }
 
- 
   const handlePreviewCV = () => {
     if (profesorData.cvUrl) {
       setPreviewModalOpen(true);
     }
   };
-
 
   const handleDownloadCV = () => {
     if (profesorData.cvUrl) {
@@ -61,7 +59,6 @@ const ProfesorCVExterno = () => {
         <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden">
           <div className="p-8">
             
-         
             <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0">
               <div className="relative">
                 <div className="w-32 h-32 rounded-full bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">

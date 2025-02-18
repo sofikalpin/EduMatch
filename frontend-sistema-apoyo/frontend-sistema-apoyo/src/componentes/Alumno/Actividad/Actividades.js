@@ -43,13 +43,11 @@ const Actividades = () => {
     fetchActividades();
   }, [nivel]);
 
-  // Manejar cambios en la consulta de búsqueda
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setIsFocused(true);
   };
 
-  // Filtrar solo las actividades que coinciden con la búsqueda
   const filteredActivities = assignedActivities.filter(
     (activity) => activity.nombre?.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -60,7 +58,6 @@ const Actividades = () => {
 
       <div className="flex-grow flex flex-col items-center justify-center px-5 py-10">
         
-        {/* Contenedor para volver y el título */}
         <div className="flex items-center justify-between w-full mb-10">
           <button
             onClick={() => navigate(-1)}
@@ -73,7 +70,6 @@ const Actividades = () => {
           <h1 className="text-5xl font-bold text-[#2c7a7b] text-center flex-grow">Actividades</h1>
         </div>
 
-        {/* Buscador de actividades */}
         <div className="relative w-full max-w-2xl mx-auto z-10 mb-10">
         <div className="relative">
           <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -89,7 +85,6 @@ const Actividades = () => {
           />
         </div>
 
-        {/* Lista desplegable del buscador */}
         {isFocused && searchQuery && (
           <ul className="absolute w-full bg-white shadow-lg rounded-lg mt-2 max-h-48 overflow-y-auto border border-gray-200 z-20">
             {loading ? (
@@ -109,7 +104,6 @@ const Actividades = () => {
         )}
       </div>
 
-        {/* Contenedor de las tarjetas */}
         <div className="tarjetas-detalles flex justify-center gap-8 flex-wrap grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
           {assignedActivities.length === 0 && !loading && !error ? (
             <div className="text-center text-gray-500">No hay actividades asignadas.</div>
@@ -120,7 +114,7 @@ const Actividades = () => {
                 className="bg-white shadow-xl rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300 ease-in-out w-full h-[350px] flex flex-col p-4"
               >
                 <div to={activity.link} className="block h-full flex flex-col">
-                  <div className="relative w-full h-[150px] mb-4"> {/* Contenedor para la imagen */}
+                  <div className="relative w-full h-[150px] mb-4"> 
                   <img 
                     src={actividad} 
                     alt="Actividad" 

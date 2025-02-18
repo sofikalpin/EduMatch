@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EditarProfesor from "../EditarProfesor/EditarProfesor";
+import axios from "axios";
 
 const FilaProfesores = ({ profesor, onDelete }) => {
     const [mostrarEditar, setMostrarEditar] = useState(false);
@@ -56,6 +57,29 @@ const FilaProfesores = ({ profesor, onDelete }) => {
         setMostrarEditar(false);  
     };
 
+    const obtenerCV = async (idUsuario) => {
+        try {
+            const response = await axios.get(`http://localhost:5228/API/Usuario/ObtenerCV?idUsuario=${idUsuario}`, {
+                responseType: 'arraybuffer', 
+            });
+    
+            if (response.data && response.data.byteLength > 0) {
+                const file = new Blob([response.data], { type: 'application/pdf' });
+                const fileURL = URL.createObjectURL(file);
+    
+                const link = document.createElement('a');
+                link.href = fileURL;
+                link.download = `cv_${idUsuario}.pdf`; 
+                link.click();
+            } else {
+                alert("El archivo no está disponible.");
+            }
+        } catch (error) {
+            console.error("Error al obtener el CV", error);
+            alert("No se pudo obtener el CV.");
+        }
+    };
+
     return (
         <tr className="border-b hover:bg-gray-100">
             <td className="px-4 py-3 flex items-center gap-2">
@@ -99,9 +123,7 @@ const FilaProfesores = ({ profesor, onDelete }) => {
                         <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-md w-32">
                             <button 
                                 className="w-full text-left px-4 py-2 text-blue-600"
-                                onClick={() => {
-                                    navigate("/profesorCV");
-                                }}
+                                onClick={() => obtenerCV(profesor.idusuario)}
                             >
                                 Ver CV
                             </button>

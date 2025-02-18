@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../logo/LogoInicio.png";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useUser } from "../../context/userContext";
+import { useUser } from "../../Context/UserContext";
 import axios from "axios";
 
 const niveles = {

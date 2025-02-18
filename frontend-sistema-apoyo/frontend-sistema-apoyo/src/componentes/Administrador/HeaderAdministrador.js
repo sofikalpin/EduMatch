@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import logo from "../../logo/LogoInicio.png";
 import { AiOutlineMessage } from "react-icons/ai";
 import { useNavigate, Link } from "react-router-dom";
-import { useUser } from "../../context/userContext";
+import { useUser } from "../../Context/UserContext";
 
 const Header = () => {
     const { user } = useUser();

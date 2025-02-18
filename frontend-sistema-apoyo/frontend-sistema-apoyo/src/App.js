@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import ProtegerRuta from "./ProtectedRoute";
-import { UserProvider } from "./context/userContext";
+import { UserProvider } from "./Context/UserContext";
 import "./App.css";
 
 // Importar los componentes
@@ -14,7 +14,7 @@ import  SubirCV  from "./componentes/Registrar/SubirCV";
 
 // Inicio
 import Inicio from "./componentes/inicio/Inicio/Inicio";
-import InicioProfesor from "./componentes/inicio/Profesores/Profesorini"; 
+import InicioProfesor from "./componentes/inicio/Profesores/ProfesorInicio"; 
 import NivelInicial from "./componentes/inicio/Programas/NivelInicial";
 import NivelIntermedio from "./componentes/inicio/Programas/NivelIntermedio";
 import NivelAvanzado from "./componentes/inicio/Programas/NivelAvanzado";
@@ -53,12 +53,12 @@ import ArticuloDetalleProfesor from "./componentes/Profesor/Articulo/ArticuloDet
 import ExamenDetalleProfesor from "./componentes/Profesor/Examen/ExamenDetalle";
 
 //Foro
-import ListaForos from "./componentes/Foro/ListaForos";
+import ListaForos from "./componentes/Foro/ListaForo/ListaForos";
 import Foro from "./componentes/Foro/Foro";
-import NuevoForo from "./componentes/Foro/NuevoForo";
-import Consulta from "./componentes/Foro/Consulta";
-import NuevaConsulta from "./componentes/Foro/NuevaConsulta";
-import NuevaRespuesta from "./componentes/Foro/NuevaRespuesta";
+import NuevoForo from "./componentes/Foro/NuevoForo/NuevoForo";
+import Consulta from "./componentes/Foro/Consulta/Consulta";
+import NuevaConsulta from "./componentes/Foro/Consulta/NuevaConsulta";
+import NuevaRespuesta from "./componentes/Foro/Respuesta/NuevaRespuesta";
 
 //Alumno
 import MisCursosAlumno from "./componentes/Alumno/Cursos/MisCursos";

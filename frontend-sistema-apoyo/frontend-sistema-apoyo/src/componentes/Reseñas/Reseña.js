@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Star, ArrowLeft, CheckCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../../context/userContext";
+import { useUser } from "../../Context/UserContext";
 import logo from "../../logo/LogoInicio.png";
 
 const UserReviews = () => {
@@ -33,9 +33,6 @@ const UserReviews = () => {
                 rating: newReview.rating,
                 comentario: newReview.comment,
             };
-            
-
-            console.log("Datos enviados:", reviewData);
 
             try {
                 const response = await axios.post(
@@ -47,7 +44,6 @@ const UserReviews = () => {
                         },
                     }
                 );
-                console.log("Respuesta del servidor:", response.data);
 
                 if (response.data) {
                     setReviews([
@@ -59,7 +55,6 @@ const UserReviews = () => {
                         },
                     ]);
                     setNewReview({ rating: 5, comment: "" });
-
                    
                     setSuccessMessage(true);
                     setTimeout(() => setSuccessMessage(false), 
@@ -68,7 +63,6 @@ const UserReviews = () => {
                 }
             } catch (err) {
                 setError("Error al enviar la reseña. Por favor, intenta de nuevo.");
-                console.error("Error al enviar reseña:", err);
             } finally {
                 setIsSubmitting(false);
             }

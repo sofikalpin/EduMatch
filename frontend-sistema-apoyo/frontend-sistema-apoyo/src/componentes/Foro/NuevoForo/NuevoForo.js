@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { ArrowLeft, Send } from 'lucide-react';
 import { useNavigate } from 'react-router-dom'; 
 import axios from "axios";
-import { useUser } from "../../context/userContext.js";
-import HeaderForo from './HeaderForo.js';
+import { useUser } from "../../../Context/UserContext.js";
+import HeaderForo from '../HeaderForo.js';
 
 const NuevoForo = () => {
     const { user } = useUser();
@@ -25,15 +25,9 @@ const NuevoForo = () => {
     };
 
     const idusuario = user?.idusuario;
-    const nivelProfesor = user?.idnivel;  
-   
-    console.log("Nivel del profesor:", nivelProfesor);
+    const nivelProfesor = user?.idnivel; 
 
-   
     const nivelesInferiores = Object.keys(niveles).filter(nivelKey => niveles[nivelKey] <= nivelProfesor);
-
-  
-    console.log("Niveles inferiores disponibles:", nivelesInferiores);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

@@ -6,7 +6,7 @@ import examenImg from "../Imagenes/examen.avif";
 import Header from "../HeaderProfesor";
 import Footer from "../FooterProfesor";
 import axios from "axios";
-import { useUser } from "../../../context/userContext";
+import { useUser } from "../../../Context/UserContext";
 
 const ExamenProfesor = () => {
   const location = useLocation();
@@ -23,7 +23,6 @@ const ExamenProfesor = () => {
 
   const idProfesor = user?.idusuario;
 
-  // Obtener los exámenes
   useEffect(() => {
     const fetchExamenes = async () => {
       setLoading(true);
@@ -60,7 +59,6 @@ const ExamenProfesor = () => {
     }
   }, [nivel]);
 
-  // Filtrar por título y creador
   useEffect(() => {
     const titlesFiltered = examenes.filter(
       (examen) => examen.titulo?.toLowerCase().includes(searchQuery.toLowerCase())
@@ -71,8 +69,7 @@ const ExamenProfesor = () => {
         opcionCreacion === "" || 
         (examen.idusuario && examen.idusuario.toString() === opcionCreacion)
     );
-    
-    // Actualizar el estado con los examenes filtrados
+
     setFilteredExamenes(filtered);
   }, [searchQuery, opcionCreacion, examenes]);
 
@@ -81,14 +78,12 @@ const ExamenProfesor = () => {
     setIsFocused(true);
   };
 
-  // Función para navegar a detalle del examen
   const handleViewExamen = (examen) => {
     navigate(`/profesor/cursos/detalle/examen/${examen.idexamen}`, {
       state: { nivel, nombre }
     });
   };
 
-  // Función para crear nuevo examen
   const handleNuevoExamen = () => {
     if (user.idnivel < nivel) {
       alert("Su nivel de perfil es menor al nivel correspondiente al examen que desea crear.");
@@ -97,7 +92,6 @@ const ExamenProfesor = () => {
     }
   };
 
-  // Verificar si un examen pertenece al profesor
   const isOwnExamen = (examen) => {
     return examen.idusuario && examen.idusuario.toString() === idProfesor?.toString();
   };
@@ -106,7 +100,6 @@ const ExamenProfesor = () => {
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 via-white to-blue-100">
       <Header />
 
-      {/* Contenedor para el volver y el título */}
       <div className="flex-grow flex flex-col items-center justify-center px-5 py-10">
         <div className="flex items-center justify-between w-full mb-6">
           <button
@@ -122,10 +115,8 @@ const ExamenProfesor = () => {
 
         <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Explora y administra los exámenes disponibles.</p>
 
-        {/* Contenedor con la barra de búsqueda y botón de crear nuevo examen */}
         <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
-          
-          {/* Buscador de examenes */}
+
           <div className="relative w-full md:w-2/3">
             <div className="relative">
               <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -140,7 +131,6 @@ const ExamenProfesor = () => {
               />
             </div>
 
-            {/* Lista desplegable de resultados de la búsqueda */}
             {isFocused && searchQuery && (
               <ul className="absolute w-full bg-white shadow-lg rounded-lg mt-2 max-h-48 overflow-y-auto border border-gray-200 z-20">
                 {loading ? (
@@ -168,7 +158,6 @@ const ExamenProfesor = () => {
             )}
           </div>
 
-          {/* Filtro para mis examenes */}
           <div className="flex items-center gap-3 w-full md:w-auto">
             <select
               value={opcionCreacion}
@@ -179,7 +168,6 @@ const ExamenProfesor = () => {
               <option value={idProfesor?.toString()}>Mis exámenes</option>
             </select>
 
-            {/* Botón para crear un nuevo examen */}
             <button 
               onClick={handleNuevoExamen}
               className={`py-2 px-4 rounded-lg text-base transition-all whitespace-nowrap
@@ -192,7 +180,6 @@ const ExamenProfesor = () => {
           </div>
         </div>
 
-        {/* Examenes filtrados */}
         <div className="w-full max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
           {loading ? (
             <div className="col-span-full text-center py-8">
@@ -215,7 +202,7 @@ const ExamenProfesor = () => {
                   className={`bg-white shadow-xl rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300 ease-in-out flex flex-col h-[350px] p-4
                     ${isUserExamen ? 'ring-2 ring-teal-500 bg-teal-50' : ''}`}
                 >
-                  {/* Etiqueta mi examen, solo visible para examenes del usuario */}
+                  
                   {isUserExamen && (
                     <div className="absolute top-4 right-4 bg-teal-500 text-white px-3 py-1 rounded-full text-xs font-medium z-10">
                       Mi examen

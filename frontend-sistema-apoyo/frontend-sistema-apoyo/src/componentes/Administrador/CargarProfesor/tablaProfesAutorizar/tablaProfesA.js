@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FilaProfesor from "../FilaProfesor/FilaProfesor.js";
+import FilaProfesor from "../filaProfesor/FilaProfesor.js";
 
 const TablaProfesA = ({ data, onDelete, onAutorizar }) => {
   const [nivelSeleccionado, setNivelSeleccionado] = useState("");

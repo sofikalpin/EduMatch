@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useUser } from "../../../context/userContext"; 
+import { useUser } from "../../../Context/UserContext"; 
 import Header from "../HeaderAlumno";
 import Footer from "../FooterAlumno";
 import { Search, UserRound, MessageCircle, Send, X, Star } from "lucide-react";
@@ -16,7 +16,6 @@ const MisProfesores = () => {
   const [ratingsMap, setRatingsMap] = useState({}); 
   const [currentRating, setCurrentRating] = useState(0); 
 
-  
   useEffect(() => {
     const fetchProfesores = async () => {
       try {
@@ -28,7 +27,6 @@ const MisProfesores = () => {
         const profesoresData = Array.isArray(data.value) ? data.value : [];
         setProfesores(profesoresData);
 
-        
         const opinionesIniciales = {};
         const ratingsIniciales = {};
         profesoresData.forEach(profesor => {
@@ -55,7 +53,6 @@ const MisProfesores = () => {
   const filteredProfesores = profesores.filter(profesor =>
     profesor.nombrecompleto.toLowerCase().includes(searchTerm)
   );
-
 
   const handleAddOpinion = async (profesorId) => {
     if (!newOpinion.trim()) return;
@@ -86,7 +83,6 @@ const MisProfesores = () => {
         throw new Error("Error al agregar la opinión");
       }
 
- 
       setOpinionesMap(prevOpiniones => ({
         ...prevOpiniones,
         [profesorId]: [
@@ -100,7 +96,6 @@ const MisProfesores = () => {
         ]
       }));
 
-      
       setNewOpinion("");
       setCurrentRating(0); 
       setSelectedProfesor(null);
@@ -109,17 +104,14 @@ const MisProfesores = () => {
     }
   };
 
-
   const handleRatingChange = (rating) => {
     setCurrentRating(rating);
   };
 
- 
   const getOpinionesProfesor = (profesorId) => {
     return opinionesMap[profesorId] || [];
   };
 
- 
   const renderStars = () => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -159,7 +151,6 @@ const MisProfesores = () => {
             />
           </div>
 
-         
           {loading ? (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
@@ -191,7 +182,6 @@ const MisProfesores = () => {
                         </div>
                       </div>
 
-                      {/* Mostrar opiniones */}
                       <div className="space-y-4 mb-6">
                         {opiniones.map((opinion) => (
                           <div key={opinion.id} className="bg-gray-50 rounded-lg p-4">
@@ -209,7 +199,6 @@ const MisProfesores = () => {
                         ))}
                       </div>
 
-                    
                       {selectedProfesor === profesor.idusuario ? (
                         <div className="bg-gray-50 rounded-lg p-4">
                           <div className="flex items-center gap-2 mb-3">

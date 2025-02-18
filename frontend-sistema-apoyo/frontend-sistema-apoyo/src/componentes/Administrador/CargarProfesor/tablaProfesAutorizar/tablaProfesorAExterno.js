@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FilaProfesor from "../FilaProfesor/FilaProfesorExterno.js";
+import FilaProfesor from "../filaProfesor/FilaProfesorExterno.js";
 
 const TablaProfesAExterno = ({ data, onDelete, onAutorizar }) => {
     const [nivelSeleccionado, setNivelSeleccionado] = useState("");
@@ -8,7 +8,6 @@ const TablaProfesAExterno = ({ data, onDelete, onAutorizar }) => {
         setNivelSeleccionado(e.target.value);
     };
 
-    
     const uniqueData = data.reduce((acc, current) => {
         const x = acc.find(item => item.idbolsa === current.idbolsa);
         if (!x) {
@@ -17,7 +16,6 @@ const TablaProfesAExterno = ({ data, onDelete, onAutorizar }) => {
             return acc;
         }
     }, []);
-
 
     const profesorNivel = nivelSeleccionado === "" 
         ? uniqueData 
@@ -66,7 +64,7 @@ const TablaProfesAExterno = ({ data, onDelete, onAutorizar }) => {
                         {isDataValid ? (
                             profesorNivel.map((profesor) => (
                                 <FilaProfesor
-                                    key={`${profesor.idusuario}-${profesor.correo}`}
+                                    key={profesor.idbolsa}
                                     profesor={profesor}
                                     onDelete={onDelete}
                                     onAutorizar={onAutorizar}
@@ -83,7 +81,6 @@ const TablaProfesAExterno = ({ data, onDelete, onAutorizar }) => {
                 </table>
             </div>
 
-            
             <div className="mt-4 text-sm text-gray-500">
                 Total de profesores: {uniqueData.length}
                 <br />

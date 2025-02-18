@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import TablaProfesores from "./TablaProfesAutorizar/TablaProfesA.js";
+import TablaProfesores from "./tablaProfesAutorizar/TablaProfesA.js";
 import axios from "axios";
 import Header from "../HeaderAdministrador.js";
 import Footer from "../FooteraAdministrador.js";

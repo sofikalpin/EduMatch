@@ -82,7 +82,6 @@ const ListaProfesores = () => {
             <div className="flex flex-col items-center mt-8 px-20 max-w-13xl mx-auto flex-grow mb-16">
                 <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Lista de Profesores Registrados</h1>
     
-                {/* Campo de búsqueda */}
                 <input
                     type="text"
                     placeholder="Buscar por nombre de profesor..."
@@ -92,7 +91,6 @@ const ListaProfesores = () => {
                     autoComplete="off"
                 />
     
-                {/* Mostrar mensaje de eliminación, error o la tabla */}
                 <div>
                     {mensajeEliminacion && <div className="text-green-500 mb-4">{mensajeEliminacion}</div>}
                     {error && <div className="text-red-500 mb-4">{error}</div>}

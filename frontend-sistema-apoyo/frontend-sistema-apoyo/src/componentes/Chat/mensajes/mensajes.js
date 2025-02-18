@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import hubConnection from "../../../signalRConnection.js";
-import { useUser } from "../../../context/userContext.js";
+import { useUser } from "../../../Context/UserContext.js";
 
 const Mensajes = ({ usuarioId, chatId }) => {
     const { user } = useUser();

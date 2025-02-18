@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import HeaderForo from "./HeaderForo";
+import HeaderForo from "../HeaderForo";
 import { Plus, ChevronRight, User } from "lucide-react";
-import FooterForo from "./FooterForo";
-import logo from "../../logo/LogoInicio.png";
+import FooterForo from "../FooterForo";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useUser } from "../../context/userContext";
+import { useUser } from "../../../Context/UserContext";
 import { ArrowLeft } from 'lucide-react';
-
 
 const Consulta = () => {
   const location = useLocation();

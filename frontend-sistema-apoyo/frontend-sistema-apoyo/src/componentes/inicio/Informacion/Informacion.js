@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Home, Book, Shield, MessageSquare } from 'lucide-react';
+import { Home, Book, MessageSquare } from 'lucide-react';
 import TopBar from '../Componentes/TopBar';
 import Header from '../Componentes/Header';
 import Footer from '../Componentes/Footer';
 import logo from '../../../logo/LogoInicio.png';
-
 
 const FOOTER_SECTIONS = {
   section1: {
@@ -43,7 +42,6 @@ const NavItem = ({ id, Icon, text, isActive, onClick }) => (
   </div>
 );
 
-// SobreNosotros component
 const SobreNosotros = () => (
   <div className="p-8 max-w-3xl mx-auto space-y-6">
      <h1 className="text-4xl font-bold text-blue-600 mb-6 text-center">Sobre EduMatch</h1>

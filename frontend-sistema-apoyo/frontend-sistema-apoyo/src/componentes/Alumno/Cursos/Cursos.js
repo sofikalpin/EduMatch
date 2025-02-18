@@ -60,7 +60,6 @@ const CursoDetalleAlumno = () => {
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
       <Header />
 
-     
       <div className="curso-detalles-container px-5 py-10 text-center bg-[#f0faf7] flex-grow">
         
         <div className="flex items-center mb-12 mt-6">
@@ -80,7 +79,6 @@ const CursoDetalleAlumno = () => {
        
         {error && <div className="text-red-500 mb-4">{error}</div>}
 
-      
         <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
           Aquí podrás obtener más información sobre el contenido, los objetivos y los materiales disponibles.
         </p>
@@ -99,7 +97,6 @@ const CursoDetalleAlumno = () => {
             </div>
           </div>
 
-       
           <div 
             className="tarjeta-detalle bg-white border border-gray-200 rounded-xl shadow-lg p-6 w-64 text-center no-underline text-gray-800 transition-transform duration-300 ease-in-out hover:transform hover:-translate-y-2 hover:shadow-2xl flex flex-col justify-between"
             onClick={() => handleCardClick("Artículos")}
@@ -111,7 +108,6 @@ const CursoDetalleAlumno = () => {
             </div>
           </div>
 
-       
           <div 
             className="tarjeta-detalle bg-white border border-gray-200 rounded-xl shadow-lg p-6 w-64 text-center no-underline text-gray-800 transition-transform duration-300 ease-in-out hover:transform hover:-translate-y-2 hover:shadow-2xl flex flex-col justify-between"
             onClick={() => handleCardClick("Exámenes")}

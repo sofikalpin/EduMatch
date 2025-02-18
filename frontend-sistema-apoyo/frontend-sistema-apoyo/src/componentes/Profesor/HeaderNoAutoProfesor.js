@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import logo from "../../logo/LogoInicio.png";
 import { AiOutlineMessage } from "react-icons/ai";
 import { useNavigate, Link } from "react-router-dom";
-import { useUser } from "../../context/userContext";
+import { useUser } from "../../Context/UserContext";
 
 const Header = () => {
     const { user } = useUser();
@@ -17,8 +17,7 @@ const Header = () => {
     const handleLogout = () => {
         navigate("/");
     };
-    
-    // Función para cerrar el modal de cierre de sesión 
+
     const closeLogoutModal = () => setIsLogoutModalOpen(false);
 
     const userName = user?.nombrecompleto || "Invitado";
@@ -27,7 +26,6 @@ const Header = () => {
     return (
         <div className="flex flex-col w-full">
 
-            {/* Barra superior con logo */}
             <div className="bg-white py-2 flex justify-end items-center px-6">
                 <div className="max-w-7xl mx-auto flex items-center justify-center">
                     <img 
@@ -38,7 +36,6 @@ const Header = () => {
                 </div>
             </div>
 
-            {/* Barra de navegación con menú */}
             <div className="flex items-center justify-between p-6" style={{ backgroundColor: '#00A89F' }}>
                 <div className="max-w-7xl mx-auto px-4 w-full">
                     <div className="flex items-center justify-between h-14">
@@ -50,7 +47,6 @@ const Header = () => {
                             </div>
                         </nav>  
 
-                        {/* Menú del usuario */}
                         <div className="flex items-center space-x-3 relative">
                             <span 
                                 className="text-white font-bold text-xl cursor-pointer" 
@@ -62,7 +58,6 @@ const Header = () => {
                                 {userInitial}
                             </div>
 
-                            {/* Menú desplegable */}
                             {isMenuOpen && (
                                 <div className="absolute top-12 right-0 bg-white shadow-lg rounded-lg w-48 p-4 mt-2">
                                     <ul className="space-y-3">
@@ -85,7 +80,6 @@ const Header = () => {
                 </div>
             </div>
     
-    {/* Modal de cierre de sesión */}
     {isLogoutModalOpen && (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
         <div className="bg-white p-6 rounded-lg w-80 shadow-lg">

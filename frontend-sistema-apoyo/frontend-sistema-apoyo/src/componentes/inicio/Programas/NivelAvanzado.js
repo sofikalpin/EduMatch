@@ -127,19 +127,14 @@ const C1CourseContent = () => {
           logo={logo}
         />
   
-       
         <div>
-         
           <C1CourseContent />
-  
-       
+          
           <div className="text-center py-8">
             <hr className="w-[80%] mx-auto border-t-2 border-gray-300" />
           </div>
-  
-        
+
           <C2CourseContent />
-        
           <div className="mt-16" />
         </div>
   

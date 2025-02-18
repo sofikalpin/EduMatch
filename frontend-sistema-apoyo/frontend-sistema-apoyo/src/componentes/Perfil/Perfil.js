@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useUser } from '../../context/userContext';
+import { useUser } from '../../Context/UserContext';
 import logo from "../../logo/LogoInicio.png";
 import { ArrowLeft } from 'lucide-react';
 

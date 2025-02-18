@@ -6,7 +6,6 @@ import Header from "../Componentes/Header";
 import Footer from "../Componentes/Footer";
 import logo from "../../../logo/LogoInicio.png";
 
-
 const footerSections = {
   section1: {
     title: "Información",

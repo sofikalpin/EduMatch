@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import TablaProfesoresExterno from "./TablaProfesAutorizar/TablaProfesorAExterno.js";
+import TablaProfesoresExterno from "./tablaProfesAutorizar/TablaProfesorAExterno.js";
 import axios from "axios";
 import { ArrowLeft } from "lucide-react";
 import Header from "../HeaderAdministrador.js";
@@ -30,18 +30,18 @@ const CargarProfesorExterno = () => {
     };
 
     const handleDeleteProfesor = (idbolsa) => {
-       
-        console.log(" Lista actual de profesores antes de eliminar:", profesoresIngles);
+        console.log("Función handleDeleteProfesor llamada con ID:", idbolsa); // 🛠 Debug
+        console.log("📋 Lista actual de profesores antes de eliminar:", profesoresIngles);
         if (window.confirm("¿Estás seguro de que deseas rechazar este profesor?")) {
             const profesorExistente = profesoresIngles.find(profesor => profesor.idbolsa === idbolsa);
             
             if (!profesorExistente) {
-                console.warn(" Profesor no encontrado en la lista.");
+                console.warn("⚠ Profesor no encontrado en la lista.");
                 alert("Este profesor no se encuentra en la lista.");
                 return;
             }
     
-            console.log(` Profesor encontrado con IDbolsa: ${idbolsa}, procediendo a eliminar...`);
+            console.log(`Profesor encontrado con IDbolsa: ${idbolsa}, procediendo a eliminar...`);
     
             axios.delete(`http://localhost:5228/api/Bolsatrabajo/EliminarBolsa?id=${idbolsa}`)
                 .then(() => {
@@ -52,31 +52,23 @@ const CargarProfesorExterno = () => {
                     setTimeout(() => setMensaje(""), 2000);
                 }) 
                 .catch((error) => {
-                    console.error(" Error al rechazar al profesor: ", error);
+                    console.error("Error al rechazar al profesor: ", error);
                     alert("Ocurrió un error al rechazar el profesor. Por favor, intenta nuevamente.");
                 });
         }
     };
     
-    
-    
-    const handleAutorizarProfesor = (idusuario) => {
+    const handleAutorizarProfesor = (id) => {
         if (window.confirm("¿Estás seguro de que deseas autorizar este profesor?")) {
-            axios.put(`http://localhost:5228/API/AdministradorProfesor/AutorizarProfesor?id=${idusuario}`)
+            axios.put(`http://localhost:5228/API/AdministradorProfesor/AutorizarProfesor?id=${id}`)
                 .then(() => {
                     setProfesoresIngles((prevProfesores) => 
-                        prevProfesores.filter((profesor) => profesor.idusuario !== idusuario)
+                        prevProfesores.filter((profesor) => profesor.idusuario !== id)
                     );
-                    setMensaje("Profesor autorizado con éxito.");
-                    setTimeout(() => setMensaje(""), 2000);
                 })
-                .catch((error) => {
-                    console.error("Error al autorizar al profesor: ", error);
-                    alert("Ocurrió un error al autorizar el profesor. Por favor, intenta nuevamente.");
-                });
-        }
+                .catch(error => console.error("Error al autorizar profesor:", error));
+        }        
     };
-    
 
     const mapNivelToId = (nivelString) => {
         const niveles = {
@@ -111,6 +103,7 @@ const CargarProfesorExterno = () => {
                         nivel: profesor.nivel || "No disponible",
                         idnivel: mapNivelToId(profesor.nivel || ""),
                         cvUrl: profesor.cvUrl || "",
+
                         nameDisplay: (
                             <div className="flex items-center gap-3">
                                 <ProfesorInitialsCircle initials={getInitials(profesor.nombreCompleto)} />

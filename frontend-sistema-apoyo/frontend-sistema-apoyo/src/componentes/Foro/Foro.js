@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import HeaderForo from "./HeaderForo.js";
 import { Plus, ChevronRight, User } from "lucide-react";
-import logo from "../../logo/LogoInicio.png"; 
 import { useNavigate, useLocation } from "react-router-dom";
-import { useUser } from "../../context/userContext.js";
+import { useUser } from "../../Context/UserContext";
 import FooterForo from "./FooterForo.js"
 import { ArrowLeft } from 'lucide-react';
 
@@ -52,7 +51,6 @@ const Foro = () => {
       setForo(location.state.foro);
     }
   }, [location.state]);
-
 
   useEffect(() => {
     const fetchConsultas = async () => {

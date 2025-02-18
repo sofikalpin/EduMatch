@@ -7,7 +7,6 @@ const InicioProfesor = () => {
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex flex-col">
      
       <Header />
-
       
       <main className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 py-12 flex-grow mb-24 mt-24">
         <div className="text-center mb-12">

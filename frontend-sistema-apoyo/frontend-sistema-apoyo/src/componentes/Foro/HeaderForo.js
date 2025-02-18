@@ -4,7 +4,7 @@ import { Plus, ChevronRight, ArrowLeft } from "lucide-react";
 import { AiOutlineMessage } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import logo from "../../logo/LogoInicio.png";
-import { useUser } from "../../context/userContext";
+import { useUser } from "../../Context/UserContext";
 
 const HeaderForo = () => {
     const { user } = useUser();
@@ -25,7 +25,7 @@ const HeaderForo = () => {
     
     return (
         <div className="flex flex-col w-full">
-        
+
             <div className="bg-white py-2 flex justify-center items-center px-6">
                 <img 
                     src={logo} 
@@ -34,16 +34,13 @@ const HeaderForo = () => {
                 />
             </div>
                 
-           
             <div className="flex items-center justify-between p-6" style={{ backgroundColor: '#00A89F' }}>
                 <div className="max-w-7xl mx-auto px-4 w-full flex items-center justify-between h-14">
                     
-                   
                     <div className="flex-1 flex justify-center">
                         <h1 className="text-white font-bold text-xl">Foros</h1>
                     </div>
-    
-                   
+ 
                     <div className="flex items-center space-x-3 relative ml-auto">
                         <button onClick={goToChat} className="text-white text-2xl">
                             <AiOutlineMessage />
@@ -82,7 +79,6 @@ const HeaderForo = () => {
                 </div>
             </div>
     
-         
             {isLogoutModalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
                     <div className="bg-white p-6 rounded-lg w-80 shadow-lg">

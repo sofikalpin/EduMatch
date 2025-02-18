@@ -9,13 +9,10 @@ const FilaProfesorExterno = ({ profesor, onDelete, onAutorizar }) => {
     useEffect(() => {
         const cargarNiveles = async () => {
             try {
-                const response = await axios.get('http://localhost:5228/API/Nivel/Listar Niveles');
-             
-                const nivelesData = Array.isArray(response.data) ? response.data : [];
-                setNiveles(nivelesData);
+                const response = await axios.get('http://localhost:5228/API/Nivel/Nivel');
+                setNiveles(response.data);
             } catch (error) {
                 console.error("Error al cargar niveles:", error);
-                setNiveles([]); 
             }
         };
         
@@ -26,7 +23,7 @@ const FilaProfesorExterno = ({ profesor, onDelete, onAutorizar }) => {
         if (window.confirm(`¿Estás seguro que deseas rechazar al profesor ${profesor.nombreCompleto}?`)) {
             onDelete(profesor.idbolsa);
         }
-    };
+    };    
     
     const iniciales = (name) => {
         if (!name) return "";
@@ -36,24 +33,11 @@ const FilaProfesorExterno = ({ profesor, onDelete, onAutorizar }) => {
             .join("").toUpperCase();
     };
     
-    const getNivelIdFromDescripcion = (nivelDescripcion) => {
-        if (!Array.isArray(niveles)) return null;
-        const nivel = niveles.find(n => n.descripcion === nivelDescripcion);
-        return nivel ? nivel.idnivel : null;
-    };
-    
     const nivelInicial = (nivelId) => {
-        
         const nivelesMap = {
             "1": "A1", "2": "A2", "3": "B1", "4": "B2", "5": "C1", "6": "C2",
         };
-
-        if (!Array.isArray(niveles) || niveles.length === 0) {
-            return nivelesMap[nivelId] || " ";
-        }
-
-        const nivel = niveles.find(n => n.idnivel === nivelId);
-        return nivel ? nivel.descripcion : nivelesMap[nivelId] || " ";
+        return nivelesMap[nivelId] || " ";
     };
     
     const generarContraseñaAleatoria = (longitud = 12) => {
@@ -65,13 +49,14 @@ const FilaProfesorExterno = ({ profesor, onDelete, onAutorizar }) => {
         }
         return contraseña;
     };
-    
+
     const generarToken = () => {
         return [...Array(32)].map(() => Math.floor(Math.random() * 36).toString(36)).join('');
     };
 
     const handleAutorizarProfesor = async () => {
         if (window.confirm(`¿Estás seguro de que deseas enviar para autorización al profesor ${profesor.nombreCompleto}?`)) {
+
             try {
                 const contraseñaGenerada = generarContraseñaAleatoria();
                 const tokenGenerado = generarToken();
@@ -79,25 +64,23 @@ const FilaProfesorExterno = ({ profesor, onDelete, onAutorizar }) => {
                 const fechaExpiracion = new Date();
                 fechaExpiracion.setHours(fechaExpiracion.getHours() + 24);
                 
-               
-                const nivelId = getNivelIdFromDescripcion(profesor.nivel) || profesor.idnivel;
-                
                 const profesorData = {
-                    idusuario: 0,
+                    idusuario: profesor.idusuario,
                     nombrecompleto: profesor.nombreCompleto,
                     correo: profesor.correo,
-                    contraseñaHash: contraseñaGenerada,
-                    fecharegistro: new Date().toISOString().split('T')[0],
-                    idnivel: nivelId,
+                    contraseñaHash: contraseñaGenerada, 
+                    fecharegistro: new Date().toISOString().split('T')[0], 
+                    idnivel: profesor.idnivel,
                     idrol: 2,
-                    autProf: true, 
+                    autProf: false, 
                     tokenRecuperacion: tokenGenerado,
                     tokenExpiracion: fechaExpiracion.toISOString(),
                     cvRuta: profesor.cvUrl,
-                    fotoRuta: ""
+                    fotoRuta: "" 
                 };
 
                 await axios.post('http://localhost:5228/API/AdministradorProfesor/CrearProfesor', profesorData);
+
                 await axios.delete(`http://localhost:5228/api/Bolsatrabajo/EliminarBolsa?id=${profesor.idbolsa}`);
 
                 console.log(`Enviando credenciales al correo ${profesor.correo}: 
@@ -106,6 +89,7 @@ const FilaProfesorExterno = ({ profesor, onDelete, onAutorizar }) => {
                     Token de recuperación: ${tokenGenerado}`);
 
                 onAutorizar(profesor.idusuario);
+
                 alert("Profesor enviado exitosamente para autorización. Se le ha enviado un correo con sus credenciales temporales.");
 
             } catch (error) {

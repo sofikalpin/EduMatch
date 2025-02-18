@@ -8,7 +8,7 @@ import logoC1 from "../../../logo/Cursos/C1.png";
 import logoC2 from "../../../logo/Cursos/C2.png";
 import Header from "../HeaderAlumno";
 import Footer from "../FooterAlumno";
-import { useUser } from "../../../context/userContext";
+import { useUser } from "../../../Context/UserContext";
 
 const MisCursos = () => {
   const { user } = useUser(); 
@@ -20,7 +20,6 @@ const MisCursos = () => {
 
   const nivelAlumno = user?.idnivel || 1;  
 
-  // Lista de cursos 
   const cursos = [
     { nombre: "A1: Curso Principiante", nivel: 1, imagen: logoA1 },
     { nombre: "A2: Curso Básico", nivel: 2, imagen: logoA2 },
@@ -30,7 +29,6 @@ const MisCursos = () => {
     { nombre: "C2: Curso Avanzado", nivel: 6, imagen: logoC2 },
   ];
 
-  
   const cursosFiltrados = cursos.filter((curso) => curso.nivel <= nivelAlumno);
 
   return (
@@ -55,7 +53,6 @@ const MisCursos = () => {
                 className="w-full h-64 object-cover object-center"
               />
 
-              
               <div className="p-6">
                 <h2 className="text-2xl font-bold text-gray-800 mb-3">
                   {curso.nombre}
@@ -73,7 +70,6 @@ const MisCursos = () => {
         </div>
       </div>
 
-   
       <div className="mt-12">
         <Footer/>
       </div>

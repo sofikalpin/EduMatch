@@ -43,7 +43,6 @@ const Examenes = () => {
     fetchExamenes();
   }, [nivel]);
 
-  // Manejar el cambio de la búsqueda
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setIsFocused(true);
@@ -87,7 +86,6 @@ const Examenes = () => {
             />
           </div>
           
-          
           {isFocused && searchQuery && (
             <ul className="absolute w-full bg-white shadow-lg rounded-lg mt-2 max-h-48 overflow-y-auto border border-gray-200 z-20">
               {loading ? (
@@ -107,7 +105,6 @@ const Examenes = () => {
           )}
         </div>
 
-        
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 w-full max-w-7xl mx-auto">
           {filteredExamenes.map((examen) => (
             <div 

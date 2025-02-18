@@ -19,7 +19,6 @@ export const NuevoProfesor = () => {
     fotoRuta: ""
   });
 
-
   const navigate = useNavigate();
 
   const niveles = {
@@ -81,7 +80,7 @@ export const NuevoProfesor = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 font-sans">
       <div className="w-full max-w-xl bg-white shadow-2xl rounded-3xl overflow-hidden">
-        {/* Header */}
+        
         <div className="bg-[#00A89F] p-8 text-center relative flex flex-col items-center">
           <img 
             src={logo} 
@@ -93,7 +92,6 @@ export const NuevoProfesor = () => {
           </h3>
         </div>
         
-        {/* Form */}
         <form onSubmit={handleRegistrar} className="p-10 space-y-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">

@@ -36,7 +36,6 @@ const ActividadDetalle = () => {
       }
     } 
 
-   
     encontrarActividad();
   }, [idactividad]);
 

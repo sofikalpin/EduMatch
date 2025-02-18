@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Modal from "react-modal";
-import CrearChat from "../CrearChat/CrearChat.js";
+import CrearChat from "../crearChat/CrearChat.js";
 import nuevoChatIcon from "../ChatIcons/newChatIcon.png";
-import { useUser } from "../../../context/userContext.js";
+import { useUser } from "../../../Context/UserContext.js";
 import { useNavigate } from "react-router-dom"; 
 import { ArrowLeft } from 'lucide-react';
 

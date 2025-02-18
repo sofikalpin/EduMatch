@@ -4,7 +4,6 @@ import { Search } from "lucide-react";
 import Header from "./HeaderProfesor"; 
 import Footer from "./FooterProfesor"; 
 
-// Lista de cursos
 const cursos = [
   { id: 1, nombre: "A1: Curso Principiante" },
   { id: 2, nombre: "A2: Curso Básico" },
@@ -15,7 +14,6 @@ const cursos = [
 ];
 
 const InicioProfesor = () => {
-  // Definir los estados
   const [busqueda, setBusqueda] = useState("");
   const [cursosFiltrados, setCursosFiltrados] = useState(cursos);
   const navigate = useNavigate();
@@ -26,8 +24,7 @@ const InicioProfesor = () => {
     );
     setCursosFiltrados(resultados);
   }, [busqueda]);
-
-  // Función para manejar la selección de un curso
+ 
   const manejarSeleccionCurso = (cursoId) => {
     navigate(`/profesor/cursos/detalle/${cursoId}`);
   };
@@ -36,7 +33,6 @@ const InicioProfesor = () => {
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex flex-col">
       <Header />
 
-      {/* Contenido principal */}
       <main className="max-w-7xl mx-auto px-12 sm:px-16 lg:px-8 py-12 flex-grow mb-24 mt-24">
         <div className="text-center mb-12">
           
@@ -49,7 +45,6 @@ const InicioProfesor = () => {
           </p>
         </div>
 
-        {/* Buscador de cursos*/}
         <div className="flex justify-center mb-12">
           <div className="flex items-center w-full max-w-xl px-4 py-2 bg-white border border-gray-300 rounded-full shadow-lg">
             
@@ -67,7 +62,6 @@ const InicioProfesor = () => {
           </div>
         </div>
 
-        {/* Lista de cursos filtrados */}
         {busqueda && (
           <div className="bg-white shadow-lg rounded-lg p-6">
             <h3 className="text-2xl font-semibold text-green-700 mb-4">

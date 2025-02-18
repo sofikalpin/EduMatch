@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Plus, ChevronRight, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import logo from "../../logo/LogoInicio.png";
-import HeaderForo from "./HeaderForo";
-import FooterForo from "./FooterForo";
-import { useUser } from "../../context/userContext";
+import HeaderForo from "../HeaderForo";
+import FooterForo from "../FooterForo";
+import { useUser } from "../../../Context/UserContext";
 
 const ListarForos = () => {
     const { user } = useUser();

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Star, ChevronDown, X } from 'lucide-react';
+import { Star, X } from 'lucide-react';
 import logo from '../../../logo/LogoInicio.png';
 import Imagen1 from '../pexels-divinetechygirl-1181534.jpg';
 import Imagen2 from '../pexels-katerina-holmes-5905709.jpg';
@@ -32,7 +32,6 @@ const Modal = ({ title, children, onClose }) => (
   </div>
 );
 
-
 const ReviewStars = ({ rating }) => (
   <div className="flex space-x-1">
     {[...Array(5)].map((_, i) => (
@@ -40,7 +39,6 @@ const ReviewStars = ({ rating }) => (
     ))}
   </div>
 );
-
 
 const ReviewCard = ({ name, content, rating }) => (
   <div className="p-4 bg-white shadow-md rounded-xl border border-gray-200">
@@ -133,14 +131,12 @@ export default function Inicio() {
         } else {
           throw new Error('Se esperaba un arreglo de usuarios, pero se recibió otro formato');
         }
-
       
         const userMap = {};
         userArray.forEach(user => {
           userMap[user.idusuario] = user.nombrecompleto;
         });
-      
-     
+          
         const combinedReviews = reviewArray.map(review => {
           const userName = userMap[review.idusuaro] || 'Usuario Desconocido';
           return {
@@ -151,10 +147,8 @@ export default function Inicio() {
           };
         });
         
-        
         combinedReviews.sort((a, b) => b.rating - a.rating);
         
-    
         const totalRating = reviewArray.reduce((sum, review) => sum + review.rating, 0);
         const avgRating = reviewArray.length > 0 ? Math.round(totalRating / reviewArray.length) : 0;
         

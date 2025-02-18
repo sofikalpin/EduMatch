@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Facebook, Instagram, Twitter, Youtube, Linkedin } from 'lucide-react';
 
-
 const socialIcons = [
   { name: 'Facebook', icon: Facebook, color: 'hover:text-blue-500', link: 'https://www.facebook.com/profile.php?id=61573209179555 ' },
   { name: 'Instagram', icon: Instagram, color: 'hover:text-pink-500', link: 'https://www.instagram.com/edumatch.ingles?igsh=MTFndjJidGZuc2dndQ%3D%3D&utm_source=qr' },
@@ -21,13 +20,11 @@ const footerSections = {
   },
 };
 
-
 const UpdatedFooter = ({ socialIcons = [], footerSections = {}, navigate }) => {
   const handleNavigation = (path) => {
     navigate(path);
   };
 
- 
   const handleSocialClick = (link) => {
     window.open(link, '_blank');
   };
@@ -58,11 +55,9 @@ const UpdatedFooter = ({ socialIcons = [], footerSections = {}, navigate }) => {
             </div>
           ))}
 
-        
           <div className="text-center">
             <h3 className="font-semibold text-lg mb-4">Redes Sociales</h3>
             <div className="flex justify-center space-x-4">
-              
               
               {socialIcons.map((icon, index) => {
                 const IconComponent = icon.icon;
@@ -81,7 +76,6 @@ const UpdatedFooter = ({ socialIcons = [], footerSections = {}, navigate }) => {
           </div>
         </div>
 
-       
         <div className="pt-8 mt-8 border-t border-gray-800">
           <p className="text-gray-400 text-sm">
             © {new Date().getFullYear()} EduMatch. Todos los derechos reservados.

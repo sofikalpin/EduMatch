@@ -8,7 +8,6 @@ import examen from "../Imagenes/examen.avif";
 import articulos from "../Imagenes/articulo.jpg";
 
 const cursos = [
-  // Lista de cursos con su id, nombre y descripción.
   { id: 1, nombre: "A1: Curso Principiante", descripcion: "Introducción al Inglés, conociendo vocabulario básico y frases simples para situaciones cotidianas" },
   { id: 2, nombre: "A2: Curso Básico", descripcion: "Expande tu vocabulario y mejora tu capacidad para comunicarte en situaciones cotidianas." },
   { id: 3, nombre: "B1: Curso Pre-Intermedio", descripcion: "Mejora tu comprensión y expresión, aprendiendo a comunicarte con más claridad en Inglés" },
@@ -18,7 +17,6 @@ const cursos = [
 ];
 
 const tarjetas = [
-  // Lista de tarjetas con información
   { id: 1, nombre: "Actividad", descripcion: "Ver actividades relacionadas", imagen: actividad},
   { id: 2, nombre: "Artículos", descripcion: "Explorar artículos", imagen: articulos},
   { id: 3, nombre: "Exámenes", descripcion: "Acceder al examen", imagen: examen},
@@ -33,13 +31,11 @@ const CursoDetalle = () => {
 
   console.log(nivel, nombre);
 
-  // Función para obtener la descripción del curso según el nivel
   const DescripcionNivel = (nivel) => {
     const cursoEncontrado = cursos.find((c) => c.id === nivel);
     return cursoEncontrado ? cursoEncontrado.descripcion : "Nivel no encontrado";
   };
   
-  // Función para manejar los clics en las tarjetas
   const handleCardClick = (option) => {
     if (!nivel) {
       setError("Debe seleccionar un curso de estudio");
@@ -71,7 +67,6 @@ const CursoDetalle = () => {
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex flex-col">
       <Header  />
 
-      {/* Contenido principal con la información detallada del curso */}
       <div className="curso-detalles-container px-5 py-10 text-center bg-[#f0faf7] flex-grow  ">
       <div className="flex items-center mb-12 mt-6">
 
@@ -83,19 +78,15 @@ const CursoDetalle = () => {
             <span>Volver</span>
           </button>
 
-          {/* Título del curso */}
           <h1 className="flex-grow text-5xl font-bold text-[#2c7a7b] text-center">
              {nombre}
           </h1>
           
         </div>
-        {/* Descripción del nivel del curso */}
         <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">{DescripcionNivel(nivel)}</p>
 
-         {/* Mostrar error si existe */}
-         {error && <div className="text-red-500 mb-4">{error}</div>}
+        {error && <div className="text-red-500 mb-4">{error}</div>}
 
-        {/* Tarjetas con cada opción (Actividad, Artículos, Exámenes) */}
         <div className="tarjetas-detalles flex justify-center gap-8 flex-wrap">
           {tarjetas.map((tarjeta) => (
             <div 

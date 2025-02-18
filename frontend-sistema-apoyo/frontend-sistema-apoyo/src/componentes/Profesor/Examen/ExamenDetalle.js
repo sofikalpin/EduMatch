@@ -5,7 +5,7 @@ import deleteIcon from "../Imagenes/delete.png";
 import Header from "../HeaderProfesor";
 import Footer from "../FooterProfesor";
 import axios from "axios";
-import { useUser } from "../../../context/userContext";
+import { useUser } from "../../../Context/UserContext";
 
 const ExamenDetalle = () => {
   const {user} = useUser();
@@ -38,7 +38,7 @@ const ExamenDetalle = () => {
 
     if (user.idUsuario !== examen?.idusuario) {
       alert("No tienes permisos para eliminar este examen.");
-      return; // Detener la operación
+      return; 
     }
 
     if (window.confirm("¿Está seguro que desea eliminar este examen?")) {
@@ -59,19 +59,17 @@ const ExamenDetalle = () => {
     }
   };
 
-  // Función para verificar si la URL es un Google Form
   const esGoogleForm = (url) => {
     const regex = /^https:\/\/docs\.google\.com\/forms\/d\/e\/[a-zA-Z0-9_-]+\/(viewform|edit)(\?.*)?$/;
     return regex.test(url);
   };
 
-  // Manejo de acceso al examen
   const verExamen = () => {
     if (examen?.url) {
       if (esGoogleForm(examen.url)) {
         navigate("/ver-examen", { state: { examenUrl: examen.url } });
       } else {
-        window.open(examen.url, "_blank"); // Abrir enlaces no válidos en una nueva pestaña
+        window.open(examen.url, "_blank"); 
       }
     }
   };
@@ -100,12 +98,10 @@ const ExamenDetalle = () => {
       <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-white rounded-lg shadow-lg mt-12 p-6 max-w-3xl mx-auto">
                     
-          {/* Información adicional */}
           <div className="bg-white p-6 rounded-lg shadow-md mb-6">
             <span className="text-gray-600">Fecha de Publicación: {examen?.fechaCreacion}</span>
           </div>
 
-          {/* Título del examen y botón de eliminación */}
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-3xl font-bold text-gray-900">{examen?.titulo}</h1>
             <button
@@ -121,22 +117,19 @@ const ExamenDetalle = () => {
             </button>
           </div>
 
-          {/* Imagen del examen */}
           <div className="flex justify-center mb-6">
             <img
-              src={fileIcon} // O imagen dinámica si está disponible
+              src={fileIcon} 
               alt="Examen"
               className="h-48 w-auto rounded-lg shadow-md object-cover"
             />
           </div>
 
-          {/* Calificación */}
           <div className="space-y-4 mb-6">
             <h2 className="text-xl font-semibold text-gray-900">Calificación máxima: </h2>
             <p className="text-gray-600 leading-relaxed">{examen?.calificacion}</p>
           </div>
 
-          {/* Sección de URL del examen */}
           <div className="mb-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Archivo del Examen</h2>
             {examen?.url ? (
@@ -151,7 +144,6 @@ const ExamenDetalle = () => {
             )}
           </div>
 
-          {/* Botón para regresar */}
           <div className="mt-8 flex justify-center">
             <Link
               onClick={() => navigate(-1)}

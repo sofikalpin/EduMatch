@@ -43,11 +43,13 @@ const Articulos = () => {
     fetchArticulo();
   }, [nivel]);
 
+  // Función para manejar el cambio en el campño de búsqueda
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setIsFocused(true);
   };
 
+  // Filtrar los artículos basados en la búsqueda
   const filteredArticles = assignedArticles.filter(
     (article) => article.titulo?.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -58,7 +60,7 @@ const Articulos = () => {
 
       <div className="flex-grow flex flex-col items-center justify-center px-5 py-10">
         
-        {/* Contenedor para "Volver" y el título */}
+        {/* Contenedor para el volver y el título */}
         <div className="flex items-center justify-between w-full mb-10">
           <button
             onClick={() => navigate(-1)}
@@ -71,7 +73,7 @@ const Articulos = () => {
           <h1 className="text-5xl font-bold text-[#2c7a7b] text-center flex-grow">Artículos</h1>
         </div>
 
-        {/* Buscador centrado y largo */}
+        {/* Buscador de articulos*/}
         <div className="relative w-full max-w-2xl mx-auto mb-10">
           <div className="relative">
             <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -144,8 +146,7 @@ const Articulos = () => {
           )}
         </div>
       </div>
-
-      <Footer />
+        <Footer />
     </div>
   );
 };

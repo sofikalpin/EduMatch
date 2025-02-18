@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import LogoInicio from "../../../logo/LogoInicio.png";
 import fileIcon from "../Imagenes/file-icon.png";
 import { ArrowLeft } from "lucide-react";
 import Header from "../HeaderAlumno";
@@ -37,7 +36,7 @@ const ExamenDetalle = () => {
     encontrarExamen();
   }, [idexamen]);
 
-    // Función para verificar si la URL es un Google Form
+  // Función para verificar si la URL es un Google Form
   const esGoogleForm = (url) => {
     const regex = /^https:\/\/docs\.google\.com\/forms\/d\/e\/[a-zA-Z0-9_-]+\/(viewform|edit)(\?.*)?$/;
     return regex.test(url);
@@ -49,8 +48,8 @@ const ExamenDetalle = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
       <Header />
+
       <main className="flex-grow max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-12">
-        
         <button
           onClick={() => navigate(-1)}
           className="mb-8 flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
@@ -59,8 +58,9 @@ const ExamenDetalle = () => {
           <span>Volver</span>
         </button>
 
+        {/* Detalles del examen */}
         <div className="bg-white rounded-lg shadow-lg p-8 max-w-3xl mx-auto">
-
+          
           <div className="bg-white p-6 rounded-lg shadow-md mb-6">
             <span className="text-gray-600">Fecha de Publicacion: {examen.fechaCreacion || "No posee fecha"}</span>
           </div>
@@ -73,8 +73,11 @@ const ExamenDetalle = () => {
 
           <p className="text-lg leading-relaxed text-gray-600">Calificacion maxima: {examen?.calificacion}</p>
 
+           {/* Sección para mostrar el archivo del examen */}
           <div className="border-t border-gray-200 mt-8 pt-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Archivo del Examen</h2>
+
+            {/* Si existe una URL del examen, crea un enlace para ver el archivo */}
             {examen?.url ? (
               <a
                 href={examen.url}
@@ -84,7 +87,7 @@ const ExamenDetalle = () => {
                     if (esGoogleForm(examen.url)) {
                       navigate("/ver-examen", { state: { examenUrl: examen.url } });
                     } else {
-                      window.open(examen.url, "_blank"); // Abrir enlaces no válidos en una nueva pestaña
+                      window.open(examen.url, "_blank"); 
                     }
                   }
                 }}
@@ -98,7 +101,7 @@ const ExamenDetalle = () => {
           </div>
         </div>
       </main>
-      <Footer />
+        <Footer />
     </div>
   );
 };

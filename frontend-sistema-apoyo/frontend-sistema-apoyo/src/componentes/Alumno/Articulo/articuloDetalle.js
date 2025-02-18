@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import LogoInicio from "../../../logo/LogoInicio.png";
-import chatIcon from "../Imagenes/chat.png";
+import { useParams } from 'react-router-dom';
 import ReactMarkdown from "react-markdown";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -19,9 +17,8 @@ const ArticuloDetalle = () => {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
-  // Simula obtener el artículo desde un servidor o una base de datos
   useEffect(() => {
-    // Datos simulados, reemplazar por la llamada al backend más adelante
+    // Función para obtener el articulo desde la API
     const encontrarArticulo = async () => {
       try {
         setLoading(true);
@@ -46,10 +43,11 @@ const ArticuloDetalle = () => {
   if (error) return <div className="text-center text-red-600">{error}</div>;
 
   return (
-<div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
       <Header />
       <main className="flex-grow max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-12">
         
+        {/* Botón para volver */}
         <button
           onClick={() => navigate(-1)}
           className="mb-8 flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
@@ -58,6 +56,7 @@ const ArticuloDetalle = () => {
           <span>Volver</span>
         </button>
 
+        {/* Contenedor principal para los detalles del artículo */}
         <div className="bg-white rounded-lg shadow-lg p-8 max-w-3xl mx-auto">
 
           <div className="bg-white p-6 rounded-lg shadow-md mb-6">
@@ -77,7 +76,7 @@ const ArticuloDetalle = () => {
             </ReactMarkdown>
           </div>
 
-
+          {/* Sección para mostrar si hay un archivo adjunto al artículo */}
           <div className="border-t border-gray-200 mt-8 pt-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Archivo del articulo</h2>
             {articulo?.url ? (

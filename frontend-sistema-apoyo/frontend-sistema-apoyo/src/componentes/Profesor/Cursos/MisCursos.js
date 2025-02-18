@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../../../logo/LogoInicio.png";
 import logoA1 from "../Logos/A1.png";
 import logoA2 from "../Logos/A2.png";
@@ -16,10 +16,12 @@ const MisCursos = () => {
   const [cantidadAlumnos, setCantidadAlumnos] = useState(0);
   const [listaGeneral, setListaGeneral] = useState([]);
 
+  // Función para navegar a los detalles del curso seleccionado
   const navegarACurso = (curso) => {
     navigate("/profesor/cursos/detalle", { state: {nivel: curso.id, nombre: curso.nombre}})
   };
 
+// Cargar la lista de usuarios desde la API
  useEffect(() =>  {
     const cargarUsuarios = async () => {
     try {
@@ -39,8 +41,10 @@ const MisCursos = () => {
   cargarUsuarios();
 }, []) 
 
+  // Se ejecutará cuando la lista de usuarios cambia
   useEffect(() => {
     if (listaGeneral.length > 0) {
+      // Si la lista de usuarios tiene datos
       const calcularAlumnos = () => {
         let nuevaCantidad = {};
 
@@ -58,7 +62,7 @@ const MisCursos = () => {
     }
   }, [listaGeneral]);
 
-
+  // Definir los cursos con sus datos
   const cursos = [
     { id:1, nombre: "A1: Curso Principiante", imagen: logoA1 },
     { id:2, nombre: "A2: Curso Básico", imagen: logoA2 },
@@ -70,38 +74,39 @@ const MisCursos = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex flex-col">
-      {/* Agrega el Header aquí */}
       <Header />
 
-      {/* Contenedor de cursos con margen superior */}
+      {/* Contenedor principal de cursos */}
       <div className="mis-cursos pt-10 px-6 flex-grow">
-        {/* Título más elegante */}
+        
+        {/* Título */}
         <h1 className="text-center text-5xl font-bold text-[#2c7a7b] mb-12">
           Mis Cursos
         </h1>
 
-        {/* Grid de cursos */}
+        {/* Tarjetas por cada cursos */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {cursos.map((curso) => (
             <div
               key={curso.id}
               className="curso-card bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 hover:shadow-2xl"
             >
-              {/* Imagen del curso */}
               <img
                 src={curso.imagen || logo}
                 alt={curso.nombre}
                 className="w-full h-64 object-cover object-center"
               />
 
-              {/* Contenido de la tarjeta */}
+              {/* Contenido de la tarjeta con detalles del curso */}
               <div className="p-6">
                 <h2 className="text-2xl font-bold text-gray-800 mb-3">
                   {curso.nombre}
                 </h2>
+
                 <p className="text-sm text-gray-600 mb-4">
                   {cantidadAlumnos[curso.id] || 0} Alumnos inscriptos
                 </p>
+
                 <button
                   onClick={() => navegarACurso(curso)}
                   className="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white py-2 px-6 rounded-full text-sm hover:from-green-600 hover:to-green-700 transition-all"
@@ -114,7 +119,6 @@ const MisCursos = () => {
         </div>
       </div>
 
-      {/* Footer con margen superior para separación */}
       <div className="mt-12">
         <Footer />
       </div>

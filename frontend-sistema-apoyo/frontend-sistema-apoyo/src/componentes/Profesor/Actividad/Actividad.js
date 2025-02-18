@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"; 
 import { FaSearch } from "react-icons/fa";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react';
 import actividadImg from "../Imagenes/actividad.jpg";
 import Header from "../HeaderProfesor";
@@ -30,28 +30,23 @@ const ActividadesProfesor = () => {
     console.log("Estado inicial - idProfesor:", idProfesor);
   }, [nivel, nombre, idProfesor]);
 
+  // Obtener las actividades
   useEffect(() => {
     const fetchActividades = async () => {
       setLoading(true);
       setError("");
       try {
         const idNivel = nivel;
-        // Depuración: Verificar el ID del nivel
-        console.log("Fetching actividades para nivel ID:", idNivel);
         
         if (!idNivel) {
           throw new Error("El ID del nivel no está disponible.");
         }
 
         const response = await axios.get(`http://localhost:5228/API/Actividad/ActividadesPorNivel?idNivel=${idNivel}`);
-        // Depuración: Verificar respuesta del servidor
-        console.log("Respuesta del servidor:", response.data);
         
         if (response.data.status && Array.isArray(response.data.value)) {
           setActividades(response.data.value);
           setFilteredActividades(response.data.value);
-          // Depuración: Mostrar las actividades recibidas
-          console.log("Actividades recibidas:", response.data.value);
         } else {
           setError(response.data.message || "Error al cargar las actividades");
         }
@@ -73,13 +68,14 @@ const ActividadesProfesor = () => {
     }
   }, [nivel]);
 
-  // Función para manejar el clic en "Ver actividad"
+  // Función para manejar al detalle de la actividad
   const handleViewActividad = (actividad) => {
     navigate(`/profesor/cursos/detalle/actividad/${actividad.idactividad}`, {
       state: { nivel, nombre }
     });
   };
 
+  // Filtrar las actividades
   useEffect(() => {
     const titlesFiltered = actividades.filter(
       (actividad) => actividad.nombre?.toLowerCase().includes(searchQuery.toLowerCase())
@@ -91,21 +87,21 @@ const ActividadesProfesor = () => {
         (actividad.idusuario && actividad.idusuario.toString() === opcionCreacion)
       );
       
+      //Actualizar el estado con las actividades filtradas
       setFilteredActividades(filtered);
   }, [searchQuery, opcionCreacion, actividades]);
-    
+  
+  // Manejar el cambio de estado en la busqueda
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setIsFocused(true);
   };
 
+  // Función de crear nueva actividad
   const handleNuevaActividad = () => {
     if (user.nivel < nivel) {
       alert("Su nivel de perfil es menor al nivel correspondiente a la actividad que desea crear. Por favor cree actividades con su nivel o menor a este.");
     } else {
-      // Depuración: Verificar datos antes de navegar a crear actividad
-      console.log("Navegando a crear actividad con nivel:", nivel);
-
       navigate("/crear-actividad", { 
         state: { nivel } 
       });
@@ -123,7 +119,7 @@ const ActividadesProfesor = () => {
 
       <div className="flex-grow flex flex-col items-center justify-center px-5 py-10">
         
-        {/* Contenedor para "Volver" y el título */}
+        {/* Contenedor para el volver y el título */}
         <div className="flex items-center justify-between w-full mb-6">
           <button
             onClick={() => navigate(-1)}
@@ -138,9 +134,10 @@ const ActividadesProfesor = () => {
 
         <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Explora y administra las actividades disponibles.</p>
 
-        {/* Fila con buscador y botón de crear nueva actividad */}
+        {/* Contenedor con la barra de búsqueda y boton de nueva actividad */}
         <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
-          {/* Buscador */}
+          
+          {/* Buscador de actividades*/}
           <div className="relative w-full md:w-2/3">
             <div className="relative">
               <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -149,13 +146,13 @@ const ActividadesProfesor = () => {
                 placeholder="Buscar actividad..."
                 className="w-full p-3 pl-12 border-2 border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300 bg-white"
                 value={searchQuery}
-                onChange={handleSearchChange}
+                onChange={handleSearchChange} 
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setTimeout(() => setIsFocused(false), 200)}
               />
             </div>
 
-            {/* Lista desplegable de resultados del buscador */}
+            {/* Lista desplegable de resultados de la búsqueda */}
             {isFocused && searchQuery && (
               <ul className="absolute w-full bg-white shadow-lg rounded-lg mt-2 max-h-48 overflow-y-auto border border-gray-200 z-20">
                 {loading ? (
@@ -165,7 +162,7 @@ const ActividadesProfesor = () => {
                 ) : filteredActividades.length > 0 ? (
                   filteredActividades.map((actividad) => (
                     <li key={actividad.idactividad} className="p-3 hover:bg-gray-100 cursor-pointer transition-all">
-                      {/* Usar onClick en lugar de Link para depuración */}
+                      
                       <div 
                         onClick={() => handleViewActividad(actividad)}
                         className="flex text-gray-700 cursor-pointer"
@@ -184,7 +181,7 @@ const ActividadesProfesor = () => {
             )}
           </div>
 
-          {/* Filtro de "Mis actividades" */}
+          {/* Filtro para mis actividades */}
           <div className="flex items-center gap-3 w-full md:w-auto">
             <select
               id="nivel-select"
@@ -196,7 +193,7 @@ const ActividadesProfesor = () => {
               <option value={idProfesor?.toString()}>Mis actividades</option>
             </select>
 
-            {/* Botón "Crear nueva actividad" */}
+            {/* Botón para crear un nueva actividad */}
             <button 
               onClick={handleNuevaActividad}
               className={`py-2 px-4 rounded-lg text-base transition-all whitespace-nowrap
@@ -231,6 +228,7 @@ const ActividadesProfesor = () => {
                 className={`bg-white shadow-xl rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300 ease-in-out flex flex-col h-[350px] p-4
                   ${isUserActividad ? 'ring-2 ring-teal-500 bg-teal-50' : ''}`}
               >
+                {/* Etiqueta mi actividad, solo visible para las actividades del usuario */}
                 {isUserActividad && (
                   <div className="absolute top-4 right-4 bg-teal-500 text-white px-3 py-1 rounded-full text-xs font-medium z-10">
                     Mi actividad
@@ -258,7 +256,7 @@ const ActividadesProfesor = () => {
                         onClick={() => handleViewActividad(actividad)}
                         className="w-full py-2 px-3 bg-teal-600 text-white rounded-lg text-sm hover:bg-teal-700 transition-colors duration-300"
                       >
-                        Ver artículo
+                        Ver actividad
                       </button>
                     </div>
                   </div>

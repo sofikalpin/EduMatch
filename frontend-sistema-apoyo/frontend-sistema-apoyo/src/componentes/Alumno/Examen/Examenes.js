@@ -43,11 +43,13 @@ const Examenes = () => {
     fetchExamenes();
   }, [nivel]);
 
+  // Manejar el cambio de la búsqueda
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setIsFocused(true);
   };
 
+  // Filtrar los exámenes 
   const filteredExamenes = assignedExamenes.filter(
     (examen) => examen.titulo?.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -57,7 +59,8 @@ const Examenes = () => {
       <Header />
 
       <div className="flex-grow flex flex-col items-center justify-center px-5 py-10">
-        {/* Contenedor para "Volver" y el título */}
+        
+        {/* Contenedor para el volver y el título */}
         <div className="flex items-center justify-between w-full mb-10">
           <button
             onClick={() => navigate(-1)}
@@ -70,7 +73,7 @@ const Examenes = () => {
           <h1 className="text-5xl font-bold text-[#2c7a7b] text-center flex-grow">Examenes</h1>
         </div>
 
-        {/* Buscador centrado y más largo */}
+        {/* Buscador de examenes */}
         <div className="relative w-full max-w-2xl mx-auto">
           <div className="relative">
             <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -105,7 +108,7 @@ const Examenes = () => {
           )}
         </div>
 
-        {/* Contenedor de las tarjetas */}
+        {/* Contenedor de las tarjetas de exámenes*/}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 w-full max-w-7xl mx-auto">
           {filteredExamenes.map((examen) => (
             <div 

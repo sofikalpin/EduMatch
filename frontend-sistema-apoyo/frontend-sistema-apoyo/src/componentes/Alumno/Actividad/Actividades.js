@@ -43,12 +43,13 @@ const Actividades = () => {
     fetchActividades();
   }, [nivel]);
 
+  // Manejar cambios en la consulta de búsqueda
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setIsFocused(true);
   };
 
-  // Filtra solo las actividades que coinciden con la búsqueda
+  // Filtrar solo las actividades que coinciden con la búsqueda
   const filteredActivities = assignedActivities.filter(
     (activity) => activity.nombre?.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -58,7 +59,8 @@ const Actividades = () => {
       <Header />
 
       <div className="flex-grow flex flex-col items-center justify-center px-5 py-10">
-        {/* Contenedor para "Volver" y el título */}
+        
+        {/* Contenedor para volver y el título */}
         <div className="flex items-center justify-between w-full mb-10">
           <button
             onClick={() => navigate(-1)}
@@ -71,10 +73,11 @@ const Actividades = () => {
           <h1 className="text-5xl font-bold text-[#2c7a7b] text-center flex-grow">Actividades</h1>
         </div>
 
-        {/* Buscador centrado y más largo */}
+        {/* Buscador de actividades */}
         <div className="relative w-full max-w-2xl mx-auto z-10 mb-10">
         <div className="relative">
           <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          
           <input
             type="text"
             placeholder="Buscar actividad o Unidad..."

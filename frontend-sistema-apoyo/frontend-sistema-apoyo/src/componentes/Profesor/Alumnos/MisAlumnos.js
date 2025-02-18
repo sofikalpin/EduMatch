@@ -9,6 +9,7 @@ const MisAlumnos = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+  //Datos simulados de cursos
   const Datoscursos = [
     { id: 1, nombre: "A1: Curso Principiante", color: "bg-emerald-500" },
     { id: 2, nombre: "A2: Curso Básico", color: "bg-blue-500" },
@@ -18,20 +19,27 @@ const MisAlumnos = () => {
     { id: 6, nombre: "C2: Curso Avanzado", color: "bg-red-500" },
   ];
 
+  // Cargar los datos de los alumnos 
   useEffect(() => {
     const fetchAlumnos = async () => {
       try {
         const response = await fetch("http://localhost:5228/API/AdministradorAlumno/ListaAlumnos");
         const data = await response.json();
+
+        // Agrupar los alumnos por curso
         const agrupadosPorCurso = data.value.reduce((acc, alumno) => {
           if (!acc[alumno.idnivel]) acc[alumno.idnivel] = [];
           acc[alumno.idnivel].push(alumno);
           return acc;
         }, {});
+
+        // Actualizar el estado con los cursos y alumnos
         setCursos(agrupadosPorCurso);
+
       } catch (error) {
         console.error("Error al cargar los alumnos:", error);
         setError(error.message);
+
       } finally {
         setLoading(false);
       }
@@ -40,6 +48,7 @@ const MisAlumnos = () => {
     fetchAlumnos();
   }, []);
 
+  // Función para obtener el nombre del curso
   const obtenerNombreCurso = (idnivel) => {
     const curso = Datoscursos.find((curso) => curso.id === parseInt(idnivel));
     return curso ? curso : { nombre: "Curso desconocido", color: "bg-gray-500" };
@@ -79,25 +88,39 @@ const MisAlumnos = () => {
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
       <Header />
       
+      {/* Contenedor de la lista de cursos y alumnos */}
       <div className="grid gap-10 p-10">
+        
         {Object.keys(cursos).map((cursoId) => {
           const cursoInfo = obtenerNombreCurso(cursoId);
           return (
+
+            // Contenedor de cada curso
             <div key={cursoId} className="bg-white rounded-lg shadow-lg overflow-hidden">
+              
+              {/* Barra con nombre del curso */}
               <div className={`${cursoInfo.color} p-4`}>
-                <h2 className="text-2xl font-bold text-white">{cursoInfo.nombre}</h2>
+                  <h2 className="text-2xl font-bold text-white">{cursoInfo.nombre}</h2>
               </div>
+
+              {/* Contenedor de los alumnos del curso */}
               <div className="p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  
+                  
                   {cursos[cursoId].map((alumno) => (
-                    <div key={alumno.idusuario} className="bg-white rounded-lg shadow border border-gray-100 overflow-hidden">
+                    <div key={alumno.idusuario} className="bg-white rounded-lg shadow border border-gray-100 overflow-hidden">    
+                      
                       <div className="p-4">
                         <div className="flex items-center gap-3 mb-4">
+                          
                           <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center">
                             <svg className="h-6 w-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
                           </div>
+
+                          {/* Nombre completo del alumno */}
                           <div>
                             <h3 className="font-semibold text-lg text-gray-900">
                               {alumno.nombrecompleto}

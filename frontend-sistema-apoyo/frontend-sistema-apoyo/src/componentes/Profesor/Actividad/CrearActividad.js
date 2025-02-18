@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ArrowLeft } from 'lucide-react';
-import { Upload } from "lucide-react";
+import { ArrowLeft, X } from 'lucide-react';
 import Header from "../HeaderProfesor";
 import drive from "../Imagenes/google-drive.png";
 import youtube from "../Imagenes/youtube.png";
@@ -11,8 +10,9 @@ import { useUser } from "../../../context/userContext";
 const CrearActividad = () => {
   const location = useLocation();
   const { nivel } = location.state;
-
   const { user } = useUser();
+
+  // Estados para manejar los datos de la actividad
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [actividadUrl, setActividadUrl] = useState([]); 
@@ -21,16 +21,18 @@ const CrearActividad = () => {
 
   const navigate = useNavigate();  
   
+  // Validar si una URL tiene un formato correcto
   const validarURL = (url) => {
     const regex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
     return regex.test(url);
   };
 
+  // Agregar una nueva URL a la lista
   const handleAgregarUrl = () => {
     if (nuevaUrl.trim() !== "") {
       if (validarURL(nuevaUrl)) {
         setActividadUrl([...actividadUrl, nuevaUrl]);
-        setNuevaUrl("");  // Limpiar el campo después de agregar
+        setNuevaUrl("");  
       } else {
         alert("URL no válida. Por favor ingrese una URL válida.");
       }
@@ -39,8 +41,12 @@ const CrearActividad = () => {
     }
   };
 
+  // Eliminar la URL
+  const handleEliminarUrl = (indexToDelete) => {
+    setActividadUrl(actividadUrl.filter((_, index) => index !== indexToDelete));
+  }
+  // Confirmar las URLs cargadas
   const handleConfirmarUrl = () => {
-    
     if (actividadUrl.length > 0) {
       alert("URLs cargadas correctamente: " + actividadUrl.join(";"));
     } else {
@@ -48,13 +54,13 @@ const CrearActividad = () => {
     }
   }
 
+  // Crear una nueva actividad
   const handleCrearActividad = async (e) => {
     e.preventDefault();
 
     setLoading(true);
     
     try {
-    
       const nuevaActividad = {
         idactividad: 0,
         idusuario: user?.idUsuario,
@@ -87,6 +93,7 @@ const CrearActividad = () => {
     }
   };
 
+  // Agregar un enlace ingresado por el usuario
   const handleAgregarEnlace = () => {
     const enlace = prompt("Ingrese el enlace:");
     
@@ -100,10 +107,9 @@ const CrearActividad = () => {
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
-      {/* Se agrega el Header */}
       <Header />
 
-      {/* Botón de Volver */}
+      {/* Boton para volver */}
       <button
         onClick={() => navigate(-1)}
         className="mb-6 flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium self-start mt-3"
@@ -112,7 +118,7 @@ const CrearActividad = () => {
       <span>Volver</span>
       </button>
 
-      {/*Contenedor con los detalles*/}
+      {/* Formulario para crear actividad */}
       <div className="curso-detalles-container px-5 py-10 bg-[#f0faf7] -mt-10">
         <div className="max-w-5xl mx-auto bg-white rounded-xl shadow-lg p-8">
           <h1 className="text-5xl font-bold text-center text-[#2c7a7b] mb-8">
@@ -121,8 +127,9 @@ const CrearActividad = () => {
           
           <form onSubmit={handleCrearActividad} className="space-y-10">
             <div className="grid md:grid-cols-2 gap-12">
-              {/* Left Column */}
               <div className="space-y-8">
+
+                {/* Nombre de la actividad */}
                 <div className="group">
                   <label className="block text-lg font-semibold text-[#2c7a7b] mb-3">
                     Nombre de la Actividad
@@ -138,7 +145,8 @@ const CrearActividad = () => {
                 </div>
               </div>
 
-                <div className="group">
+              {/* Descripción de la actividad */}
+              <div className="group">
                   <label className="block text-lg font-semibold text-[#2c7a7b] mb-3">
                     Descripción
                   </label>
@@ -150,12 +158,13 @@ const CrearActividad = () => {
                   />
                 </div>
 
+                {/* Adjuntar enlaces */}
                 <div>
                 <label className="block text-lg font-semibold text-[#2c7a7b] mb-4">
                   Adjuntar
                 </label>
                 
-                {/* Input y botón Agregar URL */}
+                {/* Input y botón para agregar URL */}
                 <div className="flex items-center gap-4 w-full">
                   <input
                     type="text"
@@ -173,7 +182,7 @@ const CrearActividad = () => {
                   </button>
                 </div>
 
-                {/* Botones Google Drive, YouTube, y Subir Archivo  */}
+                {/* Botones para agregar enlaces desde Drive y Youtube  */}
                 <div className="flex gap-4 mt-4 items-center">
                   <button
                     type="button"
@@ -190,6 +199,7 @@ const CrearActividad = () => {
                     <img src={youtube} alt="YouTube" className="h-8 w-8" />
                   </button>
                   
+                  {/* Botón para confirmar URLs */}
                   <button 
                     type="button" 
                     onClick={handleConfirmarUrl} 
@@ -215,12 +225,12 @@ const CrearActividad = () => {
                               {url}
                             </a>
                             <button
-                              onClick={() => setActividadUrl(actividadUrl.filter((_, i) => i !== index))}
-                              className="text-red-500 hover:text-red-700 text-lg"
-                              aria-label="Eliminar URL"
-                            >
-                              <i className="fas fa-times-circle"></i> {/* Icono de eliminar */}
-                            </button>
+                            onClick={() => handleEliminarUrl(index)}
+                            className="text-gray-400 hover:text-red-500 transition-colors"
+                            aria-label="Eliminar URL"
+                          >
+                            <X className="w-5 h-5" />
+                          </button>
                           </li>
                         ))}
                       </ul>
@@ -229,6 +239,7 @@ const CrearActividad = () => {
                 </div>
               </div>
 
+              {/* Botón para enviar el formulario */}
               <div className="flex justify-end pt-8">
               <button 
                 type="submit"

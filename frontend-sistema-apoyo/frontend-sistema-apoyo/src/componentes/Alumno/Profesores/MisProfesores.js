@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useUser } from "../../../context/userContext"; // Importar el contexto de usuario
+import { useUser } from "../../../context/userContext"; 
 import Header from "../HeaderAlumno";
 import Footer from "../FooterAlumno";
 import { Search, UserRound, MessageCircle, Send, X, Star } from "lucide-react";
@@ -16,6 +16,7 @@ const MisProfesores = () => {
   const [ratingsMap, setRatingsMap] = useState({}); // Mapa de calificaciones por profesor
   const [currentRating, setCurrentRating] = useState(0); // Calificación actual al dejar una opinión
 
+  // Obtener lista de profesores 
   useEffect(() => {
     const fetchProfesores = async () => {
       try {
@@ -27,12 +28,12 @@ const MisProfesores = () => {
         const profesoresData = Array.isArray(data.value) ? data.value : [];
         setProfesores(profesoresData);
 
-        // Inicializar el mapa de opiniones y calificaciones usando idusuario
+        // Inicializar el mapa de opiniones y calificaciones
         const opinionesIniciales = {};
         const ratingsIniciales = {};
         profesoresData.forEach(profesor => {
           opinionesIniciales[profesor.idusuario] = [];
-          ratingsIniciales[profesor.idusuario] = 0; // Calificación inicial de 0
+          ratingsIniciales[profesor.idusuario] = 0; 
         });
         setOpinionesMap(opinionesIniciales);
         setRatingsMap(ratingsIniciales);
@@ -46,6 +47,7 @@ const MisProfesores = () => {
     fetchProfesores();
   }, []);
 
+  // Filtrar profesores según la búsqueda
   const handleSearch = (e) => {
     setSearchTerm(e.target.value.toLowerCase());
   };
@@ -54,6 +56,7 @@ const MisProfesores = () => {
     profesor.nombrecompleto.toLowerCase().includes(searchTerm)
   );
 
+  // Manejar el envío de una opinión
   const handleAddOpinion = async (profesorId) => {
     if (!newOpinion.trim()) return;
 
@@ -70,9 +73,6 @@ const MisProfesores = () => {
         comentario: newOpinion
       };
 
-      // Imprimir el objeto en la consola
-      console.log("Datos enviados en la solicitud POST:", requestBody);
-
       const response = await fetch("http://localhost:5228/API/Reseña/CrearReseñaAlumno", {
         method: "POST",
         headers: {
@@ -86,7 +86,7 @@ const MisProfesores = () => {
         throw new Error("Error al agregar la opinión");
       }
 
-      // Actualizar el estado local
+      // Actualizar el estado local con la nueva oínión
       setOpinionesMap(prevOpiniones => ({
         ...prevOpiniones,
         [profesorId]: [
@@ -100,22 +100,26 @@ const MisProfesores = () => {
         ]
       }));
 
+      // Resetear campos de opínión
       setNewOpinion("");
-      setCurrentRating(0); // Resetear la calificación después de publicar la opinión
+      setCurrentRating(0); 
       setSelectedProfesor(null);
     } catch (error) {
       setError("Error al agregar la opinión");
     }
   };
 
+  // Manejar el cambio en la calificación actual del usuario
   const handleRatingChange = (rating) => {
     setCurrentRating(rating);
   };
 
+  // Obtener las opiniones de un profesor 
   const getOpinionesProfesor = (profesorId) => {
     return opinionesMap[profesorId] || [];
   };
 
+  // Funcion para mostrar las estrellas en la calificación
   const renderStars = () => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -141,6 +145,7 @@ const MisProfesores = () => {
             <p className="text-gray-600">Encuentra y comparte opiniones sobre tus profesores</p>
           </div>
 
+          {/* Filtro de búsqueda */}
           <div className="relative mb-8">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
               <Search className="h-5 w-5 text-gray-400" />
@@ -154,6 +159,7 @@ const MisProfesores = () => {
             />
           </div>
 
+          {/* Muestra el estado de carga, error o lista de profesores */}
           {loading ? (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
@@ -185,6 +191,7 @@ const MisProfesores = () => {
                         </div>
                       </div>
 
+                      {/* Mostrar opiniones */}
                       <div className="space-y-4 mb-6">
                         {opiniones.map((opinion) => (
                           <div key={opinion.id} className="bg-gray-50 rounded-lg p-4">
@@ -202,6 +209,7 @@ const MisProfesores = () => {
                         ))}
                       </div>
 
+                      {/* Sección para agregar una nueva opinión */}
                       {selectedProfesor === profesor.idusuario ? (
                         <div className="bg-gray-50 rounded-lg p-4">
                           <div className="flex items-center gap-2 mb-3">

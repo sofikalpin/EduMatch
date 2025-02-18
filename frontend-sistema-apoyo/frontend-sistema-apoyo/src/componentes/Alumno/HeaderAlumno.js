@@ -25,6 +25,8 @@ const Header = () => {
 
   return (
     <div className="flex flex-col w-full">
+
+      {/* Barra superior con logo */}
       <div className="bg-white py-2 flex justify-end items-center px-6">
         <div className="max-w-7xl mx-auto flex items-center justify-center">
           <img 
@@ -36,6 +38,7 @@ const Header = () => {
         </div>
       </div>
 
+      {/* Barra de navegación con menú */}
       <div className="flex items-center justify-between p-6" style={{ backgroundColor: '#00A89F' }}>
         <div className="max-w-7xl mx-auto px-4 w-full">
           <div className="flex items-center justify-between h-14">
@@ -63,6 +66,7 @@ const Header = () => {
               </a>
             </nav>
 
+            {/* Menú del usuario */}
             <div className="flex items-center space-x-3 relative">
               <button onClick={goToChat} className="text-white text-2xl">
                 <AiOutlineMessage />
@@ -77,6 +81,7 @@ const Header = () => {
                 {userInitial}
               </div>
 
+              {/* Menú desplegable */}
               {isMenuOpen && (
                 <div className="absolute top-12 right-0 bg-white shadow-lg rounded-lg w-48 p-4 mt-2">
                   <ul className="space-y-3">
@@ -102,6 +107,7 @@ const Header = () => {
         </div>
       </div>
 
+      {/* Modal de cierre de sesión */}
       {isLogoutModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg w-80 shadow-lg">

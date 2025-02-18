@@ -45,8 +45,8 @@ import ExamenProfesor from "./componentes/Profesor/Examen/Examen";
 import CrearActividad from "./componentes/Profesor/Actividad/CrearActividad";
 import CrearArticulo from "./componentes/Profesor/Articulo/CrearArticulo";
 import CrearExamen from "./componentes/Profesor/Examen/CrearExamen";
-import ActividadDetalleProfesor from "./componentes/Profesor/Actividad/actividadDetalle";
-import ArticuloDetalleProfesor from "./componentes/Profesor/Articulo/articuloDetalle";
+import ActividadDetalleProfesor from "./componentes/Profesor/Actividad/ActividadDetalle";
+import ArticuloDetalleProfesor from "./componentes/Profesor/Articulo/ArticuloDetalle";
 import ExamenDetalleProfesor from "./componentes/Profesor/Examen/ExamenDetalle";
 
 //Foro
@@ -63,8 +63,8 @@ import Cursos from "./componentes/Alumno/Cursos/Cursos";
 import ArticulosAlumno from "./componentes/Alumno/Articulo/Articulos";
 import ActividadesAlumno from "./componentes/Alumno/Actividad/Actividades";
 import ExamenAlumno from "./componentes/Alumno/Examen/Examenes";
-import ArticuloDetalleAlumno from "./componentes/Alumno/Articulo/articuloDetalle";
-import ActividadDetalleAlumno from "./componentes/Alumno/Actividad/actividadDetalle";
+import ArticuloDetalleAlumno from "./componentes/Alumno/Articulo/ArticuloDetalle";
+import ActividadDetalleAlumno from "./componentes/Alumno/Actividad/ActividadDetalle";
 import ExamenDetalleAlumno from "./componentes/Alumno/Examen/ExamenDetalle";
 import MisProfesores from "./componentes/Alumno/Profesores/MisProfesores";
 

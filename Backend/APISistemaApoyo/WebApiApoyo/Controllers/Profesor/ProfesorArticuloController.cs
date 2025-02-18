@@ -122,8 +122,6 @@ namespace WebApiApoyo.Controllers.Profesor
                 _logger.LogError(ex, "Error al obtener el id de la articulo");
                 return StatusCode(500, "Ocurrió un error al procesar la solicitud.");
             }
-
-
         }
 
         [HttpPost]
@@ -181,8 +179,6 @@ namespace WebApiApoyo.Controllers.Profesor
             return Ok(rsp);
         }
 
-
-
         [HttpDelete]
         [Route("EliminarArticulo")]
         public async Task<IActionResult> Eliminar(int id)
@@ -208,5 +204,4 @@ namespace WebApiApoyo.Controllers.Profesor
             return Ok(rsp);
         }
     }
-
 }

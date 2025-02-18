@@ -1585,6 +1585,7 @@ C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch-2\EduMatc
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch-2\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch-2\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\bin\Debug\net8.0\Npgsql.dll
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch-2\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch-2\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\bin\Debug\net8.0\BouncyCastle.Crypto.dll
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch-2\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch-2\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch-2\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -1703,4 +1704,3 @@ C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch-2\EduMatc
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch-2\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\WebApiApoyo.pdb
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch-2\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\WebApiApoyo.genruntimeconfig.cache
 C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch-2\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\ref\WebApiApoyo.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch-2\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\bin\Debug\net8.0\BouncyCastle.Crypto.dll

@@ -16,9 +16,6 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
         Task<bool> CrearArticulo(ArticuloDTO articulos);
         Task<bool> ActualizarArticulo(ArticuloDTO articulo);
         Task<bool> EliminarArticulo(int id);
-
-
-
     }
 
 }

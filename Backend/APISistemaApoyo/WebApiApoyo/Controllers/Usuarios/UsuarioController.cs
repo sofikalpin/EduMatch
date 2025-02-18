@@ -23,18 +23,14 @@ public class UsuarioController : ControllerBase
     private readonly IUsuarioService _usuarioService;
     private readonly ILogger<UsuarioController> _logger;
     private readonly IConfiguration _configuration;
-    private readonly S31Grupo2AprendizajeYApoyoDeInglesContext _context; // Declarar el DbContext
+    private readonly S31Grupo2AprendizajeYApoyoDeInglesContext _context;
 
-    public UsuarioController(
-        IUsuarioService usuarioService,
-        ILogger<UsuarioController> logger,
-        IConfiguration configuration,
-        S31Grupo2AprendizajeYApoyoDeInglesContext context) // Inyectar el DbContext
+    public UsuarioController(IUsuarioService usuarioService, ILogger<UsuarioController> logger, IConfiguration configuration, S31Grupo2AprendizajeYApoyoDeInglesContext context)
     {
         _usuarioService = usuarioService;
         _logger = logger;
         _configuration = configuration;
-        _context = context; // Inicializar el DbContext
+        _context = context;
     }
 
     [HttpGet("ListaUsuarios")]
@@ -62,7 +58,6 @@ public class UsuarioController : ControllerBase
         var rsp = new Response<UsuarioDTO>();
         try
         {
-            // Verificación de que el login no sea nulo y los campos necesarios estén presentes
             if (login == null || string.IsNullOrEmpty(login.Correo) || string.IsNullOrEmpty(login.ContrasenaHash))
             {
                 rsp.status = false;
@@ -80,11 +75,11 @@ public class UsuarioController : ControllerBase
             }
 
             // Generar un token
-            var token = GenerarToken(sesion.Correo); // Asegúrate de tener la implementación de este método
+            var token = GenerarToken(sesion.Correo);
 
             rsp.status = true;
             rsp.value = sesion;
-            rsp.token = token; // Agrega el token a la respuesta
+            rsp.token = token;
             rsp.msg = "Inicio de sesión exitoso.";
             return Ok(rsp);
         }
@@ -99,8 +94,6 @@ public class UsuarioController : ControllerBase
         }
     }
 
-
-
     [HttpGet]
     [Route("BuscarUsuario")]
     public async Task<IActionResult> ObtenerUsuario(int idUsuario)
@@ -108,7 +101,6 @@ public class UsuarioController : ControllerBase
         var rsp = new Response<UsuarioDTO>();
         try
         {
-            // Verificación de que el login no sea nulo y los campos necesarios estén presentes
             if (idUsuario == null || idUsuario < 0)
             {
                 rsp.status = false;
@@ -147,7 +139,6 @@ public class UsuarioController : ControllerBase
         var rsp = new Response<UsuarioDTO>();
         try
         {
-            // Verificación de que el login no sea nulo y los campos necesarios estén presentes
             if (login == null || string.IsNullOrEmpty(login.Correo) || string.IsNullOrEmpty(login.ContrasenaHash))
             {
                 rsp.status = false;
@@ -266,7 +257,7 @@ public class UsuarioController : ControllerBase
             if (!resultado)
             {
                 rsp.msg = "No se pudo editar el usuario.";
-                return BadRequest(rsp);  // 400 si la edición falla
+                return BadRequest(rsp);
             }
         }
         catch (Exception ex)
@@ -274,7 +265,7 @@ public class UsuarioController : ControllerBase
             rsp.status = false;
             rsp.msg = "Error al editar el usuario.";
             _logger.LogError(ex, "Error al editar el usuario.");
-            return StatusCode(500, rsp);  // 500 para errores internos del servidor
+            return StatusCode(500, rsp);
         }
         return Ok(rsp);
     }
@@ -366,7 +357,6 @@ public class UsuarioController : ControllerBase
     {
         var rsp = new Response<string>();
 
-        // Validar que el archivo no sea nulo
         if (archivo == null || archivo.Length == 0)
         {
             rsp.status = false;
@@ -402,7 +392,7 @@ public class UsuarioController : ControllerBase
                 Directory.CreateDirectory(uploadsFolder);
             }
 
-            // Crear un nombre de archivo único (cv_{id}.pdf)
+            // Crear el nombre del archivo único (cv_{id}.pdf)
             string nombreArchivo = $"cv_{idUsuario}{fileExtension}";
             string rutaCompleta = Path.Combine(uploadsFolder, nombreArchivo);
 
@@ -412,12 +402,11 @@ public class UsuarioController : ControllerBase
                 await archivo.CopyToAsync(stream);
             }
 
-            // Guardar la ruta en la base de datos
-            usuario.CvRuta = $"/uploads/{nombreArchivo}"; // Guardar una ruta relativa para servirlo en el frontend
+            // Guardar la ruta en la base de datos, la cual es una ruta relativa para servirlo en el frontend
+            usuario.CvRuta = $"/uploads/{nombreArchivo}";
             var actualizado = await _usuarioService.Editar(usuario);
             if (!actualizado)
             {
-                // Si hay un error al actualizar, eliminar el archivo guardado
                 if (System.IO.File.Exists(rutaCompleta))
                 {
                     System.IO.File.Delete(rutaCompleta);
@@ -466,7 +455,7 @@ public class UsuarioController : ControllerBase
             }
 
             rsp.status = true;
-            //Se desarrolla la descarga automaticamente sin exponer la ruta del servidor
+
             byte[] fileBytes = await System.IO.File.ReadAllBytesAsync(rutaArchivo);
             return File(fileBytes, "application/pdf", Path.GetFileName(usuario.CvRuta));
 
@@ -493,7 +482,6 @@ public class UsuarioController : ControllerBase
                 return BadRequest(rsp);
             }
 
-            // Buscar el usuario
             var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Correo == modelo.Correo);
             if (usuario == null)
             {
@@ -502,22 +490,18 @@ public class UsuarioController : ControllerBase
                 return NotFound(rsp);
             }
 
-            // Crear directorio si no existe
             string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fotos");
             if (!Directory.Exists(uploadsFolder))
             {
                 Directory.CreateDirectory(uploadsFolder);
             }
 
-            // Generar nombre único para el archivo
             string nombreArchivo = $"foto_{usuario.Idusuario}_{DateTime.Now.Ticks}.jpg";
             string rutaCompleta = Path.Combine(uploadsFolder, nombreArchivo);
 
-            // Convertir base64 a bytes y guardar
             var fotoBytes = Convert.FromBase64String(modelo.Foto.Split(',')[1]);
             await System.IO.File.WriteAllBytesAsync(rutaCompleta, fotoBytes);
 
-            // Actualizar ruta en la base de datos
             usuario.FotoRuta = Path.Combine("fotos", nombreArchivo);
             await _context.SaveChangesAsync();
 
@@ -561,9 +545,6 @@ public class UsuarioController : ControllerBase
             return StatusCode(500, new Response<string> { status = false, msg = "Error al obtener la foto." });
         }
     }
-
-
-
 }
 
 

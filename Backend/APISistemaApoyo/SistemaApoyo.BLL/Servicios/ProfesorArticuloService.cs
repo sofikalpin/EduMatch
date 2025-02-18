@@ -18,8 +18,6 @@ namespace SistemaApoyo.BLL.Servicios
         public readonly IGenericRepository<Articulo> _articuloRepositorio;
         private readonly IMapper _mapper;
 
-
-
         public ProfesorArticuloService(IGenericRepository<Articulo> articuloRepositorio, IMapper mapper)
         {
             _articuloRepositorio = articuloRepositorio;
@@ -39,6 +37,7 @@ namespace SistemaApoyo.BLL.Servicios
                 throw new Exception("Error al obtener el articulo.", ex);
             }
         }
+
         public async Task<List<ArticuloDTO>> ConsultarporTitulo(string titulo)
         {
             try
@@ -58,6 +57,7 @@ namespace SistemaApoyo.BLL.Servicios
                 throw new Exception("Error al obtener el articulo por titulo.", ex);
             }
         }
+
         public async Task<List<ArticuloDTO>> ObteneArticulorPorIdProfesor(int id)
         {
             try
@@ -130,8 +130,5 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-
     }
-
-
 }

@@ -46,9 +46,6 @@ namespace SistemaApoyo.DAL.Repositorios
             }
         }
 
-        
-
-
         public async Task<bool> Editar(TModel modelo)
         {
             try
@@ -62,8 +59,6 @@ namespace SistemaApoyo.DAL.Repositorios
                 throw;
             }
         }
-
-
 
         public async Task<bool> Eliminar(TModel modelo)
         {

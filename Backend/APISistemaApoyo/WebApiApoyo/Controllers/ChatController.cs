@@ -65,7 +65,6 @@ namespace WebApiApoyo.Controllers
                 return BadRequest(new { status = false, msg = "El UserId debe ser un número positivo." });
             }
 
-
             var rsp = new Response<IEnumerable<ChatDTO>>();
 
             try

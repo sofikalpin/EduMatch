@@ -18,6 +18,5 @@ namespace SistemaApoyo.DTO
         public DateTime? FechahoraInicio { get; set; }
 
         public List<MensajeDTO> Mensajes { get; set; } = new List<MensajeDTO>();
-
     }
 }

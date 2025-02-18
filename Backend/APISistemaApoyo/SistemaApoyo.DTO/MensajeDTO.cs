@@ -9,10 +9,13 @@ namespace SistemaApoyo.DTO
     public class MensajeDTO
     {
       public int Idmensaje { get; set; }
+
       public string? Contenido { get; set; }
+
       public DateOnly? FechaEnvio { get; set; }
 
       public int Idchat { get; set; }
+
       public int Idusuario { get; set; }  
 
     }

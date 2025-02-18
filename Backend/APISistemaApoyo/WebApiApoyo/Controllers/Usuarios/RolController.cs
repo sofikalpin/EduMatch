@@ -20,7 +20,6 @@ public class RolController : ControllerBase
         _logger = logger;
     }
 
-
     [HttpGet]
     [Route("Lista Roles")]
 

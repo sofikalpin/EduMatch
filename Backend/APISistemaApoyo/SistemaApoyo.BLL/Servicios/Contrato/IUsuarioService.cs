@@ -27,14 +27,5 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
         Task EnviarCorreoRecuperacion(string correoDestino, string token);
         Task<bool> GenerarTokenRecuperacion(string correo);
 
-
-
-
-
-
-
-
-
-
     }
 }

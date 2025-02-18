@@ -123,8 +123,6 @@ namespace WebApiApoyo.Controllers.Profesor
                 _logger.LogError(ex, "Error al obtener el id de la actividad");
                 return StatusCode(500, "Ocurrió un error al procesar la solicitud.");
             }
-
-
         }
 
         [HttpPost]

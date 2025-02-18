@@ -24,19 +24,16 @@ namespace SistemaApoyo.BLL.Servicios
         {
             _bolsaTrabajoRepository = bolsaTrabajoRepository;
             _usuarioRepository = usuarioRepository;
-
         }
 
 
         private async Task<BolsatrabajoDTO> MapToDTO(Bolsatrabajo bolsaTrabajo)
         {
-            // Recupera el usuario relacionado con el Idusuario
             var usuario = await _usuarioRepository.Obtener(u => u.Idusuario == bolsaTrabajo.Idusuario);
 
-            // Devuelve el DTO con los datos de la entidad BolsaTrabajo
             return new BolsatrabajoDTO
             {
-                Idbolsa = bolsaTrabajo.Idbolsa,  // Asignado por la base de datos (autoincremental)
+                Idbolsa = bolsaTrabajo.Idbolsa, 
                 Idusuario = bolsaTrabajo.Idusuario,
                 NombreCompleto = bolsaTrabajo.NombreCompleto,
                 Correo = bolsaTrabajo.Correo,
@@ -50,7 +47,6 @@ namespace SistemaApoyo.BLL.Servicios
 
         public async Task<BolsatrabajoDTO?> Create(BolsatrabajoDTO dto)
         {
-            // Verifica si el usuario existe
             var usuarioExistente = await _usuarioRepository.Obtener(u => u.Idusuario == dto.Idusuario);
             if (usuarioExistente == null)
             {
@@ -59,7 +55,6 @@ namespace SistemaApoyo.BLL.Servicios
 
             var bolsaTrabajo = new Bolsatrabajo
             {
-                // El idbolsa no debe ser asignado explícitamente
                 Idusuario = dto.Idusuario,
                 NombreCompleto = dto.NombreCompleto,
                 Correo = dto.Correo,
@@ -108,13 +103,12 @@ namespace SistemaApoyo.BLL.Servicios
         public async Task<IEnumerable<BolsatrabajoDTO>> GetProfesoresIngles()
         {
             var queryable = await _bolsaTrabajoRepository.Consultar();
-            var bolsaTrabajoList = await queryable.ToListAsync(); // Carga los datos en memoria
+            var bolsaTrabajoList = await queryable.ToListAsync();
 
             var bolsaTrabajoDTOs = new List<BolsatrabajoDTO>();
 
             foreach (var bolsaTrabajo in bolsaTrabajoList)
             {
-                // Compara eliminando tildes
                 if (RemoveDiacritics(bolsaTrabajo.Especildad.ToLower()) == "ingles")
                 {
                     bolsaTrabajoDTOs.Add(await MapToDTO(bolsaTrabajo));

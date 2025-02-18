@@ -21,9 +21,7 @@ namespace SistemaApoyo.BLL.Servicios
         private readonly IHubContext<ChatHub> _hubContext;
         private readonly IMapper _mapper;
 
-            public MensajeService(IGenericRepository<Mensaje> mensajeRepository,
-                                  IGenericRepository<SistemaApoyo.Model.Chat> chatRepository,IHubContext<ChatHub> hubContext,
-                                  IMapper mapper)
+            public MensajeService(IGenericRepository<Mensaje> mensajeRepository, IGenericRepository<SistemaApoyo.Model.Chat> chatRepository,IHubContext<ChatHub> hubContext, IMapper mapper)
             {
                 _mensajeRepository = mensajeRepository;
                 _chatRepository = chatRepository;
@@ -103,45 +101,42 @@ namespace SistemaApoyo.BLL.Servicios
                     throw new Exception("Error al enviar el mensaje.", ex);
                 }
            }
-        public async Task<MensajeDTO> EditarMensaje(int mensajeId, MensajeDTO mensajeDto)
-        {
-            try
-            {
-                var mensajeExistente = await _mensajeRepository.Obtener(m => m.Idmensaje == mensajeId);
-                if (mensajeExistente == null)
-                {
-                    throw new Exception("Mensaje no encontrado.");
-                }
 
-                if (mensajeExistente.Idusuario != mensajeDto.Idusuario)
+            public async Task<MensajeDTO> EditarMensaje(int mensajeId, MensajeDTO mensajeDto)
+            {
+                try
                 {
-                    throw new Exception("El usuario no tiene permiso para editar este mensaje.");
-                }
+                    var mensajeExistente = await _mensajeRepository.Obtener(m => m.Idmensaje == mensajeId);
+                    if (mensajeExistente == null)
+                    {
+                        throw new Exception("Mensaje no encontrado.");
+                    }
+
+                    if (mensajeExistente.Idusuario != mensajeDto.Idusuario)
+                    {
+                        throw new Exception("El usuario no tiene permiso para editar este mensaje.");
+                    }
 
                
-                mensajeExistente.Contenido = mensajeDto.Contenido;
-                mensajeExistente.FechaEnvio = DateOnly.FromDateTime(DateTime.UtcNow); 
+                    mensajeExistente.Contenido = mensajeDto.Contenido;
+                    mensajeExistente.FechaEnvio = DateOnly.FromDateTime(DateTime.UtcNow); 
 
 
-                await _mensajeRepository.Editar(mensajeExistente);
+                    await _mensajeRepository.Editar(mensajeExistente);
 
-                var mensajeEditadoDto = _mapper.Map<MensajeDTO>(mensajeExistente);
+                    var mensajeEditadoDto = _mapper.Map<MensajeDTO>(mensajeExistente);
 
                 
-                await _hubContext.Clients.Group(mensajeDto.Idchat.ToString())
-                    .SendAsync("MensajeEditado", mensajeEditadoDto);
+                    await _hubContext.Clients.Group(mensajeDto.Idchat.ToString())
+                        .SendAsync("MensajeEditado", mensajeEditadoDto);
 
-                return mensajeEditadoDto;
+                    return mensajeEditadoDto;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al editar el mensaje.", ex);
+                }
             }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al editar el mensaje.", ex);
-            }
-        }
         
-
-
     }
-
-
 }

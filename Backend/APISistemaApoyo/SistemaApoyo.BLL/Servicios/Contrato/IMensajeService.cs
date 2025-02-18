@@ -13,7 +13,6 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
         Task<IEnumerable<MensajeDTO>> ObtenerHistorialChat(int chatId, int usuarioId);
         Task<MensajeDTO> EnviarMensaje(MensajeDTO mensajeDto);
         Task<MensajeDTO> EditarMensaje(int mensajeId, MensajeDTO mensajeDto);
-       
 
     }
 }

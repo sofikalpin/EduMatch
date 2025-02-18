@@ -31,6 +31,5 @@ namespace SistemaApoyo.DTO
         public string? CvRuta { get; set; }
 
         public string? FotoRuta { get; set; }
-
     }
 }

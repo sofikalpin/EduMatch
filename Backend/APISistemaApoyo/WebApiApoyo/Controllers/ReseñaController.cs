@@ -94,8 +94,5 @@ namespace SistemaApoyo.API.Controllers
             }
             return Ok(rsp);
         }
-
-
-
     }
 }

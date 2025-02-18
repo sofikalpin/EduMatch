@@ -38,6 +38,7 @@ namespace SistemaApoyo.BLL.Servicios
                 throw new Exception("Error al obtener la actividad.", ex);
             }
         }
+
         public async Task<List<ExamenDTO>> ConsultarPorTitulo(string titulo)
         {
             try
@@ -58,9 +59,6 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-
-
-
         public async Task<List<ExamenDTO>> ObteneExamenrPorIdProfesor(int id)
         {
             try
@@ -77,8 +75,6 @@ namespace SistemaApoyo.BLL.Servicios
                 throw new Exception("Error al obtener el examen por id.", ex);
             }
         }
-
-
 
         public async Task<bool> CrearExamen(ExamenDTO examenes)
         {

@@ -10,7 +10,5 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
         Task<IEnumerable<ChatDTO>> ObtenerChatsPorUsuarioId(int userId);
         Task<bool> CrearChat(ChatDTO chat);
         Task<ChatDTO> ObtenerChatPorId(int chatId);
-
-
     }
 }

@@ -19,7 +19,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins", policy =>
     {
-        policy.WithOrigins("http://localhost:3000") // URL del frontend
+        policy.WithOrigins("http://localhost:3000") // URL del Frontend
               .AllowAnyMethod()
               .AllowAnyHeader()
               .AllowCredentials();
@@ -47,7 +47,6 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configuración en entorno de desarrollo
-
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -60,8 +59,7 @@ else
     app.UseHsts();
 }
 
-// Aplicar CORS antes de manejar las solicitudes
-app.UseCors("AllowAllOrigins");  // Usar la política específica para el frontend
+app.UseCors("AllowAllOrigins"); 
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
@@ -69,9 +67,6 @@ app.UseAuthorization();
 app.MapControllers();
 app.UseStaticFiles();
 
-
-
-// Configuración de SignalR (WebSockets)
 app.MapHub<ChatHub>("/chatHub");
 
 app.Run();

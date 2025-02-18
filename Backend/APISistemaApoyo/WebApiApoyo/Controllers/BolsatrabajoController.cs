@@ -16,7 +16,7 @@ namespace SistemaApoyo.API.Controllers
     public class BolsatrabajoController : Controller
     {
         private readonly IBolsatrabajoService _bolsaTrabajoService;
-        private readonly ILogger<BolsatrabajoController> _logger; // Inyectamos el logger
+        private readonly ILogger<BolsatrabajoController> _logger;
 
         public BolsatrabajoController(IBolsatrabajoService bolsaTrabajoService, ILogger<BolsatrabajoController> logger)
         {
@@ -35,7 +35,6 @@ namespace SistemaApoyo.API.Controllers
                 return BadRequest("Los datos proporcionados son incorrectos.");
             }
 
-            // Agrega esta validación
             if (dto.Idbolsa != 0)
             {
                 _logger.LogWarning("Intento de crear bolsa de trabajo con ID predefinido.");
@@ -53,7 +52,6 @@ namespace SistemaApoyo.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = createdBolsaTrabajo.Idbolsa }, createdBolsaTrabajo);
         }
 
-        // GET: api/Bolsatrabajo
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -71,7 +69,6 @@ namespace SistemaApoyo.API.Controllers
             return Ok(bolsaTrabajoList);
         }
 
-        // GET: api/Bolsatrabajo/ingles
         [HttpGet("ingles")]
         public async Task<IActionResult> GetProfesoresIngles()
         {
@@ -89,12 +86,6 @@ namespace SistemaApoyo.API.Controllers
             return Ok(bolsaTrabajoList);
         }
 
-
-
-
-
-
-        // GET: api/Bolsatrabajo/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -111,7 +102,5 @@ namespace SistemaApoyo.API.Controllers
             _logger.LogInformation("Bolsa de trabajo encontrada: {@BolsaTrabajo}", bolsaTrabajo);
             return Ok(bolsaTrabajo);
         }
-
-
     }
 }

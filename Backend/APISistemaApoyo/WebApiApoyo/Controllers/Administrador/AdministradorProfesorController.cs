@@ -62,7 +62,6 @@ namespace WebApiApoyo.Controllers.Administrador
                 _logger.LogError(ex, "Error al obtener la lista de profesores autorizados.");
             }
 
-            // Retorna la respuesta en todos los casos
             return Ok(rsp);
         }
 
@@ -81,7 +80,6 @@ namespace WebApiApoyo.Controllers.Administrador
                 _logger.LogError(ex, "Error al obtener la lista de profesores autorizados.");
             }
 
-            // Retorna la respuesta en todos los casos
             return Ok(rsp);
         }
 
@@ -150,7 +148,6 @@ namespace WebApiApoyo.Controllers.Administrador
                 // Obtener el usuario por ID
                 var usuario = await _administradorService.ObtenerUsuarioId(id);
 
-                // Verificar si el idRol es igual a 1
                 if (usuario == null)
                 {
                     return NotFound("El usuario no existe.");
@@ -196,8 +193,8 @@ namespace WebApiApoyo.Controllers.Administrador
 
                 // Hashear la contraseña antes de guardar
                 usuario.ContraseñaHash = _usuarioService.CubreContrasena(usuario.ContraseñaHash);
-                // Todo profesor que se cree no tendra autorizacion hasta que lo permita el administrador
-
+                
+                // Todo profesor que se cree tanto por registro como administrador, no tendra autorizacion hasta que lo permita el administrador
 
                 if (string.IsNullOrEmpty(usuario.ContraseñaHash))
                 {
@@ -249,8 +246,6 @@ namespace WebApiApoyo.Controllers.Administrador
                 var resultado = await _administradorService.ActualizarUsuario(usuario);
                 if (resultado)
                 {
-
-
                     return Ok(new
                     {
                         status = true,
@@ -283,8 +278,6 @@ namespace WebApiApoyo.Controllers.Administrador
             {
                 return BadRequest("El ID proporcionado no es válido.");
             }
-
-
             var rsp = new Response<string>();
 
             try

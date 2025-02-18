@@ -59,8 +59,6 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-
-
         public async Task<ExamenDTO> ObteneExamenrPorId(int id)
         {
             try

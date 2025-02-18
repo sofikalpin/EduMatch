@@ -19,10 +19,7 @@ namespace SistemaApoyo.BLL.Servicios
         private readonly IMapper _mapper;
         private readonly IHubContext<ChatHub> _chatHubContext; 
 
-        public ChatService(IGenericRepository<SistemaApoyo.Model.Chat> chatRepository,
-                           IGenericRepository<Usuario> usuarioRepository,
-                           IMapper mapper,
-                           IHubContext<ChatHub> chatHubContext) 
+        public ChatService(IGenericRepository<SistemaApoyo.Model.Chat> chatRepository, IGenericRepository<Usuario> usuarioRepository, IMapper mapper, IHubContext<ChatHub> chatHubContext) 
         {
             _chatRepository = chatRepository;
             _usuarioRepository = usuarioRepository;
@@ -61,6 +58,7 @@ namespace SistemaApoyo.BLL.Servicios
                 throw new Exception("Error al obtener el chat por id.", ex);
             }
         }
+
         public async Task<ChatDTO> ObtenerChatPorId(int chatId)
         {
             try
@@ -93,7 +91,6 @@ namespace SistemaApoyo.BLL.Servicios
                 var chats = _mapper.Map<SistemaApoyo.Model.Chat>(chat);
                 await _chatRepository.Crear(chats);
 
-                // Notificar a los usuarios sobre el nuevo chat
                 await _chatHubContext.Clients.Group(chat.Idusuario1.ToString()).SendAsync("NuevoChat", chats);
                 await _chatHubContext.Clients.Group(chat.Idusuario2.ToString()).SendAsync("NuevoChat", chats);
 

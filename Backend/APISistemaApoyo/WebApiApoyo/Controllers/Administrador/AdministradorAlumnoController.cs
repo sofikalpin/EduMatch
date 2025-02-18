@@ -85,7 +85,6 @@ namespace WebApiApoyo.Controllers.Administrador
                 // Obtener el usuario por ID
                 var usuario = await _administrador.ObtenerUsuarioId(id);
 
-                // Verificar si el idRol es igual a 2
                 if (usuario == null)
                 {
                     return NotFound("El usuario no existe.");
@@ -203,7 +202,6 @@ namespace WebApiApoyo.Controllers.Administrador
             {
                 return BadRequest("El ID proporcionado no es válido.");
             }
-
 
             var rsp = new Response<string>();
 

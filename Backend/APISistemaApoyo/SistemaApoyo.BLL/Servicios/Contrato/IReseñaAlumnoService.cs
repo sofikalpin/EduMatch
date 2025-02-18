@@ -13,10 +13,5 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
         Task<ReseñaAlumnoDTO> ObtenerPorId(int id);
         Task<bool> CrearReseña(ReseñaAlumnoDTO reseñaDTO);
 
-
-
-
-
-
     }
 }

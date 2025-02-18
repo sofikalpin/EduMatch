@@ -70,12 +70,11 @@ namespace SistemaApoyo.BLL.Servicios
                 if (!string.IsNullOrEmpty(nombre) && rol >= 1 && rol <= 3)
                 {
                     usuarioquery = usuarioquery
-                    .Where(u => u.Idrol == rol && EF.Functions.Like(u.Nombrecompleto, $"%{nombre}%")); // Búsqueda parcial
+                    .Where(u => u.Idrol == rol && EF.Functions.Like(u.Nombrecompleto, $"%{nombre}%"));
                 }
 
                 var listaResultado = await usuarioquery.ToListAsync();
 
-                // Mapear resultados a DTO
                 return _mapper.Map<List<UsuarioDTO>>(listaResultado);
             }
             catch (Exception ex)
@@ -248,43 +247,35 @@ namespace SistemaApoyo.BLL.Servicios
             {
                 throw new ArgumentException("La contraseña no puede estar vacía.");
             }
-            // Generar un salt único
             var salt = new byte[16];
             using (var rng = RandomNumberGenerator.Create())
             {
                 rng.GetBytes(salt);
             }
 
-            // Usar PBKDF2 para generar el hash de la contraseña
             var iteraciones = 10000;
             using (var pbkdf2 = new Rfc2898DeriveBytes(contrasena, salt, iteraciones, HashAlgorithmName.SHA256))
             {
                 var hash = pbkdf2.GetBytes(32);
 
-                // Combinar el salt y el hash en un solo arreglo
                 var resultado = new byte[salt.Length + hash.Length];
                 Array.Copy(salt, 0, resultado, 0, salt.Length);
                 Array.Copy(hash, 0, resultado, salt.Length, hash.Length);
 
-                // Retornar el resultado como Base64 para almacenamiento
                 return Convert.ToBase64String(resultado);
             }
         }
 
         public bool VerificarContrasena(string contrasena, string hashAlmacenado)
         {
-            // Convertir el hash almacenado desde Base64 a un arreglo de bytes
             var datosHash = Convert.FromBase64String(hashAlmacenado);
 
-            // Extraer el salt (primeros 16 bytes)
             var salt = new byte[16];
             Array.Copy(datosHash, 0, salt, 0, 16);
 
-            // Extraer el hash original (resto de los bytes)
             var hashOriginal = new byte[32];
             Array.Copy(datosHash, 16, hashOriginal, 0, 32);
 
-            // Recalcular el hash con la contraseña proporcionada
             var iteraciones = 10000;
             using (var pbkdf2 = new Rfc2898DeriveBytes(contrasena, salt, iteraciones, HashAlgorithmName.SHA256))
             {
@@ -294,7 +285,6 @@ namespace SistemaApoyo.BLL.Servicios
                 Console.WriteLine($"Hash recalculado: {Convert.ToBase64String(hashRecalculado)}");
                 Console.WriteLine($"Hash original: {Convert.ToBase64String(hashOriginal)}");
 
-                // Comparar ambos hashes de manera segura
                 return hashOriginal.SequenceEqual(hashRecalculado);
 
             }

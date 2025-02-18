@@ -37,9 +37,11 @@ public class ExamenController : ControllerBase
         {
             return Task.FromResult<IActionResult>(BadRequest("El ID proporcionado no es válido."));
         }
+
         return HandleRequest(() => _examenService.ObteneExamenrPorId(id), "Error al obtener el id");
     }
 
+    //Operacion para pasar los datos de Examen segun el valor de id
     private async Task<IActionResult> HandleRequest<T>(Func<Task<T>> action, string errorMessage)
     {
         var rsp = new Response<T>();

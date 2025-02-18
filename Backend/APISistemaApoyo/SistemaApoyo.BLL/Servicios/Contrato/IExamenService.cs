@@ -15,7 +15,5 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
         Task<List<ExamenDTO>> ConsultarPorTitulo(string titulo);
         Task<ExamenDTO> ObteneExamenrPorId(int id);
         
-    }
-        
-        
+    }        
 }

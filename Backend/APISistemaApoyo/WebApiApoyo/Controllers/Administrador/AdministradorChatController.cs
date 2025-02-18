@@ -211,9 +211,6 @@ namespace WebApiApoyo.Controllers.Administrador
 
             try
             {
-
-                //mensajeDTO.Idmensaje = idMaximo + 1;
-
                 mensajeDTO.Idmensaje = 0;
                 rsp.status = true;
                 var mensajeEnviado = await _mensajeService.EnviarMensaje(mensajeDTO);

@@ -26,6 +26,7 @@ namespace WebApiApoyo.Controllers.Profesor
             _logger = logger;
             _usuarioService = usuarioService;
         }
+
         [HttpGet]
         [Route("ListaExamenes")]
         public async Task<IActionResult> ListarExamenes()
@@ -123,8 +124,6 @@ namespace WebApiApoyo.Controllers.Profesor
                 _logger.LogError(ex, "Error al obtener el id del examen");
                 return StatusCode(500, "Ocurrió un error al procesar la solicitud.");
             }
-
-
         }
 
         [HttpPost]
@@ -148,7 +147,6 @@ namespace WebApiApoyo.Controllers.Profesor
                     rsp.status = false;
                     rsp.value = "El valor de IdExamen debe ser cero";
                 }
-
             }
             catch (Exception ex)
             {
@@ -181,6 +179,7 @@ namespace WebApiApoyo.Controllers.Profesor
             }
             return Ok(rsp);
         }
+
         [HttpDelete]
         [Route("EliminarExamen")]
         public async Task<IActionResult> EliminarExamen(int id)

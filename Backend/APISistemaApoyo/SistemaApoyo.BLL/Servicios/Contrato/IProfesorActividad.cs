@@ -17,6 +17,5 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
         Task<bool> ActualizarActivdad(ActividadDTO actividad);
         Task<bool> EliminarActividad(int id);
 
-
     }
 }

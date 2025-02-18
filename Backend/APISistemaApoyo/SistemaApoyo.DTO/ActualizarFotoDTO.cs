@@ -9,6 +9,7 @@ namespace SistemaApoyo.DTO
     public class ActualizarFotoDTO
     {
         public string Correo { get; set; } = null!;
+
         public string Foto { get; set; } = null!;
     }
 }

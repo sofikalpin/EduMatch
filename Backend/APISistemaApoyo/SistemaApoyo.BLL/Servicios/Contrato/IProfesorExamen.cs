@@ -16,11 +16,5 @@ namespace SistemaApoyo.BLL.Servicios.Contrato
         Task<bool> CrearExamen(ExamenDTO examenes);
         Task<bool> ActualizarExamen(ExamenDTO examen);
         Task<bool> EliminarExamen(int id);
-
-
-
-
-
-
     }
 }

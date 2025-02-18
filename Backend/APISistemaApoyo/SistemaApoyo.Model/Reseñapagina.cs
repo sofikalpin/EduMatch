@@ -7,7 +7,6 @@ namespace SistemaApoyo.Model;
 
 public partial class Reseñapagina
 {
-    
     public int IdReseñaP { get; set; }
 
     public int Idusuaro { get; set; }

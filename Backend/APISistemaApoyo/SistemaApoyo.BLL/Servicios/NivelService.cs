@@ -24,7 +24,6 @@ namespace SistemaApoyo.BLL.Servicios
             _mapper = mapper;
         }
 
-
         public async Task<List<NivelDTO>> ConsultarNivel()
         {
             try
@@ -58,7 +57,8 @@ namespace SistemaApoyo.BLL.Servicios
                 throw new Exception("Error al obtener la lista de foros.", ex);
             }
         }
-         public async Task<NivelDTO> ObtenerNivelPorID(int id)
+
+        public async Task<NivelDTO> ObtenerNivelPorID(int id)
             {
             try
             {
@@ -71,14 +71,10 @@ namespace SistemaApoyo.BLL.Servicios
             }
             catch (Exception ex) 
             { 
-
-
-                     throw new Exception("Error al obtener la lista de foros.", ex);
+                throw new Exception("Error al obtener la lista de foros.", ex);
             }
 
-        }
-
-           
+        } 
         
     }
 }

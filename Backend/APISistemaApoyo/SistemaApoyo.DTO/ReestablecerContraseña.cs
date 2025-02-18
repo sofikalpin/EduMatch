@@ -9,6 +9,7 @@ namespace SistemaApoyo.DTO
     public class ReestablecerContraseñaDTO
     {
         public string Token { get; set; }
+
         public string NuevaContraseña { get; set; }
     }
 }

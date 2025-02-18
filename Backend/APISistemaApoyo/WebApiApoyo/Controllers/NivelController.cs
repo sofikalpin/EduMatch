@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Http;
 namespace WebApiApoyo.Controllers
 {
 
-
     [Route("API/[controller]")]
     [ApiController]
 
@@ -22,7 +21,6 @@ namespace WebApiApoyo.Controllers
             _nivelService = nivelService;
             _logger = logger;
         }
-
 
         [HttpGet]
         [Route ("Listar Niveles")]
@@ -41,6 +39,7 @@ namespace WebApiApoyo.Controllers
             }
             return Ok(rsp);
         }
+
         [HttpGet]
         [Route("Nivel Descripcion")]
         public async Task<IActionResult> ListarNivelPorDescripcion(string descripcion)

@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 
-
-
 namespace SistemaApoyo.BLL.Hubs
 {
     public class ChatHub : Hub

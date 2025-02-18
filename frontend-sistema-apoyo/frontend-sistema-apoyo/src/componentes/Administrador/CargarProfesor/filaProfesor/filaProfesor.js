@@ -1,8 +1,33 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const FilaProfesor = ({ profesor, onDelete, onAutorizar }) => {
     const navigate = useNavigate();
+
+    const obtenerCV = async (idUsuario) => {
+        try {
+          const response = await axios.get(`http://localhost:5228/API/Usuario/ObtenerCV?idUsuario=${idUsuario}`, {
+            responseType: 'arraybuffer', // Necesario para manejar archivos binarios
+          });
+      
+          if (response.data && response.data.byteLength > 0) {
+            const file = new Blob([response.data], { type: 'application/pdf' });
+            const fileURL = URL.createObjectURL(file);
+
+            // Crear un enlace de descarga automático
+            const link = document.createElement('a');
+            link.href = fileURL;
+            link.download = `cv_${idUsuario}.pdf`; // Nombre del archivo a descargar
+            link.click();
+        } else {
+            alert("El archivo no está disponible.");
+        }
+        } catch (error) {
+          console.error("Error al obtener el CV", error);
+          alert("No se pudo obtener el CV.");
+        }
+    };
 
     const controlarRechazar = () => {
         if (window.confirm(`¿Estas seguro que deseas rechazar al profesor ${profesor.nombrecompleto}?`)) {
@@ -46,7 +71,7 @@ const FilaProfesor = ({ profesor, onDelete, onAutorizar }) => {
             <td className="px-4 py-3 text-center">
                 <button
                     className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md"
-                    onClick={() => navigate("/profesorCV")}
+                    onClick={() => obtenerCV(profesor.idusuario)}
                 >
                     Ver CV
                 </button>

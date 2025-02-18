@@ -29,98 +29,6 @@ namespace SistemaApoyo.BLL.Servicios
             _passwordHasher = new PasswordHasher<object>();
         }
 
-        public async Task<List<UsuarioDTO>> ListaTotal()
-        {
-            try
-            {
-                var consulta = await _usuarioRepositorio.Consultar();
-                var listaUsuarios = await consulta.ToListAsync();
-                return _mapper.Map<List<UsuarioDTO>>(listaUsuarios);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener los usuarios.", ex);
-            }
-        }
-
-        public async Task<List<UsuarioDTO>> ListaRol(int numero_rol)
-        {
-            try
-            {
-                var Usuarioquery = await _usuarioRepositorio.Consultar();
-                if (numero_rol >= 1 && numero_rol <= 3)
-                {
-                    Usuarioquery = Usuarioquery.Where(u => u.Idrol == numero_rol);
-                }
-
-                var listaresultado = await Usuarioquery.ToListAsync();
-                return _mapper.Map<List<UsuarioDTO>>(listaresultado);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener los usuarios por rol.", ex);
-            }
-        }
-
-        public async Task<List<UsuarioDTO>> ConsultaNombre(int rol, string nombre)
-        {
-            try
-            {
-                var usuarioquery = await _usuarioRepositorio.Consultar();
-                if (!string.IsNullOrEmpty(nombre) && rol >= 1 && rol <= 3)
-                {
-                    usuarioquery = usuarioquery
-                    .Where(u => u.Idrol == rol && EF.Functions.Like(u.Nombrecompleto, $"%{nombre}%")); // Búsqueda parcial
-                }
-
-                var listaResultado = await usuarioquery.ToListAsync();
-
-                // Mapear resultados a DTO
-                return _mapper.Map<List<UsuarioDTO>>(listaResultado);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener la actividad por nombre y id.", ex);
-            }
-        }
-
-        public async Task<List<UsuarioDTO>> ConsultaNivel(int rol, int nivel)
-        {
-            try
-            {
-                var Usuarioquery = await _usuarioRepositorio.Consultar();
-                if (rol != null && rol >= 1 && rol <= 3 && nivel != null)
-                {
-                    Usuarioquery = Usuarioquery.Where(u => u.Idrol == rol && u.Idnivel == nivel);
-                }
-
-                var listaresultado = await Usuarioquery.ToListAsync();
-                return _mapper.Map<List<UsuarioDTO>>(listaresultado);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener la actividad por nivel y id.", ex);
-            }
-        }
-
-        public async Task<UsuarioDTO> ObtenerUsuarioId(int id)
-        {
-            try
-            {
-                var usuario = await _usuarioRepositorio.Obtener(u => u.Idusuario == id);
-                if (usuario == null)
-                {
-                    throw new InvalidOperationException("Usuario no encontrada.");
-                }
-                return _mapper.Map<UsuarioDTO>(usuario);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener la usuario por id.", ex);
-            }
-
-        }
-
         public async Task<bool> CrearUsuario(UsuarioDTO usuario)
         {
             try
@@ -204,7 +112,104 @@ namespace SistemaApoyo.BLL.Servicios
                 throw;
             }
         }
+        
+        //Lista de todos los usuarios 
+        public async Task<List<UsuarioDTO>> ListaTotal()
+        {
+            try
+            {
+                var consulta = await _usuarioRepositorio.Consultar();
+                var listaUsuarios = await consulta.ToListAsync();
+                return _mapper.Map<List<UsuarioDTO>>(listaUsuarios);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los usuarios.", ex);
+            }
+        }
 
+        //Lista de usuarios segun su rol
+        public async Task<List<UsuarioDTO>> ListaRol(int numero_rol)
+        {
+            try
+            {
+                var Usuarioquery = await _usuarioRepositorio.Consultar();
+                if (numero_rol >= 1 && numero_rol <= 3)
+                {
+                    Usuarioquery = Usuarioquery.Where(u => u.Idrol == numero_rol);
+                }
+
+                var listaresultado = await Usuarioquery.ToListAsync();
+                return _mapper.Map<List<UsuarioDTO>>(listaresultado);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los usuarios por rol.", ex);
+            }
+        }
+
+        //Obtener usuario por nombre y rol
+        public async Task<List<UsuarioDTO>> ConsultaNombre(int rol, string nombre)
+        {
+            try
+            {
+                var usuarioquery = await _usuarioRepositorio.Consultar();
+                if (!string.IsNullOrEmpty(nombre) && rol >= 1 && rol <= 3)
+                {
+                    usuarioquery = usuarioquery
+                    .Where(u => u.Idrol == rol && EF.Functions.Like(u.Nombrecompleto, $"%{nombre}%")); // Búsqueda parcial
+                }
+
+                var listaResultado = await usuarioquery.ToListAsync();
+
+                return _mapper.Map<List<UsuarioDTO>>(listaResultado);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la actividad por nombre y id.", ex);
+            }
+        }
+
+        //Lista de usuarios segun el rol y id
+        public async Task<List<UsuarioDTO>> ConsultaNivel(int rol, int nivel)
+        {
+            try
+            {
+                var Usuarioquery = await _usuarioRepositorio.Consultar();
+                if (rol != null && rol >= 1 && rol <= 3 && nivel != null)
+                {
+                    Usuarioquery = Usuarioquery.Where(u => u.Idrol == rol && u.Idnivel == nivel);
+                }
+
+                var listaresultado = await Usuarioquery.ToListAsync();
+                return _mapper.Map<List<UsuarioDTO>>(listaresultado);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la actividad por nivel y id.", ex);
+            }
+        }
+
+        //Obtener un usuario por valor id
+        public async Task<UsuarioDTO> ObtenerUsuarioId(int id)
+        {
+            try
+            {
+                var usuario = await _usuarioRepositorio.Obtener(u => u.Idusuario == id);
+                if (usuario == null)
+                {
+                    throw new InvalidOperationException("Usuario no encontrada.");
+                }
+                return _mapper.Map<UsuarioDTO>(usuario);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la usuario por id.", ex);
+            }
+
+        }
+
+        //Obtener lista de usuarios segun su tipo de autorizacion
         public async Task<List<UsuarioDTO>> ListaAutorizacion(bool tipopermiso)
         {
             try
@@ -219,7 +224,6 @@ namespace SistemaApoyo.BLL.Servicios
                 throw new Exception("Error al obtener los usuarios por si estan autorizados o no.", ex);
             }
         }
-
 
         public async Task<bool> AutorizarProfesor(int id)
         {
@@ -248,43 +252,34 @@ namespace SistemaApoyo.BLL.Servicios
             {
                 throw new ArgumentException("La contraseña no puede estar vacía.");
             }
-            // Generar un salt único
             var salt = new byte[16];
             using (var rng = RandomNumberGenerator.Create())
             {
                 rng.GetBytes(salt);
             }
-
-            // Usar PBKDF2 para generar el hash de la contraseña
             var iteraciones = 10000;
             using (var pbkdf2 = new Rfc2898DeriveBytes(contrasena, salt, iteraciones, HashAlgorithmName.SHA256))
             {
                 var hash = pbkdf2.GetBytes(32);
 
-                // Combinar el salt y el hash en un solo arreglo
                 var resultado = new byte[salt.Length + hash.Length];
                 Array.Copy(salt, 0, resultado, 0, salt.Length);
                 Array.Copy(hash, 0, resultado, salt.Length, hash.Length);
 
-                // Retornar el resultado como Base64 para almacenamiento
                 return Convert.ToBase64String(resultado);
             }
         }
 
         public bool VerificarContrasena(string contrasena, string hashAlmacenado)
         {
-            // Convertir el hash almacenado desde Base64 a un arreglo de bytes
             var datosHash = Convert.FromBase64String(hashAlmacenado);
 
-            // Extraer el salt (primeros 16 bytes)
             var salt = new byte[16];
             Array.Copy(datosHash, 0, salt, 0, 16);
 
-            // Extraer el hash original (resto de los bytes)
             var hashOriginal = new byte[32];
             Array.Copy(datosHash, 16, hashOriginal, 0, 32);
 
-            // Recalcular el hash con la contraseña proporcionada
             var iteraciones = 10000;
             using (var pbkdf2 = new Rfc2898DeriveBytes(contrasena, salt, iteraciones, HashAlgorithmName.SHA256))
             {
@@ -294,7 +289,6 @@ namespace SistemaApoyo.BLL.Servicios
                 Console.WriteLine($"Hash recalculado: {Convert.ToBase64String(hashRecalculado)}");
                 Console.WriteLine($"Hash original: {Convert.ToBase64String(hashOriginal)}");
 
-                // Comparar ambos hashes de manera segura
                 return hashOriginal.SequenceEqual(hashRecalculado);
 
             }

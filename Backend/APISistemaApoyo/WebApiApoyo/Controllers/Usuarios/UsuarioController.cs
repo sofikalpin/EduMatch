@@ -382,17 +382,35 @@ public class UsuarioController : ControllerBase
             return BadRequest(rsp);
         }
 
+        // Validar el tamaño máximo del archivo
+        long maxSize = 10 * 1024 * 1024; // 10 MB
+        if (archivo.Length > maxSize)
+        {
+            rsp.status = false;
+            rsp.msg = "El archivo excede el tamaño máximo permitido de 10 MB.";
+            return BadRequest(rsp);
+        }
+
         try
         {
+            // Buscar el usuario en la base de datos antes de guardar el archivo
+            var usuario = await _usuarioService.ObtenerUsuarioPorID(idUsuario);
+            if (usuario == null || usuario.Idrol != 1)
+            {
+                rsp.status = false;
+                rsp.msg = "Usuario no encontrado o el usuario no corresponde a un profesor.";
+                return NotFound(rsp);
+            }
+
             // Definir la carpeta donde se guardarán los CVs (dentro de wwwroot/uploads)
-            string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+            string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
             if (!Directory.Exists(uploadsFolder))
             {
                 Directory.CreateDirectory(uploadsFolder);
             }
 
-            // Crear un nombre de archivo único (cv_{id}.pdf)
-            string nombreArchivo = $"cv_{idUsuario}{Path.GetExtension(archivo.FileName)}";
+            // Crear un nombre de archivo único (cv_{idUsuario}.pdf)
+            string nombreArchivo = $"cv_{idUsuario}_{Guid.NewGuid()}{fileExtension}";
             string rutaCompleta = Path.Combine(uploadsFolder, nombreArchivo);
 
             // Guardar el archivo en el servidor
@@ -401,29 +419,32 @@ public class UsuarioController : ControllerBase
                 await archivo.CopyToAsync(stream);
             }
 
-            // Buscar el usuario en la base de datos
-            var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Idusuario == idUsuario);
-            if (usuario == null || usuario.Idrol != 1)
-            {
-                rsp.status = false;
-                rsp.msg = "Usuario no encontrado o el usuario no corresponde al de un profesor.";
-                return NotFound(rsp);
-            }
-
             // Guardar la ruta en la base de datos
-            usuario.CvRuta = rutaCompleta;
-            await _context.SaveChangesAsync();
+            usuario.CvRuta = $"/uploads/{nombreArchivo}";
+            var actualizado = await _usuarioService.Editar(usuario);
+            if (!actualizado)
+            {
+                // Si hay un error al actualizar, eliminar el archivo guardado
+                if (System.IO.File.Exists(rutaCompleta))
+                {
+                    System.IO.File.Delete(rutaCompleta);
+                }
+
+                rsp.status = false;
+                rsp.msg = "Error al actualizar la base de datos.";
+                return StatusCode(500, rsp);
+            }
 
             rsp.status = true;
             rsp.msg = "CV subido exitosamente.";
-            rsp.value = rutaCompleta;
+            rsp.value = usuario.CvRuta;
             return Ok(rsp);
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Error al subir el CV para usuario {idUsuario}", idUsuario);
             rsp.status = false;
-            rsp.msg = "Error al subir el CV.";
-            _logger.LogError(ex, "Error al subir el CV para usuario {IdUsuario}", idUsuario);
+            rsp.msg = "Error interno al subir el CV.";
             return StatusCode(500, rsp);
         }
     }
@@ -436,14 +457,16 @@ public class UsuarioController : ControllerBase
         try
         {
             var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Idusuario == idUsuario);
-            if (usuario == null || string.IsNullOrEmpty(usuario.CvRuta) || usuario.Idrol != 1)
+            if (usuario == null || string.IsNullOrEmpty(usuario.CvRuta))
             {
                 rsp.status = false;
-                rsp.msg = "CV no encontrado o el id del usuario buscado no corresponde aun profesor.";
+                rsp.msg = "CV no encontrado.";
                 return NotFound(rsp);
             }
 
-            string rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), usuario.CvRuta.Replace("\\", "/"));
+            string rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", usuario.CvRuta.TrimStart('/'));
+
+            _logger.LogError(rutaArchivo);
             if (!System.IO.File.Exists(rutaArchivo))
             {
                 return NotFound(new Response<string> { status = false, msg = "El archivo no existe en el servidor." });
@@ -463,6 +486,7 @@ public class UsuarioController : ControllerBase
             return StatusCode(500, rsp);
         }
     }
+
     [HttpPost("ActualizarFoto")]
     public async Task<IActionResult> ActualizarFoto([FromBody] ActualizarFotoDTO modelo)
     {

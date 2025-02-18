@@ -24,6 +24,7 @@ namespace SistemaApoyo.BLL.Servicios
             _mapper = mapper;
         }
 
+        //Obtener lista de actividades
         public async Task<List<ActividadDTO>> ConsultarActividad()
         {
             try
@@ -38,8 +39,7 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-
-
+        //Buscar actividad por nombre
         public async Task<List<ActividadDTO>> ConsultarporNombre(string nombre)
         {
             try
@@ -60,7 +60,7 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-
+        //Obtener actividad por valor de id
         public async Task<ActividadDTO> ObtenerPorId(int id)
         {
             try
@@ -68,24 +68,25 @@ namespace SistemaApoyo.BLL.Servicios
                 var actividad = await _actividadRepositorio.Obtener(a => a.Idactividad == id);
                 if (actividad == null)
                 {
-                    throw new InvalidOperationException("Consulta no encontrada.");
+                    throw new InvalidOperationException("Actividades no encontradas.");
                 }
                 return _mapper.Map<ActividadDTO>(actividad);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener la consulta.", ex);
+                throw new Exception("Error al obtener la actividad por id.", ex);
             }
         }
 
-       public async Task<List<ActividadDTO>> ObtenerPorNivel(int idNivel)
+        //Obtener actividades por nivel
+        public async Task<List<ActividadDTO>> ObtenerPorNivel(int idNivel)
         {
             try
             {
                 var actividades = await _actividadRepositorio.ObtenerTodos(a => a.Idnivel == idNivel);
                 if (actividades == null)
                 {
-                    throw new InvalidOperationException("Consulta no encontrada.");
+                    throw new InvalidOperationException("Actividades no encontradas.");
                 }
                 return _mapper.Map<List<ActividadDTO>>(actividades);
             }

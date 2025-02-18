@@ -17,44 +17,11 @@ namespace SistemaApoyo.BLL.Servicios
         private readonly IGenericRepository<Usuario> _usuarioRepositorio;
         private readonly IMapper _mapper;
 
-        public ReseñaAlumnoService(
-            IGenericRepository<Reseña> resenaRepositorio,
-            IGenericRepository<Usuario> usuarioRepositorio,
-            IMapper mapper)
+        public ReseñaAlumnoService(IGenericRepository<Reseña> resenaRepositorio, IGenericRepository<Usuario> usuarioRepositorio, IMapper mapper)
         {
             _resenaRepositorio = resenaRepositorio;
             _usuarioRepositorio = usuarioRepositorio;
             _mapper = mapper;
-        }
-
-        public async Task<List<ReseñaAlumnoDTO>> ObtenerTodasReseñas()
-        {
-            try
-            {
-                var res = await _resenaRepositorio.Consultar();
-                var listaReseñas = await res.ToListAsync();
-                return _mapper.Map<List<ReseñaAlumnoDTO>>(listaReseñas);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener las reseñas", ex);
-            }
-        }
-
-        public async Task<ReseñaAlumnoDTO> ObtenerPorId(int id)
-        {
-            try
-            {
-                var resena = await _resenaRepositorio.Obtener(r => r.IdReseña == id);
-                if (resena == null)
-                    throw new TaskCanceledException("Reseña no encontrada");
-
-                return _mapper.Map<ReseñaAlumnoDTO>(resena);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener la reseña", ex);
-            }
         }
 
         public async Task<bool> CrearReseña(ReseñaAlumnoDTO reseñaDTO)
@@ -76,7 +43,37 @@ namespace SistemaApoyo.BLL.Servicios
                 throw new Exception("Error al crear la reseña", ex);
             }
         }
+        
+        //Obter lista de todas las reseñas
+        public async Task<List<ReseñaAlumnoDTO>> ObtenerTodasReseñas()
+        {
+            try
+            {
+                var res = await _resenaRepositorio.Consultar();
+                var listaReseñas = await res.ToListAsync();
+                return _mapper.Map<List<ReseñaAlumnoDTO>>(listaReseñas);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener las reseñas", ex);
+            }
+        }
 
+        //Obter una reseña por valor id
+        public async Task<ReseñaAlumnoDTO> ObtenerPorId(int id)
+        {
+            try
+            {
+                var resena = await _resenaRepositorio.Obtener(r => r.IdReseña == id);
+                if (resena == null)
+                    throw new TaskCanceledException("Reseña no encontrada");
 
+                return _mapper.Map<ReseñaAlumnoDTO>(resena);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la reseña", ex);
+            }
+        }
     }
 }

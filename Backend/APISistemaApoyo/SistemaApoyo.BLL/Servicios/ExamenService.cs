@@ -25,6 +25,7 @@ namespace SistemaApoyo.BLL.Servicios
             _mapper = mapper;
         }
 
+        //Lista de examenes
         public async Task<List<ExamenDTO>> ConsultarExamen()
         {
             try
@@ -39,6 +40,7 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
+        //Lista de examenes segun valor titulo
         public async Task<List<ExamenDTO>> ConsultarPorTitulo(string titulo)
         {
             try
@@ -59,8 +61,7 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-
-
+        //Obtener un examen por valor id
         public async Task<ExamenDTO> ObteneExamenrPorId(int id)
         {
             try
@@ -78,6 +79,7 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
+        //Lista de examenes segun valor de nivel
         public async Task<List<ExamenDTO>> ObtenerPorNivel(int idNivel)
         {
             try

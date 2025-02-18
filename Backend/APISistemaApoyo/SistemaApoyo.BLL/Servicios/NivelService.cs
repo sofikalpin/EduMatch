@@ -24,7 +24,7 @@ namespace SistemaApoyo.BLL.Servicios
             _mapper = mapper;
         }
 
-
+        //Lista de niveles
         public async Task<List<NivelDTO>> ConsultarNivel()
         {
             try
@@ -39,25 +39,7 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        public async Task<List<NivelDTO>> ConsultarPorDescripcion(string descripcion)
-        {
-            try
-            {
-                var Actividadquery = await _nivelRepository.Consultar();
-                if (!string.IsNullOrEmpty(descripcion))
-                {
-                    Actividadquery = Actividadquery.Where(v => v.Descripcion == descripcion);
-                }
-
-
-                var listaResultado = await Actividadquery.ToListAsync();
-                return _mapper.Map<List<NivelDTO>>(listaResultado);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener la lista de foros.", ex);
-            }
-        }
+        //Obtener un nivel segun su valor de id
          public async Task<NivelDTO> ObtenerNivelPorID(int id)
             {
             try
@@ -73,7 +55,7 @@ namespace SistemaApoyo.BLL.Servicios
             { 
 
 
-                     throw new Exception("Error al obtener la lista de foros.", ex);
+                throw new Exception("Error al obtener la lista de foros.", ex);
             }
 
         }

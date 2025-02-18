@@ -24,16 +24,12 @@ namespace SistemaApoyo.BLL.Servicios
         private readonly IConfiguration _configuration;
         private readonly ILogger<UsuarioService> _logger;
 
-        public UsuarioService(
-     IGenericRepository<Usuario> usuarioRepositorio,
-     IMapper mapper,
-     IConfiguration configuration,
-     ILogger<UsuarioService> logger) // Agrega este parámetro
+        public UsuarioService(IGenericRepository<Usuario> usuarioRepositorio, IMapper mapper, IConfiguration configuration, ILogger<UsuarioService> logger)
         {
             _usuarioRepositorio = usuarioRepositorio;
             _mapper = mapper;
             _configuration = configuration;
-            _logger = logger; // Inicializa el logger
+            _logger = logger;
         }
 
         public async Task<UsuarioDTO> Crear(UsuarioDTO modelo)
@@ -42,10 +38,8 @@ namespace SistemaApoyo.BLL.Servicios
             {
                 var usuario = _mapper.Map<Usuario>(modelo);
 
-                // Hashear la contraseña antes de guardarla
-                usuario.ContraseñaHash = CubreContrasena(modelo.ContraseñaHash);
+                usuario.ContraseñaHash = HashContraseña(modelo.ContraseñaHash);
 
-                // Verificar si el correo ya existe
                 var usuarioExistente = await _usuarioRepositorio.Obtener(u => u.Correo == modelo.Correo);
                 if (usuarioExistente != null)
                 {
@@ -87,14 +81,13 @@ namespace SistemaApoyo.BLL.Servicios
                 }
 
                 // Si la contraseña está vacía o nula, no la actualizamos
-                // O si la contraseña es igual a la que ya está hasheada, tampoco la actualizamos
+                // O si la contraseña es igual a la que ya está ingresada, tampoco se actualiza
                 if (!string.IsNullOrEmpty(usuarioModelo.ContraseñaHash) &&
                     usuarioModelo.ContraseñaHash != usuarioEncontrado.ContraseñaHash)
                 {
-                    usuarioEncontrado.ContraseñaHash = CubreContrasena(usuarioModelo.ContraseñaHash);
+                    usuarioEncontrado.ContraseñaHash = HashContraseña(usuarioModelo.ContraseñaHash);
                 }
 
-                // Actualizar otros campos
                 usuarioEncontrado.Nombrecompleto = usuarioModelo.Nombrecompleto;
                 usuarioEncontrado.Correo = usuarioModelo.Correo;
                 usuarioEncontrado.Idnivel = usuarioModelo.Idnivel;
@@ -102,7 +95,6 @@ namespace SistemaApoyo.BLL.Servicios
                 usuarioEncontrado.CvRuta = usuarioModelo?.CvRuta;
                 usuarioEncontrado.FotoRuta = usuarioModelo?.FotoRuta;
 
-                // Guardar los cambios
                 bool respuesta = await _usuarioRepositorio.Editar(usuarioEncontrado);
                 if (!respuesta)
                     throw new Exception("No se pudo editar el usuario");
@@ -138,6 +130,7 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
+        //Lista general de usuarios
         public async Task<List<UsuarioDTO>> Lista()
         {
             try
@@ -153,6 +146,7 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
         
+        //Obtener un usuario por valor de id
         public async Task<UsuarioDTO> ObtenerUsuarioPorID(int idusuario)
         {
             try
@@ -174,6 +168,7 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
+        //Obtener un usuario por su correo
         public async Task<UsuarioDTO> ObtenerUsuarioPorCorreo(string correo)
         {
             try
@@ -194,6 +189,7 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
+        //Comprobar que los datos del usuario ingresado son correctos
         public async Task<SesionDTO> ValidarCredenciales(string correo, string contrasena)
         {
             try
@@ -224,38 +220,30 @@ namespace SistemaApoyo.BLL.Servicios
         {
             try
             {
-                // Buscar usuario por correo
                 var usuario = await _usuarioRepositorio.Obtener(u => u.Correo == correo);
                 if (usuario == null)
                     throw new InvalidOperationException("Usuario no encontrado");
 
-                // Verificar si hay un token activo y válido
                 if (!string.IsNullOrEmpty(usuario.TokenRecuperacion) &&
                     usuario.TokenExpiracion.HasValue &&
                     usuario.TokenExpiracion.Value > DateTime.UtcNow)
                 {
-                    // Invalidar token anterior
                     usuario.TokenRecuperacion = null;
                     usuario.TokenExpiracion = null;
                     await _usuarioRepositorio.Editar(usuario);
                 }
 
-                // Generar nuevo token
                 var token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(32));
 
-                // Establecer expiración (24 horas)
                 usuario.TokenRecuperacion = token;
                 usuario.TokenExpiracion = DateTime.UtcNow.AddHours(24);
 
-                // Guardar cambios
                 bool resultado = await _usuarioRepositorio.Editar(usuario);
                 if (!resultado)
                     throw new Exception("No se pudo guardar el token de recuperación");
 
-                // Enviar correo
                 await EnviarCorreoRecuperacion(usuario.Correo, token);
 
-                // Registrar el intento de recuperación en el log
                 _logger.LogInformation($"Solicitud de recuperación de contraseña generada para el correo: {correo} en {DateTime.UtcNow}");
 
                 return true;
@@ -267,7 +255,7 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        public string CubreContrasena(string contrasena)
+        public string HashContraseña(string contrasena)
         {
             if (string.IsNullOrEmpty(contrasena))
             {
@@ -293,7 +281,7 @@ namespace SistemaApoyo.BLL.Servicios
             try
             { 
                 var datosHash = Convert.FromBase64String(hashAlmacenado);
-                if (datosHash.Length < 48) // 16 bytes de salt + 32 bytes de hash
+                if (datosHash.Length < 48)
                 {
                     throw new ArgumentException("Hash almacenado inválido.");
                 }
@@ -318,10 +306,8 @@ namespace SistemaApoyo.BLL.Servicios
         {
             try
             {
-                // Buscar usuario por token
                 var usuario = await _usuarioRepositorio.Obtener(u => u.TokenRecuperacion == token);
 
-                // Validar token y su expiración
                 if (usuario == null ||
                     string.IsNullOrEmpty(usuario.TokenRecuperacion) ||
                     !usuario.TokenExpiracion.HasValue ||
@@ -330,19 +316,15 @@ namespace SistemaApoyo.BLL.Servicios
                     throw new InvalidOperationException("Token inválido o expirado");
                 }
 
-                // Hashear nueva contraseña
-                usuario.ContraseñaHash = CubreContrasena(nuevaContraseña);
+                usuario.ContraseñaHash = HashContraseña(nuevaContraseña);
 
-                // Limpiar token y expiración
                 usuario.TokenRecuperacion = null;
                 usuario.TokenExpiracion = null;
 
-                // Guardar cambios
                 bool resultado = await _usuarioRepositorio.Editar(usuario);
                 if (!resultado)
                     throw new Exception("No se pudo actualizar la contraseña");
 
-                // Registrar el cambio exitoso en el log
                 _logger.LogInformation($"Contraseña actualizada exitosamente para el usuario: {usuario.Correo} en {DateTime.UtcNow}");
 
                 return true;
@@ -362,26 +344,26 @@ namespace SistemaApoyo.BLL.Servicios
                 var emailSettings = _configuration.GetSection("EmailSettings");
                 var smtpClient = new SmtpClient(emailSettings["SmtpServer"])
                 {
-                    Port = int.Parse(emailSettings["SmtpPort"] ?? "587"), // 587 es el puerto recomendado para STARTTLS
+                    Port = int.Parse(emailSettings["SmtpPort"] ?? "587"), 
                     Credentials = new NetworkCredential(emailSettings["SmtpUser"], emailSettings["SmtpPassword"]),
-                    EnableSsl = true // Asegúrate de habilitar SSL/TLS para STARTTLS
+                    EnableSsl = true 
                 };
 
                 // Aquí construyes el enlace con el token como parámetro
-                var resetUrl = $"http://localhost:3000/contra?token={token}";  // Asegúrate de que la ruta sea correcta
+                var resetUrl = $"http://localhost:3000/contra?token={token}";  
 
                 var mensaje = new MailMessage
                 {
                     From = new MailAddress(emailSettings["FromEmail"], "Sistema de Apoyo"),
                     Subject = "Recuperación de Contraseña",
                     Body = $@"
-<h2>Recuperación de Contraseña</h2>
-<p>Has solicitado restablecer tu contraseña.</p>
-<p>Para continuar, haz clic en el siguiente enlace:</p>
-<p><a href='{resetUrl}'>Restablecer Contraseña</a></p>
-<p>Este enlace expirará en 24 horas.</p>
-<p>Si no solicitaste este cambio, puedes ignorar este correo.</p>
-<p>Nota: Si recibes múltiples correos de recuperación, solo el último enlace enviado será válido.</p>",
+                        <h2>Recuperación de Contraseña</h2>
+                        <p>Has solicitado restablecer tu contraseña.</p>
+                        <p>Para continuar, haz clic en el siguiente enlace:</p>
+                        <p><a href='{resetUrl}'>Restablecer Contraseña</a></p>
+                        <p>Este enlace expirará en 24 horas.</p>
+                        <p>Si no solicitaste este cambio, puedes ignorar este correo.</p>
+                        <p>Nota: Si recibes múltiples correos de recuperación, solo el último enlace enviado será válido.</p>",
                     IsBodyHtml = true
                 };
                 mensaje.To.Add(correoDestino);

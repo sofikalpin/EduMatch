@@ -26,56 +26,6 @@ namespace SistemaApoyo.BLL.Servicios
             _mapper = mapper;
         }
 
-        public async Task<List<ArticuloDTO>> ConsultarArticulo()
-        {
-            try
-            {
-                var consulta = await _articuloRepositorio.Consultar();
-                var listaArticulo = await consulta.ToListAsync();
-                return _mapper.Map<List<ArticuloDTO>>(listaArticulo);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener el articulo.", ex);
-            }
-        }
-        public async Task<List<ArticuloDTO>> ConsultarporTitulo(string titulo)
-        {
-            try
-            {
-                var Articuloquery = await _articuloRepositorio.Consultar();
-                if (!string.IsNullOrEmpty(titulo))
-                {
-                    Articuloquery = Articuloquery.Where(v => v.Titulo == titulo);
-                }
-
-
-                var listaResultado = await Articuloquery.ToListAsync();
-                return _mapper.Map<List<ArticuloDTO>>(listaResultado);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener el articulo por titulo.", ex);
-            }
-        }
-        public async Task<List<ArticuloDTO>> ObteneArticulorPorIdProfesor(int id)
-        {
-            try
-            {
-                var articulo = await _articuloRepositorio.ObtenerTodos(a => a.Idusuario == id);
-                if (articulo == null)
-                {
-                    throw new InvalidOperationException("Articulo no encontrado.");
-                }
-                return _mapper.Map<List<ArticuloDTO>>(articulo);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener el articulo por id.", ex);
-            }
-
-        }
-
         public async Task<bool> CrearArticulo(ArticuloDTO articulos)
         {
             try
@@ -130,8 +80,60 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
+        //Lista de articulos
+        public async Task<List<ArticuloDTO>> ConsultarArticulo()
+        {
+            try
+            {
+                var consulta = await _articuloRepositorio.Consultar();
+                var listaArticulo = await consulta.ToListAsync();
+                return _mapper.Map<List<ArticuloDTO>>(listaArticulo);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el articulo.", ex);
+            }
+        }
 
+        //Buscar articulo segun nombre
+        public async Task<List<ArticuloDTO>> ConsultarporTitulo(string titulo)
+        {
+            try
+            {
+                var Articuloquery = await _articuloRepositorio.Consultar();
+                if (!string.IsNullOrEmpty(titulo))
+                {
+                    Articuloquery = Articuloquery.Where(v => v.Titulo == titulo);
+                }
+
+
+                var listaResultado = await Articuloquery.ToListAsync();
+                return _mapper.Map<List<ArticuloDTO>>(listaResultado);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el articulo por titulo.", ex);
+            }
+        }
+
+        //Obtener articulos de un profesor por id
+        public async Task<List<ArticuloDTO>> ObteneArticulorPorIdProfesor(int id)
+        {
+            try
+            {
+                var articulo = await _articuloRepositorio.ObtenerTodos(a => a.Idusuario == id);
+                if (articulo == null)
+                {
+                    throw new InvalidOperationException("Articulo no encontrado.");
+                }
+                return _mapper.Map<List<ArticuloDTO>>(articulo);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el articulo por id.", ex);
+            }
+
+        }
     }
-
 
 }

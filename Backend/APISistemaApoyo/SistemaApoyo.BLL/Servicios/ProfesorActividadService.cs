@@ -24,59 +24,6 @@ namespace SistemaApoyo.BLL.Servicios
             _mapper = mapper;
         }
 
-        public async Task<List<ActividadDTO>> ConsultarActividad()
-        {
-            try
-            {
-                var consulta = await _actividadRepositorio.Consultar();
-                var listaActividad = await consulta.ToListAsync();
-                return _mapper.Map<List<ActividadDTO>>(listaActividad);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener la actividad.", ex);
-            }
-
-        }
-
-        public async Task<List<ActividadDTO>> ConsultarporNombre(string nombre)
-        {
-            try
-            {
-                var Actividadquery = await _actividadRepositorio.Consultar();
-                if (!string.IsNullOrEmpty(nombre))
-                {
-                    Actividadquery = Actividadquery.Where(v => v.Nombre == nombre);
-                }
-
-
-                var listaResultado = await Actividadquery.ToListAsync();
-                return _mapper.Map<List<ActividadDTO>>(listaResultado);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener la actividad por nombre.", ex);
-            }
-        }
-
-        public async Task<List<ActividadDTO>> ObteneActividadrPorIdProfesor(int id)
-        {
-            try
-            {
-                var actividad = await _actividadRepositorio.ObtenerTodos(a => a.Idusuario == id);
-                if (actividad == null)
-                {
-                    throw new InvalidOperationException("El usuario no desarrollo ninguna actividad.");
-                }
-                return _mapper.Map<List<ActividadDTO>>(actividad);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener la actividad por id del usuario.", ex);
-            }
-
-        }
-
 
         public async Task<bool> CrearActividad(ActividadDTO actividads)
         {
@@ -131,5 +78,62 @@ namespace SistemaApoyo.BLL.Servicios
                 throw;
             }
         }
+
+        //Lista de actividades
+        public async Task<List<ActividadDTO>> ConsultarActividad()
+        {
+            try
+            {
+                var consulta = await _actividadRepositorio.Consultar();
+                var listaActividad = await consulta.ToListAsync();
+                return _mapper.Map<List<ActividadDTO>>(listaActividad);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la actividad.", ex);
+            }
+
+        }
+
+        //Buscar actividad segun nombre
+        public async Task<List<ActividadDTO>> ConsultarporNombre(string nombre)
+        {
+            try
+            {
+                var Actividadquery = await _actividadRepositorio.Consultar();
+                if (!string.IsNullOrEmpty(nombre))
+                {
+                    Actividadquery = Actividadquery.Where(v => v.Nombre == nombre);
+                }
+
+
+                var listaResultado = await Actividadquery.ToListAsync();
+                return _mapper.Map<List<ActividadDTO>>(listaResultado);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la actividad por nombre.", ex);
+            }
+        }
+
+        //Obtener actividades de un profesor por id
+        public async Task<List<ActividadDTO>> ObteneActividadrPorIdProfesor(int id)
+        {
+            try
+            {
+                var actividad = await _actividadRepositorio.ObtenerTodos(a => a.Idusuario == id);
+                if (actividad == null)
+                {
+                    throw new InvalidOperationException("El usuario no desarrollo ninguna actividad.");
+                }
+                return _mapper.Map<List<ActividadDTO>>(actividad);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la actividad por id del usuario.", ex);
+            }
+
+        }
+
     }
 }

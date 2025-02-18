@@ -212,28 +212,6 @@ C:\Users\Usuario\Desktop\Desarrollo de Software\60VERSIONCONBACK -SOFIRAGGI\EduM
 C:\Users\Usuario\Desktop\Desarrollo de Software\60VERSIONCONBACK -SOFIRAGGI\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\refint\SistemaApoyo.BLL.dll
 C:\Users\Usuario\Desktop\Desarrollo de Software\60VERSIONCONBACK -SOFIRAGGI\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.pdb
 C:\Users\Usuario\Desktop\Desarrollo de Software\60VERSIONCONBACK -SOFIRAGGI\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\ref\SistemaApoyo.BLL.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.csproj.AssemblyReference.cache
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.AssemblyInfoInputs.cache
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.AssemblyInfo.cs
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.csproj.CoreCompileInputs.cache
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.sourcelink.json
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.deps.json
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.pdb
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DAL.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DTO.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Model.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Utility.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DAL.pdb
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.DTO.pdb
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Model.pdb
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.Utility.pdb
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaA.12C0A08E.Up2Date
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\refint\SistemaApoyo.BLL.dll
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\SistemaApoyo.BLL.pdb
-C:\Users\Sofia\Documents\UTN\3 Año - 2024\DesarrolloSoftware\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\obj\Debug\net8.0\ref\SistemaApoyo.BLL.dll
 C:\Users\Usuario\Desktop\Desarrollo 2024\Desarrollo de Software\80VERSIONCONBACK - SOFIRAGGI\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.deps.json
 C:\Users\Usuario\Desktop\Desarrollo 2024\Desarrollo de Software\80VERSIONCONBACK - SOFIRAGGI\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.dll
 C:\Users\Usuario\Desktop\Desarrollo 2024\Desarrollo de Software\80VERSIONCONBACK - SOFIRAGGI\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.BLL\bin\Debug\net8.0\SistemaApoyo.BLL.pdb

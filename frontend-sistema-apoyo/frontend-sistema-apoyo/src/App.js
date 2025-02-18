@@ -9,6 +9,7 @@ import "./App.css";
 // Iniciar Sesion - Registrarse
 import Login from "./componentes/login/Login";
 import { Registrar } from "./componentes/registrar/Registrar";
+import  SubirCV  from "./componentes/registrar/SubirCV";
 
 // Inicio
 import Inicio from "./componentes/inicio/Inicio/Inicio";
@@ -90,6 +91,7 @@ function App() {
           {/* Iniciar Sesión - Registrarse */}
           <Route path="/iniciarsesion" element={ <Login />} />
           <Route path="/registrarse" element={<Registrar />} />
+          <Route path="/subirCV" element={<SubirCV />} />
 
 
           {/* Rutas protegidas (Solo lo pueden ver lo que inician sesion) */}

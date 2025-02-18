@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../logo/LogoInicio.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import axios from "axios";
 
 
 export const Registrar = () => {
@@ -15,6 +16,7 @@ export const Registrar = () => {
     nivel: "",
     fileSelected: false,
   });
+
   const [errors, setErrors] = useState({
     userType: "",
     nivel: "",
@@ -66,55 +68,65 @@ const toggleConfirmPasswordVisibility = () => {
     window.location.href = "/home";
   };
 
+  useEffect(() => {
+
+  })
+
   const validateStep = () => {
     let newErrors = { ...errors };
-
-    if (step === 1 && !formData.userType) {
-      newErrors.userType = "Debes seleccionar un tipo de usuario";
-    } else {
-      newErrors.userType = "";
+  
+    // Paso 1: Validación del tipo de usuario
+    if (step === 1) {
+      if (!formData.userType) {
+        newErrors.userType = "Debes seleccionar un tipo de usuario";
+      } else {
+        newErrors.userType = "";
+      }
     }
-
-    if (formData.userType === "profesor" && !formData.fileSelected) {
-      newErrors.file = "Debe seleccionar un archivo el cual obtenga su CV para registrarse al rol de Profesor";
-    } else {
-      newErrors.file = "";
-    }
-
+  
+    // Paso 2: Validación de nombre y nivel
     if (step === 2) {
       if (!formData.name) {
         newErrors.name = "El nombre es obligatorio";
       } else {
         newErrors.name = "";
       }
-
+  
       if (!formData.nivel) {
         newErrors.nivel = "Debes seleccionar tu nivel";
       } else {
         newErrors.nivel = "";
       }
     }
-
-    if (step === 3 && !formData.email) {
-      newErrors.email = "El correo es obligatorio";
-    } else {
-      newErrors.email = "";
+  
+    // Paso 3: Validación de correo
+    if (step === 3) {
+      if (!formData.email) {
+        newErrors.email = "El correo es obligatorio";
+      } else {
+        newErrors.email = "";
+      }
     }
-
+  
+    // Paso 4: Validación de contraseña y confirmación de contraseña
     if (step === 4) {
       if (!formData.password) {
         newErrors.password = "La contraseña es obligatoria";
-      } else if (formData.password !== formData.confirmPassword) {
-        newErrors.confirmPassword = "Las contraseñas no coinciden";
       } else {
         newErrors.password = "";
+      }
+  
+      if (formData.password !== formData.confirmPassword) {
+        newErrors.confirmPassword = "Las contraseñas no coinciden";
+      } else {
         newErrors.confirmPassword = "";
       }
     }
-
+  
     setErrors(newErrors);
     return !Object.values(newErrors).some((error) => error);
   };
+  
 
   useEffect(() => {
     validateStep();
@@ -129,6 +141,7 @@ const toggleConfirmPasswordVisibility = () => {
   const handleBack = () => {
     setStep(step - 1);
   };
+  
 
   const handleSubmit = async (e) => {
   e.preventDefault();
@@ -154,8 +167,8 @@ const toggleConfirmPasswordVisibility = () => {
       idrol: idrol,
       autProf: formData.userType === "profesor", // Si es profesor, autProf es true
       tokenRecuperacion: generateToken(), 
-// Esto puede ser generado por el backend
       tokenExpiracion: new Date().toISOString(), // Esto puede ser generado por el backend
+      cvRuta: formData.cvRuta || "",
     };
 
     console.log("Datos del formulario:", usuarioData);
@@ -169,24 +182,17 @@ const toggleConfirmPasswordVisibility = () => {
         body: JSON.stringify(usuarioData),
       });
 
-      if (response.ok) {
-        alert("Registro exitoso");
-        navigate("/login");
+      if (formData.userType === "profesor") {
+        navigate("/subirCV"); // Redirigir a la pantalla de subir CV
       } else {
-        alert("Error en el registro");
+        navigate("/iniciarsesion");
       }
     } catch (error) {
       console.error("Error al enviar los datos:", error);
       alert("Error en el registro");
     }
   }
-};
- 
-
-  const handleFileChange = (e) => {
-    setFormData({ ...formData, fileSelected: true });
-    console.log("Archivo seleccionado:", e.target.files[0]);
-  };
+};  
 
   return (
     <div className="w-full max-w-[400px] mx-auto text-center pt-[100px] h-screen box-border">
@@ -231,32 +237,6 @@ const toggleConfirmPasswordVisibility = () => {
             {errors.userType && (
               <span className="text-red-500 text-[15px] mt-1 block">
                 {errors.userType}
-              </span>
-            )}
-
-            {formData.userType === "profesor" && (
-              <div className="mt-6">
-                <button
-                  className={`h-[48px] ${
-                    formData.linkedinClicked
-                      ? "bg-gray-300 cursor-not-allowed"
-                      : "bg-[#00A89F]"
-                  } text-white rounded-md w-full mb-4`}
-                  onClick={() => document.getElementById("fileInput").click()}
-                >
-                  Ingresar archivo de CV
-                </button>
-                <input
-                  id="fileInput"
-                  type="file"
-                  onChange={handleFileChange}
-                  className="hidden"
-                />
-              </div>
-            )}
-            {errors.file && (
-              <span className="text-red-500 text-[15px] mt-1 block">
-                {errors.file}
               </span>
             )}
 
@@ -369,7 +349,6 @@ const toggleConfirmPasswordVisibility = () => {
                 {errors.email}
               </span>
             )}
-
             <div className="flex justify-between mt-6">
               <button
                 className="h-[48px] bg-[#f0f0f0] text-[#666] border-none rounded-md text-[16px] font-medium cursor-pointer transition-all duration-200 w-[48%]"
@@ -388,82 +367,82 @@ const toggleConfirmPasswordVisibility = () => {
         )}
 
 
-{step === 4 && (
-  <div>
-    <h1 className="text-[36px] text-[#1a2b4b] mb-10 font-semibold ">
-      Crea una contraseña
-    </h1>
-    
-    <label className="block text-left text-[20px]" htmlFor="password">
-      *Contraseña
-      <div className="relative">
-        <input
-          id="password"
-          type={showPassword ? "text" : "password"}
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          placeholder="Ingresa tu contraseña"
-          className="h-[48px] p-4 border border-[#e0e0e0] rounded-md text-[16px] w-full mt-[5%] box-border pr-10"
-        />
-        <button
-          type="button"
-          onClick={togglePasswordVisibility}
-          className="absolute right-3 top-1/2 transform -translate-y-1/2"
-        >
-          {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
-        </button>
-      </div>
-    </label>
-    {errors.password && (
-      <span className="text-red-500 text-[12px] mt-1 block">
-        {errors.password}
-      </span>
-    )}
+      {step === 4 && (
+        <div>
+          <h1 className="text-[36px] text-[#1a2b4b] mb-10 font-semibold ">
+            Crea una contraseña
+          </h1>
+          
+          <label className="block text-left text-[20px]" htmlFor="password">
+            *Contraseña
+            <div className="relative">
+              <input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Ingresa tu contraseña"
+                className="h-[48px] p-4 border border-[#e0e0e0] rounded-md text-[16px] w-full mt-[5%] box-border pr-10"
+              />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2"
+              >
+                {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+              </button>
+            </div>
+          </label>
+          {errors.password && (
+            <span className="text-red-500 text-[12px] mt-1 block">
+              {errors.password}
+            </span>
+          )}
 
-    <label className="block text-left text-[20px]" htmlFor="confirmPassword">
-      *Confirmar Contraseña
-      <div className="relative">
-        <input
-          id="confirmPassword"
-          type={showConfirmPassword ? "text" : "password"}
-          name="confirmPassword"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-          placeholder="Confirma tu contraseña"
-          className="h-[48px] p-4 border border-[#e0e0e0] rounded-md text-[16px] w-full mt-[5%] box-border pr-10"
-        />
-        <button
-          type="button"
-          onClick={toggleConfirmPasswordVisibility}
-          className="absolute right-3 top-1/2 transform -translate-y-1/2"
-        >
-          {showConfirmPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
-        </button>
-      </div>
-    </label>
-    {errors.confirmPassword && (
-      <span className="text-red-500 text-[12px] mt-1 block">
-        {errors.confirmPassword}
-      </span>
-    )}
+          <label className="block text-left text-[20px]" htmlFor="confirmPassword">
+            *Confirmar Contraseña
+            <div className="relative">
+              <input
+                id="confirmPassword"
+                type={showConfirmPassword ? "text" : "password"}
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                placeholder="Confirma tu contraseña"
+                className="h-[48px] p-4 border border-[#e0e0e0] rounded-md text-[16px] w-full mt-[5%] box-border pr-10"
+              />
+              <button
+                type="button"
+                onClick={toggleConfirmPasswordVisibility}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2"
+              >
+                {showConfirmPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+              </button>
+            </div>
+          </label>
+          {errors.confirmPassword && (
+            <span className="text-red-500 text-[12px] mt-1 block">
+              {errors.confirmPassword}
+            </span>
+          )}
 
-    <div className="flex justify-between mt-6">
-      <button
-        className="h-[48px] bg-[#f0f0f0] text-[#666] border-none rounded-md text-[16px] font-medium cursor-pointer transition-all duration-200 w-[48%]"
-        onClick={handleBack}
-      >
-        Volver
-      </button>
-      <button
-        className="h-[48px] bg-[#f0f0f0] text-[#666] border-none rounded-md text-[16px] font-medium cursor-pointer transition-all duration-200 w-[48%]"
-        onClick={handleSubmit}
-      >
-        Registrarme
-      </button>
-    </div>
-  </div>
-)}
+          <div className="flex justify-between mt-6">
+            <button
+              className="h-[48px] bg-[#f0f0f0] text-[#666] border-none rounded-md text-[16px] font-medium cursor-pointer transition-all duration-200 w-[48%]"
+              onClick={handleBack}
+            >
+              Volver
+            </button>
+            <button
+              className="h-[48px] bg-[#f0f0f0] text-[#666] border-none rounded-md text-[16px] font-medium cursor-pointer transition-all duration-200 w-[48%]"
+              onClick={handleSubmit}
+            >
+              Registrarme
+            </button>
+          </div>
+        </div>
+      )}
 
       </main>
     </div>

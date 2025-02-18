@@ -28,8 +28,8 @@ const UserReviews = () => {
 
             const reviewData = {
                 idReseñaP: 0,
-                idUsuaro: user.idUsuario, 
-                nombreUsuario: user.nombreCompleto,
+                idUsuaro: user.idusuario, 
+                nombreUsuario: user.nombrecompleto,
                 rating: newReview.rating,
                 comentario: newReview.comment,
             };

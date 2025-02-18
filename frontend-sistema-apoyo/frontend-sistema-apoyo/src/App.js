@@ -8,8 +8,8 @@ import "./App.css";
 
 // Iniciar Sesion - Registrarse
 import Login from "./componentes/Login/Login";
-import { Registrar } from "./componentes/registrar/Registrar";
-import  SubirCV  from "./componentes/registrar/SubirCV";
+import { Registrar } from "./componentes/Registrar/Registrar";
+import  SubirCV  from "./componentes/Registrar/SubirCV";
 
 
 // Inicio
@@ -25,6 +25,7 @@ import ResetPassword from "./componentes/inicio/Inicio/NuevaContra";
 import Administrador from "./componentes/Administrador/Administrador";
 import ListaProfesores from "./componentes/Administrador/Profesores/ListaProfesores";
 import NuevoProfesor from "./componentes/Administrador/Profesores/NuevoProfesor/NuevoProfesor";
+import SubirCVAdmin from "./componentes/Administrador/Profesores/NuevoProfesor/SubirCVAdmin";
 import EditarProfesor from "./componentes/Administrador/Profesores/EditarProfesor/EditarProfesor";
 import CargarProfesor from "./componentes/Administrador/CargarProfesor/CargarProfesor";
 import CargarProfesorExterno from "./componentes/Administrador/CargarProfesor/CargarProfesorExterno";
@@ -109,6 +110,7 @@ function App() {
             <Route path="/administrador" element={<ProtegerRuta><Administrador /></ProtegerRuta>} />
             <Route path="/administrador/listaProfesores" element={<ProtegerRuta><ListaProfesores /></ProtegerRuta>} />
             <Route path="/administrador/listaProfesores/nuevoProfesor" element={<ProtegerRuta><NuevoProfesor /></ProtegerRuta>} />
+            <Route path="/administrador/listaProfesores/nuevoProfesor/subircv" element={<ProtegerRuta><SubirCVAdmin/></ProtegerRuta>} />
             <Route path="/administrador/listaProfesores/editarProfesor" element={<ProtegerRuta><EditarProfesor /></ProtegerRuta>} />
             <Route path="/administrador/cargarProfesor" element={<ProtegerRuta><CargarProfesor /></ProtegerRuta>} />
             <Route path="/administrador/cargarProfesorExterno" element={<ProtegerRuta><CargarProfesorExterno /></ProtegerRuta>} />

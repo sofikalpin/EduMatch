@@ -12,8 +12,9 @@ export const Registrar = () => {
     confirmPassword: "",
     userType: "",
     nivel: "",
-    fileSelected: false,
   });
+
+
 
   const [errors, setErrors] = useState({
     userType: "",
@@ -34,7 +35,13 @@ export const Registrar = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
+  const [passwordConfirmError, setPasswordConfirmError] = useState("");
+  const [loading, setLoading] = useState(false);
 
+  
+  
+  
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };

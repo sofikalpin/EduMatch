@@ -21,7 +21,7 @@ const ActividadesProfesor = () => {
   const navigate = useNavigate();
   const { user } = useUser();
 
-  const idProfesor = user?.idUsuario;
+  const idProfesor = user?.idusuario;
 
 
   useEffect(() => {
@@ -99,7 +99,7 @@ const ActividadesProfesor = () => {
 
 
   const handleNuevaActividad = () => {
-    if (user.nivel < nivel) {
+    if (user.idnivel < nivel) {
       alert("Su nivel de perfil es menor al nivel correspondiente a la actividad que desea crear. Por favor cree actividades con su nivel o menor a este.");
     } else {
       navigate("/crear-actividad", { 
@@ -196,7 +196,7 @@ const ActividadesProfesor = () => {
             <button 
               onClick={handleNuevaActividad}
               className={`py-2 px-4 rounded-lg text-base transition-all whitespace-nowrap
-                ${user.nivel < nivel 
+                ${user.idnivel < nivel 
                   ? "bg-gray-400 cursor-not-allowed text-gray-200" 
                   : "bg-gradient-to-r from-teal-500 to-teal-600 text-white hover:from-teal-600 hover:to-teal-700"}`}
             >

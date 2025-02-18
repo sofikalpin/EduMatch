@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "../../logo/LogoInicio.png";
 import axios from "axios";
 
 const SubirCV = () => {
@@ -89,43 +90,74 @@ const SubirCV = () => {
   };
 
   return (
-    <div className="p-4 border rounded-lg shadow-md bg-white">
-      <label className="block text-left text-[20px]" htmlFor="email">
-        Confirmar correo electrónico
-        <input
-          id="email"
-          type="email"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Ejemplo: usuario@dominio.com"
-          className="h-[48px] p-4 border border-[#e0e0e0] rounded-md text-[16px] w-full mt-[5%] box-border"
+    <div className="w-full max-w-[400px] mx-auto text-center pt-[100px] h-screen box-border">
+      <header className="w-full flex items-center justify-between p-4 bg-[#00A89F] text-white box-shadow-md fixed top-0 left-0 z-10">
+        <img
+          src={logo}
+          alt="Logo"
+          className="h-12 cursor-pointer"
         />
-      </label>
-      <button
-        onClick={() => buscarUsuario(email)}
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mt-2"
-      >
-        Buscar Usuario
-      </button>
+      </header>
 
-      {idUsuario && (
-        <>
-          <h2 className="text-xl font-bold mt-4">Subir CV</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input type="file" accept=".pdf" onChange={handleFileChange} className="block w-full" />
+      <div className="mt-10 text-center">
+        <div className="w-full h-[12px] bg-[#e0e0e0] rounded-full overflow-hidden mt-5">
+          <div
+            className="h-full bg-gradient-to-r from-[#8e2de2] to-[#4a00e0] transition-width duration-300 ease-in-out rounded-full"
+          ></div>
+        </div>
+      </div>
 
-              <button
-                type="submit"
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-              >
-                Subir CV
-              </button>
-            </form>
-        </>
-      )}
+      <main className="p-4">
+        <div>
+          <h1 className="text-[36px] text-[#1a2b4b] mb-10 font-semibold">
+            Tu correo
+          </h1>
+          <label className="block text-left text-[20px]" htmlFor="email">
+          *Ingrese correo electrónico que utilizo para registrarse
+          <input
+              id="email"
+              type="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Ejemplo: usuario@dominio.com"
+              className="h-[48px] p-4 border border-[#e0e0e0] rounded-md text-[16px] w-full mt-[5%] box-border"
+            />
+          </label>
+          <button
+            onClick={() => buscarUsuario(email)}
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mt-2"
+          >
+            Confirmar Usuario
+          </button>
 
-      {mensaje && <p className="text-red-500 mt-2">{mensaje}</p>}
+          {idUsuario && (
+            <>
+              <h2 className="text-xl font-bold mt-4">Subir CV</h2>
+              <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+                <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-400 rounded-lg cursor-pointer hover:bg-gray-100 transition">
+                  <span className="text-gray-600">Haz clic para seleccionar tu CV (PDF)</span>
+                  <input 
+                    type="file" 
+                    accept=".pdf" 
+                    onChange={handleFileChange} 
+                    className="hidden" 
+                  />
+                </label>
+
+                <button
+                  type="submit"
+                  className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-semibold shadow-md"
+                >
+                  Subir CV
+                </button>
+              </form>
+            </>
+          )}
+
+          {mensaje && <p className="text-green-500 mt-2">{mensaje}</p>}
+        </div>
+      </main>
     </div>
   );
 };

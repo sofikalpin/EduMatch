@@ -65,8 +65,8 @@ const MisProfesores = () => {
 
       const requestBody = {
         idReseña: 0,
-        idusuario: user.idUsuario,
-        nombreUsuario: user.nombreCompleto,
+        idusuario: user.idusuario,
+        nombreUsuario: user.nombrecompleto,
         idProfesor: profesorId,
         nombreProfesor: profesores.find(p => p.idusuario === profesorId)?.nombrecompleto || "Desconocido",
         rating: currentRating,

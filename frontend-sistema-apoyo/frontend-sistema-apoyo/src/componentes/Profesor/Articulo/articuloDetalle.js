@@ -115,7 +115,7 @@ const ArticuloDetalle = () => {
               <h1 className="text-3xl font-bold text-gray-900">{articulo?.titulo}</h1>
               
               {/* Boton para eliminar la actividad */}
-              {user && articulo && user.idUsuario === articulo.idusuario && (
+              {user && articulo && user.idusuario === articulo.idusuario && (
                 <button 
                   onClick={handleDelete}
                   disabled={isDeleting}

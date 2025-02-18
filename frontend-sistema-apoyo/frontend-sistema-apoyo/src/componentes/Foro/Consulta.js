@@ -80,7 +80,7 @@ const Consulta = () => {
   const handleNuevaRespuesta = () => {
     if (!consulta) return;
 
-    if (user.nivel < consulta.nivel) {
+    if (user.idnivel < consulta.nivel) {
       error("Su nivel es menor al nivel necesario para participar en la consulta.");
       return;
     } else {
@@ -130,9 +130,9 @@ const Consulta = () => {
           <div className="mt-6 flex justify-end">
             <button
               onClick={handleNuevaRespuesta}
-              disabled={user.nivel < consulta?.idnivel}
+              disabled={user.idnivel < consulta?.idnivel}
               className={`flex items-center gap-2 py-2 px-6 rounded-full text-lg transition-all shadow-md
-                ${user.nivel < consulta?.idnivel
+                ${user.idnivel < consulta?.idnivel
                   ? "bg-gray-400 cursor-not-allowed text-gray-200" 
                   : "bg-green-500 text-white hover:bg-green-600"}
               `}

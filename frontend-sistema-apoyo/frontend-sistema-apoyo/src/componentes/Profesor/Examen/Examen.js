@@ -21,7 +21,7 @@ const ExamenProfesor = () => {
   const navigate = useNavigate();
   const { user } = useUser();
 
-  const idProfesor = user?.idUsuario;
+  const idProfesor = user?.idusuario;
 
   // Obtener los exámenes
   useEffect(() => {
@@ -90,7 +90,7 @@ const ExamenProfesor = () => {
 
   // Función para crear nuevo examen
   const handleNuevoExamen = () => {
-    if (user.nivel < nivel) {
+    if (user.idnivel < nivel) {
       alert("Su nivel de perfil es menor al nivel correspondiente al examen que desea crear.");
     } else {
       navigate("/crear-examen", { state: { nivel } });
@@ -183,7 +183,7 @@ const ExamenProfesor = () => {
             <button 
               onClick={handleNuevoExamen}
               className={`py-2 px-4 rounded-lg text-base transition-all whitespace-nowrap
-                ${user.nivel < nivel 
+                ${user.idnivel < nivel 
                   ? "bg-gray-400 cursor-not-allowed text-gray-200" 
                   : "bg-gradient-to-r from-teal-500 to-teal-600 text-white hover:from-teal-600 hover:to-teal-700"}`}
             >

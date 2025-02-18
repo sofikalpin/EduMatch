@@ -19,8 +19,6 @@ export const NuevoProfesor = () => {
     fotoRuta: ""
   });
 
-  const [cv, setCV] = useState(null);
-  const [cvName, setCVName] = useState('');
 
   const navigate = useNavigate();
 
@@ -32,37 +30,6 @@ export const NuevoProfesor = () => {
     navigate("/administrador/listaProfesores", { replace: true })
   }
 
-  const handleFileChange = async (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      if (file.type !== 'application/pdf') {
-        alert("Por favor, sube un archivo PDF");
-        return;
-      }
-      if (file.size > 5 * 1024 * 1024) {
-        alert("El archivo es demasiado grande. Máximo 5MB permitido.");
-        return;
-      }
-      setCV(file);
-      setCVName(file.name);
-
-     
-      const base64 = await convertFileToBase64(file);
-      setFormData(prev => ({
-        ...prev,
-        cvRuta: base64
-      }));
-    }
-  };
-
-  const convertFileToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-    });
-  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -83,8 +50,8 @@ export const NuevoProfesor = () => {
   const handleRegistrar = async (e) => {
     e.preventDefault();
 
-    if (!formData.nombrecompleto || !formData.correo || !formData.contraseñaHash || !formData.idnivel || !cv) {
-      alert("Todos los campos son obligatorios, incluyendo el CV");
+    if (!formData.nombrecompleto || !formData.correo || !formData.contraseñaHash || !formData.idnivel ) {
+      alert("Todos los campos son obligatorios.");
       return;
     }
 
@@ -100,8 +67,8 @@ export const NuevoProfesor = () => {
       );
 
       if (response.data.status) {
-        window.alert("Profesor creado con éxito.");
-        navigate(-1);
+        window.alert("Profesor creado con éxito. Dirigir a subir cv de profesor.");
+        navigate("/administrador/listaProfesores/nuevoProfesor/subircv");
       } else {
         alert(response.data.msg || "No se pudo crear el profesor.");
       }
@@ -187,48 +154,6 @@ export const NuevoProfesor = () => {
               <option value="C1">C1: Intermedio-alto</option>
               <option value="C2">C2: Avanzado</option>
             </select>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Curriculum Vitae (PDF)
-            </label>
-            <div className="flex items-center space-x-4">
-              <input
-                type="file"
-                accept=".pdf"
-                onChange={handleFileChange}
-                className="hidden"
-                id="cv-upload"
-              />
-              <label
-                htmlFor="cv-upload"
-                className="px-4 py-3 bg-gray-100 text-gray-700 rounded-lg cursor-pointer
-                         hover:bg-gray-200 transition-all duration-300 flex-grow
-                         border border-gray-300"
-              >
-                {cvName || "Seleccionar archivo PDF"}
-              </label>
-              {cv && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setCV(null);
-                    setCVName('');
-                    setFormData(prev => ({
-                      ...prev,
-                      cvRuta: ""
-                    }));
-                  }}
-                  className="p-2 text-red-500 hover:text-red-700"
-                >
-                  ×
-                </button>
-              )}
-            </div>
-            <p className="mt-2 text-sm text-gray-500">
-              Máximo 5MB. Solo archivos PDF.
-            </p>
           </div>
 
           <div className="flex space-x-4 pt-4">

@@ -14,7 +14,7 @@ const Mensajes = ({ usuarioId, chatId }) => {
     
     const inputRef = useRef(null);
     const messagesContainerRef = useRef(null);
-    const usuarioid = user.idUsuario;
+    const usuarioid = user.idusuario;
 
     useEffect(() => {
         const obtenerUsuario = async () => {

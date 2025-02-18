@@ -18,7 +18,7 @@ const MisCursos = () => {
     navigate("/alumno/cursos", { state: { nivel: curso.nivel, nombre: curso.nombre } });
   };
 
-  const nivelAlumno = user?.nivel || 1;  
+  const nivelAlumno = user?.idnivel || 1;  
 
   // Lista de cursos 
   const cursos = [

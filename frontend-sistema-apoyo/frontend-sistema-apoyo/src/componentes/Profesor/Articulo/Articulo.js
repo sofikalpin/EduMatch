@@ -21,7 +21,7 @@ const ArticulosProfesor = () => {
   const navigate = useNavigate();
   const { user } = useUser();
 
-  const idProfesor = user?.idUsuario;
+  const idProfesor = user?.idusuario;
 
   // Depuración: Mostrar el estado inicial
   useEffect(() => {
@@ -104,7 +104,7 @@ const ArticulosProfesor = () => {
 
   // Función para crear nuevo articulo
   const handleNuevoArticulo = () => {
-    if (user.nivel < nivel) {
+    if (user.idnivel < nivel) {
       alert("Su nivel de perfil es menor al nivel correspondiente al artículo que desea crear. Por favor cree artículos con su nivel o menor a este.");
     } else {
       navigate("/crear-articulo", { 
@@ -205,7 +205,7 @@ const ArticulosProfesor = () => {
             <button 
               onClick={handleNuevoArticulo}
               className={`py-2 px-4 rounded-lg text-base transition-all whitespace-nowrap
-                ${user.nivel < nivel 
+                ${user.idnivel < nivel 
                   ? "bg-gray-400 cursor-not-allowed text-gray-200" 
                   : "bg-gradient-to-r from-teal-500 to-teal-600 text-white hover:from-teal-600 hover:to-teal-700"}
               `}

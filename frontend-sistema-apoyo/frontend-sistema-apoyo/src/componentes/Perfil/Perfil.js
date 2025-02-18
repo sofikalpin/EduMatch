@@ -196,7 +196,7 @@ const Perfil = () => {
                     ) : (
                       <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
                         <span className="text-4xl font-bold text-slate-400">
-                          {user.nombreCompleto?.charAt(0) || '?'}
+                          {user.nombrecompleto?.charAt(0) || '?'}
                         </span>
                       </div>
                     )}
@@ -205,14 +205,14 @@ const Perfil = () => {
               </div>
 
               <div className="pt-20 p-8">
-                <h2 className="text-3xl font-bold text-slate-800 mb-2">{user.nombreCompleto}</h2>
+                <h2 className="text-3xl font-bold text-slate-800 mb-2">{user.nombrecompleto}</h2>
                 <div className="flex items-center gap-3 mb-6">
                   <span className={`inline-flex px-4 py-1.5 rounded-lg text-sm font-medium text-white ${getRoleBadgeColor(user.rol)}`}>
-                    {getRoleText(user.rol)}
+                    {getRoleText(user.idrol)}
                   </span>
-                  {user.nivel && (
+                  {user.idnivel && (
                     <span className="inline-flex px-4 py-1.5 rounded-lg text-sm font-medium bg-slate-100 text-slate-600">
-                      Nivel {user.nivel}
+                      Nivel {user.idnivel}
                     </span>
                   )}
                 </div>

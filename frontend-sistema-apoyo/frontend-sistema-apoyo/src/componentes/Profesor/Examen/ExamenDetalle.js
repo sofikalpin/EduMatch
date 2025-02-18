@@ -141,7 +141,6 @@ const ExamenDetalle = () => {
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Archivo del Examen</h2>
             {examen?.url ? (
               <a
-                href={examen.url}
                 onClick={verExamen}
                 className="py-2 px-4 rounded bg-blue-500 hover:bg-blue-600 text-white font-bold"
               >

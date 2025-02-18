@@ -8,12 +8,15 @@ using SistemaApoyo.DTO;
 using SistemaApoyo.Model;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using System.Security.Cryptography;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using System.Net;
 using Microsoft.Extensions.Logging;
+using SistemaApoyo.DAL.DBContext;
+using System.Text.RegularExpressions;
 
 namespace SistemaApoyo.BLL.Servicios
 {
@@ -23,23 +26,28 @@ namespace SistemaApoyo.BLL.Servicios
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
         private readonly ILogger<UsuarioService> _logger;
+        S31Grupo2AprendizajeYApoyoDeInglesContext _context;
 
         public UsuarioService(
             IGenericRepository<Usuario> usuarioRepositorio,
             IMapper mapper,
             IConfiguration configuration,
-            ILogger<UsuarioService> logger) // Agrega este parámetro
+            ILogger<UsuarioService> logger,
+            S31Grupo2AprendizajeYApoyoDeInglesContext context)
+
         {
             _usuarioRepositorio = usuarioRepositorio;
             _mapper = mapper;
             _configuration = configuration;
-            _logger = logger; // Inicializa el logger
+            _logger = logger;
+            _context = context;
         }
 
         public async Task<UsuarioDTO> Crear(UsuarioDTO modelo)
         {
             try
             {
+
                 var usuario = _mapper.Map<Usuario>(modelo);
 
                 // Hashear la contraseña antes de guardarla
@@ -189,31 +197,60 @@ namespace SistemaApoyo.BLL.Servicios
             }
         }
 
-        public async Task<SesionDTO> ValidarCredenciales(string correo, string contrasena)
+        public async Task<UsuarioDTO?> ValidarCredencialesAsync(string correo, string contraseña)
         {
             try
             {
-                var usuario = await ObtenerUsuarioPorCorreo(correo);
-                if (usuario != null && VerificarContrasena(contrasena, usuario.ContraseñaHash))
-                {
-                    return new SesionDTO
+                var usuario = await _context.Usuarios
+                    .AsNoTracking()
+                    .Where(u => u.Correo == correo)
+                    .Select(u => new
                     {
-                        IdUsuario = usuario.Idusuario,
-                        NombreCompleto = usuario.Nombrecompleto,
-                        Correo = usuario.Correo,
-                        Rol = usuario.Idrol,
-                        Nivel = usuario.Idnivel,
-                        AutoProf = usuario.AutProf,
-                    };
+                        u.Idusuario,
+                        u.Correo,
+                        u.ContraseñaHash,
+                        u.Nombrecompleto,
+                        u.Fecharegistro,
+                        u.Idnivel,
+                        u.Idrol,
+                        u.AutProf,
+                    })
+                    .FirstOrDefaultAsync();
+
+                if (usuario == null)
+                {
+                    _logger.LogWarning("Usuario no encontrado: {Correo}", correo);
+                    return null;
                 }
-                throw new UnauthorizedAccessException("Credenciales inválidas");
+
+                var resultado = VerificarContrasena(contraseña, usuario.ContraseñaHash);
+                _logger.LogInformation("Hash almacenado para el usuario {Correo}: {ContraseñaHash}", correo, usuario.ContraseñaHash);
+
+
+                if (resultado == false)
+                {
+                    _logger.LogWarning("Contraseña incorrecta para el usuario: {Correo}", correo);
+                    return null;
+                }
+
+                return new UsuarioDTO
+                {
+                    Idusuario = usuario.Idusuario,
+                    Nombrecompleto = usuario.Nombrecompleto,
+                    Correo = usuario.Correo,
+                    Fecharegistro = usuario.Fecharegistro,
+                    Idnivel = usuario.Idnivel,
+                    Idrol = usuario.Idrol,
+                    AutProf = usuario.AutProf,
+                };
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al validar credenciales: {ex.Message}");
-                throw;
+                _logger.LogError(ex, "Error al validar las credenciales.");
+                return null;
             }
         }
+
 
         public async Task<bool> GenerarTokenRecuperacion(string correo)
         {
@@ -299,6 +336,11 @@ namespace SistemaApoyo.BLL.Servicios
                 using (var pbkdf2 = new Rfc2898DeriveBytes(contrasena, salt, 10000, HashAlgorithmName.SHA256))
                 {
                     var hashRecalculado = pbkdf2.GetBytes(32);
+
+                    // Convertimos ambos hash a Base64 para el log
+                    _logger.LogInformation("Hash almacenado: {HashAlmacenado}", Convert.ToBase64String(hashOriginal));
+                    _logger.LogInformation("Hash recalculado: {HashRecalculado}", Convert.ToBase64String(hashRecalculado));
+
                     return hashOriginal.SequenceEqual(hashRecalculado);
                 }
             }
@@ -308,6 +350,7 @@ namespace SistemaApoyo.BLL.Servicios
                 return false;
             }
         }
+
 
         public async Task<bool> ReestablecerContraseña(string token, string nuevaContraseña)
         {

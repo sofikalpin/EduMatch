@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ip765zTHH2M=",
+  "dgSpecHash": "hgWKTzZdp6s=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj",
+  "projectFilePath": "C:\\Users\\Sofia\\Documents\\UTN\\3 Año - 2024\\DesarrolloSoftware\\EduMatch-2\\EduMatch\\Backend\\APISistemaApoyo\\SistemaApoyo.Utility\\SistemaApoyo.Utility.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sofia\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\Sofia\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

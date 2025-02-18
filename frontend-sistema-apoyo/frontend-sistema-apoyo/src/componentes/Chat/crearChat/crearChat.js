@@ -48,13 +48,13 @@ const CrearChat = ({ idusuario, onChatCreado, onClose, chatsExistentes = [] }) =
     }
 
     const datosChat = {
-      idusuario1: user.idUsuario,
+      idusuario1: user.idusuario,
       idusuario2: contactoSeleccionado.idusuario,
       fechahoraInicio: new Date().toISOString(),
       mensajes: [{
         fechaEnvio: new Date().toISOString().split('T')[0],
         contenido: `Chat iniciado.`,
-        idusuario: user.idUsuario,
+        idusuario: user.idusuario,
       }]
     };
 
@@ -88,9 +88,9 @@ const CrearChat = ({ idusuario, onChatCreado, onClose, chatsExistentes = [] }) =
 
   const contactosDisponibles = contactoFiltrado.filter(contacto => 
     !chatsExistentes.some(chat => 
-      (chat.idusuario1 === contacto.idusuario && chat.idusuario2 === user.idUsuario) ||
-      (chat.idusuario2 === contacto.idusuario && chat.idusuario1 === user.idUsuario)
-    ) && contacto.idusuario !== user.idUsuario
+      (chat.idusuario1 === contacto.idusuario && chat.idusuario2 === user.idusuario) ||
+      (chat.idusuario2 === contacto.idusuario && chat.idusuario1 === user.idusuario)
+    ) && contacto.idusuario !== user.idusuario
   );
 
   if (loading) {

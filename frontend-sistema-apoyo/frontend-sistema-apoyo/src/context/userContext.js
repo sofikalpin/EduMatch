@@ -61,11 +61,11 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (isLoggingIn && user?.rol) {
-      console.log("Redirigiendo según el rol:", user.rol);
-      switch (user.rol) {
+    if (isLoggingIn && user?.idrol) {
+      console.log("Redirigiendo según el rol:", user.idrol);
+      switch (user.idrol) {
         case 1:
-          if (user.autoProf == true) {
+          if (user.autProf == true) {
             navigate("/profesor");
           }else{
             navigate("/profesor-noAutorizado");

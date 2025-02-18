@@ -23,7 +23,7 @@ const NuevaConsulta = () => {
   const [loading, setLoading] = useState(false);
   
   const navigate = useNavigate(); 
-  const idusuario = user?.idUsuario;
+  const idusuario = user?.idusuario;
 
   const hadleNuevaConsulta = async(e) => {
     e.preventDefault();

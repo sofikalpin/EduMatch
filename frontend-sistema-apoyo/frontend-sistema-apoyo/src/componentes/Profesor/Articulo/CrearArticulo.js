@@ -76,7 +76,7 @@ const CrearArticulo = () => {
         titulo: titulo.trim(),
         descripcion: descripcion.trim(),
         url: articulodUrl.length > 0 ? articulodUrl[0] : "",
-        idusuario: user?.idUsuario,
+        idusuario: user?.idusuario,
         idnivel: id,
         fechaCreacion: new Date().toISOString().split("T")[0]
       };

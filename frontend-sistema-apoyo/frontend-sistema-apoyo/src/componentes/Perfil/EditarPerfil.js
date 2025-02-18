@@ -15,7 +15,7 @@ const niveles = {
 
 export const EditarPerfil = ({ onUpdate }) => {
     const { user } = useUser();
-    const idusuario = user.idUsuario;
+    const idusuario = user.idusuario;
 
     const [perfil, setPerfil] = useState([]);
     const [email, setEmail] = useState("");

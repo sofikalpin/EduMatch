@@ -40,7 +40,7 @@ const ActividadDetalle = () => {
 
   // Función para eliminar una actividad
   const handleDelete = async () => {
-    if (user.idUsuario !== actividad?.idusuario) {
+    if (user.idusuario !== actividad?.idusuario) {
       alert("No tienes permisos para eliminar esta actividad.");
       return; 
     }
@@ -107,7 +107,7 @@ const ActividadDetalle = () => {
                   <button
                   onClick={handleDelete}
                   className={`p-2 rounded-full transition-colors duration-200 ml-4 ${
-                    user.idUsuario !== actividad?.idusuario
+                    user.idusuario !== actividad?.idusuario
                       ? "bg-red-200 cursor-not-allowed"
                       : "bg-red-100 hover:bg-red-200"
                   }`}

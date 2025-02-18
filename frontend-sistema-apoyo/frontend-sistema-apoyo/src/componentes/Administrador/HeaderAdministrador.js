@@ -19,8 +19,8 @@ const Header = () => {
     const goToChatAdmin = () => navigate("/chat"); 
 
 
-    const userName = user?.nombreCompleto || "Invitado";
-    const userInitial = user?.nombreCompleto ? user.nombreCompleto.charAt(0).toUpperCase() : "?";
+    const userName = user?.nombrecompleto || "Invitado";
+    const userInitial = user?.nombrecompleto ? user.nombrecompleto.charAt(0).toUpperCase() : "?";
 
     return (
         <div className="flex flex-col w-full">

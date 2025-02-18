@@ -59,7 +59,7 @@ public class UsuarioController : ControllerBase
     [HttpPost("IniciarSesion")]
     public async Task<IActionResult> IniciarSesion([FromBody] LoginDTO login)
     {
-        var rsp = new Response<SesionDTO>();
+        var rsp = new Response<UsuarioDTO>();
         try
         {
             // Verificación de que el login no sea nulo y los campos necesarios estén presentes
@@ -70,7 +70,7 @@ public class UsuarioController : ControllerBase
                 return BadRequest(rsp);
             }
 
-            var sesion = await _usuarioService.ValidarCredenciales(login.Correo, login.ContrasenaHash);
+            var sesion = await _usuarioService.ValidarCredencialesAsync(login.Correo, login.ContrasenaHash);
 
             if (sesion == null)
             {
@@ -79,8 +79,8 @@ public class UsuarioController : ControllerBase
                 return Unauthorized(rsp);
             }
 
-            // Generar un token (puedes usar JWT, por ejemplo)
-            var token = GenerarToken(sesion.Correo); // Implementa este método
+            // Generar un token
+            var token = GenerarToken(sesion.Correo); // Asegúrate de tener la implementación de este método
 
             rsp.status = true;
             rsp.value = sesion;
@@ -91,13 +91,15 @@ public class UsuarioController : ControllerBase
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error al iniciar sesión para correo: {Correo}", login?.Correo);
-            return StatusCode(500, new Response<SesionDTO>
+            return StatusCode(500, new Response<UsuarioDTO>
             {
                 status = false,
-                msg = "Error interno del servidor"
-            }); 
+                msg = "Error interno del servidor. Intente nuevamente más tarde."
+            });
         }
     }
+
+
 
     [HttpGet]
     [Route("BuscarUsuario")]
@@ -449,14 +451,15 @@ public class UsuarioController : ControllerBase
         try
         {
             var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Idusuario == idUsuario);
-            if (usuario == null || string.IsNullOrEmpty(usuario.CvRuta) || usuario.Idrol != 1)
+            if (usuario == null || string.IsNullOrEmpty(usuario.CvRuta))
             {
                 rsp.status = false;
-                rsp.msg = "CV no encontrado o el id del usuario buscado no corresponde aun profesor.";
+                rsp.msg = "CV no encontrado.";
                 return NotFound(rsp);
             }
 
-            string rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), usuario.CvRuta.Replace("\\", "/"));
+            string rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", usuario.CvRuta.TrimStart('/'));
+            _logger.LogError(rutaArchivo);
             if (!System.IO.File.Exists(rutaArchivo))
             {
                 return NotFound(new Response<string> { status = false, msg = "El archivo no existe en el servidor." });

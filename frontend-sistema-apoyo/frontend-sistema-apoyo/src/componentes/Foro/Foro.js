@@ -110,7 +110,7 @@ const Foro = () => {
   const handleNuevaConsulta = () => {
     if (!foro) return;
 
-    if ( user.nivel < foro.nivel ){
+    if ( user.idnivel < foro.nivel ){
       error("Su nivel es menor al nivel necesario para participar en el foro.");
       return;
     } else {
@@ -144,9 +144,9 @@ const Foro = () => {
         <div className="mt-6 flex justify-end">
         <button
           onClick={handleNuevaConsulta}
-          disabled={user.nivel < foro?.nivel}
+          disabled={user.idnivel < foro?.nivel}
           className={`flex items-center gap-2 py-2 px-6 rounded-full text-lg transition-all shadow-md
-            ${user.nivel < foro?.nivel
+            ${user.idnivel < foro?.nivel
               ? "bg-gray-400 cursor-not-allowed text-gray-200" 
               : "bg-green-500 text-white hover:bg-green-600"}
           `}

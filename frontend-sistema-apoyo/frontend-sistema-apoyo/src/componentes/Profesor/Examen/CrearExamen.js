@@ -65,7 +65,7 @@ const CrearExamen = () => {
     try {
       const nuevoExamen = {
         idexamen: 0,
-        idusuario: user?.idUsuario,
+        idusuario: user?.idusuario,
         titulo: nombre.trim(),
         calificacion: descripcion.trim(),
         idnivel: nivel,

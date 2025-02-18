@@ -24,8 +24,8 @@ const NuevoForo = () => {
         C2: 6,
     };
 
-    const idusuario = user?.idUsuario;
-    const nivelProfesor = user?.nivel;  // Asegurarnos de que 'nivel' esté bien asignado
+    const idusuario = user?.idusuario;
+    const nivelProfesor = user?.idnivel;  // Asegurarnos de que 'nivel' esté bien asignado
     
     // Añadimos un console.log para depuración
     console.log("Nivel del profesor:", nivelProfesor);

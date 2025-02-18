@@ -54,7 +54,7 @@ const ListarForos = () => {
     }, []);
 
     const handleNuevoForo = () => {
-        if (user.rol === 1){
+        if (user.idrol === 1){
             navigate("/crear-foro");
         }else{
             alert("Los alumnos no tienen permitidos crear foros.")

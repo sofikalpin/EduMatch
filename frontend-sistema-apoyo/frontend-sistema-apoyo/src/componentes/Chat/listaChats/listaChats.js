@@ -17,7 +17,7 @@ const ListaChats = ({ onSelectChat, activeChat }) => {
     const [rolseleccionado, setRolseleccionado] = useState("");
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    const idusuario = user?.idUsuario;
+    const idusuario = user?.idusuario;
     const navigate = useNavigate(); 
 
     useEffect(() => {
@@ -147,7 +147,7 @@ const ListaChats = ({ onSelectChat, activeChat }) => {
                     {chatsFiltrados.map(chat => {
                         let nombreChat = receptor[chat.idusuario2]?.nombrecompleto || "Usuario";
 
-                        if (nombreChat === user.nombreCompleto){
+                        if (nombreChat === user.nombrecompleto){
                             nombreChat = receptor[chat.idusuario1]?.nombrecompleto || "Usuario";
                         }
 

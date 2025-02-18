@@ -42,7 +42,7 @@ const Respuesta = () => {
     }
   }, [location.state]);
 
-  const idusuario = user?.idUsuario;
+  const idusuario = user?.idusuario;
   const idconsulta = consulta?.idconsulta;
   const nombreConsulta = consulta?.titulo;
 
@@ -116,10 +116,10 @@ const Respuesta = () => {
             <CardContent className="text-gray-800">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full flex items-center justify-center text-white font-semibold text-lg">
-                  {iniciales(user.nombreCompleto)}
+                  {iniciales(user.nombrecompleto)}
                 </div>
                 <div>
-                  <h3 className="text-xl text-gray-900">{user.nombreCompleto || 'Usuario'}</h3>
+                  <h3 className="text-xl text-gray-900">{user.nombrecompleto || 'Usuario'}</h3>
                 </div>
               </div>
               <p className="text-lg leading-relaxed font-bold">Consulta: {nombreConsulta}</p>

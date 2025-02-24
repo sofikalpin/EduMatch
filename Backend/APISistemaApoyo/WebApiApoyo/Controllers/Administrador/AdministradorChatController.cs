@@ -10,11 +10,13 @@ using Microsoft.AspNetCore.SignalR;
 using SistemaApoyo.BLL.Hubs;
 using Npgsql;
 using SistemaApoyo.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApiApoyo.Controllers.Administrador
 {
 
     [Route("API/[controller]")]
+    [Authorize]
     [ApiController]
 
     public class AdministradorChatController : ControllerBase

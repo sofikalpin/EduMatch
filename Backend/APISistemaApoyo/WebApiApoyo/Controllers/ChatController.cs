@@ -13,10 +13,12 @@ using SistemaApoyo.DAL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using SistemaApoyo.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApiApoyo.Controllers
 {
     [Route("API/[controller]")]
+    [Authorize]
     [ApiController]
     public class ChatController : ControllerBase
     {

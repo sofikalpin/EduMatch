@@ -4,10 +4,12 @@ using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DTO;
 using Microsoft.AspNetCore.Http;
 using SistemaApoyo.BLL.Servicios;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SistemaApoyo.API.Controllers
 {
     [Route("API/[controller]")]
+    [Authorize]
     [ApiController]
     public class ArticuloController : ControllerBase
     {

@@ -7,10 +7,12 @@ using SistemaApoyo.BLL.Servicios;
 using SistemaApoyo.Model;
 using Microsoft.EntityFrameworkCore;
 using SistemaApoyo.DAL.DBContext;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApiApoyo.Controllers.Profesor
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class ProfeExamenController : ControllerBase
     {

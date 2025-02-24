@@ -98,6 +98,14 @@ builder.Services.AddAuthentication(config =>
     };
 });
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.SecurePolicy = CookieSecurePolicy.None;  // Permite cookies en HTTP
+    options.Cookie.HttpOnly = true;  // La cookie no es accesible desde JavaScript
+    options.Cookie.SameSite = SameSiteMode.Lax; // Usa Lax para compatibilidad con HTTP
+});
+
+
 // Agregar aquí la configuración de autorización
 builder.Services.AddAuthorization(options =>
 {

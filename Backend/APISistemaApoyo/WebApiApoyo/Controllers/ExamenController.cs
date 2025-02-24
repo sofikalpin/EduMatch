@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SistemaApoyo.API.Utilidad;
 using SistemaApoyo.BLL.Servicios;
 using SistemaApoyo.BLL.Servicios.Contrato;
@@ -6,6 +7,7 @@ using SistemaApoyo.DTO;
 using System.ComponentModel.DataAnnotations;
 
 [Route("api/examenes")]
+[Authorize]
 [ApiController]
 public class ExamenController : ControllerBase
 {

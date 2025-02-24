@@ -6,10 +6,12 @@ using SistemaApoyo.DAL.DBContext;
 using SistemaApoyo.BLL.Servicios;
 using Microsoft.EntityFrameworkCore;
 using SistemaApoyo.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApiApoyo.Controllers.Administrador
 {
     [Route("API/[controller]")]
+    [Authorize]
     [ApiController]
 
     public class AdministradorAlumnoController : ControllerBase

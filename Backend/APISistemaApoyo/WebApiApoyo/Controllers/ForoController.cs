@@ -7,10 +7,12 @@ using System.Linq.Expressions;
 using SistemaApoyo.BLL.Servicios;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Security.Cryptography;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApiApoyo.Controllers
 {
     [Route("API/[controller]")]
+    [Authorize]
     [ApiController]
     public class ForoController : ControllerBase
     {

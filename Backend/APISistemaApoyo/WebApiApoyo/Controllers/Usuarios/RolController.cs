@@ -6,8 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using SistemaApoyo.API.Utilidad;
+using Microsoft.AspNetCore.Authorization;
 
 [Route("API/[controller]")]
+[Authorize]
 [ApiController]
 public class RolController : ControllerBase
 {

@@ -8,10 +8,12 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApiApoyo.Controllers
 {
     [Route("API/[controller]")]
+    [Authorize]
     [ApiController]
     
     public class MensajeController : ControllerBase

@@ -4,6 +4,25 @@ import Foto from './Mujer con Computadora.jpg';
 import { useUser } from "../../Context/UserContext";
 import { useNavigate, Link } from 'react-router-dom';
 import ForgotPassword from './ForgotPassword'; 
+import axiosInstance from "../../AxiosConfig/AxiosConfig";
+
+
+// Función de login
+const loginAcceso = async (setError) => {
+  try {
+    const response = await axiosInstance.post("Acceso/Acceso", {
+      Correo: "admin@sistema.com",
+      Clave: "Admin123" // Asegúrate de usar la contraseña correcta
+    });
+    // Verificar si el login fue exitoso
+    console.log("Login response:", response.data);
+    return true;
+  } catch (error) {
+    console.error("Login failed:", error);
+    setError("Error de autenticación. Por favor, inicie sesión nuevamente.");
+    return false;
+  }
+};
 
 const handleLogin = async ({ email, password }) => {
   try {
@@ -52,6 +71,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
+ 
 
   const handleLogoClick = () => {
     navigate('/');
@@ -99,6 +119,13 @@ const Login = () => {
     setIsLoading(true);
   
     try {
+
+       // Autenticación inicial con las credenciales del administrador
+       const isAuthenticated = await loginAcceso();
+       if (!isAuthenticated) {
+         throw new Error("No se pudo autenticar al administrador.");
+       }
+
       const response = await handleLogin({
         email: formData.email,
         password: formData.password
@@ -106,24 +133,30 @@ const Login = () => {
   
       console.log('Respuesta del login:', response);
     
-      await login({
-        email: formData.email,
-        password: formData.password,
-      });
+      //await login({
+       // email: formData.email,
+       // password: formData.password,
+      //});
   
       saveUserSession(response.token, formData.rememberMe);
 
-      const idrol = response.idrol;
+      const idrol = response.value.idrol;
+      console.log('ID Rol:', idrol); // Verificar el valor de idrol en la consola
       
-      if (idrol === 1) {
-        navigate("/profesor");
-      } else if (idrol === 2) {
-        navigate("/alumno");
-      } else if (idrol === 3) {
-        navigate("/administrador"); 
-      } else {
-        navigate("/iniciarsesion"); 
-      }
+     // Redirigir según el rol
+     if (idrol === 1) {
+      console.log("Redirigiendo a /profesor");
+      navigate("/profesor");
+    } else if (idrol === 2) {
+      console.log("Redirigiendo a /alumno");
+      navigate("/alumno");
+    } else if (idrol === 3) {
+      console.log("Redirigiendo a /administrador");
+      navigate("/administrador"); 
+    } else {
+      console.log("Redirigiendo a /iniciarsesion");
+      navigate("/iniciarsesion"); 
+    }
 
     } catch (error) {
       console.error('Error en submit:', error);

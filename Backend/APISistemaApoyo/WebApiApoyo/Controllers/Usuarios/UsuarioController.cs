@@ -15,8 +15,10 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.EntityFrameworkCore;
 using SistemaApoyo.DAL.DBContext;
 using SistemaApoyo.Model;
+using Microsoft.AspNetCore.Authorization;
 
 [Route("API/[controller]")]
+[Authorize]
 [ApiController]
 public class UsuarioController : ControllerBase
 {

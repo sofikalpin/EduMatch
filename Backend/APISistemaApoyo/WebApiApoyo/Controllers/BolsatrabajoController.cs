@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 using System.Linq;
 using SistemaApoyo.BLL.Servicios;
 using SistemaApoyo.API.Utilidad;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SistemaApoyo.API.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class BolsatrabajoController : Controller
     {

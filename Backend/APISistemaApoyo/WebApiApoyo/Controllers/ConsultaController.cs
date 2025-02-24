@@ -5,10 +5,12 @@ using SistemaApoyo.DTO;
 using Microsoft.AspNetCore.Http;
 using SistemaApoyo.BLL.servicios;
 using SistemaApoyo.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApiApoyo.Controllers
 {
     [Route("API/[controller]")]
+    [Authorize]
     [ApiController]
     public class ConsultaController : ControllerBase
     {

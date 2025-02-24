@@ -17,6 +17,24 @@ const Actividades = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // Función de login
+  const login = async () => {
+    try {
+      const response = await axiosInstance.post("Acceso/Acceso", {
+        Correo: "admin@sistema.com",
+        Clave: "Admin123" // Asegúrate de usar la contraseña correcta
+      });
+      // Verificar si el login fue exitoso
+      console.log("Login response:", response.data);
+      return true;
+    } catch (error) {
+      console.error("Login failed:", error);
+      setError("Error de autenticación. Por favor, inicie sesión nuevamente.");
+      return false;
+    }
+  };
+
+
   useEffect(() => {
     const fetchActividades = async () => {
       setLoading(true);
@@ -26,6 +44,12 @@ const Actividades = () => {
         if (!idAlumnoNivel) {
           throw new Error("El ID del alumno no está disponible.");
         }
+
+          // Primero intentamos autenticarnos
+          const isAuthenticated = await login();
+          if (!isAuthenticated) {
+            throw new Error("No se pudo autenticar al usuario.");
+          }
 
          // Realiza la solicitud a la API para obtener actividades por nivel
          const response = await axiosInstance.get(`Actividad/ActividadesPorNivel?idNivel=${nivel}`);

@@ -3,11 +3,13 @@ using SistemaApoyo.API.Utilidad;
 using SistemaApoyo.BLL.Servicios.Contrato;
 using SistemaApoyo.DTO;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace WebApiApoyo.Controllers
 {
     [Route("API/[controller]")]
+    [Authorize]
     [ApiController]
     public class ActividadController : ControllerBase
     {

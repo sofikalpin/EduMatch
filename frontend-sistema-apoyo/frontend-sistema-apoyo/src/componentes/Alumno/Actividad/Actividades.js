@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react';
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 import actividad from "../Imagenes/actividades.png";
 import Header from "../HeaderAlumno";
 import Footer from "../FooterAlumno";
-import axios from "axios";
 
 const Actividades = () => {
   const location = useLocation();
-  const { nivel, nombre } = location.state || {};
+  const { nivel } = location.state || {}; // El nivel se pasa desde la ruta anterior
   const [searchQuery, setSearchQuery] = useState("");
   const [assignedActivities, setAssignedActivities] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
@@ -27,7 +27,8 @@ const Actividades = () => {
           throw new Error("El ID del alumno no está disponible.");
         }
 
-        const response = await axios.get(`http://localhost:5228/API/Actividad/ActividadesPorNivel?idNivel=${idAlumnoNivel}`);
+         // Realiza la solicitud a la API para obtener actividades por nivel
+         const response = await axiosInstance.get(`Actividad/ActividadesPorNivel?idNivel=${nivel}`);
         if (response.data.status && Array.isArray(response.data.value)) {
           setAssignedActivities(response.data.value);
         } else {

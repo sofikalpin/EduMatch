@@ -1,5 +1,41 @@
 [
   {
+    "ContainingType": "WebApiApoyo.Controllers.AccesoController",
+    "Method": "Acceso",
+    "RelativePath": "api/Acceso/Acceso",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "objeto",
+        "Type": "SistemaApoyo.DTO.AccesoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.AccesoController",
+    "Method": "CerrarSesion",
+    "RelativePath": "api/Acceso/CerrarSesion",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiApoyo.Controllers.AccesoController",
+    "Method": "ValidarSesion",
+    "RelativePath": "api/Acceso/ValidarSesion",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WebApiApoyo.Controllers.ActividadController",
     "Method": "ListaActividadporNivel",
     "RelativePath": "API/Actividad/ActividadesPorNivel",

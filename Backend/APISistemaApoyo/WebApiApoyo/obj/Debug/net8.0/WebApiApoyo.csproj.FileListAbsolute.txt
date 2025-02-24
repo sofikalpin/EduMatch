@@ -2036,3 +2036,7 @@ C:\Users\Usuario\Desktop\Desarrollo 2024\Desarrollo de Software\Magui - Front\Ed
 C:\Users\Usuario\Desktop\Desarrollo 2024\Desarrollo de Software\Magui - Front\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\WebApiApoyo.pdb
 C:\Users\Usuario\Desktop\Desarrollo 2024\Desarrollo de Software\Magui - Front\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\WebApiApoyo.genruntimeconfig.cache
 C:\Users\Usuario\Desktop\Desarrollo 2024\Desarrollo de Software\Magui - Front\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\obj\Debug\net8.0\ref\WebApiApoyo.dll
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\bin\Debug\net8.0\BouncyCastle.Crypto.dll
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\orian\Documents\GitHub\EduMatch\Backend\APISistemaApoyo\WebApiApoyo\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll

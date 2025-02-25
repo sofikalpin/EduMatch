@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../../logo/LogoInicio.png";
 import Foto from './Mujer con Computadora.jpg';
 import { useUser } from "../../Context/UserContext";
@@ -8,56 +8,92 @@ import axiosInstance from "../../AxiosConfig/AxiosConfig";
 import Cookies from 'js-cookie';
 import { jwtDecode } from "jwt-decode";
 
-// Función de login admin para obtener el token inicial
-const loginAcceso = async (setError) => {
-  try {
-    const response = await axiosInstance.post("Acceso/Acceso", {
-      Correo: "admin@sistema.com",
-      Clave: "Admin123" // Asegúrate de usar la contraseña correcta
-    });
+// Almacenar referencia al interceptor para poder eliminarlo después
+let requestInterceptorId = null;
 
-    // Verificar si el login fue exitoso
-    console.log("Login response:", response.data);
-
-    // Verificar si hay token en la respuesta
-    if (response.data && response.data.token) {
-      console.log("Token de admin obtenido correctamente:", response.data.token);
-      return response.data.token;
-    } else {
-      console.error("No se encontró token en la respuesta:", response.data);
-      return null;
+// Configurar el interceptor de axios para incluir el token en las solicitudes
+const setupAuthInterceptor = (token) => {
+  // Si ya existe un interceptor, eliminarlo primero
+  if (requestInterceptorId !== null) {
+    axiosInstance.interceptors.request.eject(requestInterceptorId);
+  }
+  
+  // Crear nuevo interceptor y guardar su ID
+  requestInterceptorId = axiosInstance.interceptors.request.use(
+    (config) => {
+      if (token) {
+        config.headers['Authorization'] = `Bearer ${token}`;
+      }
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
     }
-  } catch (error) {
-    console.error("Error en loginAcceso:", error);
-    return null;
+  );
+  
+  return requestInterceptorId;
+};
+
+// Función para cerrar sesión (debe exportarse)
+export const logout = (navigateFunction, setUserFunction) => {
+  console.log("Ejecutando logout completo");
+  
+  // 1. Eliminar todos los tokens de almacenamiento
+  localStorage.removeItem('token');
+  sessionStorage.removeItem('token');
+  
+  // 2. Limpiar todos los datos de sesión
+  sessionStorage.removeItem("userData");
+  sessionStorage.removeItem("authToken");
+  
+  // 3. Eliminar todas las cookies relacionadas con autenticación
+  Cookies.remove('token');
+  
+  // 4. Eliminar todo el localStorage relacionado con la aplicación (puedes ajustar esto si hay datos que quieras conservar)
+  // Opción más segura - borrar solo items específicos de la aplicación
+  const appKeys = ['user', 'userInfo', 'userData', 'auth', 'session']; // Añade todas las keys que puedas usar
+  appKeys.forEach(key => {
+    localStorage.removeItem(key);
+    sessionStorage.removeItem(key);
+  });
+  
+  // 5. Purgar cualquier estado en el contexto de React
+  if (setUserFunction) {
+    setUserFunction(null);
+  }
+  
+  // 6. Eliminar interceptor de Axios y resetear axios
+  if (requestInterceptorId !== null) {
+    axiosInstance.interceptors.request.eject(requestInterceptorId);
+    requestInterceptorId = null;
+  }
+  
+  // 7. Configurar axios para que no tenga token por defecto
+  delete axiosInstance.defaults.headers.common['Authorization'];
+  
+  // 8. Forzar una recarga completa de la aplicación para limpiar todo el estado en memoria
+  // Esta es la acción más drástica - usa con precaución
+  if (navigateFunction) {
+    // Redirecciona primero a una ruta específica
+    navigateFunction("/iniciarsesion");
+    // Opcional: forzar recarga de página después de navegar
+    // setTimeout(() => window.location.reload(), 100);
   }
 };
 
-const handleLogin = async ({ email, password, adminToken }) => {
+const handleLogin = async (email, password) => {
   try {
-    console.log("Usando el token admin para autenticar:", adminToken);
-    
-    const response = await fetch('http://localhost:5228/API/Usuario/IniciarSesion', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${adminToken}` // Verifica que el formato sea correcto
-      },
-      credentials: "include", // Asegura que se envíen y reciban cookies
-      body: JSON.stringify({
-        correo: email,
-        contrasenaHash: password
-      }) 
+    // Solicitud directa de autenticación sin el token de admin
+    const response = await axiosInstance.post('Usuario/IniciarSesion', {
+      correo: email,
+      contrasenaHash: password
     });
 
-    const data = await response.json();
-    console.log("Login response:", data);
-
-    if (!data.token) {
-      throw new Error("No se pudo autenticar al administrador. Token no recibido.");
+    if (!response.data.token) {
+      throw new Error("No se recibió token de autenticación");
     }
-    return data.token; // Retorna el token
-
+    
+    return response.data.token;
   } catch (error) {
     console.error("Error en login:", error);
     throw error;
@@ -65,15 +101,23 @@ const handleLogin = async ({ email, password, adminToken }) => {
 };
 
 const saveUserSession = (token, rememberMe) => {
+  // Limpiar completamente cualquier sesión anterior primero
+  localStorage.removeItem('token');
+  sessionStorage.removeItem('token');
+  
+  // Guardar el nuevo token en el almacenamiento seleccionado
   if (rememberMe) {
     localStorage.setItem('token', token);
   } else {
     sessionStorage.setItem('token', token);
   }
+  
+  // Configurar axios para usar este token en futuras solicitudes
+  setupAuthInterceptor(token);
 };
 
 const Login = () => {
-  const { user, login } = useUser();
+  const { user, setUser } = useUser();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
@@ -85,7 +129,55 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
- 
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [manualLogin, setManualLogin] = useState(false);
+
+  // Método para cerrar sesión desde este componente
+  const handleLogout = () => {
+    logout(navigate, setUser);
+  };
+
+  // Ejecutar logout al montar el componente para asegurar siempre un estado limpio
+  useEffect(() => {
+    console.log("Login component mounted - cleaning any existing session");
+    logout(null, setUser); // No navegamos aquí para evitar loop infinito
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Solo permitir autologin si se hace un login manual
+  useEffect(() => {
+    if (!manualLogin) {
+      return; // No hacer nada si no ha habido login manual
+    }
+    
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        // Verificar si el token no ha expirado
+        const currentTime = Date.now() / 1000;
+        if (decodedToken.exp && decodedToken.exp > currentTime) {
+          // Token válido, configurar usuario y redirigir
+          setupAuthInterceptor(token);
+          const userData = {
+            email: decodedToken.email,
+            idrol: parseInt(decodedToken.role),
+            token: token,
+            nombre: decodedToken.nombre || ''
+          };
+          setUser(userData);
+          setIsLoggingIn(true);
+        } else {
+          // Token expirado
+          console.log("Token expirado, cerrando sesión");
+          handleLogout();
+        }
+      } catch (error) {
+        console.error("Error al decodificar token guardado:", error);
+        // Limpiar token inválido
+        handleLogout();
+      }
+    }
+  }, [manualLogin, setUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleLogoClick = () => {
     navigate('/');
@@ -111,10 +203,6 @@ const Login = () => {
     return emailRegex.test(email);
   };
 
-  const validatePassword = (password) => {
-    return password.length >= 8;
-  };
-
   const validateForm = () => {
     const newErrors = {};
     if (!validateEmail(formData.email)) {
@@ -131,53 +219,40 @@ const Login = () => {
     }
     setIsLoading(true);
     try {
-       // Autenticación inicial con las credenciales del administrador
-       const adminToken = await loginAcceso();
-       if (!adminToken) {
-         throw new Error("No se pudo autenticar al administrador.");
-       }
+      // Iniciar sesión directamente con el usuario real
+      const userToken = await handleLogin(
+        formData.email,
+        formData.password
+      );
 
-       // Guarda el token donde corresponda (cookie, localStorage, etc.)
-      Cookies.set("X-Access-Token", adminToken);
-      console.log("Token almacenado:", adminToken);
+      console.log('Login exitoso, token recibido');
 
-      // Iniciar sesion con el usuario real
-      const response = await handleLogin({
-        email: formData.email,
-        password: formData.password,
-        adminToken: adminToken
-      });
-  
-      console.log('Respuesta del login:', response);
-  
       // Guardar el token del usuario
-      saveUserSession(response.token, formData.rememberMe);
+      saveUserSession(userToken, formData.rememberMe);
 
       // Decodificar el token para obtener los datos del usuario
-      const decodedToken = jwtDecode(response);
-      console.log("Token decodificado:", decodedToken);
-
-      // Asegurar que `response` contiene los datos correctos
-      console.log("Datos completos de la respuesta:", response);
-
-      // Verifica si la respuesta tiene la estructura correcta
-      const idrol = decodedToken.role // Extraer el idrol del token
-      console.log('ID Rol obteneido:', idrol); // Verificar el valor de idrol en la consola
+      const decodedToken = jwtDecode(userToken);
       
-     // Redirigir según el rol
-     if (idrol === 1) {
-      console.log("Redirigiendo a /profesor");
-      navigate("/profesor");
-    } else if (idrol === 2) {
-      console.log("Redirigiendo a /alumno");
-      navigate("/alumno");
-    } else if (idrol === 3) {
-      console.log("Redirigiendo a /administrador");
-      navigate("/administrador"); 
-    } else {
-      console.log("Redirigiendo a /iniciarsesion");
-      navigate("/iniciarsesion"); 
-    }
+      // Extraer el rol del token decodificado
+      const idrol = parseInt(decodedToken.role);
+      console.log('ID Rol obtenido:', idrol);
+      
+      // Crear un objeto con los datos del usuario
+      const userData = {
+        email: decodedToken.email,
+        idrol: idrol,
+        token: userToken,
+        nombre: decodedToken.nombre || ''
+      };
+
+      // Actualizar el contexto del usuario
+      setUser(userData);
+      
+      // Indicar que se hizo login manual
+      setManualLogin(true);
+      
+      // Activar el estado de redirección
+      setIsLoggingIn(true);
 
     } catch (error) {
       console.error('Error en submit:', error);
@@ -188,6 +263,27 @@ const Login = () => {
       setIsLoading(false);
     }
   };
+
+  // Redirigir al usuario según su rol
+  useEffect(() => {
+    if (isLoggingIn && user?.idrol) {
+      console.log("Redirigiendo según el rol:", user.idrol);
+      switch (user.idrol) {
+        case 1:
+          navigate("/profesor");
+          break;
+        case 2:
+          navigate("/alumno");
+          break;
+        case 3:
+          navigate("/administrador");
+          break;
+        default:
+          navigate("/iniciarsesion");
+      }
+      setIsLoggingIn(false);
+    }
+  }, [user, isLoggingIn, navigate]);
 
   const togglePasswordVisibility = () => setShowPassword(prev => !prev);
 
@@ -259,6 +355,16 @@ const Login = () => {
               </div>
 
               <div className="flex items-center justify-between">
+                <label className="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="rememberMe"
+                    checked={formData.rememberMe}
+                    onChange={handleChange}
+                    className="mr-2"
+                  />
+                  <span className="text-sm text-gray-700">Recordarme</span>
+                </label>
                 <button 
                   type="button"
                   onClick={() => setShowForgotPassword(true)} 

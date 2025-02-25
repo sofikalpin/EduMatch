@@ -4,7 +4,7 @@ import fileIcon from "../Imagenes/examen.avif";
 import deleteIcon from "../Imagenes/delete.png";
 import Header from "../HeaderProfesor";
 import Footer from "../FooterProfesor";
-import axios from "axios";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 import { useUser } from "../../../Context/UserContext";
 
 const ExamenDetalle = () => {
@@ -19,7 +19,13 @@ const ExamenDetalle = () => {
     const encontrarExamen = async () => {
       try {
         setLoading(true);
-        const respuesta = await axios.get(`http://localhost:5228/api/examenes/ExamenID?id=${idexamen}`);
+
+        if (!user) {
+          navigate("/iniciarsesion"); // Redirige si no está autenticado
+          return;
+        }
+        
+        const respuesta = await axiosInstance.get(`examenes/ExamenID?id=${idexamen}`);
         if (respuesta.data.status) {
           setExamen(respuesta.data.value);
         } else {
@@ -44,7 +50,7 @@ const ExamenDetalle = () => {
     if (window.confirm("¿Está seguro que desea eliminar este examen?")) {
       try {
         setLoading(true);
-        const respuesta = await axios.delete(`http://localhost:5228/api/ProfeExamen/EliminarExamen?id=${idexamen}`);
+        const respuesta = await axiosInstance.delete(`ProfeExamen/EliminarExamen?id=${idexamen}`);
         if (respuesta.data.status) {
           alert("Examen eliminado correctamente");
           navigate(-1);

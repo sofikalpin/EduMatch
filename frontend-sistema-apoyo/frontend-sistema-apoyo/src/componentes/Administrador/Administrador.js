@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import logo from '../../logo/LogoInicio.png';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axiosInstance from "../../AxiosConfig/AxiosConfig";
+import { useUser } from "../../Context/UserContext";
 import Header from './HeaderAdministrador';
 import Footer from '../Administrador/FooteraAdministrador';
 
@@ -40,10 +41,18 @@ const Administrador = () => {
     const [cantidadA, setCantidadA] = useState(0);
     const navigate = useNavigate();
     const location = useLocation();
+    const { user } = useUser();
+
 
     const cargarProfesoresNoAutorizados = async () => {
         try {
-            const response = await axios.get('http://localhost:5228/API/AdministradorProfesor/ListaProfesoresNOAutorizados');
+            // Verifica si el usuario está autenticado
+            if (!user) {
+            navigate("/iniciarsesion"); // Redirige si no está autenticado
+            return;
+            }
+
+            const response = await axiosInstance.get('AdministradorProfesor/ListaProfesoresNOAutorizados');
             setCantidadA(response.data?.value?.length || 0);
         } catch (error) {
             console.error('Error al obtener la cantidad de profesores no autorizados', error);

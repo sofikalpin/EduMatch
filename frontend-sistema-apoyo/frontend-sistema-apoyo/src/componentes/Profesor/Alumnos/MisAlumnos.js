@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../HeaderProfesor";
 import Footer from "../FooterProfesor"; 
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
+import { useUser } from "../../../Context/UserContext";
 
 const MisAlumnos = () => {
   const [cursos, setCursos] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { user } = useUser();
 
   const Datoscursos = [
     { id: 1, nombre: "A1: Curso Principiante", color: "bg-emerald-500" },
@@ -17,12 +20,17 @@ const MisAlumnos = () => {
     { id: 5, nombre: "C1: Curso Intermedio-Alto", color: "bg-amber-500" },
     { id: 6, nombre: "C2: Curso Avanzado", color: "bg-red-500" },
   ];
-
+  
   useEffect(() => {
     const fetchAlumnos = async () => {
       try {
-        const response = await fetch("http://localhost:5228/API/AdministradorAlumno/ListaAlumnos");
-        const data = await response.json();
+        if (!user) {
+          navigate("/iniciarsesion"); // Redirige si no está autenticado
+          return;
+        }
+
+        const response = await axiosInstance.get("AdministradorAlumno/ListaAlumnos");
+        const data = await response.data;
 
         const agrupadosPorCurso = data.value.reduce((acc, alumno) => {
           if (!acc[alumno.idnivel]) acc[alumno.idnivel] = [];

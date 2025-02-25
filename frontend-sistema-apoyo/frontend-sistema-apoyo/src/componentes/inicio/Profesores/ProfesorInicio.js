@@ -5,6 +5,8 @@ import TopBar from "../Componentes/TopBar";
 import Header from "../Componentes/Header";
 import Footer from "../Componentes/Footer";
 import logo from "../../../logo/LogoInicio.png";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
+import axios from "axios";
 
 const footerSections = {
   section1: {
@@ -97,17 +99,38 @@ export default function InicioProfesor() {
     return defaultValue;
   };
 
+  // Función de login admin para obtener el token inicial
+  const login = async () => {
+    try {
+      const response = await axiosInstance.post("Acceso/Acceso", {
+        Correo: "admin@sistema.com",
+        Clave: "Admin123" // Asegúrate de usar la contraseña correcta
+      });
+      // Verificar si el login fue exitoso
+      console.log("Login response:", response.data);
+      return true;
+    } catch (error) {
+      console.error("Login failed:", error);
+      setError("Error de autenticación. Por favor, inicie sesión nuevamente.");
+      return false;
+    }
+  };
+
   useEffect(() => {
     const fetchTeachers = async () => {
       try {
         setLoading(true);
-        
-      
-        const reviewsResponse = await fetch('http://localhost:5228/API/Reseña/ListaReseñasAlumno');
+      // Primero intentamos autenticarnos
+      const isAuthenticated = await login();
+      if (!isAuthenticated) {
+        throw new Error("No se pudo autenticar al usuario.");
+      }
+
+        const reviewsResponse = await axiosInstance.get('Reseña/ListaReseñasAlumno');
         if (!reviewsResponse.ok) throw new Error('Error al obtener las reseñas');
         const reviewsData = await reviewsResponse.json();
 
-        const usersResponse = await fetch('http://localhost:5228/API/Usuario/ListaUsuarios');
+        const usersResponse = await axiosInstance.get('/Usuario/ListaUsuarios');
         if (!usersResponse.ok) throw new Error('Error al obtener los usuarios');
         const usersRawData = await usersResponse.json();
 
@@ -164,7 +187,7 @@ export default function InicioProfesor() {
 
           if (teacher.levelId) {
             try {
-              const levelResponse = await fetch(`http://localhost:5228/API/Nivel/Nivel ID?id=${teacher.levelId}`);
+              const levelResponse = await axiosInstance.get(`Nivel/Nivel ID?id=${teacher.levelId}`);
               if (levelResponse.ok) {
                 const levelData = await levelResponse.json();
                 console.log("Level data:", levelData);

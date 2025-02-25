@@ -7,6 +7,7 @@ import Imagen2 from '../pexels-katerina-holmes-5905709.jpg';
 import TopBar from '../Componentes/TopBar';
 import Header from '../Componentes/Header';
 import Footer from '../Componentes/Footer';
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 import AngryReviews from './AngryReviews.png';
 
 const socialIcons = [
@@ -16,7 +17,6 @@ const socialIcons = [
   { name: 'Youtube', color: 'hover:text-red-500' },
   { name: 'Linkedin', color: 'hover:text-blue-700' }
 ];
-
 
 const Modal = ({ title, children, onClose }) => (
   <div className="fixed inset-0 bg-gray-700 bg-opacity-50 flex items-center justify-center z-20">
@@ -50,7 +50,6 @@ const ReviewCard = ({ name, content, rating }) => (
   </div>
 );
 
-
 const ProgramDropdown = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   
@@ -83,7 +82,7 @@ const ProgramDropdown = ({ isOpen, onClose }) => {
       ))}
     </div>
   );
-};
+}
 
 export default function Inicio() {
   const navigate = useNavigate();
@@ -94,11 +93,41 @@ export default function Inicio() {
   const [averageRating, setAverageRating] = useState(0);
   const [visibleReviews, setVisibleReviews] = useState(3);
   
+  // Función de login admin para obtener el token inicial
+  const login = async (setError) => {
+    try {
+      const response = await axiosInstance.post("Acceso/Acceso", {
+        Correo: "admin@sistema.com",
+        Clave: "Admin123" // Asegúrate de usar la contraseña correcta
+      });
+
+      // Verificar si el login fue exitoso
+      console.log("Login response:", response.data);
+
+      // Verificar si hay token en la respuesta
+      if (response.data && response.data.token) {
+        console.log("Token de admin obtenido correctamente:", response.data.token);
+        return response.data.token;
+      } else {
+        console.error("No se encontró token en la respuesta:", response.data);
+        return null;
+      }
+    } catch (error) {
+      console.error("Error en loginAcceso:", error);
+      return null;
+    }
+  };
+
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-       
-        const reviewsResponse = await fetch('http://localhost:5228/API/Reseña/ListaReseñas');
+       // Primero intentamos autenticarnos
+       const isAuthenticated = await login();
+       if (!isAuthenticated) {
+         throw new Error("No se pudo autenticar al usuario.");
+       }
+
+        const reviewsResponse = await axiosInstance.get('Reseña/ListaReseñas');
         if (!reviewsResponse.ok) {
           throw new Error('Failed to fetch reviews');
         }
@@ -115,7 +144,7 @@ export default function Inicio() {
         }
         
       
-        const usersResponse = await fetch('http://localhost:5228/API/Usuario/ListaUsuarios');
+        const usersResponse = await axiosInstance.get('Usuario/ListaUsuarios');
         if (!usersResponse.ok) {
           throw new Error('Failed to fetch users');
         }

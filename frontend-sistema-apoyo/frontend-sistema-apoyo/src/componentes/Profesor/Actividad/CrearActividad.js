@@ -4,7 +4,7 @@ import { ArrowLeft, X } from 'lucide-react';
 import Header from "../HeaderProfesor";
 import drive from "../Imagenes/google-drive.png";
 import youtube from "../Imagenes/youtube.png";
-import axios from "axios";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 import { useUser } from "../../../Context/UserContext";
 
 const CrearActividad = () => {
@@ -19,7 +19,7 @@ const CrearActividad = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();  
-  
+
   const validarURL = (url) => {
     const regex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
     return regex.test(url);
@@ -66,8 +66,14 @@ const CrearActividad = () => {
         url: actividadUrl.length > 0 ? actividadUrl[0] : "",
       };
       console.log(nuevaActividad);
-      const response = await axios.post(
-        "http://localhost:5228/API/ProfesorActividad/CrearActividad",
+
+      if (!user) {
+        navigate("/iniciarsesion"); // Redirige si no está autenticado
+        return;
+      }
+
+      const response = await axiosInstance.post(
+        "ProfesorActividad/CrearActividad",
         nuevaActividad
       );
       if (response.data.status) {
@@ -98,7 +104,6 @@ const CrearActividad = () => {
     }
   };
 
-  
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
       <Header />

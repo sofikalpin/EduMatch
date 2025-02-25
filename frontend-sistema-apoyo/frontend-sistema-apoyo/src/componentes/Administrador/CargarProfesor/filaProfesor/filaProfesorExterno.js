@@ -1,15 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../../../../AxiosConfig/AxiosConfig";
+import { useUser } from "../../../../Context/UserContext";
 
 const FilaProfesorExterno = ({ profesor, onDelete, onAutorizar }) => {
     const navigate = useNavigate();
     const [niveles, setNiveles] = useState([]);
-    
+    const [setError] = useState("");
+    const { user } = useUser();
+  
     useEffect(() => {
         const cargarNiveles = async () => {
             try {
-                const response = await axios.get('http://localhost:5228/API/Nivel/Listar Niveles');
+                // Verifica si el usuario está autenticado
+                if (!user) {
+                    navigate("/iniciarsesion"); // Redirige si no está autenticado
+                    return;
+                }
+
+                const response = await axiosInstance.get('Nivel/Listar Niveles');
                 const nivelesData = Array.isArray(response.data) ? response.data : [];
                 setNiveles(nivelesData);
             } catch (error) {
@@ -94,8 +103,8 @@ const FilaProfesorExterno = ({ profesor, onDelete, onAutorizar }) => {
                     fotoRuta: ""
                 };
 
-                await axios.post('http://localhost:5228/API/AdministradorProfesor/CrearProfesor', profesorData);
-                await axios.delete(`http://localhost:5228/api/Bolsatrabajo/EliminarBolsa?id=${profesor.idbolsa}`);
+                await axiosInstance.post('AdministradorProfesor/CrearProfesor', profesorData);
+                await axiosInstance.delete(`Bolsatrabajo/EliminarBolsa?id=${profesor.idbolsa}`);
 
                 console.log(`Enviando credenciales al correo ${profesor.correo}: 
                     Usuario: ${profesor.correo}

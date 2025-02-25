@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from "react-markdown";
-import axios from 'axios';
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 import { useUser } from '../../../Context/UserContext';
 import articuloImagen from "../Imagenes/articulo.jpg";
 import deleteIcon from "../Imagenes/delete.png";
@@ -23,7 +23,13 @@ const ArticuloDetalle = () => {
       try {
         setLoading(true);
         setError(""); 
-        const respuesta = await axios.get(`/API/Articulo/ArticuloID?id=${idarticulo}`);
+
+        if (!user) {
+          navigate("/iniciarsesion"); // Redirige si no está autenticado
+          return;
+        }
+
+        const respuesta = await axiosInstance.get(`Articulo/ArticuloID?id=${idarticulo}`);
         if (respuesta.data.status) {
           setArticulo(respuesta.data.value);
         } else {
@@ -42,24 +48,27 @@ const ArticuloDetalle = () => {
   }, [idarticulo]);
 
   const handleDelete = async () => {
-    if (!window.confirm("¿Está seguro que desea eliminar este artículo?")) {
-      return;
+    if (user.idusuario !== articulo?.idusuario) {
+      alert("No tienes permisos para eliminar esta actividad.");
+      return; 
     }
-  
-    try {
-      setIsDeleting(true);
-      const response = await axios.delete(`http://localhost:5228/API/ProfesorArticulo/EliminarArticulo?id=${idarticulo}`);
-      
-      if (response.data.status) {
-        navigate(-1); 
-      } else {
-        setError(response.data.message || "Error al eliminar el artículo");
+    if (!window.confirm("¿Está seguro que desea eliminar este artículo?")) {
+      try {
+        setLoading(true)
+        const response = await axiosInstance.delete(`ProfesorArticulo/EliminarArticulo?id=${idarticulo}`);
+        
+        if (response.data.status) {
+          alert("Actividad eliminada correctamente");
+          navigate(-1); 
+        } else {
+          setError(response.data.message || "Error al eliminar el artículo");
+        }
+      } catch (error) {
+        console.error("Error al eliminar el artículo:", error);
+        setError("Error al conectar con el servidor, inténtelo más tarde.");
+      } finally {
+        setIsDeleting(false);
       }
-    } catch (error) {
-      console.error("Error al eliminar el artículo:", error);
-      setError("Error al conectar con el servidor, inténtelo más tarde.");
-    } finally {
-      setIsDeleting(false);
     }
   };
   

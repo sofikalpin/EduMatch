@@ -1,14 +1,33 @@
 import React, { useState } from "react";
 import { X } from 'lucide-react';
+import axiosInstance from "../../AxiosConfig/AxiosConfig";
 
 const ForgotPassword = ({ onClose }) => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
+  const [error, setError] = useState("");
 
   const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
+  };
+
+  // Función de login admin para obtener el token inicial
+  const login = async () => {
+    try {
+      const response = await axiosInstance.post("Acceso/Acceso", {
+        Correo: "admin@sistema.com",
+        Clave: "Admin123" // Asegúrate de usar la contraseña correcta
+      });
+      // Verificar si el login fue exitoso
+      console.log("Login response:", response.data);
+      return true;
+    } catch (error) {
+      console.error("Login failed:", error);
+      setError("Error de autenticación. Por favor, inicie sesión nuevamente.");
+      return false;
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -23,7 +42,13 @@ const ForgotPassword = ({ onClose }) => {
     setMessage({ type: '', text: '' });
 
     try {
-      const response = await fetch('http://localhost:5228/API/Usuario/SolicitudToken', {
+      // Primero intentamos autenticarnos
+      const isAuthenticated = await login();
+      if (!isAuthenticated) {
+        throw new Error("No se pudo autenticar al usuario.");
+      }
+
+      const response = await axiosInstance.post('Usuario/SolicitudToken', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

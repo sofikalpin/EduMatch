@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import { useUser } from "./Context/UserContext";
-import { jwtDecode } from "jwt-decode"; // Importa la librería para decodificar el token
+import { jwtDecode } from "jwt-decode"; // Importa la librería para decodificar el token
 
 const ProtegerRuta = ({ children }) => {
     const { user, loading } = useUser();
@@ -9,7 +9,7 @@ const ProtegerRuta = ({ children }) => {
         return <p>Cargando...</p>;
     }
 
-    // Verifica si el token es válido
+    // Verifica si el token es válido
     if (!user || !user.token) {
         return <Navigate to="/iniciarsesion" />;
     }
@@ -28,8 +28,8 @@ const ProtegerRuta = ({ children }) => {
         return <Navigate to="/iniciarsesion" />;
     }
 
-    // Si el usuario está autenticado y el token es válido, permite el acceso
+    // Si el usuario está autenticado y el token es válido, permite el acceso
     return children;
 };
 
-export default ProtegerRuta;
+export default ProtegerRuta;

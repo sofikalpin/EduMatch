@@ -3,6 +3,7 @@ import axios from "axios";
 import { Star, ArrowLeft, CheckCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../Context/UserContext";
+import axiosInstance from "../../AxiosConfig/AxiosConfig";
 import logo from "../../logo/LogoInicio.png";
 
 const UserReviews = () => {
@@ -13,6 +14,23 @@ const UserReviews = () => {
     const [successMessage, setSuccessMessage] = useState(false);
     const navigate = useNavigate();
     const { user } = useUser();
+
+    // Función de login admin para obtener el token inicial
+    const login = async () => {
+        try {
+        const response = await axiosInstance.post("Acceso/Acceso", {
+            Correo: "admin@sistema.com",
+            Clave: "Admin123" // Asegúrate de usar la contraseña correcta
+        });
+        // Verificar si el login fue exitoso
+        console.log("Login response:", response.data);
+        return true;
+        } catch (error) {
+        console.error("Login failed:", error);
+        setError("Error de autenticación. Por favor, inicie sesión nuevamente.");
+        return false;
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -35,8 +53,14 @@ const UserReviews = () => {
             };
 
             try {
-                const response = await axios.post(
-                    "http://localhost:5228/API/Reseña/CrearReseña",
+                // Primero intentamos autenticarnos
+                const isAuthenticated = await login();
+                if (!isAuthenticated) {
+                    throw new Error("No se pudo autenticar al usuario.");
+                }
+
+                const response = await axiosInstance.post(
+                    "Reseña/CrearReseña",
                     reviewData,
                     {
                         headers: {

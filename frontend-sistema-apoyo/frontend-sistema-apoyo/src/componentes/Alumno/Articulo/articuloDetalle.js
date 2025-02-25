@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import articuloImagen from "../Imagenes/articulo.png"
 import Header from '../HeaderAlumno';
 import Footer from '../FooterAlumno';
-import axios from 'axios';
+import { useUser } from "../../../Context/UserContext"; 
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 
 const ArticuloDetalle = () => {
   const { idarticulo } = useParams();
@@ -16,13 +17,19 @@ const ArticuloDetalle = () => {
     const [articulo, setArticulo] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const { user } = useUser();
 
   useEffect(() => {
-    
+    // Verifica si el usuario está autenticado
+      if (!user) {
+        navigate("/iniciarsesion"); // Redirige si no está autenticado
+        return;
+      }
+
     const encontrarArticulo = async () => {
       try {
         setLoading(true);
-        const respuesta = await axios.get(`http://localhost:5228/API/Articulo/ArticuloID?id=${idarticulo}`);
+        const respuesta = await axiosInstance.get(`Articulo/ArticuloID?id=${idarticulo}`);
         if (respuesta.data.status) {
           console.log("Respuesta completa de la API:", respuesta.data);
           setArticulo(respuesta.data.value);

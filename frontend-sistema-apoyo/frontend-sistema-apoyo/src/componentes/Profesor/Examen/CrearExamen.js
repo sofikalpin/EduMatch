@@ -5,7 +5,7 @@ import Header from "../HeaderProfesor";
 import drive from "../Imagenes/google-drive.png";
 import youtube from "../Imagenes/youtube.png";
 import googleform from "../Imagenes/google-forms.png";
-import axios from "axios";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 import { useUser } from "../../../Context/UserContext";
 
 const CrearExamen = () => {
@@ -66,9 +66,15 @@ const CrearExamen = () => {
         fechaCreacion: new Date().toISOString().split("T")[0],
         url: examenUrl.length > 0 ? examenUrl[0] : "",
       };
+
+      if (!user) {
+        navigate("/iniciarsesion"); // Redirige si no está autenticado
+        return;
+      }
+
       console.log(nuevoExamen);
-      const response = await axios.post(
-        "http://localhost:5228/api/ProfeExamen/CrearExamen",
+      const response = await axiosInstance.post(
+        "ProfeExamen/CrearExamen",
         nuevoExamen
       );
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import logo from '../../../logo/LogoInicio.png';
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 
 const ResetPassword = () => {
   const location = useLocation();
@@ -15,10 +16,28 @@ const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [error, setError] = useState(''); // Definir el estado error
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const navigate = useNavigate();
+
+  // Función de login admin para obtener el token inicial
+  const login = async (setError) => { // Agregar setError como parámetro
+    try {
+      const response = await axiosInstance.post("Acceso/Acceso", {
+        Correo: "admin@sistema.com",
+        Clave: "Admin123" // Asegúrate de usar la contraseña correcta
+      });
+      // Verificar si el login fue exitoso
+      console.log("Login response:", response.data);
+      return true;
+    } catch (error) {
+      console.error("Login failed:", error);
+      setError("Error de autenticación. Por favor, inicie sesión nuevamente.");
+      return false;
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,7 +56,12 @@ const ResetPassword = () => {
       console.log("Token:", token);
       console.log("Nueva contraseña:", newPassword);
 
-      const response = await fetch('http://localhost:5228/API/Usuario/reestablecer-contrasena', {
+      // Primero intentamos autenticarnos
+      const isAuthenticated = await login(setError); // Pasar setError aquí
+      if (!isAuthenticated) {
+        throw new Error("No se pudo autenticar al usuario.");
+      }
+      const response = await axiosInstance.post('Usuario/reestablecer-contrasena', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -138,6 +162,9 @@ const ResetPassword = () => {
           >
             {message}
           </p>
+        )}
+        {error && (
+          <p className="mt-6 text-center text-lg text-red-600">{error}</p>
         )}
       </div>
     </div>

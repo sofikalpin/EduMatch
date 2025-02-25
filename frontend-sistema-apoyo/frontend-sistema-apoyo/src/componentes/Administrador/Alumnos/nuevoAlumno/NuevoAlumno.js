@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import logo from "../../../../logo/LogoInicio.png";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useUser } from "../../../../Context/UserContext";
+import axiosInstance from "../../../../AxiosConfig/AxiosConfig";
 
 export const NuevoAlumno = () => {
   const [email, setEmail] = useState('');
@@ -9,6 +10,7 @@ export const NuevoAlumno = () => {
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [nivel, setNivel] = useState('');
+  const { user } = useUser();
   const [mensajeCreado, setMensajeCreado] = useState("");
 
   const navigate = useNavigate();
@@ -40,8 +42,13 @@ export const NuevoAlumno = () => {
         idrol: 2,
       };
 
-      const response = await axios.post(
-        "http://localhost:5228/API/AdministradorAlumno/CrearAlumno",
+      if (!user) {
+        navigate("/iniciarsesion"); // Redirige si no está autenticado
+        return;
+      }
+      
+      const response = await axiosInstance.post(
+        "AdministradorAlumno/CrearAlumno",
         datosAlumno
       );
 

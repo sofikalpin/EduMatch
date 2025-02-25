@@ -11,7 +11,6 @@ const socialIcons = [
 ];
 
 const footerSections = {
-  
 };
 
 const UpdatedFooter = ({ socialIcons = [], footerSections = {}, navigate }) => {

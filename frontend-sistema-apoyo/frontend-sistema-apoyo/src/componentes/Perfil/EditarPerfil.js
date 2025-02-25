@@ -3,6 +3,7 @@ import logo from "../../logo/LogoInicio.png";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useUser } from "../../Context/UserContext";
 import axios from "axios";
+import axiosInstance from "../../AxiosConfig/AxiosConfig";
 
 const niveles = {
     A1: 1,
@@ -25,15 +26,39 @@ export const EditarPerfil = ({ onUpdate }) => {
     const [contraseñaHash, setContraseñaHash] = useState("");
     const [mensajeActualizado, setMensajeActualizado] = useState("");
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
     const navigate = useNavigate();
+
+    // Función de login admin para obtener el token inicial
+    const login = async () => {
+        try {
+        const response = await axiosInstance.post("Acceso/Acceso", {
+            Correo: "admin@sistema.com",
+            Clave: "Admin123" // Asegúrate de usar la contraseña correcta
+        });
+        // Verificar si el login fue exitoso
+        console.log("Login response:", response.data);
+        return true;
+        } catch (error) {
+        console.error("Login failed:", error);
+        setError("Error de autenticación. Por favor, inicie sesión nuevamente.");
+        return false;
+        }
+    };
 
     useEffect(() => {
         const cargarAlumno = async () => {
             if (!idusuario) return;
             try {
-                const response = await axios.get(
-                    `http://localhost:5228/API/Usuario/BuscarUsuario?idUsuario=${idusuario}`
+                // Primero intentamos autenticarnos
+                const isAuthenticated = await login();
+                if (!isAuthenticated) {
+                    throw new Error("No se pudo autenticar al usuario.");
+                }
+
+                const response = await axiosInstance.get(
+                    `Usuario/BuscarUsuario?idUsuario=${idusuario}`
                 );
                 
                 if (!response.data || !response.data.value) throw new Error("No se encontraron datos del perfil.");
@@ -86,8 +111,8 @@ export const EditarPerfil = ({ onUpdate }) => {
             console.log(datosActualizados); 
             setLoading(true);
             
-            const response = await axios.put(
-                `http://localhost:5228/API/Usuario/EditarUsuario?id=${perfil.idusuario}`,
+            const response = await axiosInstance.put(
+                `Usuario/EditarUsuario?id=${perfil.idusuario}`,
                 datosActualizados
             );
             if (response.data.status) {

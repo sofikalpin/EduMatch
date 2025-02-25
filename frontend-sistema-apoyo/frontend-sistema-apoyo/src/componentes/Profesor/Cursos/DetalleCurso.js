@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react';
 import Header from "../HeaderProfesor";
 import Footer from "../FooterProfesor";

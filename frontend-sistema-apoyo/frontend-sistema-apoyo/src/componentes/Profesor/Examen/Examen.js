@@ -5,7 +5,7 @@ import { ArrowLeft } from 'lucide-react';
 import examenImg from "../Imagenes/examen.avif";  
 import Header from "../HeaderProfesor";
 import Footer from "../FooterProfesor";
-import axios from "axios";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 import { useUser } from "../../../Context/UserContext";
 
 const ExamenProfesor = () => {
@@ -34,7 +34,12 @@ const ExamenProfesor = () => {
           throw new Error("El ID del nivel no está disponible.");
         }
 
-        const response = await axios.get(`http://localhost:5228/api/examenes/ExamenPorNivel?idNivel=${idNivel}`);
+        if (!user) {
+          navigate("/iniciarsesion"); // Redirige si no está autenticado
+          return;
+        }
+
+        const response = await axiosInstance.get(`examenes/ExamenPorNivel?idNivel=${idNivel}`);
         
         if (response.data.status && Array.isArray(response.data.value)) {
           setExamenes(response.data.value);

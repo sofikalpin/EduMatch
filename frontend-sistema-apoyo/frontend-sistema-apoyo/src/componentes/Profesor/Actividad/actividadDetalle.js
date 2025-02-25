@@ -6,22 +6,27 @@ import { useUser } from '../../../Context/UserContext';
 import deleteIcon from "../Imagenes/delete.png";
 import Header from "../HeaderProfesor";
 import Footer from "../FooterProfesor";
-import axios from "axios";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 
 const ActividadDetalle = () => {
   const { idactividad } = useParams();
   const [loading, setLoading] = useState(false);
-  const { user } = useUser();
   const [actividad, setActividad] = useState("");
   const [error, setError] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false); 
   const navigate = useNavigate();
+  const { user } = useUser();
 
   useEffect(() => {
     const encontrarActividad = async () => {
       try {
         setLoading(true);
-        const respuesta = await axios.get(`http://localhost:5228/API/Actividad/ActividadID?id=${idactividad}`);
+        if (!user) {
+          navigate("/iniciarsesion"); // Redirige si no está autenticado
+          return;
+        }
+
+        // Si la autenticación es exitosa, obtenemos la actividad
+        const respuesta = await axiosInstance.get(`Actividad/ActividadID?id=${idactividad}`);
         if (respuesta.data.status) {
           setActividad(respuesta.data.value);
         } else {
@@ -34,19 +39,20 @@ const ActividadDetalle = () => {
         setLoading(false);
       }
     };
+
     encontrarActividad();
   }, [idactividad]);
 
   const handleDelete = async () => {
     if (user.idusuario !== actividad?.idusuario) {
       alert("No tienes permisos para eliminar esta actividad.");
-      return; 
+      return;
     }
 
     if (window.confirm("¿Está seguro que desea eliminar esta actividad?")) {
       try {
         setLoading(true);
-        const respuesta = await axios.delete(`http://localhost:5228/API/ProfesorActividad/EliminarActividad?id=${idactividad}`);
+        const respuesta = await axiosInstance.delete(`ProfesorActividad/EliminarActividad?id=${idactividad}`);
         if (respuesta.data.status) {
           alert("Actividad eliminada correctamente");
           navigate(-1);
@@ -85,33 +91,29 @@ const ActividadDetalle = () => {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-white rounded-lg shadow-lg mt-12 p-6 max-w-3xl mx-auto">
-          
           <div className="bg-white p-6 rounded-lg shadow-md mb-6">
             <span className="text-gray-600">Fecha de Publicación: {actividad?.fechaCreacion}</span>
           </div>
 
           <div className="space-y-8 mb-6">
             <div className="flex justify-between items-center">
-              
               <h1 className="text-3xl font-bold text-gray-900 leading-relaxed">{actividad?.nombre}</h1>
-                  
-                  <button
-                  onClick={handleDelete}
-                  className={`p-2 rounded-full transition-colors duration-200 ml-4 ${
-                    user.idusuario !== actividad?.idusuario
-                      ? "bg-red-200 cursor-not-allowed"
-                      : "bg-red-100 hover:bg-red-200"
-                  }`}
-                  aria-label="Eliminar actividad"
-                >
-
-                  <img src={deleteIcon} alt="Eliminar" className="w-6 h-6" />
-                </button>
+              <button
+                onClick={handleDelete}
+                className={`p-2 rounded-full transition-colors duration-200 ml-4 ${
+                  user.idusuario !== actividad?.idusuario
+                    ? "bg-red-200 cursor-not-allowed"
+                    : "bg-red-100 hover:bg-red-200"
+                }`}
+                aria-label="Eliminar actividad"
+              >
+                <img src={deleteIcon} alt="Eliminar" className="w-6 h-6" />
+              </button>
             </div>
 
             <div className="flex justify-center mb-6">
               <img src={actividadImg} alt="Imagen de la actividad" 
-              className="h-48 w-auto rounded-lg shadow-md object-cover" />
+                className="h-48 w-auto rounded-lg shadow-md object-cover" />
             </div>
 
             <div className="space-y-4">

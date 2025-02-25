@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import TablaProfesores from "./TablaProfesAutorizar/TablaProfesA.js";
-import axios from "axios";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 import Header from "../HeaderAdministrador.js";
 import Footer from "../FooteraAdministrador.js";
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from "react-router-dom"; 
+import { useUser } from "../../../Context/UserContext";
 
 const CargarProfesor = () => {
     const [profesoresNoAutorizado, setProfesoresNoAutorizado] = useState([]);
@@ -13,6 +14,7 @@ const CargarProfesor = () => {
     const [loading, setLoading] = useState(true);
     const [mensajeEliminacion, setMensaje] = useState("");
     const [cantidad, setCantidad] = useState(0);
+    const { user } = useUser();
 
     const navigate = useNavigate(); 
 
@@ -20,7 +22,12 @@ const CargarProfesor = () => {
         const fetchProfesores = async () => {
             setLoading(true);
             try {
-                const response = await axios.get("http://localhost:5228/API/AdministradorProfesor/ListaProfesoresNOAutorizados");
+                if (!user) {
+                    navigate("/iniciarsesion"); // Redirige si no está autenticado
+                    return;
+                }
+
+                const response = await axiosInstance.get("AdministradorProfesor/ListaProfesoresNOAutorizados");
                 if (response.data.status && Array.isArray(response.data.value)) {
                     setProfesoresNoAutorizado(response.data.value);
                     setCantidad(response.data.value.length);
@@ -44,7 +51,7 @@ const CargarProfesor = () => {
 
     const handleDeleteProfesor = (id) => {
         if (window.confirm("¿Estás seguro de que deseas rechazar este profesor?")) {
-            axios.delete(`http://localhost:5228/API/AdministradorProfesor/EliminarProfesor?id=${id}`)
+            axiosInstance.delete(`AdministradorProfesor/EliminarProfesor?id=${id}`)
                 .then(() => {
                     setProfesoresNoAutorizado((prevProfesores) => prevProfesores.filter((profesor) => profesor.idusuario !== id));
                     setMensaje("Profesor rechazado con éxito.");
@@ -60,7 +67,7 @@ const CargarProfesor = () => {
 
     const handleAutorizarProfesor = (id) => {
         if (window.confirm("¿Estás seguro de que deseas autorizar este profesor?")) {
-            axios.put(`http://localhost:5228/API/AdministradorProfesor/AutorizarProfesor?id=${id}`)
+            axiosInstance.put(`AdministradorProfesor/AutorizarProfesor?id=${id}`)
                 .then(() => {
                     setProfesoresNoAutorizado((prevProfesores) => prevProfesores.filter((profesor) => profesor.idusuario !== id));
                     setMensaje("Profesor autorizado con éxito.");

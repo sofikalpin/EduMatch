@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import TablaProfesoresT from "./TablaProfesores/TablaProfes.js";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react';
-import axios from "axios";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
+import { useUser } from "../../../Context/UserContext";
 import Header from "../HeaderAdministrador.js";
 import Footer from "../FooteraAdministrador.js";
 
@@ -12,6 +13,7 @@ const ListaProfesores = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
     const [mensajeEliminacion, setMensaje] = useState("");
+    const { user } = useUser();
 
     const navigate = useNavigate();
 
@@ -19,7 +21,12 @@ const ListaProfesores = () => {
         const fetchProfesores = async () => {
             setLoading(true);
             try {
-                const response = await axios.get("http://localhost:5228/API/AdministradorProfesor/ListaProfesoresAutorizados");
+                if (!user) {
+                    navigate("/iniciarsesion"); // Redirige si no está autenticado
+                    return;
+                }
+
+                const response = await axiosInstance.get("AdministradorProfesor/ListaProfesoresAutorizados");
                 if (response.data.status && Array.isArray(response.data.value)){
                     setProfesores(response.data.value);
                 } else {
@@ -42,7 +49,7 @@ const ListaProfesores = () => {
 
     const handleDeleteProfesor = (id) => {
         if (window.confirm("¿Estás seguro de que deseas eliminar este profesor?")) {
-            axios.delete(`http://localhost:5228/API/AdministradorProfesor/EliminarProfesor?id=${id}`)
+            axiosInstance.delete(`AdministradorProfesor/EliminarProfesor?id=${id}`)
                 .then(() => {
                     setProfesores((prevProfesores) => prevProfesores.filter((profesor) => profesor.idusuario !== id));
                     console.log("Profesor eliminado con éxito.");

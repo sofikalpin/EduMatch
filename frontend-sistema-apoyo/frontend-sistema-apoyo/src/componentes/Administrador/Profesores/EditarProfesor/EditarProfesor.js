@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../../../logo/LogoInicio.png";
 import { useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../../../../AxiosConfig/AxiosConfig";
+import { useUser } from "../../../../Context/UserContext"; 
 
 const niveles = {
   A1: 1, A2: 2, B1: 3, B2: 4, C1: 5, C2: 6,
@@ -16,8 +17,10 @@ export const EditarProfesor = ({ onUpdate }) => {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [nivel, setNivel] = useState("");
+  const [setError] = useState("");
   const [mensajeActualizado, setMensajeActualizado] = useState("");
   const [loading, setLoading] = useState(true);
+  const { user } = useUser();
 
   const navigate = useNavigate();
 
@@ -25,8 +28,13 @@ export const EditarProfesor = ({ onUpdate }) => {
     const cargarProfesor = async () => {
       if (!idusuario) return;
       try {
-        const response = await axios.get(
-          `http://localhost:5228/API/AdministradorProfesor/ProfesorID?id=${idusuario}`
+        if (!user) {
+          navigate("/iniciarsesion"); // Redirige si no está autenticado
+          return;
+      }
+
+        const response = await axiosInstance.get(
+          `AdministradorProfesor/ProfesorID?id=${idusuario}`
         );
         
         if (!response.data || !response.data.value) throw new Error("No se encontraron datos del profesor.");
@@ -58,6 +66,7 @@ export const EditarProfesor = ({ onUpdate }) => {
       alert("Todos los campos son obligatorios.");
       return;
     }
+
     try {
       const nivelId = niveles[nivel];
       const datosActualizados = {
@@ -73,10 +82,12 @@ export const EditarProfesor = ({ onUpdate }) => {
         cvRuta: profesor.cvRuta,
         fotoRuta: profesor.fotoRuta,
       };
-      const response = await axios.put(
-        `http://localhost:5228/API/AdministradorProfesor/EditarporID?id=${idusuario}`,
+
+      const response = await axiosInstance.put(
+        `AdministradorProfesor/EditarporID?id=${idusuario}`,
         datosActualizados
       );
+
       if (response.data.status) {
         setMensajeActualizado("Profesor actualizado con éxito.");
         setTimeout(() => setMensajeActualizado(""), 2000);
@@ -84,6 +95,7 @@ export const EditarProfesor = ({ onUpdate }) => {
       } else {
         alert("No se pudo actualizar el profesor.");
       }
+
     } catch (error) {
       console.error("Error al actualizar el profesor:", error);
     }

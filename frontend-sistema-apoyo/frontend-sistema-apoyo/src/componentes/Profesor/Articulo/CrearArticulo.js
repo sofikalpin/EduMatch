@@ -4,7 +4,7 @@ import { ArrowLeft, X } from 'lucide-react';
 import Header from "../HeaderProfesor";
 import drive from "../Imagenes/google-drive.png";
 import youtube from "../Imagenes/youtube.png";
-import axios from "axios";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 import { useUser } from "../../../Context/UserContext";
 
 const CrearArticulo = () => {
@@ -75,12 +75,19 @@ const CrearArticulo = () => {
         fechaCreacion: new Date().toISOString().split("T")[0]
       };
 
-      console.log(nuevoArticulo);
+      console.log("Nuevo Artículo:", nuevoArticulo);
+
    
-      const response = await axios.post(
-        "http://localhost:5228/API/ProfesorArticulo/CrearArticulo",
+      if (!user) {
+        navigate("/iniciarsesion"); // Redirige si no está autenticado
+        return;
+      }
+
+      const response = await axiosInstance.post(
+        "ProfesorArticulo/CrearArticulo",
         nuevoArticulo,
       );
+      console.log("Respuesta del backend:", response);
       
       if (response.data.status) {
         alert("Artículo creado exitosamente");

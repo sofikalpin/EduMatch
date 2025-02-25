@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TablaProfesoresExterno from "./TablaProfesAutorizar/TablaProfesorAExterno.js";
-import axios from "axios";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
+import { useUser } from "../../../Context/UserContext";
 import { ArrowLeft } from "lucide-react";
 import Header from "../HeaderAdministrador.js";
 import Footer from "../FooteraAdministrador.js";
@@ -18,9 +19,10 @@ const CargarProfesorExterno = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
     const [mensaje, setMensaje] = useState("");
+    const { user } = useUser();
 
     const navigate = useNavigate();
-
+      
     const getInitials = (name) => {
         return name
             .split(' ')
@@ -42,8 +44,8 @@ const CargarProfesorExterno = () => {
             }
     
             console.log(` Profesor encontrado con IDbolsa: ${idbolsa}, procediendo a eliminar...`);
-    
-            axios.delete(`http://localhost:5228/api/Bolsatrabajo/EliminarBolsa?id=${idbolsa}`)
+
+            axiosInstance.delete(`Bolsatrabajo/EliminarBolsa?id=${idbolsa}`)
                 .then(() => {
                     setProfesoresIngles((prevProfesores) => 
                         prevProfesores.filter((profesor) => profesor.idbolsa !== idbolsa)
@@ -60,7 +62,7 @@ const CargarProfesorExterno = () => {
     
     const handleAutorizarProfesor = (idusuario) => {
         if (window.confirm("¿Estás seguro de que deseas autorizar este profesor?")) {
-            axios.put(`http://localhost:5228/API/AdministradorProfesor/AutorizarProfesor?id=${idusuario}`)
+            axiosInstance.put(`AdministradorProfesor/AutorizarProfesor?id=${idusuario}`)
                 .then(() => {
                     setProfesoresIngles((prevProfesores) => 
                         prevProfesores.filter((profesor) => profesor.idusuario !== idusuario)
@@ -92,7 +94,12 @@ const CargarProfesorExterno = () => {
         const fetchProfesores = async () => {
             setLoading(true);
             try {
-                const response = await axios.get("http://localhost:5228/api/Bolsatrabajo/ingles");
+                if (!user) {
+                    navigate("/iniciarsesion"); // Redirige si no está autenticado
+                    return;
+                }
+
+                const response = await axiosInstance.get("http://localhost:5228/api/Bolsatrabajo/ingles");
 
                 console.log("Datos recibidos de la API:", response.data);
 

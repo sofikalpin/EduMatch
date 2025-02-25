@@ -6,7 +6,8 @@ import { ArrowLeft } from "lucide-react";
 import Header from "../HeaderAlumno";
 import Footer from "../FooterAlumno";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
+import { useUser } from "../../../Context/UserContext";
 
 const ActividadDetalle = () => {
   const { idactividad } = useParams();
@@ -16,13 +17,20 @@ const ActividadDetalle = () => {
   const [actividad, setActividad] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
+  const { user } = useUser();
+ 
   useEffect(() => {
     
     const encontrarActividad = async () => {
       try {
+          // Verifica si el usuario está autenticado
+          if (!user) {
+            navigate("/iniciarsesion"); // Redirige si no está autenticado
+            return;
+        }
+
         setLoading(true);
-        const respuesta = await axios.get(`http://localhost:5228/API/Actividad/ActividadID?id=${idactividad}`);
+        const respuesta = await axiosInstance.get(`http://localhost:5228/API/Actividad/ActividadID?id=${idactividad}`);
         if (respuesta.data.status) {
           setActividad(respuesta.data.value);
         } else {

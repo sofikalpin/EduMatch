@@ -77,7 +77,7 @@ public class UsuarioController : ControllerBase
             }
 
             // Generar un token
-            var token = GenerarToken(sesion.Correo);
+            var token = GenerarToken(sesion.Correo, sesion.Idrol);
 
             rsp.status = true;
             rsp.value = sesion;
@@ -171,8 +171,7 @@ public class UsuarioController : ControllerBase
             });
         }
     }
-
-    private string GenerarToken(string correo)
+    private string GenerarToken(string correo, int idrol)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.UTF8.GetBytes(_configuration["JwtConfig:Secret"]);
@@ -185,7 +184,11 @@ public class UsuarioController : ControllerBase
 
         var tokenDescriptor = new SecurityTokenDescriptor
         {
-            Subject = new ClaimsIdentity(new Claim[] { new Claim(ClaimTypes.Email, correo) }),
+            Subject = new ClaimsIdentity(new Claim[]
+            {
+            new Claim(ClaimTypes.Email, correo),
+            new Claim(ClaimTypes.Role, idrol.ToString()) // Incluir el idrol en el token
+            }),
             Expires = DateTime.UtcNow.AddHours(1),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };

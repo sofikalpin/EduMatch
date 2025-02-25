@@ -27,17 +27,15 @@ builder.Services.AddControllers();
 // Configuración de CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAllOrigins", policy =>
+    options.AddPolicy("AllowFrontend", policy =>
     {
         policy.WithOrigins("http://localhost:3000") // URL del Frontend
-              .AllowAnyMethod()
+              .AllowCredentials() // Importante para cookies
               .AllowAnyHeader()
-              .AllowCredentials(); // Importante para cookies
+              .AllowAnyMethod();
+              
     });
 });
-
-
-
 
 // Configuración de Fluent Validation
 builder.Services.AddFluentValidationAutoValidation();
@@ -56,7 +54,6 @@ builder.Services.AddValidatorsFromAssemblyContaining<UsuarioValidator>();
 // Agregar Swagger para documentación de API
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 
 //Agregar la clase utilidades para generar el token
 builder.Services.AddSingleton<Utilidades>();
@@ -122,14 +119,14 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseCors("AllowAllOrigins");
+    app.UseCors("AllowFrontend");
 }
 else
 {
     app.UseHsts();
 }
 
-app.UseCors("AllowAllOrigins");
+app.UseCors("AllowFrontend");
 
 app.UseRouting();
 app.UseAuthentication();

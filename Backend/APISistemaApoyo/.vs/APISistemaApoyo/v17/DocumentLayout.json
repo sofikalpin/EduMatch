@@ -3,12 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\actividadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\actividadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\accesocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\accesocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\usuarios\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\usuarios\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\forocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\forocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\articulocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\articulocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\actividadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\actividadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\administrador\\administradoralumnocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -59,10 +75,6 @@
       "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\mensajecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\forocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\forocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\examencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\examencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -71,20 +83,8 @@
       "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\consultacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\bolsatrabajocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\bolsatrabajocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\usuarios\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\usuarios\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\controllers\\articulocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|solutionrelative:webapiapoyo\\controllers\\articulocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AD1033F3-BBAA-4FC9-A82A-DD08869EE780}|WebApiApoyo\\WebApiApoyo.csproj|c:\\users\\orian\\documents\\github\\edumatch\\backend\\apisistemaapoyo\\webapiapoyo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -138,7 +138,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 119,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -162,85 +162,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AdministradorAlumnoController.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Administrador\\AdministradorAlumnoController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Administrador\\AdministradorAlumnoController.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Administrador\\AdministradorAlumnoController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\Administrador\\AdministradorAlumnoController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T18:55:10.654Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AdministradorChatController.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Administrador\\AdministradorChatController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Administrador\\AdministradorChatController.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Administrador\\AdministradorChatController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\Administrador\\AdministradorChatController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T18:55:06.156Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AdministradorProfesorController.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Administrador\\AdministradorProfesorController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Administrador\\AdministradorProfesorController.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Administrador\\AdministradorProfesorController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\Administrador\\AdministradorProfesorController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T18:54:58.611Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "ProfesorExamenController.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorExamenController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Profesor\\ProfesorExamenController.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorExamenController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\Profesor\\ProfesorExamenController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T18:54:50.367Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ProfesorArticuloController.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorArticuloController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Profesor\\ProfesorArticuloController.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorArticuloController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\Profesor\\ProfesorArticuloController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T18:54:46.323Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ProfesorActividadController.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorActividadController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Profesor\\ProfesorActividadController.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorActividadController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\Profesor\\ProfesorActividadController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T18:54:41.233Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "ActividadController.cs",
               "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ActividadController.cs",
               "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\ActividadController.cs",
@@ -253,176 +175,56 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
+              "Title": "ProfesorExamenController.cs",
+              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorExamenController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Profesor\\ProfesorExamenController.cs",
+              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorExamenController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\Profesor\\ProfesorExamenController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T18:54:50.367Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ProfesorArticuloController.cs",
+              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorArticuloController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Profesor\\ProfesorArticuloController.cs",
+              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorArticuloController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\Profesor\\ProfesorArticuloController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T18:54:46.323Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ProfesorActividadController.cs",
+              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorActividadController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Profesor\\ProfesorActividadController.cs",
+              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Profesor\\ProfesorActividadController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\Profesor\\ProfesorActividadController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T18:54:41.233Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "AccesoController.cs",
               "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\AccesoController.cs",
               "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\AccesoController.cs",
               "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\AccesoController.cs",
               "RelativeToolTip": "WebApiApoyo\\Controllers\\AccesoController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAmwFkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-23T21:48:32.316Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "RolController.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\RolController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Usuarios\\RolController.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\RolController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\Usuarios\\RolController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T18:54:33.47Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "RespuestaController.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\RespuestaController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\RespuestaController.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\RespuestaController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\RespuestaController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T18:54:25.795Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Rese\u00F1aController.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Rese\u00F1aController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Rese\u00F1aController.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Rese\u00F1aController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\Rese\u00F1aController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T18:54:21.619Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Rese\u00F1aAlumnoController.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Rese\u00F1aAlumnoController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Rese\u00F1aAlumnoController.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Rese\u00F1aAlumnoController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\Rese\u00F1aAlumnoController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T18:54:17.222Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "NivelController.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\NivelController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\NivelController.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\NivelController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\NivelController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T18:54:10.05Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "MensajeController.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\MensajeController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\MensajeController.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\MensajeController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\MensajeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T18:54:05.106Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "ForoController.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ForoController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\ForoController.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ForoController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\ForoController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T18:53:55.916Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "ExamenController.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ExamenController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\ExamenController.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ExamenController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\ExamenController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T18:53:51.652Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "ConsultaController.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ConsultaController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\ConsultaController.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ConsultaController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\ConsultaController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T18:53:46.273Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "ChatController.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ChatController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\ChatController.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ChatController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\ChatController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T18:53:41.43Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "BolsatrabajoController.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\BolsatrabajoController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\BolsatrabajoController.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\BolsatrabajoController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\BolsatrabajoController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T18:53:36.491Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "UsuarioController.cs",
-              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
-              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
-              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
-              "RelativeToolTip": "WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T18:53:18.575Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 4,
               "Title": "ArticuloController.cs",
               "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ArticuloController.cs",
               "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\ArticuloController.cs",
@@ -435,6 +237,189 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ChatController.cs",
+              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ChatController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\ChatController.cs",
+              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ChatController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\ChatController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T18:53:41.43Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ForoController.cs",
+              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ForoController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\ForoController.cs",
+              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ForoController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\ForoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T18:53:55.916Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UsuarioController.cs",
+              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\Usuarios\\UsuarioController.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABQAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T18:53:18.575Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AdministradorAlumnoController.cs",
+              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Administrador\\AdministradorAlumnoController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Administrador\\AdministradorAlumnoController.cs",
+              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Administrador\\AdministradorAlumnoController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\Administrador\\AdministradorAlumnoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T18:55:10.654Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AdministradorProfesorController.cs",
+              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Administrador\\AdministradorProfesorController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Administrador\\AdministradorProfesorController.cs",
+              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Administrador\\AdministradorProfesorController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\Administrador\\AdministradorProfesorController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T18:54:58.611Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AdministradorChatController.cs",
+              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Administrador\\AdministradorChatController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Administrador\\AdministradorChatController.cs",
+              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Administrador\\AdministradorChatController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\Administrador\\AdministradorChatController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T18:55:06.156Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "RolController.cs",
+              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\RolController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Usuarios\\RolController.cs",
+              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Usuarios\\RolController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\Usuarios\\RolController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T18:54:33.47Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "RespuestaController.cs",
+              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\RespuestaController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\RespuestaController.cs",
+              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\RespuestaController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\RespuestaController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T18:54:25.795Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Rese\u00F1aController.cs",
+              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Rese\u00F1aController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Rese\u00F1aController.cs",
+              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Rese\u00F1aController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\Rese\u00F1aController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T18:54:21.619Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Rese\u00F1aAlumnoController.cs",
+              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Rese\u00F1aAlumnoController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\Rese\u00F1aAlumnoController.cs",
+              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\Rese\u00F1aAlumnoController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\Rese\u00F1aAlumnoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T18:54:17.222Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "NivelController.cs",
+              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\NivelController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\NivelController.cs",
+              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\NivelController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\NivelController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T18:54:10.05Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "MensajeController.cs",
+              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\MensajeController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\MensajeController.cs",
+              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\MensajeController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\MensajeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T18:54:05.106Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ExamenController.cs",
+              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ExamenController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\ExamenController.cs",
+              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ExamenController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\ExamenController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T18:53:51.652Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ConsultaController.cs",
+              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ConsultaController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\ConsultaController.cs",
+              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\ConsultaController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\ConsultaController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T18:53:46.273Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "BolsatrabajoController.cs",
+              "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\BolsatrabajoController.cs",
+              "RelativeDocumentMoniker": "WebApiApoyo\\Controllers\\BolsatrabajoController.cs",
+              "ToolTip": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Controllers\\BolsatrabajoController.cs",
+              "RelativeToolTip": "WebApiApoyo\\Controllers\\BolsatrabajoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T18:53:36.491Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 21,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\orian\\Documents\\GitHub\\EduMatch\\Backend\\APISistemaApoyo\\WebApiApoyo\\Program.cs",
@@ -443,8 +428,7 @@
               "RelativeToolTip": "WebApiApoyo\\Program.cs",
               "ViewState": "AgIAAFMAAAAAAAAAAAAYwGsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T21:08:45.435Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-23T21:08:45.435Z"
             },
             {
               "$type": "Document",
@@ -468,8 +452,7 @@
               "RelativeToolTip": "SistemaApoyo.Utility\\Utilidades.cs",
               "ViewState": "AgIAACcAAAAAAAAAAAAAwEYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T21:23:08.665Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-23T21:23:08.665Z"
             },
             {
               "$type": "Document",

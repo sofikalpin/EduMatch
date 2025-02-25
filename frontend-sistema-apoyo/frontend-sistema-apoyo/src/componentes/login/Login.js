@@ -7,7 +7,7 @@ import ForgotPassword from './ForgotPassword';
 import axiosInstance from "../../AxiosConfig/AxiosConfig";
 
 
-// Función de login
+// Función de login admin para obtener el token inicial
 const loginAcceso = async (setError) => {
   try {
     const response = await axiosInstance.post("Acceso/Acceso", {
@@ -16,14 +16,14 @@ const loginAcceso = async (setError) => {
     });
     // Verificar si el login fue exitoso
     console.log("Login response:", response.data);
-    return true;
+    // Retornar el token del administrador para usarlo en la siguiente solicitud
+    return response.data.usuario?.token || null;
   } catch (error) {
     console.error("Login failed:", error);
-    setError("Error de autenticación. Por favor, inicie sesión nuevamente.");
-    return false;
+    setError && setError("Error de autenticación. Por favor, inicie sesión nuevamente.");
+    return null;
   }
 };
-
 const handleLogin = async ({ email, password }) => {
   try {
     const response = await fetch('http://localhost:5228/API/Usuario/IniciarSesion', {
@@ -38,7 +38,9 @@ const handleLogin = async ({ email, password }) => {
     });
 
     if (!response.ok) {
-      throw new Error('Error al iniciar sesión');
+      const errorData = await response.json(); // Obtener detalles del error
+      console.error('Error del servidor:', errorData);
+      throw new Error(errorData.message || 'Error al iniciar sesión');
     }
 
     const data = await response.json();

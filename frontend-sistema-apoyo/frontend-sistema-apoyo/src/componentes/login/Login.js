@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import logo from "../../logo/LogoInicio.png";
 import Foto from './Mujer con Computadora.jpg';
 import { useUser } from "../../Context/UserContext";
 import { useNavigate, Link } from 'react-router-dom';
 import ForgotPassword from './ForgotPassword'; 
 import axiosInstance from "../../AxiosConfig/AxiosConfig";
-
+import Cookies from 'js-cookie';
+import { jwtDecode } from "jwt-decode";
 
 // Función de login admin para obtener el token inicial
 const loginAcceso = async (setError) => {
@@ -14,40 +15,51 @@ const loginAcceso = async (setError) => {
       Correo: "admin@sistema.com",
       Clave: "Admin123" // Asegúrate de usar la contraseña correcta
     });
+
     // Verificar si el login fue exitoso
     console.log("Login response:", response.data);
-    // Retornar el token del administrador para usarlo en la siguiente solicitud
-    return response.data.usuario?.token || null;
+
+    // Verificar si hay token en la respuesta
+    if (response.data && response.data.token) {
+      console.log("Token de admin obtenido correctamente:", response.data.token);
+      return response.data.token;
+    } else {
+      console.error("No se encontró token en la respuesta:", response.data);
+      return null;
+    }
   } catch (error) {
-    console.error("Login failed:", error);
-    setError && setError("Error de autenticación. Por favor, inicie sesión nuevamente.");
+    console.error("Error en loginAcceso:", error);
     return null;
   }
 };
-const handleLogin = async ({ email, password }) => {
+
+const handleLogin = async ({ email, password, adminToken }) => {
   try {
+    console.log("Usando el token admin para autenticar:", adminToken);
+    
     const response = await fetch('http://localhost:5228/API/Usuario/IniciarSesion', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${adminToken}` // Verifica que el formato sea correcto
       },
+      credentials: "include", // Asegura que se envíen y reciban cookies
       body: JSON.stringify({
         correo: email,
-        contrasenaHash: password,
-      }),
+        contrasenaHash: password
+      }) 
     });
 
-    if (!response.ok) {
-      const errorData = await response.json(); // Obtener detalles del error
-      console.error('Error del servidor:', errorData);
-      throw new Error(errorData.message || 'Error al iniciar sesión');
-    }
-
     const data = await response.json();
-    console.log('Respuesta del backend:', data);
-    return data;
+    console.log("Login response:", data);
+
+    if (!data.token) {
+      throw new Error("No se pudo autenticar al administrador. Token no recibido.");
+    }
+    return data.token; // Retorna el token
+
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error en login:", error);
     throw error;
   }
 };
@@ -117,33 +129,40 @@ const Login = () => {
     if (!validateForm()) {
       return;
     }
-  
     setIsLoading(true);
-  
     try {
-
        // Autenticación inicial con las credenciales del administrador
-       const isAuthenticated = await loginAcceso();
-       if (!isAuthenticated) {
+       const adminToken = await loginAcceso();
+       if (!adminToken) {
          throw new Error("No se pudo autenticar al administrador.");
        }
 
+       // Guarda el token donde corresponda (cookie, localStorage, etc.)
+      Cookies.set("X-Access-Token", adminToken);
+      console.log("Token almacenado:", adminToken);
+
+      // Iniciar sesion con el usuario real
       const response = await handleLogin({
         email: formData.email,
-        password: formData.password
+        password: formData.password,
+        adminToken: adminToken
       });
   
       console.log('Respuesta del login:', response);
-    
-      //await login({
-       // email: formData.email,
-       // password: formData.password,
-      //});
   
+      // Guardar el token del usuario
       saveUserSession(response.token, formData.rememberMe);
 
-      const idrol = response.value.idrol;
-      console.log('ID Rol:', idrol); // Verificar el valor de idrol en la consola
+      // Decodificar el token para obtener los datos del usuario
+      const decodedToken = jwtDecode(response);
+      console.log("Token decodificado:", decodedToken);
+
+      // Asegurar que `response` contiene los datos correctos
+      console.log("Datos completos de la respuesta:", response);
+
+      // Verifica si la respuesta tiene la estructura correcta
+      const idrol = decodedToken.role // Extraer el idrol del token
+      console.log('ID Rol obteneido:', idrol); // Verificar el valor de idrol en la consola
       
      // Redirigir según el rol
      if (idrol === 1) {

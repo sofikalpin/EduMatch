@@ -11,7 +11,6 @@ import Login from "./componentes/Login/Login";
 import { Registrar } from "./componentes/Registrar/Registrar";
 import  SubirCV  from "./componentes/Registrar/SubirCV";
 
-
 // Inicio
 import Inicio from "./componentes/inicio/Inicio/Inicio";
 import InicioProfesor from "./componentes/inicio/Profesores/ProfesorInicio"; 

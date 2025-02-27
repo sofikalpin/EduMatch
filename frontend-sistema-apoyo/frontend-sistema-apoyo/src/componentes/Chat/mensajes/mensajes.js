@@ -18,7 +18,6 @@ const Mensajes = ({ usuarioId, chatId }) => {
     const messagesContainerRef = useRef(null);
     const usuarioid = user.idusuario;
 
- 
   useEffect(() => {
 
         const obtenerUsuario = async () => {

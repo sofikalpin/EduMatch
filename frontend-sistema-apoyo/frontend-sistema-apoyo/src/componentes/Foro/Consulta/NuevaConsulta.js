@@ -5,7 +5,6 @@ import { useUser } from "../../../Context/UserContext.js";
 import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
 import Header from "../../inicio/Componentes/Header.js";
 
-
 const NuevaConsulta = () => {
   const { user } = useUser();
   const { idForo } = useParams(); 

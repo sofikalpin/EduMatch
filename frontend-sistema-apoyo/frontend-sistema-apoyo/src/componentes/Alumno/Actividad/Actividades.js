@@ -9,7 +9,7 @@ import Footer from "../../inicio/Componentes/Footer.js";
 
 const Actividades = () => {
   const location = useLocation();
-  const { nivel } = location.state || {}; // El nivel se pasa desde la ruta anterior
+  const { nivel } = location.state || {}; 
   const [searchQuery, setSearchQuery] = useState("");
   const [assignedActivities, setAssignedActivities] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
@@ -26,9 +26,6 @@ const Actividades = () => {
         if (!idAlumnoNivel) {
           throw new Error("El ID del alumno no está disponible.");
         }
-
-          
-         // Realiza la solicitud a la API para obtener actividades por nivel
          const response = await axiosInstance.get(`Actividad/ActividadesPorNivel?idNivel=${nivel}`);
         if (response.data.status && Array.isArray(response.data.value)) {
           setAssignedActivities(response.data.value);

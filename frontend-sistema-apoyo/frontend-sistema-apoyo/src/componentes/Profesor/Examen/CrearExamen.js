@@ -66,12 +66,7 @@ const CrearExamen = () => {
         fechaCreacion: new Date().toISOString().split("T")[0],
         url: examenUrl.length > 0 ? examenUrl[0] : "",
       };
-
-      if (!user) {
-        navigate("/iniciarsesion"); // Redirige si no está autenticado
-        return;
-      }
-
+      
       console.log(nuevoExamen);
       const response = await axiosInstance.post(
         "ProfeExamen/CrearExamen",

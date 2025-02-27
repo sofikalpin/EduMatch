@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from "react-markdown";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig";
-import { useUser } from '../../../Context/UserContext';
+import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
+import { useUser } from '../../../Context/UserContext.js';
 import articuloImagen from "../Imagenes/articulo.jpg";
 import deleteIcon from "../Imagenes/delete.png";
 import Header from "../../inicio/Componentes/Header.js";
@@ -24,8 +24,7 @@ const ArticuloDetalle = () => {
         setError(""); 
 
         if (!user) {
-          navigate("/iniciarsesion"); // Redirige si no está autenticado
-          return;
+          navigate("/iniciarsesion"); 
         }
 
         const respuesta = await axiosInstance.get(`Articulo/ArticuloID?id=${idarticulo}`);

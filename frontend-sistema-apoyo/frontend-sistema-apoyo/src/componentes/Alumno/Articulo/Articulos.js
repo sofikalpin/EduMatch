@@ -20,10 +20,8 @@ const Articulos = () => {
   const { user } = useUser();
 
   useEffect(() => {
-      // Verifica si el usuario está autenticado
       if (!user) {
-        navigate("/iniciarsesion"); // Redirige si no está autenticado
-        return;
+        navigate("/iniciarsesion"); 
     }
 
     const fetchArticulo = async () => {

@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import CrearChat from "../CrearChat/CrearChat.js";
 import nuevoChatIcon from "../ChatIcons/NewChatIcon.png";
 import { useUser } from "../../../Context/UserContext.js";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
 import { useNavigate } from "react-router-dom"; 
 import { ArrowLeft } from 'lucide-react';
 
@@ -23,9 +23,8 @@ const ListaChats = ({ onSelectChat, activeChat }) => {
 
   
    useEffect(() => {
-      // Verifica si el usuario está autenticado
         if (!user) {
-          navigate("/iniciarsesion"); // Redirige si no está autenticado
+          navigate("/iniciarsesion"); 
           return;
         }
         const cargarChats = async () => {
@@ -70,9 +69,6 @@ const ListaChats = ({ onSelectChat, activeChat }) => {
         }
     }, [idusuario]);
     
-    
-    
-
     const openModal = () => setModalIsOpen(true);
     const closeModal = () => setModalIsOpen(false);
 

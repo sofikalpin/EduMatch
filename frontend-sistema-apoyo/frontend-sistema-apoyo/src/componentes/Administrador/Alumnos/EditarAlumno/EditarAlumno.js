@@ -29,9 +29,8 @@ export const EditarAlumno = ({ onUpdate }) => {
 
     useEffect(() => {
         const cargarAlumno = async () => {
-            // Verifica si el usuario está autenticado
             if (!user) {
-                navigate("/iniciarsesion"); // Redirige si no está autenticado
+                navigate("/iniciarsesion");
                 return;
             }
 

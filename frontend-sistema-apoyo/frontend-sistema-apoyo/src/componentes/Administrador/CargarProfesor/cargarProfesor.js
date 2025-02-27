@@ -23,7 +23,7 @@ const CargarProfesor = () => {
             setLoading(true);
             try {
                 if (!user) {
-                    navigate("/iniciarsesion"); // Redirige si no está autenticado
+                    navigate("/iniciarsesion"); 
                     return;
                 }
 

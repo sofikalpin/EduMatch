@@ -5,7 +5,6 @@ import { useUser } from "../../../Context/UserContext";
 import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
 import Header from "../../inicio/Componentes/Header.js";
 
-
 const Card = ({ children, className }) => (
   <div className={`bg-white rounded-xl shadow-lg overflow-hidden ${className}`}>
     {children}

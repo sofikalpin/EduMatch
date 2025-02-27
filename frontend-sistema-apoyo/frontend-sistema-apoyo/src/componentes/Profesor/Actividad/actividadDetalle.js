@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import actividadImg from "../Imagenes/actividad.jpg";
-import { useUser } from '../../../Context/UserContext';
+import { useUser } from '../../../Context/UserContext.js';
 import deleteIcon from "../Imagenes/delete.png";
 import Header from "../../inicio/Componentes/Header.js";
 import Footer from "../../inicio/Componentes/Footer.js";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
 
 const ActividadDetalle = () => {
   const { idactividad } = useParams();
@@ -21,11 +21,10 @@ const ActividadDetalle = () => {
       try {
         setLoading(true);
         if (!user) {
-          navigate("/iniciarsesion"); // Redirige si no está autenticado
+          navigate("/iniciarsesion"); 
           return;
         }
 
-        // Si la autenticación es exitosa, obtenemos la actividad
         const respuesta = await axiosInstance.get(`Actividad/ActividadID?id=${idactividad}`);
         if (respuesta.data.status) {
           setActividad(respuesta.data.value);

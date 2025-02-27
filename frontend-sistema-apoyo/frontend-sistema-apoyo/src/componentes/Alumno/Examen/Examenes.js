@@ -21,9 +21,8 @@ const Examenes = () => {
   const { user } = useUser();
 
   useEffect(() => {
-    // Verifica si el usuario está autenticado
     if (!user) {
-      navigate("/iniciarsesion"); // Redirige si no está autenticado
+      navigate("/iniciarsesion"); 
       return;
   }
     const fetchExamenes = async () => {

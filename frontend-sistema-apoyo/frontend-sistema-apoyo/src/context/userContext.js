@@ -88,7 +88,6 @@ export const UserProvider = ({ children }) => {
   }, 500);
   };
 
-// En UserContext.js
 return (
   <UserContext.Provider value={{ user, setUser, login, logout, loading }}>
     {children}

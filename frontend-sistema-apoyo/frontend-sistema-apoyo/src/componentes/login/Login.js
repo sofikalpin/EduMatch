@@ -8,17 +8,14 @@ import axiosInstance from "../../AxiosConfig/AxiosConfig";
 import Cookies from 'js-cookie';
 import { jwtDecode } from "jwt-decode";
 
-// Almacenar referencia al interceptor para poder eliminarlo después
 let requestInterceptorId = null;
 
 // Configurar el interceptor de axios para incluir el token en las solicitudes
 const setupAuthInterceptor = (token) => {
-  // Si ya existe un interceptor, eliminarlo primero
   if (requestInterceptorId !== null) {
     axiosInstance.interceptors.request.eject(requestInterceptorId);
   }
   
-  // Crear nuevo interceptor y guardar su ID
   requestInterceptorId = axiosInstance.interceptors.request.use(
     (config) => {
       if (token) {
@@ -34,56 +31,48 @@ const setupAuthInterceptor = (token) => {
   return requestInterceptorId;
 };
 
-// Función para cerrar sesión (debe exportarse)
 export const logout = (navigateFunction, setUserFunction) => {
   console.log("Ejecutando logout completo");
   
-  // 1. Eliminar todos los tokens de almacenamiento
+  // Eliminar los tokens de almacenamiento
   localStorage.removeItem('token');
   sessionStorage.removeItem('token');
   
-  // 2. Limpiar todos los datos de sesión
+  // Limpiar los datos de sesión
   sessionStorage.removeItem("userData");
   sessionStorage.removeItem("authToken");
   
-  // 3. Eliminar todas las cookies relacionadas con autenticación
+  // Eliminar  las cookies relacionadas con autenticación
   Cookies.remove('token');
   
-  // 4. Eliminar todo el localStorage relacionado con la aplicación (puedes ajustar esto si hay datos que quieras conservar)
-  // Opción más segura - borrar solo items específicos de la aplicación
-  const appKeys = ['user', 'userInfo', 'userData', 'auth', 'session']; // Añade todas las keys que puedas usar
+  const appKeys = ['user', 'userInfo', 'userData', 'auth', 'session']; 
   appKeys.forEach(key => {
     localStorage.removeItem(key);
     sessionStorage.removeItem(key);
   });
   
-  // 5. Purgar cualquier estado en el contexto de React
   if (setUserFunction) {
     setUserFunction(null);
   }
   
-  // 6. Eliminar interceptor de Axios y resetear axios
+  // Eliminar interceptor de Axios y resetear axios
   if (requestInterceptorId !== null) {
     axiosInstance.interceptors.request.eject(requestInterceptorId);
     requestInterceptorId = null;
   }
   
-  // 7. Configurar axios para que no tenga token por defecto
+  // Configurar axios para que no tenga token por defecto
   delete axiosInstance.defaults.headers.common['Authorization'];
   
-  // 8. Forzar una recarga completa de la aplicación para limpiar todo el estado en memoria
-  // Esta es la acción más drástica - usa con precaución
+  // Recargar la aplicación 
   if (navigateFunction) {
-    // Redirecciona primero a una ruta específica
     navigateFunction("/iniciarsesion");
-    // Opcional: forzar recarga de página después de navegar
-    // setTimeout(() => window.location.reload(), 100);
   }
 };
 
 const handleLogin = async (email, password) => {
   try {
-    // Solicitud directa de autenticación sin el token de admin
+    // Solicitud de autenticación 
     const response = await axiosInstance.post('Usuario/IniciarSesion', {
       correo: email,
       contrasenaHash: password
@@ -101,7 +90,7 @@ const handleLogin = async (email, password) => {
 };
 
 const saveUserSession = (token, rememberMe) => {
-  // Limpiar completamente cualquier sesión anterior primero
+  
   localStorage.removeItem('token');
   sessionStorage.removeItem('token');
   
@@ -132,31 +121,28 @@ const Login = () => {
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [manualLogin, setManualLogin] = useState(false);
 
-  // Método para cerrar sesión desde este componente
   const handleLogout = () => {
     logout(navigate, setUser);
   };
 
-  // Ejecutar logout al montar el componente para asegurar siempre un estado limpio
   useEffect(() => {
     console.log("Login component mounted - cleaning any existing session");
-    logout(null, setUser); // No navegamos aquí para evitar loop infinito
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    logout(null, setUser); 
+  }, []); 
 
-  // Solo permitir autologin si se hace un login manual
   useEffect(() => {
     if (!manualLogin) {
-      return; // No hacer nada si no ha habido login manual
+      return; 
     }
     
     const token = localStorage.getItem('token') || sessionStorage.getItem('token');
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
+
         // Verificar si el token no ha expirado
         const currentTime = Date.now() / 1000;
         if (decodedToken.exp && decodedToken.exp > currentTime) {
-          // Token válido, configurar usuario y redirigir
           setupAuthInterceptor(token);
           const userData = {
             email: decodedToken.email,
@@ -165,10 +151,11 @@ const Login = () => {
             nombre:  decodedToken.unique_name || '',
             nivel : decodedToken.Idnivel,
             autprof : decodedToken.Autprof,
-            idusuario: parseInt(decodedToken.idusuario, 10) // Convierte a entero base 10
+            idusuario: parseInt(decodedToken.idusuario, 10) 
           };
           setUser(userData);
           setIsLoggingIn(true);
+
         } else {
           // Token expirado
           console.log("Token expirado, cerrando sesión");
@@ -176,11 +163,10 @@ const Login = () => {
         }
       } catch (error) {
         console.error("Error al decodificar token guardado:", error);
-        // Limpiar token inválido
         handleLogout();
       }
     }
-  }, [manualLogin, setUser]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [manualLogin, setUser]); 
 
   const handleLogoClick = () => {
     navigate('/');
@@ -222,7 +208,7 @@ const Login = () => {
     }
     setIsLoading(true);
     try {
-      // Iniciar sesión directamente con el usuario real
+      // Iniciar sesión con el usuario 
       const userToken = await handleLogin(
         formData.email,
         formData.password
@@ -230,14 +216,12 @@ const Login = () => {
 
       console.log('Login exitoso, token recibido');
 
-      // Guardar el token del usuario
       saveUserSession(userToken, formData.rememberMe);
 
-      // Decodificar el token para obtener los datos del usuario
       const decodedToken = jwtDecode(userToken);
       
       console.log('dato decodetoken:', decodedToken)
-      // Extraer el rol del token decodificado
+
       const idrol = parseInt(decodedToken.role);
       console.log('ID Rol obtenido:', idrol);
       
@@ -249,20 +233,15 @@ const Login = () => {
         nombre: decodedToken.unique_name|| '',
         nivel : decodedToken.Idnivel,
         autprof : decodedToken.Autprof,
-        idusuario: parseInt(decodedToken.idusuario, 10) // Convierte a entero base 10
-
-
+        idusuario: parseInt(decodedToken.idusuario, 10) 
       };
 
       console.log('datos del usuario::',userData);
 
-      // Actualizar el contexto del usuario
       setUser(userData);
       
-      // Indicar que se hizo login manual
       setManualLogin(true);
       
-      // Activar el estado de redirección
       setIsLoggingIn(true);
 
     } catch (error) {

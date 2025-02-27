@@ -22,10 +22,8 @@ const MisProfesores = () => {
 
 
   useEffect(() => {
-       // Verifica si el usuario está autenticado
        if (!user) {
-        navigate("/iniciarsesion"); // Redirige si no está autenticado
-        return;
+        navigate("/iniciarsesion"); 
        }
        const fetchProfesores = async () => {
         setLoading(true);
@@ -82,9 +80,12 @@ const MisProfesores = () => {
         comentario: newOpinion
       };
 
-      const response = await axiosInstance.post("Reseña/CrearReseñaAlumno", {
+      const response = await axiosInstance.post("Reseña/CrearReseñaAlumno", requestBody, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
-
+      
       if (!response.ok) {
         throw new Error("Error al agregar la opinión");
       }

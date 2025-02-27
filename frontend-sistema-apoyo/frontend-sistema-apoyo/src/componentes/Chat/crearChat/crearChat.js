@@ -66,24 +66,16 @@ const CrearChat = ({ idusuario, onChatCreado, onClose, chatsExistentes = [] }) =
       if (respuesta.status === 201 || respuesta.status === 200) {
         onChatCreado(respuesta.data);
        
-         // Notificamos al componente padre que se creó el chat
          onChatCreado(respuesta.data);
         
-         // Mostramos mensaje de éxito
          setMensajeExito("Chat creado con éxito.");
-         
-         // Mostramos la alerta
+
          setMostrarAlerta(true);
-         
-         // Esperamos 3 segundos y luego redirigimos al inicio
+
          setTimeout(() => {
-           window.location.href = "/"; // Redirige a la página de inicio
+           window.location.href = "/"; 
          }, 3000);
-       
-
       }
-
-      
     } catch (error) {
       console.error("Error al crear el chat: ", error);
       setError(error.response?.data?.msg || "No se pudo crear el chat.");

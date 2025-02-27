@@ -14,7 +14,6 @@ const UserReviews = () => {
     const navigate = useNavigate();
     const { user } = useUser();
 
-    // Función para obtener las reseñas existentes
     const fetchReviews = async () => {
         try {
             const response = await axiosInstance.get("Reseña/ObtenerReseñas");

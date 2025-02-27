@@ -12,9 +12,8 @@ const FilaProfesorExterno = ({ profesor, onDelete, onAutorizar }) => {
     useEffect(() => {
         const cargarNiveles = async () => {
             try {
-                // Verifica si el usuario está autenticado
                 if (!user) {
-                    navigate("/iniciarsesion"); // Redirige si no está autenticado
+                    navigate("/iniciarsesion"); 
                     return;
                 }
 

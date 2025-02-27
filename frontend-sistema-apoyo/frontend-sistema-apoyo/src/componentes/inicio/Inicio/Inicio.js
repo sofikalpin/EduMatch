@@ -61,7 +61,7 @@ export default function Inicio() {
           throw new Error('Se esperaba un arreglo de reseñas, pero se recibió otro formato');
         }
 
-        // Obtener los usuarios (si es necesario)
+        // Obtener los usuarios 
         const usersResponse = await axiosInstance.get('Usuario/ListaUsuarios');
         const usersData = usersResponse.data;
 
@@ -95,11 +95,9 @@ export default function Inicio() {
         // Ordenar reseñas por rating
         combinedReviews.sort((a, b) => b.rating - a.rating);
 
-        // Calcular el rating promedio
         const totalRating = reviewArray.reduce((sum, review) => sum + review.rating, 0);
         const avgRating = reviewArray.length > 0 ? Math.round(totalRating / reviewArray.length) : 0;
 
-        // Actualizar el estado
         setReviews(combinedReviews);
         setTotalReviews(reviewArray.length);
         setAverageRating(avgRating);

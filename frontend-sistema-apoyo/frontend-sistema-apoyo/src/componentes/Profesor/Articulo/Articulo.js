@@ -41,7 +41,7 @@ const ArticulosProfesor = () => {
         }
 
         if (!user) {
-          navigate("/iniciarsesion"); // Redirige si no está autenticado
+          navigate("/iniciarsesion"); 
           return;
         }
 

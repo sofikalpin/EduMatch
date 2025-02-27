@@ -8,7 +8,6 @@ import Footer from "../../inicio/Componentes/Footer.js";
 import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 import { useUser } from "../../../Context/UserContext";
 
-
 const ActividadesProfesor = () => {
   const location = useLocation();
   const { nivel, nombre } = location.state || {};
@@ -42,7 +41,7 @@ const ActividadesProfesor = () => {
         }
 
         if (!user) {
-          navigate("/iniciarsesion"); // Redirige si no está autenticado
+          navigate("/iniciarsesion"); 
           return;
         }
 

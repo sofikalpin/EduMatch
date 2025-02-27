@@ -47,7 +47,7 @@ const Footer = ({ role }) => {
     ]
   };
 
-  // Función simplificada para obtener secciones
+  // Función para obtener secciones
   const getVisibleSections = () => {
     const commonSections = [informacionSection, programaSection];
     
@@ -63,15 +63,12 @@ const Footer = ({ role }) => {
   };
 
   const visibleSections = getVisibleSections();
-  
-  // Log para depuración
-  console.log('Current role:', role);
-  console.log('Visible sections:', visibleSections);
 
   return (
     <footer className="bg-blue-900 text-white w-full">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+          
           {/* Secciones dinámicas */}
           {visibleSections.map((section, sectionIndex) => (
             <div 

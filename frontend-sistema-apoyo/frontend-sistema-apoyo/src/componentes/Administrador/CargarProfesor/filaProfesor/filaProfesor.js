@@ -10,9 +10,8 @@ const FilaProfesor = ({ profesor, onDelete, onAutorizar }) => {
     
     const obtenerCV = async (idUsuario) => {
         try {
-            // Verifica si el usuario está autenticado
             if (!user) {
-                navigate("/iniciarsesion"); // Redirige si no está autenticado
+                navigate("/iniciarsesion");
                 return;
             }
 

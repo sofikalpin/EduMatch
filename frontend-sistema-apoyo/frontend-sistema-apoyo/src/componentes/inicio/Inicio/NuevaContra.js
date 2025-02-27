@@ -22,23 +22,6 @@ const ResetPassword = () => {
 
   const navigate = useNavigate();
 
-  // Función de login admin para obtener el token inicial
-  const login = async (setError) => { // Agregar setError como parámetro
-    try {
-      const response = await axiosInstance.post("Acceso/Acceso", {
-        Correo: "admin@sistema.com",
-        Clave: "Admin123" // Asegúrate de usar la contraseña correcta
-      });
-      // Verificar si el login fue exitoso
-      console.log("Login response:", response.data);
-      return true;
-    } catch (error) {
-      console.error("Login failed:", error);
-      setError("Error de autenticación. Por favor, inicie sesión nuevamente.");
-      return false;
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -56,11 +39,6 @@ const ResetPassword = () => {
       console.log("Token:", token);
       console.log("Nueva contraseña:", newPassword);
 
-      // Primero intentamos autenticarnos
-      const isAuthenticated = await login(setError); // Pasar setError aquí
-      if (!isAuthenticated) {
-        throw new Error("No se pudo autenticar al usuario.");
-      }
       const response = await axiosInstance.post('Usuario/reestablecer-contrasena', {
         method: 'POST',
         headers: {

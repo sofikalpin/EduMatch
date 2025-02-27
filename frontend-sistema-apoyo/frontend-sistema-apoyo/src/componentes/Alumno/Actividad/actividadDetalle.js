@@ -6,8 +6,8 @@ import { ArrowLeft } from "lucide-react";
 import Header from "../../inicio/Componentes/Header.js";
 import Footer from "../../inicio/Componentes/Footer.js";
 import { useParams } from "react-router-dom";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig";
-import { useUser } from "../../../Context/UserContext";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
+import { useUser } from "../../../Context/UserContext.js";
 
 const ActividadDetalle = () => {
   const { idactividad } = useParams();
@@ -20,9 +20,8 @@ const ActividadDetalle = () => {
   const { user } = useUser();
  
   useEffect(() => {
-    // Verifica si el usuario está autenticado
     if (!user) {
-      navigate("/iniciarsesion"); // Redirige si no está autenticado
+      navigate("/iniciarsesion"); 
     return;
     }
     

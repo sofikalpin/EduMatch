@@ -5,7 +5,6 @@ import { useUser } from "../../../Context/UserContext.js";
 import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
 import Header from "../../inicio/Componentes/Header.js";
 
-
 const NuevoForo = () => {
     const { user } = useUser();
     const [nombre, setNombre] = useState('');

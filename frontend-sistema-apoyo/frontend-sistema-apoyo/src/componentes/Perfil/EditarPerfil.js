@@ -4,7 +4,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import axiosInstance from "../../AxiosConfig/AxiosConfig";
 import { useUser } from "../../Context/UserContext";
 
-
 const niveles = {
     A1: 1,
     A2: 2,
@@ -26,22 +25,20 @@ export const EditarPerfil = ({ onUpdate }) => {
     const [contraseñaHash, setContraseñaHash] = useState("");
     const [mensajeActualizado, setMensajeActualizado] = useState("");
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");  // Definir el estado para los errores
+    const [error, setError] = useState(""); 
 
 
     const navigate = useNavigate();
 
 
 useEffect(() => {
-    // Verifica si el usuario está autenticado
       if (!user) {
-        navigate("/iniciarsesion"); // Redirige si no está autenticado
+        navigate("/iniciarsesion");
         return;
       }
         const cargarAlumno = async () => {
             if (!idusuario) return;
             try {
-
                 const response = await axiosInstance.get(`Usuario/BuscarUsuario?idUsuario=${idusuario}`);
                 
                 if (!response.data || !response.data.value) throw new Error("No se encontraron datos del perfil.");

@@ -10,9 +10,7 @@ import axiosInstance from "../../AxiosConfig/AxiosConfig.js";
 const Foro = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
   const { user } = useUser();
-
   const [foro, setForo] = useState(null);
   const [usuario, setUsuario] = useState([]);
   const [consultas, setConsultas] = useState([]);
@@ -53,9 +51,8 @@ const Foro = () => {
   }, [location.state]);
 
   useEffect(() => {
-    // Verifica si el usuario está autenticado
     if (!user) {
-      navigate("/iniciarsesion"); // Redirige si no está autenticado
+      navigate("/iniciarsesion"); 
       return;
      }
     
@@ -66,7 +63,6 @@ const Foro = () => {
       setError("");
       
       try {
-        
         const respuesta = await axiosInstance.get(`Foro/ConsultasForo?idForo=${foro.idforo}`)
       
         if (Array.isArray(respuesta.data.value)) {  

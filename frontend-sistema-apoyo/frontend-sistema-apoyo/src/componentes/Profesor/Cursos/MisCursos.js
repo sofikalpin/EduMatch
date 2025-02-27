@@ -26,8 +26,7 @@ const MisCursos = () => {
     const cargarUsuarios = async () => {
     try {
       if (!user) {
-        navigate("/iniciarsesion"); // Redirige si no está autenticado
-        return;
+        navigate("/iniciarsesion");
       }
 
       const respuesta = await axiosInstance.get('Usuario/ListaUsuarios');

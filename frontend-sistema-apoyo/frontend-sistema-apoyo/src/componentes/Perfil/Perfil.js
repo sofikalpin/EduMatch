@@ -5,9 +5,8 @@ import axiosInstance from "../../AxiosConfig/AxiosConfig";
 import logo from "../../logo/LogoInicio.png";
 import { ArrowLeft } from 'lucide-react';
 
-
 const getRandomColor = (str) => {
-  if (!str) return '#ccc'; // Retorna un color por defecto si `str` está vacío o indefinido
+  if (!str) return '#ccc'; 
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
     hash = str.charCodeAt(i) + ((hash << 5) - hash);
@@ -15,7 +14,6 @@ const getRandomColor = (str) => {
   const h = Math.abs(hash) % 360;
   return `hsl(${h}, 70%, 50%)`;
 };
-
 
 const Perfil = () => {
   const { user, logout } = useUser();
@@ -26,13 +24,9 @@ const Perfil = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const navigate = useNavigate();
 
-
-
-
 useEffect(() => {
-    // Verifica si el usuario está autenticado
       if (!user) {
-        navigate("/iniciarsesion"); // Redirige si no está autenticado
+        navigate("/iniciarsesion");
         return;
       }
     if (user?.email) {
@@ -81,15 +75,14 @@ useEffect(() => {
     try {
       const token = sessionStorage.getItem('authToken');
   
-      // Crear un objeto FormData para enviar la foto como archivo
       const formData = new FormData();
       formData.append('correo', user.email);
-      formData.append('foto', photo); // photo debe ser un objeto File
+      formData.append('foto', photo); 
   
       const response = await axiosInstance.post('Usuario/ActualizarFoto', formData, {
         headers: {
           'Authorization':'Bearer ${token}',
-          'Content-Type': 'multipart/form-data' // Cambiar el Content-Type a multipart/form-data
+          'Content-Type': 'multipart/form-data' 
         }
       });
   

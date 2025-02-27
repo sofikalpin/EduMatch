@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 import articuloImagen from "../Imagenes/articulo.png"
 import Header from "../../inicio/Componentes/Header.js";
 import Footer from "../../inicio/Componentes/Footer.js";
-import { useUser } from "../../../Context/UserContext"; 
-import axiosInstance from "../../../AxiosConfig/AxiosConfig";
+import { useUser } from "../../../Context/UserContext.js"; 
+import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
 
 const ArticuloDetalle = () => {
   const { idarticulo } = useParams();
@@ -20,9 +20,8 @@ const ArticuloDetalle = () => {
     const { user } = useUser();
 
   useEffect(() => {
-    // Verifica si el usuario está autenticado
       if (!user) {
-        navigate("/iniciarsesion"); // Redirige si no está autenticado
+        navigate("/iniciarsesion");
         return;
       }
 

@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Authorization;
 namespace SistemaApoyo.API.Controllers
 {
     [Route("API/[controller]")]
-    [Authorize]
     [ApiController]
     public class ReseñaController : ControllerBase
     {

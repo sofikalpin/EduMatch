@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../logo/LogoInicio.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import axiosInstance from "../../AxiosConfig/AxiosConfig";
 
 export const Registrar = () => {
   const [step, setStep] = useState(1);
@@ -54,9 +55,8 @@ export const Registrar = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("http://localhost:5228/API/Usuario/ListaUsuarios");
-        if (!response.ok) throw new Error(`Error: ${response.status}`);
-        const data = await response.json();
+        const response = await axiosInstance.get("Usuario/ListaUsuarios");
+        const data = response.data;
         const usersArray = Array.isArray(data) ? data : data.users || [data];
         const emails = usersArray.map(user => user.correo);
         setExistingEmails(emails);
@@ -169,49 +169,46 @@ export const Registrar = () => {
         const rolSeleccionado = roles.find(
           rol => rol.descripcion === formData.userType
         );
-  
+
         const usuarioData = {
           idusuario: 0,
           nombrecompleto: formData.name,
           correo: formData.email,
           contraseñaHash: formData.password,
-          fecharegistro: new Date().toISOString().split('T')[0], 
+          fecharegistro: new Date().toISOString().split('T')[0],
           idnivel: nivelSeleccionado?.idnivel || 0,
           idrol: rolSeleccionado?.idrol || 0,
           autProf: formData.userType === "profesor",
           tokenRecuperacion: generateToken(),
-          tokenExpiracion: new Date().toISOString(), 
-          cvRuta: null, 
-          fotoRuta: "string" 
+          tokenExpiracion: new Date().toISOString(),
+          cvRuta: null,
+          fotoRuta: "string"
         };
-   
-        console.log('Datos a enviar:', usuarioData); 
-  
-        const response = await fetch("http://localhost:5228/API/Usuario/GuardarUsuario", {
-          method: "POST",
-          headers: { 
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(usuarioData)
-        });
-  
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || `Error en el registro: ${response.status}`);
-        }
-  
-        if (formData.userType === "profesor") {
-          
-          localStorage.setItem('professorEmail', formData.email);
-          alert("Registro exitoso. Por favor, sube tu CV para completar el registro.");
-          navigate("/subirCV");
+
+        console.log('Datos a enviar:', usuarioData);
+
+        const response = await axiosInstance.post("Usuario/GuardarUsuario", usuarioData);
+
+        if (response.status === 200 || response.status === 201) {
+          if (formData.userType === "profesor") {
+            localStorage.setItem('professorEmail', formData.email);
+            alert("Registro exitoso. Por favor, sube tu CV para completar el registro.");
+            navigate("/subirCV");
+          } else {
+            alert("Registro exitoso");
+            navigate("/login");
+          }
         } else {
-          alert("Registro exitoso");
-          navigate("/login");
+          throw new Error(`Error en el registro: ${response.status}`);
         }
       } catch (error) {
         console.error("Error:", error);
-        alert("Error en el registro: " + error.message);
+        if (error.response) {
+          console.error("Detalles del error:", error.response.data);
+          alert("Error en el registro: " + error.response.data.title);
+        } else {
+          alert("Error en el registro: " + error.message);
+        }
       } finally {
         setLoading(false);
       }

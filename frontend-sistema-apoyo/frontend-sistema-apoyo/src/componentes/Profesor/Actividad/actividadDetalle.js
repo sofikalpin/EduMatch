@@ -4,8 +4,8 @@ import ReactMarkdown from "react-markdown";
 import actividadImg from "../Imagenes/actividad.jpg";
 import { useUser } from '../../../Context/UserContext';
 import deleteIcon from "../Imagenes/delete.png";
-import Header from "../HeaderProfesor";
-import Footer from "../FooterProfesor";
+import Header from "../../inicio/Componentes/Header.js";
+import Footer from "../../inicio/Componentes/Footer.js";
 import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 
 const ActividadDetalle = () => {

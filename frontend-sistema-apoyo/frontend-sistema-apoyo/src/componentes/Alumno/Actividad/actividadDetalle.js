@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import logoactividad from "../Imagenes/actividades.png";
 import { ArrowLeft } from "lucide-react";
-import Header from "../HeaderAlumno";
-import Footer from "../FooterAlumno";
+import Header from "../../inicio/Componentes/Header.js";
+import Footer from "../../inicio/Componentes/Footer.js";
 import { useParams } from "react-router-dom";
 import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 import { useUser } from "../../../Context/UserContext";
@@ -20,17 +20,17 @@ const ActividadDetalle = () => {
   const { user } = useUser();
  
   useEffect(() => {
+    // Verifica si el usuario está autenticado
+    if (!user) {
+      navigate("/iniciarsesion"); // Redirige si no está autenticado
+    return;
+    }
     
     const encontrarActividad = async () => {
       try {
-          // Verifica si el usuario está autenticado
-          if (!user) {
-            navigate("/iniciarsesion"); // Redirige si no está autenticado
-            return;
-        }
 
         setLoading(true);
-        const respuesta = await axiosInstance.get(`http://localhost:5228/API/Actividad/ActividadID?id=${idactividad}`);
+        const respuesta = await axiosInstance.get(`Actividad/ActividadID?id=${idactividad}`);
         if (respuesta.data.status) {
           setActividad(respuesta.data.value);
         } else {

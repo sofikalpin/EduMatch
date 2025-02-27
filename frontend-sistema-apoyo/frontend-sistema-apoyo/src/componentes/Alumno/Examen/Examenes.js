@@ -3,9 +3,11 @@ import { FaSearch } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react';
 import examenLogo from "../Imagenes/examen.png";
-import Header from "../HeaderAlumno";
-import Footer from "../FooterAlumno";
-import axios from "axios";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
+import { useUser } from "../../../Context/UserContext";
+import Header from "../../inicio/Componentes/Header.js";
+import Footer from "../../inicio/Componentes/Footer.js";
+
 
 const Examenes = () => {
   const location = useLocation();
@@ -16,8 +18,14 @@ const Examenes = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { user } = useUser();
 
   useEffect(() => {
+    // Verifica si el usuario está autenticado
+    if (!user) {
+      navigate("/iniciarsesion"); // Redirige si no está autenticado
+      return;
+  }
     const fetchExamenes = async () => {
       setLoading(true);
       setError("");
@@ -27,7 +35,7 @@ const Examenes = () => {
           throw new Error("El ID del alumno no está disponible.");
         }
 
-        const response = await axios.get(`http://localhost:5228/api/examenes/ExamenPorNivel?idNivel=${idAlumnoNivel}`);
+        const response = await axiosInstance.get(`examenes/ExamenPorNivel?idNivel=${idAlumnoNivel}`);
         if (response.data.status && Array.isArray(response.data.value)) {
           setAssignedExamenes(response.data.value);
         } else {

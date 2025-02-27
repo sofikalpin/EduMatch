@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 import { useUser } from "../../../Context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const CrearChat = ({ idusuario, onChatCreado, onClose, chatsExistentes = [] }) => {
   const { user } = useUser();
@@ -10,13 +11,14 @@ const CrearChat = ({ idusuario, onChatCreado, onClose, chatsExistentes = [] }) =
   const [busqueda, setBusqueda] = useState("");
   const [mensajeExito, setMensajeExito] = useState("");
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
   const [error, setError] = useState("");
-
+  const [mostrarAlerta, setMostrarAlerta] = useState(false);
   useEffect(() => {
-    const cargarContactos = async () => {
+      const cargarContactos = async () => {
       setLoading(true);
       try {
-        const respuesta = await axios.get("http://localhost:5228/API/Chat/ListaContactos");
+        const respuesta = await axiosInstance.get("Chat/ListaContactos");
         if (respuesta.data.status) {
           setContactos(respuesta.data.value);
           setContactoFiltrado(respuesta.data.value);
@@ -59,13 +61,29 @@ const CrearChat = ({ idusuario, onChatCreado, onClose, chatsExistentes = [] }) =
     };
 
     try {
-      const respuesta = await axios.post("http://localhost:5228/API/Chat/CrearChat", datosChat);
+      const respuesta = await axiosInstance.post("Chat/CrearChat", datosChat);
       setMensajeExito("Chat creado con éxito.");
       if (respuesta.status === 201 || respuesta.status === 200) {
         onChatCreado(respuesta.data);
        
-        window.location.reload();
+         // Notificamos al componente padre que se creó el chat
+         onChatCreado(respuesta.data);
+        
+         // Mostramos mensaje de éxito
+         setMensajeExito("Chat creado con éxito.");
+         
+         // Mostramos la alerta
+         setMostrarAlerta(true);
+         
+         // Esperamos 3 segundos y luego redirigimos al inicio
+         setTimeout(() => {
+           window.location.href = "/"; // Redirige a la página de inicio
+         }, 3000);
+       
+
       }
+
+      
     } catch (error) {
       console.error("Error al crear el chat: ", error);
       setError(error.response?.data?.msg || "No se pudo crear el chat.");

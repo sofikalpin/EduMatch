@@ -6,9 +6,10 @@ import logoB1 from "../../../logo/Cursos/B1.png";
 import logoB2 from "../../../logo/Cursos/B2.png";
 import logoC1 from "../../../logo/Cursos/C1.png";
 import logoC2 from "../../../logo/Cursos/C2.png";
-import Header from "../HeaderAlumno";
-import Footer from "../FooterAlumno";
+import Header from "../../inicio/Componentes/Header.js";
+import Footer from "../../inicio/Componentes/Footer.js";
 import { useUser } from "../../../Context/UserContext";
+
 
 const MisCursos = () => {
   const { user } = useUser(); 
@@ -18,7 +19,7 @@ const MisCursos = () => {
     navigate("/alumno/cursos", { state: { nivel: curso.nivel, nombre: curso.nombre } });
   };
 
-  const nivelAlumno = user?.idnivel || 1;  
+  const nivelAlumno = user?.nivel || 1;  
 
   const cursos = [
     { nombre: "A1: Curso Principiante", nivel: 1, imagen: logoA1 },

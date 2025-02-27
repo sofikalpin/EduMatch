@@ -162,7 +162,10 @@ const Login = () => {
             email: decodedToken.email,
             idrol: parseInt(decodedToken.role),
             token: token,
-            nombre: decodedToken.nombre || ''
+            nombre:  decodedToken.unique_name || '',
+            nivel : decodedToken.Idnivel,
+            autprof : decodedToken.Autprof,
+            idusuario: parseInt(decodedToken.idusuario, 10) // Convierte a entero base 10
           };
           setUser(userData);
           setIsLoggingIn(true);
@@ -233,6 +236,7 @@ const Login = () => {
       // Decodificar el token para obtener los datos del usuario
       const decodedToken = jwtDecode(userToken);
       
+      console.log('dato decodetoken:', decodedToken)
       // Extraer el rol del token decodificado
       const idrol = parseInt(decodedToken.role);
       console.log('ID Rol obtenido:', idrol);
@@ -242,8 +246,15 @@ const Login = () => {
         email: decodedToken.email,
         idrol: idrol,
         token: userToken,
-        nombre: decodedToken.nombre || ''
+        nombre: decodedToken.unique_name|| '',
+        nivel : decodedToken.Idnivel,
+        autprof : decodedToken.Autprof,
+        idusuario: parseInt(decodedToken.idusuario, 10) // Convierte a entero base 10
+
+
       };
+
+      console.log('datos del usuario::',userData);
 
       // Actualizar el contexto del usuario
       setUser(userData);

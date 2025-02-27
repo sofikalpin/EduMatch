@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import fileIcon from "../Imagenes/examen.avif";
 import deleteIcon from "../Imagenes/delete.png";
-import Header from "../HeaderProfesor";
-import Footer from "../FooterProfesor";
+import Header from "../../inicio/Componentes/Header.js";
+import Footer from "../../inicio/Componentes/Footer.js";
 import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 import { useUser } from "../../../Context/UserContext";
 
@@ -42,10 +42,15 @@ const ExamenDetalle = () => {
 
   const handleDelete = async () => {
 
-    if (user.idUsuario !== examen?.idusuario) {
+    console.log("User ID:", user.idusuario);
+    console.log("Examen User ID:", examen?.idusuario);
+
+    if (user.idusuario !== examen?.idusuario) {
       alert("No tienes permisos para eliminar este examen.");
       return; 
+  
     }
+
 
     if (window.confirm("¿Está seguro que desea eliminar este examen?")) {
       try {
@@ -64,6 +69,8 @@ const ExamenDetalle = () => {
       }
     }
   };
+
+  
 
   const esGoogleForm = (url) => {
     const regex = /^https:\/\/docs\.google\.com\/forms\/d\/e\/[a-zA-Z0-9_-]+\/(viewform|edit)(\?.*)?$/;
@@ -113,7 +120,7 @@ const ExamenDetalle = () => {
             <button
               onClick={handleDelete}
               className={`p-2 rounded-full transition-colors duration-200 ml-4 ${
-                user.idUsuario !== examen?.idusuario
+                user.idusuario !== examen?.idusuario
                   ? "bg-red-200 cursor-not-allowed"
                   : "bg-red-100 hover:bg-red-200"
               }`}

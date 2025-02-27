@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { User, X } from "lucide-react";
-import TopBar from "../Componentes/TopBar";
 import Header from "../Componentes/Header";
 import Footer from "../Componentes/Footer";
 import logo from "../../../logo/LogoInicio.png";
 import axiosInstance from "../../../AxiosConfig/AxiosConfig";
-import axios from "axios";
 
 const footerSections = {
   section1: {
@@ -65,7 +63,6 @@ const TeacherCard = ({ teacher }) => {
                   <li key={index} className="border p-3 rounded-lg shadow-sm">
                     <p className="text-sm text-gray-700">"{review.comment}"</p>
                     <p className="text-xs text-gray-500 mt-1">— {review.userName.split(" ")[0]}</p>
-
                   </li>
                 ))
               ) : (
@@ -99,54 +96,36 @@ export default function InicioProfesor() {
     return defaultValue;
   };
 
-  // Función de login admin para obtener el token inicial
-  const login = async () => {
-    try {
-      const response = await axiosInstance.post("Acceso/Acceso", {
-        Correo: "admin@sistema.com",
-        Clave: "Admin123" // Asegúrate de usar la contraseña correcta
-      });
-      // Verificar si el login fue exitoso
-      console.log("Login response:", response.data);
-      return true;
-    } catch (error) {
-      console.error("Login failed:", error);
-      setError("Error de autenticación. Por favor, inicie sesión nuevamente.");
-      return false;
-    }
-  };
-
   useEffect(() => {
     const fetchTeachers = async () => {
       try {
         setLoading(true);
-      // Primero intentamos autenticarnos
-      const isAuthenticated = await login();
-      if (!isAuthenticated) {
-        throw new Error("No se pudo autenticar al usuario.");
-      }
 
+        // Obtener las reseñas
         const reviewsResponse = await axiosInstance.get('Reseña/ListaReseñasAlumno');
-        if (!reviewsResponse.ok) throw new Error('Error al obtener las reseñas');
-        const reviewsData = await reviewsResponse.json();
+        const reviewsData = reviewsResponse.data;
 
-        const usersResponse = await axiosInstance.get('/Usuario/ListaUsuarios');
-        if (!usersResponse.ok) throw new Error('Error al obtener los usuarios');
-        const usersRawData = await usersResponse.json();
+        // Obtener los usuarios
+        const usersResponse = await axiosInstance.get('Usuario/ListaUsuarios');
+        const usersData = usersResponse.data;
 
-        const reviewsList = Array.isArray(reviewsData) ? reviewsData : (reviewsData.value && Array.isArray(reviewsData.value)) ? reviewsData.value : null;
-        const usersData = Array.isArray(usersRawData) ? usersRawData : (usersRawData.value && Array.isArray(usersRawData.value)) ? usersRawData.value : null;
+        // Verificar si las reseñas y los usuarios son arreglos
+        const reviewsList = Array.isArray(reviewsData) ? reviewsData : [];
+        const usersList = Array.isArray(usersData) ? usersData : [];
 
-        if (!reviewsList || !usersData) throw new Error('Datos no válidos para reseñas o usuarios');
+        if (!reviewsList.length || !usersList.length) {
+          throw new Error('No se encontraron reseñas o usuarios');
+        }
 
         let teachersMap = {};
-        
+
+        // Procesar las reseñas
         reviewsList.forEach((review) => {
           const profesorId = getPropertySafely(review, ['idProfesor', 'profesorId', 'id_profesor']);
           if (!profesorId) return;
 
           if (!teachersMap[profesorId]) {
-            const profesorUser = usersData.find(u => getPropertySafely(u, ['idusuario', 'id', 'userId']) == profesorId);
+            const profesorUser = usersList.find(u => getPropertySafely(u, ['idusuario', 'id', 'userId']) == profesorId);
             if (!profesorUser) return;
 
             teachersMap[profesorId] = {
@@ -163,7 +142,7 @@ export default function InicioProfesor() {
           }
 
           const alumnoId = getPropertySafely(review, ['idusuario', 'idUsuario', 'userId', 'id_usuario']);
-          const alumnoUser = usersData.find(u => getPropertySafely(u, ['idusuario', 'id', 'userId']) == alumnoId);
+          const alumnoUser = usersList.find(u => getPropertySafely(u, ['idusuario', 'id', 'userId']) == alumnoId);
           const userName = alumnoUser ? getPropertySafely(alumnoUser, ['nombreCompleto', 'nombre', 'nombrecompleto', 'username', 'name'], 'Usuario desconocido') : 'Usuario desconocido';
 
           teachersMap[profesorId].reviews.push({
@@ -180,52 +159,9 @@ export default function InicioProfesor() {
           teachersMap[profesorId].rating = teachersMap[profesorId].totalRating / teachersMap[profesorId].ratingCount;
         });
 
-        let teachersArray = [];
-        const uniqueLevels = new Set();
-        for (const teacherId in teachersMap) {
-          const teacher = teachersMap[teacherId];
-
-          if (teacher.levelId) {
-            try {
-              const levelResponse = await axiosInstance.get(`Nivel/Nivel ID?id=${teacher.levelId}`);
-              if (levelResponse.ok) {
-                const levelData = await levelResponse.json();
-                console.log("Level data:", levelData);
-                
-                if (levelData.value && typeof levelData.value === 'object') {
-                  teacher.levelName = levelData.value.descripcion || 
-                                    levelData.value.descripción ||
-                                    levelData.value.description ||
-                                    "Nivel no especificado";
-                } else {
-                  teacher.levelName = levelData.descripcion ||
-                                    levelData.descripción ||
-                                    levelData.description ||
-                                    "Nivel no especificado";
-                }
-          
-                if (teacher.levelName !== "Nivel no especificado") {
-                  uniqueLevels.add(teacher.levelName);
-                }
-                
-                console.log("Processed level name:", teacher.levelName);
-              } else {
-                console.error(`Error en la respuesta del nivel: ${levelResponse.status}`);
-                teacher.levelName = "Nivel no especificado";
-              }
-            } catch (levelError) {
-              console.error("Error al obtener el nivel:", levelError);
-              teacher.levelName = "Nivel no especificado";
-            }
-          } else {
-            teacher.levelName = "Nivel no especificado";
-          }
-
-          teachersArray.push(teacher);
-        }
-
-        setTeachers([...teachersArray]);
-        setLevels([...uniqueLevels].sort());
+        let teachersArray = Object.values(teachersMap);
+        setTeachers(teachersArray);
+        setLevels([...new Set(teachersArray.map(teacher => teacher.levelName))].sort());
       } catch (err) {
         setError(err.message);
       } finally {
@@ -246,7 +182,6 @@ export default function InicioProfesor() {
 
   return (
     <div className="bg-gray-100 flex flex-col min-h-screen">
-      <TopBar onLogin={() => navigate('/iniciarsesion')} onRegister={() => navigate('/registrarse')} />
       <Header onNavigate={navigate} logo={logo} />
       
       <div className="flex-grow">

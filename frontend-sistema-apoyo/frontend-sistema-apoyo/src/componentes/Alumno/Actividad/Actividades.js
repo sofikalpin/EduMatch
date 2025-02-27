@@ -4,8 +4,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react';
 import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 import actividad from "../Imagenes/actividades.png";
-import Header from "../HeaderAlumno";
-import Footer from "../FooterAlumno";
+import Header from "../../inicio/Componentes/Header.js";
+import Footer from "../../inicio/Componentes/Footer.js";
 
 const Actividades = () => {
   const location = useLocation();

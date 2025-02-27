@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../logo/LogoInicio.png";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useUser } from "../../Context/UserContext";
-import axios from "axios";
 import axiosInstance from "../../AxiosConfig/AxiosConfig";
+import { useUser } from "../../Context/UserContext";
+
 
 const niveles = {
     A1: 1,
@@ -26,40 +26,23 @@ export const EditarPerfil = ({ onUpdate }) => {
     const [contraseñaHash, setContraseñaHash] = useState("");
     const [mensajeActualizado, setMensajeActualizado] = useState("");
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
+    const [error, setError] = useState("");  // Definir el estado para los errores
+
 
     const navigate = useNavigate();
 
-    // Función de login admin para obtener el token inicial
-    const login = async () => {
-        try {
-        const response = await axiosInstance.post("Acceso/Acceso", {
-            Correo: "admin@sistema.com",
-            Clave: "Admin123" // Asegúrate de usar la contraseña correcta
-        });
-        // Verificar si el login fue exitoso
-        console.log("Login response:", response.data);
-        return true;
-        } catch (error) {
-        console.error("Login failed:", error);
-        setError("Error de autenticación. Por favor, inicie sesión nuevamente.");
-        return false;
-        }
-    };
 
-    useEffect(() => {
+useEffect(() => {
+    // Verifica si el usuario está autenticado
+      if (!user) {
+        navigate("/iniciarsesion"); // Redirige si no está autenticado
+        return;
+      }
         const cargarAlumno = async () => {
             if (!idusuario) return;
             try {
-                // Primero intentamos autenticarnos
-                const isAuthenticated = await login();
-                if (!isAuthenticated) {
-                    throw new Error("No se pudo autenticar al usuario.");
-                }
 
-                const response = await axiosInstance.get(
-                    `Usuario/BuscarUsuario?idUsuario=${idusuario}`
-                );
+                const response = await axiosInstance.get(`Usuario/BuscarUsuario?idUsuario=${idusuario}`);
                 
                 if (!response.data || !response.data.value) throw new Error("No se encontraron datos del perfil.");
                 const perfilData = response.data.value;

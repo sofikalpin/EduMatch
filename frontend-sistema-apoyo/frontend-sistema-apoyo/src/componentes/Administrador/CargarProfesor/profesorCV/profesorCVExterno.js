@@ -3,8 +3,8 @@ import { ArrowLeft, Eye, Download } from 'lucide-react';
 import { useNavigate, useLocation } from "react-router-dom";
 
 import { Mail, GraduationCap, Award, Briefcase } from 'lucide-react';
-import Header from "../../HeaderAdministrador";
-import Footer from "../../FooteraAdministrador";
+import Header from "../../../inicio/Componentes/Header.js";
+import Footer from "../../../inicio/Componentes/Footer.js";
 
 const ProfesorCVExterno = () => {
   const navigate = useNavigate();

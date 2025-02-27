@@ -262,3 +262,18 @@ C:\Users\Usuario\OneDrive - UTN FRLP\Escritorio\EduMatch\cambiosOri\EduMatch\Bac
 C:\Users\Usuario\OneDrive - UTN FRLP\Escritorio\EduMatch\cambiosOri\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\obj\Debug\net8.0\SistemaApoyo.Model.pdb
 C:\Users\Usuario\OneDrive - UTN FRLP\Escritorio\EduMatch\cambiosOri\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\obj\Debug\net8.0\SistemaApoyo.Model.genruntimeconfig.cache
 C:\Users\Usuario\OneDrive - UTN FRLP\Escritorio\EduMatch\cambiosOri\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\obj\Debug\net8.0\ref\SistemaApoyo.Model.dll
+C:\Users\orian\Documents\versionFinal\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\bin\Debug\net8.0\SistemaApoyo.Model.deps.json
+C:\Users\orian\Documents\versionFinal\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\bin\Debug\net8.0\SistemaApoyo.Model.runtimeconfig.json
+C:\Users\orian\Documents\versionFinal\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\bin\Debug\net8.0\SistemaApoyo.Model.dll
+C:\Users\orian\Documents\versionFinal\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\bin\Debug\net8.0\SistemaApoyo.Model.pdb
+C:\Users\orian\Documents\versionFinal\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\obj\Debug\net8.0\SistemaApoyo.Model.csproj.AssemblyReference.cache
+C:\Users\orian\Documents\versionFinal\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\obj\Debug\net8.0\SistemaApoyo.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\orian\Documents\versionFinal\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\obj\Debug\net8.0\SistemaApoyo.Model.AssemblyInfoInputs.cache
+C:\Users\orian\Documents\versionFinal\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\obj\Debug\net8.0\SistemaApoyo.Model.AssemblyInfo.cs
+C:\Users\orian\Documents\versionFinal\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\obj\Debug\net8.0\SistemaApoyo.Model.csproj.CoreCompileInputs.cache
+C:\Users\orian\Documents\versionFinal\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\obj\Debug\net8.0\SistemaApoyo.Model.sourcelink.json
+C:\Users\orian\Documents\versionFinal\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\obj\Debug\net8.0\SistemaApoyo.Model.dll
+C:\Users\orian\Documents\versionFinal\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\obj\Debug\net8.0\refint\SistemaApoyo.Model.dll
+C:\Users\orian\Documents\versionFinal\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\obj\Debug\net8.0\SistemaApoyo.Model.pdb
+C:\Users\orian\Documents\versionFinal\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\obj\Debug\net8.0\SistemaApoyo.Model.genruntimeconfig.cache
+C:\Users\orian\Documents\versionFinal\EduMatch\Backend\APISistemaApoyo\SistemaApoyo.Model\obj\Debug\net8.0\ref\SistemaApoyo.Model.dll

@@ -5,9 +5,8 @@ import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 import { useUser } from '../../../Context/UserContext';
 import articuloImagen from "../Imagenes/articulo.jpg";
 import deleteIcon from "../Imagenes/delete.png";
-import Header from "../HeaderProfesor";
-import Footer from "../FooterProfesor";
-
+import Header from "../../inicio/Componentes/Header.js";
+import Footer from "../../inicio/Componentes/Footer.js";
 const ArticuloDetalle = () => {
   const { idarticulo } = useParams();
   const navigate = useNavigate();

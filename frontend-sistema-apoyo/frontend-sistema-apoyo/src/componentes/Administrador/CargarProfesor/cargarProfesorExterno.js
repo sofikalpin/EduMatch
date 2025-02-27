@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import TablaProfesoresExterno from "./TablaProfesAutorizar/TablaProfesorAExterno.js";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig";
-import { useUser } from "../../../Context/UserContext";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
+import { useUser } from "../../../Context/UserContext.js";
 import { ArrowLeft } from "lucide-react";
-import Header from "../HeaderAdministrador.js";
-import Footer from "../FooteraAdministrador.js";
+import Header from "../../inicio/Componentes/Header.js";
+import Footer from "../../inicio/Componentes/Footer.js";
 import JellyJobs from "./Imagen/JellyJobs.png";
 import { useNavigate } from "react-router-dom";
 

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../../../Context/UserContext"; 
-import Header from "../HeaderAlumno";
-import Footer from "../FooterAlumno";
+import Header from "../../inicio/Componentes/Header.js";
+import Footer from "../../inicio/Componentes/Footer.js";
 import { Search, UserRound, MessageCircle, Send, X, Star } from "lucide-react";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
+import { useNavigate } from "react-router-dom";
+
 
 const MisProfesores = () => {
   const { user } = useUser(); 
@@ -15,32 +18,41 @@ const MisProfesores = () => {
   const [newOpinion, setNewOpinion] = useState("");
   const [ratingsMap, setRatingsMap] = useState({}); 
   const [currentRating, setCurrentRating] = useState(0); 
+  const navigate = useNavigate();
+
 
   useEffect(() => {
-    const fetchProfesores = async () => {
-      try {
-        const response = await fetch("http://localhost:5228/API/AdministradorProfesor/ListaProfesoresAutorizados");
-        if (!response.ok) {
-          throw new Error("Error al cargar los profesores");
+       // Verifica si el usuario está autenticado
+       if (!user) {
+        navigate("/iniciarsesion"); // Redirige si no está autenticado
+        return;
+       }
+       const fetchProfesores = async () => {
+        setLoading(true);
+        setError("");
+        try {
+          const response = await axiosInstance.get("AdministradorProfesor/ListaProfesoresAutorizados");
+          if (response.status !== 200) {
+            throw new Error("Error al cargar los profesores");
+          }
+          const data = response.data;
+          const profesoresData = Array.isArray(data.value) ? data.value : [];
+          setProfesores(profesoresData);
+      
+          const opinionesIniciales = {};
+          const ratingsIniciales = {};
+          profesoresData.forEach(profesor => {
+            opinionesIniciales[profesor.idusuario] = [];
+            ratingsIniciales[profesor.idusuario] = 0; 
+          });
+          setOpinionesMap(opinionesIniciales);
+          setRatingsMap(ratingsIniciales);
+        } catch (error) {
+          setError(error.message);
+        } finally {
+          setLoading(false);
         }
-        const data = await response.json();
-        const profesoresData = Array.isArray(data.value) ? data.value : [];
-        setProfesores(profesoresData);
-
-        const opinionesIniciales = {};
-        const ratingsIniciales = {};
-        profesoresData.forEach(profesor => {
-          opinionesIniciales[profesor.idusuario] = [];
-          ratingsIniciales[profesor.idusuario] = 0; 
-        });
-        setOpinionesMap(opinionesIniciales);
-        setRatingsMap(ratingsIniciales);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+      };
 
     fetchProfesores();
   }, []);
@@ -63,20 +75,14 @@ const MisProfesores = () => {
       const requestBody = {
         idReseña: 0,
         idusuario: user.idusuario,
-        nombreUsuario: user.nombrecompleto,
+        nombreUsuario: user.nombre,
         idProfesor: profesorId,
         nombreProfesor: profesores.find(p => p.idusuario === profesorId)?.nombrecompleto || "Desconocido",
         rating: currentRating,
         comentario: newOpinion
       };
 
-      const response = await fetch("http://localhost:5228/API/Reseña/CrearReseñaAlumno", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify(requestBody)
+      const response = await axiosInstance.post("Reseña/CrearReseñaAlumno", {
       });
 
       if (!response.ok) {

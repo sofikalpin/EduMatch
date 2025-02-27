@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Modal from "react-modal";
 import CrearChat from "../CrearChat/CrearChat.js";
 import nuevoChatIcon from "../ChatIcons/NewChatIcon.png";
 import { useUser } from "../../../Context/UserContext.js";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 import { useNavigate } from "react-router-dom"; 
 import { ArrowLeft } from 'lucide-react';
 
@@ -16,49 +16,62 @@ const ListaChats = ({ onSelectChat, activeChat }) => {
     const [busqueda, setBusqueda] = useState("");
     const [rolseleccionado, setRolseleccionado] = useState("");
     const [modalIsOpen, setModalIsOpen] = useState(false);
+      
 
     const idusuario = user?.idusuario;
     const navigate = useNavigate(); 
 
-    useEffect(() => {
+  
+   useEffect(() => {
+      // Verifica si el usuario está autenticado
+        if (!user) {
+          navigate("/iniciarsesion"); // Redirige si no está autenticado
+          return;
+        }
         const cargarChats = async () => {
             setLoading(true);
             try {
-                const respuesta = await axios.get(
-                    `http://localhost:5228/API/Chat/ChatporUsuarioID?userId=${idusuario}`
-                );
+                if (!idusuario) {
+                    throw new Error("ID de usuario no válido.");
+                }
+    
+                const respuesta = await axiosInstance.get(`Chat/ChatporUsuarioID?userId=${idusuario}`);
                 setChats(Array.isArray(respuesta.data.value) ? respuesta.data.value : []);
-
+                
                 const idsUsuarios = new Set();
                 respuesta.data.value.forEach(chat => {
                     idsUsuarios.add(chat.idusuario1);
                     idsUsuarios.add(chat.idusuario2);
                 });
-
+    
                 const datosUsuarios = await Promise.all(
                     [...idsUsuarios].map(async (id) => {
-                        const usuarioResp = await axios.get(
-                            `http://localhost:5228/API/Usuario/BuscarUsuario?idUsuario=${id}`
-                        );
+                        const usuarioResp = await axiosInstance.get(`Usuario/BuscarUsuario?idUsuario=${id}`);
                         return { id, ...usuarioResp.data.value };
                     })
                 );
-
+    
                 const usuarioMap = {};
                 datosUsuarios.forEach(receptor => {
                     usuarioMap[receptor.id] = receptor;
                 });
                 setReceptor(usuarioMap);
+    
             } catch (error) {
                 console.error("Error al obtener los datos del chat: ", error);
-                setError("No se pudo cargar la lista de chats.");
+                setError(error.message || "No se pudo cargar la lista de chats.");
             } finally {
                 setLoading(false);
             }
         };
-
-        cargarChats();
+    
+        if (idusuario) {
+            cargarChats();
+        }
     }, [idusuario]);
+    
+    
+    
 
     const openModal = () => setModalIsOpen(true);
     const closeModal = () => setModalIsOpen(false);
@@ -147,7 +160,7 @@ const ListaChats = ({ onSelectChat, activeChat }) => {
                     {chatsFiltrados.map(chat => {
                         let nombreChat = receptor[chat.idusuario2]?.nombrecompleto || "Usuario";
 
-                        if (nombreChat === user.nombrecompleto){
+                        if (nombreChat === user.nombre){
                             nombreChat = receptor[chat.idusuario1]?.nombrecompleto || "Usuario";
                         }
 

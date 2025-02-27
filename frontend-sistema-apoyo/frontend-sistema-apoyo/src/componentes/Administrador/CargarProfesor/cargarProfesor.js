@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import TablaProfesores from "./TablaProfesAutorizar/TablaProfesA.js";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig";
-import Header from "../HeaderAdministrador.js";
-import Footer from "../FooteraAdministrador.js";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
+import Header from "../../inicio/Componentes/Header.js";
+import Footer from "../../inicio/Componentes/Footer.js";
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from "react-router-dom"; 
-import { useUser } from "../../../Context/UserContext";
+import { useUser } from "../../../Context/UserContext.js";
 
 const CargarProfesor = () => {
     const [profesoresNoAutorizado, setProfesoresNoAutorizado] = useState([]);

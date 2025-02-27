@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import TablaProfesoresT from "./TablaProfesores/TablaProfes.js";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react';
-import axiosInstance from "../../../AxiosConfig/AxiosConfig";
-import { useUser } from "../../../Context/UserContext";
-import Header from "../HeaderAdministrador.js";
-import Footer from "../FooteraAdministrador.js";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
+import { useUser } from "../../../Context/UserContext.js";
+import Header from "../../inicio/Componentes/Header.js";
+import Footer from "../../inicio/Componentes/Footer.js";
 
 const ListaProfesores = () => {
     const [profesores, setProfesores] = useState([]);

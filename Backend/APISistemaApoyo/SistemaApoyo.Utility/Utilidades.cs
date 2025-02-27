@@ -60,7 +60,7 @@ namespace SistemaApoyo.Utility
 
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(10),
+                expires: DateTime.UtcNow.AddHours(24),
                 signingCredentials: creds
             );
 

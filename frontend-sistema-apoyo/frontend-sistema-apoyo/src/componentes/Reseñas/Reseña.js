@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Star, ArrowLeft, CheckCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../Context/UserContext";
@@ -15,22 +14,21 @@ const UserReviews = () => {
     const navigate = useNavigate();
     const { user } = useUser();
 
-    // Función de login admin para obtener el token inicial
-    const login = async () => {
+    // Función para obtener las reseñas existentes
+    const fetchReviews = async () => {
         try {
-        const response = await axiosInstance.post("Acceso/Acceso", {
-            Correo: "admin@sistema.com",
-            Clave: "Admin123" // Asegúrate de usar la contraseña correcta
-        });
-        // Verificar si el login fue exitoso
-        console.log("Login response:", response.data);
-        return true;
-        } catch (error) {
-        console.error("Login failed:", error);
-        setError("Error de autenticación. Por favor, inicie sesión nuevamente.");
-        return false;
+            const response = await axiosInstance.get("Reseña/ObtenerReseñas");
+            if (response.data) {
+                setReviews(response.data);
+            }
+        } catch (err) {
+            console.error("Error al obtener las reseñas:", err);
         }
     };
+
+    useEffect(() => {
+        fetchReviews();
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -47,18 +45,12 @@ const UserReviews = () => {
             const reviewData = {
                 idReseñaP: 0,
                 idUsuaro: user.idusuario, 
-                nombreUsuario: user.nombrecompleto,
+                nombreUsuario: user.nombre,
                 rating: newReview.rating,
                 comentario: newReview.comment,
             };
 
             try {
-                // Primero intentamos autenticarnos
-                const isAuthenticated = await login();
-                if (!isAuthenticated) {
-                    throw new Error("No se pudo autenticar al usuario.");
-                }
-
                 const response = await axiosInstance.post(
                     "Reseña/CrearReseña",
                     reviewData,
@@ -79,11 +71,9 @@ const UserReviews = () => {
                         },
                     ]);
                     setNewReview({ rating: 5, comment: "" });
-                   
                     setSuccessMessage(true);
-                    setTimeout(() => setSuccessMessage(false), 
-                    navigate(-1),
-                    10000);
+                    setTimeout(() => setSuccessMessage(false), 10000);
+                    navigate(-1);
                 }
             } catch (err) {
                 setError("Error al enviar la reseña. Por favor, intenta de nuevo.");
@@ -92,7 +82,6 @@ const UserReviews = () => {
             }
         }
     };
-
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col items-center p-6">
             <header className="w-full bg-white p-4 shadow flex items-center fixed top-0 left-0 right-0 z-10">

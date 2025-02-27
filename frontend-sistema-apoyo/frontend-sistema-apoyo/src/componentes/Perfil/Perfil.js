@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useUser } from '../../Context/UserContext';
 import axiosInstance from "../../AxiosConfig/AxiosConfig";
 import logo from "../../logo/LogoInicio.png";
 import { ArrowLeft } from 'lucide-react';
 
+
 const getRandomColor = (str) => {
+  if (!str) return '#ccc'; // Retorna un color por defecto si `str` está vacío o indefinido
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
     hash = str.charCodeAt(i) + ((hash << 5) - hash);
@@ -15,6 +16,7 @@ const getRandomColor = (str) => {
   return `hsl(${h}, 70%, 50%)`;
 };
 
+
 const Perfil = () => {
   const { user, logout } = useUser();
   const [photo, setPhoto] = useState(null);
@@ -22,41 +24,26 @@ const Perfil = () => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [error, setError] = useState('');
   const [showLogoutModal, setShowLogoutModal] = useState(false);
-
-  // Función de login admin para obtener el token inicial
-  const login = async () => {
-    try {
-      const response = await axiosInstance.post("Acceso/Acceso", {
-        Correo: "admin@sistema.com",
-        Clave: "Admin123" // Asegúrate de usar la contraseña correcta
-      });
-      // Verificar si el login fue exitoso
-      console.log("Login response:", response.data);
-      return true;
-    } catch (error) {
-      console.error("Login failed:", error);
-      setError("Error de autenticación. Por favor, inicie sesión nuevamente.");
-      return false;
-    }
-  };
-
   const navigate = useNavigate();
-  useEffect(() => {
-    if (user?.correo) {
+
+
+
+
+useEffect(() => {
+    // Verifica si el usuario está autenticado
+      if (!user) {
+        navigate("/iniciarsesion"); // Redirige si no está autenticado
+        return;
+      }
+    if (user?.email) {
       cargarFotoExistente();
     }
-  }, [user?.correo]);
+  }, [user?.email]);
 
   const cargarFotoExistente = async () => {
     try {
-      // Primero intentamos autenticarnos
-      const isAuthenticated = await login();
-      if (!isAuthenticated) {
-        throw new Error("No se pudo autenticar al usuario.");
-      }
 
-      const response = await axiosInstance.get(
-        `Usuario/ObtenerFoto/${user.correo}`,
+      const response = await axiosInstance.get(`Usuario/ObtenerFoto/${user.email}`,
         {
           responseType: 'blob'
         }
@@ -90,23 +77,22 @@ const Perfil = () => {
     if (!photo) return;
     setIsUpdating(true);
     setError('');
-
+  
     try {
       const token = sessionStorage.getItem('authToken');
-      const response = await axiosInstance.post(
-        'Usuario/ActualizarFoto',
-        {
-          correo: user.correo,
-          foto: photo
-        },
-        {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
+  
+      // Crear un objeto FormData para enviar la foto como archivo
+      const formData = new FormData();
+      formData.append('correo', user.email);
+      formData.append('foto', photo); // photo debe ser un objeto File
+  
+      const response = await axiosInstance.post('Usuario/ActualizarFoto', formData, {
+        headers: {
+          'Authorization':'Bearer ${token}',
+          'Content-Type': 'multipart/form-data' // Cambiar el Content-Type a multipart/form-data
         }
-      );
-
+      });
+  
       if (response.data.status) {
         alert('Foto actualizada con éxito');
         setPhotoUrl(photo);
@@ -120,7 +106,6 @@ const Perfil = () => {
       setIsUpdating(false);
     }
   };
-
   const handleLogout = () => {
     logout();
     setShowLogoutModal(false); 
@@ -212,7 +197,7 @@ const Perfil = () => {
         
           <div className="flex-1">
             <div className="bg-white rounded-2xl shadow-sm border border-slate-200/60 overflow-hidden">
-              <div className="relative h-48" style={{ backgroundColor: getRandomColor(user.correo) }}>
+              <div className="relative h-48" style={{ backgroundColor: getRandomColor(user.email) }}>
                 <div className="absolute -bottom-16 left-8 p-1.5 bg-white rounded-2xl shadow-lg">
                   <div className="h-32 w-32 rounded-xl overflow-hidden bg-slate-100">
                     {photoUrl ? (
@@ -220,7 +205,7 @@ const Perfil = () => {
                     ) : (
                       <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
                         <span className="text-4xl font-bold text-slate-400">
-                          {user.nombrecompleto?.charAt(0) || '?'}
+                          {user.nombre?.charAt(0) || '?'}
                         </span>
                       </div>
                     )}
@@ -229,9 +214,9 @@ const Perfil = () => {
               </div>
 
               <div className="pt-20 p-8">
-                <h2 className="text-3xl font-bold text-slate-800 mb-2">{user.nombrecompleto}</h2>
+                <h2 className="text-3xl font-bold text-slate-800 mb-2">{user.nombre}</h2>
                 <div className="flex items-center gap-3 mb-6">
-                  <span className={`inline-flex px-4 py-1.5 rounded-lg text-sm font-medium text-white ${getRoleBadgeColor(user.rol)}`}>
+                  <span className={`inline-flex px-4 py-1.5 rounded-lg text-sm font-medium text-white ${getRoleBadgeColor(user.idrol)}`}>
                     {getRoleText(user.idrol)}
                   </span>
                   {user.idnivel && (
@@ -240,7 +225,7 @@ const Perfil = () => {
                     </span>
                   )}
                 </div>
-                <p className="text-lg text-left text-slate-600"> Correo: {user.correo}</p>
+                <p className="text-lg text-left text-slate-600"> Correo: {user.email}</p>
               </div>
             </div>
           </div>

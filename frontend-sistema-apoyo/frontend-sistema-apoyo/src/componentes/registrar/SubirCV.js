@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../logo/LogoInicio.png";
-import axios from "axios";
+import axiosInstance from "../../AxiosConfig/AxiosConfig";
+import { useUser } from "../../Context/UserContext";
 
 const SubirCV = () => {
   const navigate = useNavigate();
@@ -10,8 +11,14 @@ const SubirCV = () => {
   const [archivo, setArchivo] = useState(null);
   const [mensaje, setMensaje] = useState("");
   const [cvDisponible, setCvDisponible] = useState(false);
+  const { user } = useUser();
 
   useEffect(() => {
+       // Verifica si el usuario está autenticado
+       if (!user) {
+        navigate("/iniciarsesion"); // Redirige si no está autenticado
+      return;
+      }
    
     const savedEmail = localStorage.getItem('professorEmail');
     if (savedEmail) {
@@ -22,7 +29,7 @@ const SubirCV = () => {
 
   const buscarUsuario = async (correo) => {
     try {
-      const response = await axios.get("http://localhost:5228/API/Usuario/ListaUsuarios");
+      const response = await axiosInstance.get("Usuario/ListaUsuarios");
   
       console.log("Respuesta de la API:", response.data); 
   
@@ -74,8 +81,7 @@ const SubirCV = () => {
     formData.append("archivo", archivo);
 
     try {
-      const response = await axios.post(
-        `http://localhost:5228/API/Usuario/SubirCV?idUsuario=${idUsuario}`,
+      const response = await axiosInstance.post(`Usuario/SubirCV?idUsuario=${idUsuario}`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

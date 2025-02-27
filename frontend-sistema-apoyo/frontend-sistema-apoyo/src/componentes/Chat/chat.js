@@ -37,7 +37,7 @@ const Chat = () => {
                     className="bg-white text-[#00A89F] font-bold px-4 py-2 rounded-full shadow-md hover:bg-gray-200 transition"
                     onClick={() => navigate("/perfil")}
                 >
-                    {iniciales(user.nombrecompleto)}
+                    {iniciales(user.nombre)}
                 </button>
             </header>
             <div className="flex flex-1 overflow-hidden">

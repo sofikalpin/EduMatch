@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import axios from "axios";
 import hubConnection from "../../../signalRConnection.js";
 import { useUser } from "../../../Context/UserContext.js";
+import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
+import { useNavigate } from "react-router-dom";
 
 const Mensajes = ({ usuarioId, chatId }) => {
     const { user } = useUser();
@@ -11,15 +12,18 @@ const Mensajes = ({ usuarioId, chatId }) => {
     const [error, setError] = useState(null);
     const [enviando, setEnviando] = useState(false);
     const [usuarioNombre, setUsuarioNombre] = useState("");
+    const navigate = useNavigate();
     
     const inputRef = useRef(null);
     const messagesContainerRef = useRef(null);
     const usuarioid = user.idusuario;
 
-    useEffect(() => {
+ 
+  useEffect(() => {
+
         const obtenerUsuario = async () => {
             try {
-                const response = await axios.get(`http://localhost:5228/API/Usuario/${usuarioId}`);
+                const response = await axiosInstance.get(`Usuario/${usuarioId}`);
                 setUsuarioNombre(response.data.nombre);
             } catch (error) {
                 console.error("Error al obtener el usuario: ", error);
@@ -34,7 +38,7 @@ const Mensajes = ({ usuarioId, chatId }) => {
         const cargarMensaje = async () => {
             setLoading(true);
             try {
-                const response = await axios.get("http://localhost:5228/API/Mensaje/MensajeporChatID", {
+                const response = await axiosInstance.get("Mensaje/MensajeporChatID", {
                     params: { chatId, pageNumber: 1, pageSize: 20 },
                 });
                 const ordenMensajes = response.data.value.sort((a, b) => a.idmensaje - b.idmensaje);
@@ -88,7 +92,7 @@ const Mensajes = ({ usuarioId, chatId }) => {
         };
 
         try {
-            const response = await axios.post("http://localhost:5228/API/Mensaje/EnviarMensaje", datosMensaje);
+            const response = await axiosInstance.post("Mensaje/EnviarMensaje", datosMensaje);
             setMensajes((prevMensajes) => {
                 const nuevoMensaje = response.data.value;
                 const nuevosMensajes = [...prevMensajes, nuevoMensaje];

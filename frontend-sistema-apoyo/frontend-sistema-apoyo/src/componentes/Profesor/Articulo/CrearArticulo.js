@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, X } from 'lucide-react';
-import Header from "../HeaderProfesor";
+import Header from "../../inicio/Componentes/Header.js";
 import drive from "../Imagenes/google-drive.png";
 import youtube from "../Imagenes/youtube.png";
 import axiosInstance from "../../../AxiosConfig/AxiosConfig";

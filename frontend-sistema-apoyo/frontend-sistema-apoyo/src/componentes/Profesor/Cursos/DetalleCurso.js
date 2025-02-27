@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react';
-import Header from "../HeaderProfesor";
-import Footer from "../FooterProfesor";
+import Header from "../../inicio/Componentes/Header.js";
+import Footer from "../../inicio/Componentes/Footer.js";
 import actividad from "../Imagenes/actividad.jpg";
 import examen from "../Imagenes/examen.avif";
 import articulos from "../Imagenes/articulo.jpg";

@@ -76,8 +76,10 @@ public class UsuarioController : ControllerBase
                 return Unauthorized(rsp);
             }
 
+            var usuario = await _usuarioService.ObtenerUsuarioPorCorreo(login.Correo);
+
             // Generar un token
-            var token = GenerarToken(sesion.Correo, sesion.Idrol);
+            var token = GenerarToken(sesion.Correo, sesion.Idrol, usuario.Nombrecompleto, usuario.Idnivel, usuario.AutProf, usuario.Idusuario);
 
             rsp.status = true;
             rsp.value = sesion;
@@ -171,10 +173,10 @@ public class UsuarioController : ControllerBase
             });
         }
     }
-    private string GenerarToken(string correo, int idrol)
+    private string GenerarToken(string correo, int idrol, string nombre, int nivel, bool? autprof, int idusuario)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.UTF8.GetBytes(_configuration["JwtConfig:Secret"]);
+        var key = Encoding.UTF8.GetBytes(_configuration["JwtConfig:Secret"]!);
 
         // Asegúrate de que la clave tenga al menos 128 bits (16 bytes)
         if (key.Length < 16)
@@ -187,7 +189,11 @@ public class UsuarioController : ControllerBase
             Subject = new ClaimsIdentity(new Claim[]
             {
             new Claim(ClaimTypes.Email, correo),
-            new Claim(ClaimTypes.Role, idrol.ToString()) // Incluir el idrol en el token
+            new Claim(ClaimTypes.Role, idrol.ToString()), // Incluir el idrol en el token
+            new Claim(ClaimTypes.Name,nombre),
+            new Claim("Idnivel", nivel.ToString()), // Claim personalizado para el nivel
+            new Claim("Autprof", autprof.ToString()), // Claim personalizado para autprof
+            new Claim("idusuario", idusuario.ToString())
             }),
             Expires = DateTime.UtcNow.AddHours(1),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

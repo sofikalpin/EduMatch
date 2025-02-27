@@ -62,7 +62,7 @@ namespace WebApiApoyo.Controllers
                     HttpOnly = true,    // Impide acceso desde JavaScript
                     Secure = true,      // Debe estar en true si usas HTTPS en producción
                     SameSite = SameSiteMode.None, // None si frontend y backend están en dominios diferentes
-                    Expires = DateTime.UtcNow.AddMinutes(30) // Duración de la cookie
+                    Expires = DateTime.UtcNow.AddHours(24) // Duración de la cookie
                 });
 
                 return Ok(new

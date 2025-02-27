@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Send } from 'lucide-react';
 import { useNavigate } from 'react-router-dom'; 
-import axios from "axios";
 import { useUser } from "../../../Context/UserContext.js";
-import HeaderForo from '../HeaderForo.js';
+import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
+import Header from "../../inicio/Componentes/Header.js";
+
 
 const NuevoForo = () => {
     const { user } = useUser();
@@ -65,7 +66,7 @@ const NuevoForo = () => {
   
             console.log("Datos del foro:", datosForo);
   
-            const response = await axios.post("http://localhost:5228/API/Foro/CrearForo", datosForo);
+            const response = await axiosInstance.post("Foro/CrearForo", datosForo);
 
             if (response?.status === 200) {
                 setMensaje("Foro creado con éxito. Redirigiendo...");
@@ -87,7 +88,7 @@ const NuevoForo = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col items-center">
-            <HeaderForo />
+            <Header />
 
             <div className="w-full max-w-3xl px-6 py-10">
                 <button 

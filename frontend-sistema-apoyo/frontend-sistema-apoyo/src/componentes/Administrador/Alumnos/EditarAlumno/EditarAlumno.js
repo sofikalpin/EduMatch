@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../../../logo/LogoInicio.png";
 import { useNavigate, useLocation } from "react-router-dom";
-import axiosInstance from "../../../../AxiosConfig/AxiosConfig";
-import { useUser } from "../../../../Context/UserContext";
+import axios from "axios";
 
 const niveles = {
     A1: 1,
@@ -24,22 +23,17 @@ export const EditarAlumno = ({ onUpdate }) => {
     const [nivel, setNivel] = useState("");
     const [mensajeActualizado, setMensajeActualizado] = useState("");
     const [loading, setLoading] = useState(true);
-    const { user } = useUser();
+
     const navigate = useNavigate();
 
     useEffect(() => {
         const cargarAlumno = async () => {
-            if (!user) {
-                navigate("/iniciarsesion");
-                return;
-            }
-
             if (!idusuario) return;
             try {
-                const response = await axiosInstance.get(
-                    `AdministradorAlumno/AlumnoID?id=${idusuario}`
+                const response = await axios.get(
+                    `http://localhost:5228/API/AdministradorAlumno/AlumnoID?id=${idusuario}`
                 );
-
+                
                 if (!response.data || !response.data.value) throw new Error("No se encontraron datos del alumno.");
                 const alumnoData = response.data.value;
 
@@ -55,7 +49,7 @@ export const EditarAlumno = ({ onUpdate }) => {
                 } else {
                     alert(error.message);
                 }
-            } finally {
+            }finally{
                 setLoading(false);
             }
         };
@@ -83,8 +77,8 @@ export const EditarAlumno = ({ onUpdate }) => {
                 cvRuta: alumno.cvRuta,
                 fotoRuta: alumno.fotoRuta,
             };
-            const response = await axiosInstance.put(
-                `AdministradorAlumno/EditarporID?id=${idusuario}`,
+            const response = await axios.put(
+                `http://localhost:5228/API/AdministradorAlumno/EditarporID?id=${idusuario}`,
                 datosActualizados
             );
             if (response.data.status) {
@@ -117,50 +111,51 @@ export const EditarAlumno = ({ onUpdate }) => {
                     </div>
                 )}
 
-                {loading ? (
+                { loading ? (
                     <p>Cargando datos...</p>
                 ) : (
-                    <form onSubmit={handleActualizar} className="p-10 space-y-6">
-                        <div className="grid grid-cols-2 gap-6">
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Nombre</label>
-                                <input value={nombre} onChange={(e) => setNombre(e.target.value)}
-                                    type="text" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-[#00A89F]" />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Apellido</label>
-                                <input value={apellido} onChange={(e) => setApellido(e.target.value)}
-                                    type="text" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-[#00A89F]" />
-                            </div>
+                    
+                <form onSubmit={handleActualizar} className="p-10 space-y-6">
+                    <div className="grid grid-cols-2 gap-6">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Nombre</label>
+                            <input value={nombre} onChange={(e) => setNombre(e.target.value)}
+                                type="text" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-[#00A89F]" />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Correo Electrónico</label>
-                            <input value={email} onChange={(e) => setEmail(e.target.value)}
-                                type="email" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-[#00A89F]" />
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Apellido</label>
+                            <input value={apellido} onChange={(e) => setApellido(e.target.value)}
+                                type="text" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-[#00A89F]" />
                         </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Nivel</label>
-                            <select value={nivel} onChange={(e) => setNivel(e.target.value)}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-[#00A89F]">
-                                <option value="" disabled>Seleccione un nivel</option>
-                                <option value="A1">A1: Principiante</option>
-                                <option value="A2">A2: Básico</option>
-                                <option value="B1">B1: Pre-intermedio</option>
-                                <option value="B2">B2: Intermedio</option>
-                                <option value="C1">C1: Intermedio-alto</option>
-                                <option value="C2">C2: Avanzado</option>
-                            </select>
-                        </div>
-                        <div className="flex space-x-4 pt-4">
-                            <button type="submit" className="w-full py-3 bg-[#00A89F] text-white rounded-lg hover:bg-opacity-90">
-                                Actualizar Alumno
-                            </button>
-                            <button type="button" onClick={handleCancelar}
-                                className="w-full py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
-                                Cancelar
-                            </button>
-                        </div>
-                    </form>
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Correo Electrónico</label>
+                        <input value={email} onChange={(e) => setEmail(e.target.value)}
+                            type="email" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-[#00A89F]" />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Nivel</label>
+                        <select value={nivel} onChange={(e) => setNivel(e.target.value)}
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-[#00A89F]">
+                            <option value="" disabled>Seleccione un nivel</option>
+                            <option value="A1">A1: Principiante</option>
+                            <option value="A2">A2: Básico</option>
+                            <option value="B1">B1: Pre-intermedio</option>
+                            <option value="B2">B2: Intermedio</option>
+                            <option value="C1">C1: Intermedio-alto</option>
+                            <option value="C2">C2: Avanzado</option>
+                        </select>
+                    </div>
+                    <div className="flex space-x-4 pt-4">
+                        <button type="submit" className="w-full py-3 bg-[#00A89F] text-white rounded-lg hover:bg-opacity-90">
+                            Actualizar Alumno
+                        </button>
+                        <button type="button" onClick={handleCancelar}
+                            className="w-full py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
                 )}
             </div>
         </div>

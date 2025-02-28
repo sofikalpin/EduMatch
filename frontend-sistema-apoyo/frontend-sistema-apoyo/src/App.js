@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import ProtegerRuta from "./ProtectedRoute";
 import { UserProvider } from "./Context/UserContext";
 import "./App.css";
@@ -9,6 +10,7 @@ import "./App.css";
 import Login from "./componentes/Login/Login";
 import { Registrar } from "./componentes/Registrar/Registrar";
 import  SubirCV  from "./componentes/Registrar/SubirCV";
+
 
 // Inicio
 import Inicio from "./componentes/inicio/Inicio/Inicio";
@@ -93,6 +95,7 @@ function App() {
           <Route path="/registrarse" element={<Registrar />} />
           <Route path="/subirCV" element={<SubirCV />} />
 
+
           {/* Rutas protegidas (Solo lo pueden ver lo que inician sesion) */}
             {/* Inicio */}
             <Route path="/" element={<Inicio />} />
@@ -104,7 +107,7 @@ function App() {
             <Route path="/contra" element={<ResetPassword />} />
 
             {/* Administrador */}
-            <Route path="/administrador" element={<ProtegerRuta requiredRole="3"><Administrador /></ProtegerRuta>} />
+            <Route path="/administrador" element={<ProtegerRuta><Administrador /></ProtegerRuta>} />
             <Route path="/administrador/listaProfesores" element={<ProtegerRuta><ListaProfesores /></ProtegerRuta>} />
             <Route path="/administrador/listaProfesores/nuevoProfesor" element={<ProtegerRuta><NuevoProfesor /></ProtegerRuta>} />
             <Route path="/administrador/listaProfesores/nuevoProfesor/subircv" element={<ProtegerRuta><SubirCVAdmin/></ProtegerRuta>} />
@@ -120,7 +123,7 @@ function App() {
             <Route path="/profesor-noAutorizado" element={<ProtegerRuta><InicioNoAutoProfesro/></ProtegerRuta>} />
 
             {/* Profesor */}
-            <Route path="/profesor" element={<ProtegerRuta requiredRole="1"><InicioProfesorPage /></ProtegerRuta>} />
+            <Route path="/profesor" element={<ProtegerRuta><InicioProfesorPage /></ProtegerRuta>} />
             <Route path="/profesor/alumnos" element={<ProtegerRuta><AlumnosProfesor /></ProtegerRuta>} />
             <Route path="/profesor/cursos" element={<ProtegerRuta><CursosProfesor /></ProtegerRuta>} />
             <Route path="/profesor/cursos/detalle" element={<ProtegerRuta><CursoDetalle /></ProtegerRuta>} />
@@ -135,6 +138,7 @@ function App() {
             <Route path="/crear-actividad" element={<ProtegerRuta><CrearActividad /></ProtegerRuta>} />
             <Route path="/crear-articulo" element={<ProtegerRuta><CrearArticulo /></ProtegerRuta>} />
             <Route path="/crear-examen" element={<ProtegerRuta><CrearExamen /></ProtegerRuta>} />
+           
 
             {/* Foro */}
             <Route path="/listaForos" element={<ProtegerRuta><ListaForos/></ProtegerRuta>} />
@@ -146,7 +150,7 @@ function App() {
             <Route path="/crear-respuesta" element={<ProtegerRuta><NuevaRespuesta /></ProtegerRuta>} />
                   
             {/* Alumno */}
-            <Route path="/alumno" element={<ProtegerRuta><MisCursosAlumno requiredRole="2" /></ProtegerRuta>} />  
+            <Route path="/alumno" element={<ProtegerRuta><MisCursosAlumno /></ProtegerRuta>} />  
             <Route path="/alumno/cursos/" element={<ProtegerRuta><Cursos /></ProtegerRuta>} />
             <Route path="/alumno/articulos/" element={<ProtegerRuta><ArticulosAlumno /></ProtegerRuta>} />
             <Route path="/alumno/actividades/" element={<ProtegerRuta><ActividadesAlumno /></ProtegerRuta>} />

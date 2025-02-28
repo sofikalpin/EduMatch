@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import logo from '../../logo/LogoInicio.png';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import axiosInstance from "../../AxiosConfig/AxiosConfig";
-import { useUser } from "../../Context/UserContext";
-import Header from "../inicio/Componentes/Header.js";
-import Footer from "../inicio/Componentes/Footer.js";
+import axios from 'axios';
+import Header from './HeaderAdministrador';
+import Footer from '../Administrador/FooteraAdministrador';
 
 const socialIcons = [
     { name: 'Facebook', color: 'hover:text-blue-500' },
@@ -41,17 +40,10 @@ const Administrador = () => {
     const [cantidadA, setCantidadA] = useState(0);
     const navigate = useNavigate();
     const location = useLocation();
-    const { user } = useUser();
-
 
     const cargarProfesoresNoAutorizados = async () => {
         try {
-            if (!user) {
-            navigate("/iniciarsesion"); 
-            return;
-            }
-
-            const response = await axiosInstance.get('AdministradorProfesor/ListaProfesoresNOAutorizados');
+            const response = await axios.get('http://localhost:5228/API/AdministradorProfesor/ListaProfesoresNOAutorizados');
             setCantidadA(response.data?.value?.length || 0);
         } catch (error) {
             console.error('Error al obtener la cantidad de profesores no autorizados', error);

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { Star, ArrowLeft, CheckCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../Context/UserContext";
-import axiosInstance from "../../AxiosConfig/AxiosConfig";
 import logo from "../../logo/LogoInicio.png";
 
 const UserReviews = () => {
@@ -13,21 +13,6 @@ const UserReviews = () => {
     const [successMessage, setSuccessMessage] = useState(false);
     const navigate = useNavigate();
     const { user } = useUser();
-
-    const fetchReviews = async () => {
-        try {
-            const response = await axiosInstance.get("Reseña/ObtenerReseñas");
-            if (response.data) {
-                setReviews(response.data);
-            }
-        } catch (err) {
-            console.error("Error al obtener las reseñas:", err);
-        }
-    };
-
-    useEffect(() => {
-        fetchReviews();
-    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -44,14 +29,14 @@ const UserReviews = () => {
             const reviewData = {
                 idReseñaP: 0,
                 idUsuaro: user.idusuario, 
-                nombreUsuario: user.nombre,
+                nombreUsuario: user.nombrecompleto,
                 rating: newReview.rating,
                 comentario: newReview.comment,
             };
 
             try {
-                const response = await axiosInstance.post(
-                    "Reseña/CrearReseña",
+                const response = await axios.post(
+                    "http://localhost:5228/API/Reseña/CrearReseña",
                     reviewData,
                     {
                         headers: {
@@ -70,9 +55,11 @@ const UserReviews = () => {
                         },
                     ]);
                     setNewReview({ rating: 5, comment: "" });
+                   
                     setSuccessMessage(true);
-                    setTimeout(() => setSuccessMessage(false), 10000);
-                    navigate(-1);
+                    setTimeout(() => setSuccessMessage(false), 
+                    navigate(-1),
+                    10000);
                 }
             } catch (err) {
                 setError("Error al enviar la reseña. Por favor, intenta de nuevo.");
@@ -81,6 +68,7 @@ const UserReviews = () => {
             }
         }
     };
+
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col items-center p-6">
             <header className="w-full bg-white p-4 shadow flex items-center fixed top-0 left-0 right-0 z-10">

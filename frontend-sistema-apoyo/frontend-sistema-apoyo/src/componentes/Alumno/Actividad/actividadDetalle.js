@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import logoactividad from "../Imagenes/actividades.png";
 import { ArrowLeft } from "lucide-react";
-import Header from "../../inicio/Componentes/Header.js";
-import Footer from "../../inicio/Componentes/Footer.js";
+import Header from "../HeaderAlumno";
+import Footer from "../FooterAlumno";
 import { useParams } from "react-router-dom";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
-import { useUser } from "../../../Context/UserContext.js";
+import axios from "axios";
 
 const ActividadDetalle = () => {
   const { idactividad } = useParams();
@@ -17,19 +16,13 @@ const ActividadDetalle = () => {
   const [actividad, setActividad] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { user } = useUser();
- 
+
   useEffect(() => {
-    if (!user) {
-      navigate("/iniciarsesion"); 
-    return;
-    }
     
     const encontrarActividad = async () => {
       try {
-
         setLoading(true);
-        const respuesta = await axiosInstance.get(`Actividad/ActividadID?id=${idactividad}`);
+        const respuesta = await axios.get(`http://localhost:5228/API/Actividad/ActividadID?id=${idactividad}`);
         if (respuesta.data.status) {
           setActividad(respuesta.data.value);
         } else {

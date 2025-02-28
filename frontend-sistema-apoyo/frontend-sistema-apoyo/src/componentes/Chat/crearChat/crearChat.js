@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig";
+import axios from "axios";
 import { useUser } from "../../../Context/UserContext";
-import { useNavigate } from "react-router-dom";
 
 const CrearChat = ({ idusuario, onChatCreado, onClose, chatsExistentes = [] }) => {
   const { user } = useUser();
@@ -11,14 +10,13 @@ const CrearChat = ({ idusuario, onChatCreado, onClose, chatsExistentes = [] }) =
   const [busqueda, setBusqueda] = useState("");
   const [mensajeExito, setMensajeExito] = useState("");
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
   const [error, setError] = useState("");
-  const [mostrarAlerta, setMostrarAlerta] = useState(false);
+
   useEffect(() => {
-      const cargarContactos = async () => {
+    const cargarContactos = async () => {
       setLoading(true);
       try {
-        const respuesta = await axiosInstance.get("Chat/ListaContactos");
+        const respuesta = await axios.get("http://localhost:5228/API/Chat/ListaContactos");
         if (respuesta.data.status) {
           setContactos(respuesta.data.value);
           setContactoFiltrado(respuesta.data.value);
@@ -61,20 +59,12 @@ const CrearChat = ({ idusuario, onChatCreado, onClose, chatsExistentes = [] }) =
     };
 
     try {
-      const respuesta = await axiosInstance.post("Chat/CrearChat", datosChat);
+      const respuesta = await axios.post("http://localhost:5228/API/Chat/CrearChat", datosChat);
       setMensajeExito("Chat creado con éxito.");
       if (respuesta.status === 201 || respuesta.status === 200) {
         onChatCreado(respuesta.data);
        
-         onChatCreado(respuesta.data);
-        
-         setMensajeExito("Chat creado con éxito.");
-
-         setMostrarAlerta(true);
-
-         setTimeout(() => {
-           window.location.href = "/"; 
-         }, 3000);
+        window.location.reload();
       }
     } catch (error) {
       console.error("Error al crear el chat: ", error);

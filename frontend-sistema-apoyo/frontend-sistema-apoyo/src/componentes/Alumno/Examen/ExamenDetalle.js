@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import fileIcon from "../Imagenes/file-icon.png";
 import { ArrowLeft } from "lucide-react";
-import Header from "../../inicio/Componentes/Header.js";
-import Footer from "../../inicio/Componentes/Footer.js";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig";
-import { useUser } from "../../../Context/UserContext";
+import Header from "../HeaderAlumno";
+import Footer from "../FooterAlumno";
+import axios from "axios";
 
 const ExamenDetalle = () => {
   const { idexamen } = useParams();
@@ -15,17 +14,12 @@ const ExamenDetalle = () => {
   const [examen, setExamen] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-   const { user } = useUser();
 
   useEffect(() => {
-    if (!user) {
-      navigate("/iniciarsesion"); 
-      return;
-  }
     const encontrarExamen = async () => {
       try {
         setLoading(true);
-        const respuesta = await axiosInstance.get(`examenes/ExamenID?id=${idexamen}`);
+        const respuesta = await axios.get(`http://localhost:5228/api/examenes/ExamenID?id=${idexamen}`);
         if (respuesta.data.status) {
           console.log("Respuesta completa de la API:", respuesta.data);
           setExamen(respuesta.data.value);

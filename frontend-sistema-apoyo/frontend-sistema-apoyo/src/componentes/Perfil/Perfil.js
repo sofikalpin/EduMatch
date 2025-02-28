@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { useUser } from '../../Context/UserContext';
-import axiosInstance from "../../AxiosConfig/AxiosConfig";
 import logo from "../../logo/LogoInicio.png";
 import { ArrowLeft } from 'lucide-react';
 
 const getRandomColor = (str) => {
-  if (!str) return '#ccc'; 
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
     hash = str.charCodeAt(i) + ((hash << 5) - hash);
@@ -22,22 +21,18 @@ const Perfil = () => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [error, setError] = useState('');
   const [showLogoutModal, setShowLogoutModal] = useState(false);
-  const navigate = useNavigate();
 
-useEffect(() => {
-      if (!user) {
-        navigate("/iniciarsesion");
-        return;
-      }
-    if (user?.email) {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user?.correo) {
       cargarFotoExistente();
     }
-  }, [user?.email]);
+  }, [user?.correo]);
 
   const cargarFotoExistente = async () => {
     try {
-
-      const response = await axiosInstance.get(`Usuario/ObtenerFoto/${user.email}`,
+      const response = await axios.get(
+        `http://localhost:5228/API/Usuario/ObtenerFoto/${user.correo}`,
         {
           responseType: 'blob'
         }
@@ -71,21 +66,23 @@ useEffect(() => {
     if (!photo) return;
     setIsUpdating(true);
     setError('');
-  
+
     try {
       const token = sessionStorage.getItem('authToken');
-  
-      const formData = new FormData();
-      formData.append('correo', user.email);
-      formData.append('foto', photo); 
-  
-      const response = await axiosInstance.post('Usuario/ActualizarFoto', formData, {
-        headers: {
-          'Authorization':'Bearer ${token}',
-          'Content-Type': 'multipart/form-data' 
+      const response = await axios.post(
+        'http://localhost:5228/API/Usuario/ActualizarFoto',
+        {
+          correo: user.correo,
+          foto: photo
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
         }
-      });
-  
+      );
+
       if (response.data.status) {
         alert('Foto actualizada con éxito');
         setPhotoUrl(photo);
@@ -99,6 +96,7 @@ useEffect(() => {
       setIsUpdating(false);
     }
   };
+
   const handleLogout = () => {
     logout();
     setShowLogoutModal(false); 
@@ -190,7 +188,7 @@ useEffect(() => {
         
           <div className="flex-1">
             <div className="bg-white rounded-2xl shadow-sm border border-slate-200/60 overflow-hidden">
-              <div className="relative h-48" style={{ backgroundColor: getRandomColor(user.email) }}>
+              <div className="relative h-48" style={{ backgroundColor: getRandomColor(user.correo) }}>
                 <div className="absolute -bottom-16 left-8 p-1.5 bg-white rounded-2xl shadow-lg">
                   <div className="h-32 w-32 rounded-xl overflow-hidden bg-slate-100">
                     {photoUrl ? (
@@ -198,7 +196,7 @@ useEffect(() => {
                     ) : (
                       <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
                         <span className="text-4xl font-bold text-slate-400">
-                          {user.nombre?.charAt(0) || '?'}
+                          {user.nombrecompleto?.charAt(0) || '?'}
                         </span>
                       </div>
                     )}
@@ -207,9 +205,9 @@ useEffect(() => {
               </div>
 
               <div className="pt-20 p-8">
-                <h2 className="text-3xl font-bold text-slate-800 mb-2">{user.nombre}</h2>
+                <h2 className="text-3xl font-bold text-slate-800 mb-2">{user.nombrecompleto}</h2>
                 <div className="flex items-center gap-3 mb-6">
-                  <span className={`inline-flex px-4 py-1.5 rounded-lg text-sm font-medium text-white ${getRoleBadgeColor(user.idrol)}`}>
+                  <span className={`inline-flex px-4 py-1.5 rounded-lg text-sm font-medium text-white ${getRoleBadgeColor(user.rol)}`}>
                     {getRoleText(user.idrol)}
                   </span>
                   {user.idnivel && (
@@ -218,7 +216,7 @@ useEffect(() => {
                     </span>
                   )}
                 </div>
-                <p className="text-lg text-left text-slate-600"> Correo: {user.email}</p>
+                <p className="text-lg text-left text-slate-600"> Correo: {user.correo}</p>
               </div>
             </div>
           </div>

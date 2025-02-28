@@ -1,88 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../logo/LogoInicio.png";
 import Foto from './Mujer con Computadora.jpg';
 import { useUser } from "../../Context/UserContext";
 import { useNavigate, Link } from 'react-router-dom';
 import ForgotPassword from './ForgotPassword'; 
 import axiosInstance from "../../AxiosConfig/AxiosConfig";
-import Cookies from 'js-cookie';
-import { jwtDecode } from "jwt-decode";
 
-let requestInterceptorId = null;
-
-// Configurar el interceptor de axios para incluir el token en las solicitudes
-const setupAuthInterceptor = (token) => {
-  if (requestInterceptorId !== null) {
-    axiosInstance.interceptors.request.eject(requestInterceptorId);
-  }
-  
-  requestInterceptorId = axiosInstance.interceptors.request.use(
-    (config) => {
-      if (token) {
-        config.headers['Authorization'] = `Bearer ${token}`;
-      }
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
-  
-  return requestInterceptorId;
-};
-
-export const logout = (navigateFunction, setUserFunction) => {
-  console.log("Ejecutando logout completo");
-  
-  // Eliminar los tokens de almacenamiento
-  localStorage.removeItem('token');
-  sessionStorage.removeItem('token');
-  
-  // Limpiar los datos de sesión
-  sessionStorage.removeItem("userData");
-  sessionStorage.removeItem("authToken");
-  
-  // Eliminar  las cookies relacionadas con autenticación
-  Cookies.remove('token');
-  
-  const appKeys = ['user', 'userInfo', 'userData', 'auth', 'session']; 
-  appKeys.forEach(key => {
-    localStorage.removeItem(key);
-    sessionStorage.removeItem(key);
-  });
-  
-  if (setUserFunction) {
-    setUserFunction(null);
-  }
-  
-  // Eliminar interceptor de Axios y resetear axios
-  if (requestInterceptorId !== null) {
-    axiosInstance.interceptors.request.eject(requestInterceptorId);
-    requestInterceptorId = null;
-  }
-  
-  // Configurar axios para que no tenga token por defecto
-  delete axiosInstance.defaults.headers.common['Authorization'];
-  
-  // Recargar la aplicación 
-  if (navigateFunction) {
-    navigateFunction("/iniciarsesion");
-  }
-};
-
-const handleLogin = async (email, password) => {
+// Función de login
+const loginAcceso = async (setError) => {
   try {
-    // Solicitud de autenticación 
-    const response = await axiosInstance.post('Usuario/IniciarSesion', {
-      correo: email,
-      contrasenaHash: password
+    const response = await axiosInstance.post("http://localhost:5228/api/Acceso/Acceso", {
+      Correo: "admin@sistema.com",
+      Clave: "Admin123" // Asegúrate de usar la contraseña correcta
+    });
+    // Verificar si el login fue exitoso
+    console.log("Login response:", response.data);
+    return true;
+  } catch (error) {
+    console.error("Login failed:", error);
+    setError("Error de autenticación. Por favor, inicie sesión nuevamente.");
+    return false;
+  }
+};
+
+const handleLogin = async ({ email, password }) => {
+  try {
+    const response = await axiosInstance.post("", {
+      Correo: email,
+      Clave: password,
     });
 
-    if (!response.data.token) {
-      throw new Error("No se recibió token de autenticación");
-    }
-    
-    return response.data.token;
+    console.log("Respuesta del backend:", response.data);
+    return response.data; // Devuelve los datos para que `handleSubmit` los use
   } catch (error) {
     console.error("Error en login:", error);
     throw error;
@@ -90,23 +39,15 @@ const handleLogin = async (email, password) => {
 };
 
 const saveUserSession = (token, rememberMe) => {
-  
-  localStorage.removeItem('token');
-  sessionStorage.removeItem('token');
-  
-  // Guardar el nuevo token en el almacenamiento seleccionado
   if (rememberMe) {
     localStorage.setItem('token', token);
   } else {
     sessionStorage.setItem('token', token);
   }
-  
-  // Configurar axios para usar este token en futuras solicitudes
-  setupAuthInterceptor(token);
 };
 
 const Login = () => {
-  const { user, setUser } = useUser();
+  const { user, login } = useUser();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
@@ -118,55 +59,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
-  const [manualLogin, setManualLogin] = useState(false);
-
-  const handleLogout = () => {
-    logout(navigate, setUser);
-  };
-
-  useEffect(() => {
-    console.log("Login component mounted - cleaning any existing session");
-    logout(null, setUser); 
-  }, []); 
-
-  useEffect(() => {
-    if (!manualLogin) {
-      return; 
-    }
-    
-    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
-    if (token) {
-      try {
-        const decodedToken = jwtDecode(token);
-
-        // Verificar si el token no ha expirado
-        const currentTime = Date.now() / 1000;
-        if (decodedToken.exp && decodedToken.exp > currentTime) {
-          setupAuthInterceptor(token);
-          const userData = {
-            email: decodedToken.email,
-            idrol: parseInt(decodedToken.role),
-            token: token,
-            nombre:  decodedToken.unique_name || '',
-            nivel : decodedToken.Idnivel,
-            autprof : decodedToken.Autprof,
-            idusuario: parseInt(decodedToken.idusuario, 10) 
-          };
-          setUser(userData);
-          setIsLoggingIn(true);
-
-        } else {
-          // Token expirado
-          console.log("Token expirado, cerrando sesión");
-          handleLogout();
-        }
-      } catch (error) {
-        console.error("Error al decodificar token guardado:", error);
-        handleLogout();
-      }
-    }
-  }, [manualLogin, setUser]); 
+ 
 
   const handleLogoClick = () => {
     navigate('/');
@@ -192,6 +85,10 @@ const Login = () => {
     return emailRegex.test(email);
   };
 
+  const validatePassword = (password) => {
+    return password.length >= 8;
+  };
+
   const validateForm = () => {
     const newErrors = {};
     if (!validateEmail(formData.email)) {
@@ -206,75 +103,42 @@ const Login = () => {
     if (!validateForm()) {
       return;
     }
+  
     setIsLoading(true);
+  
     try {
-      // Iniciar sesión con el usuario 
-      const userToken = await handleLogin(
-        formData.email,
-        formData.password
-      );
-
-      console.log('Login exitoso, token recibido');
-
-      saveUserSession(userToken, formData.rememberMe);
-
-      const decodedToken = jwtDecode(userToken);
-      
-      console.log('dato decodetoken:', decodedToken)
-
-      const idrol = parseInt(decodedToken.role);
-      console.log('ID Rol obtenido:', idrol);
-      
-      // Crear un objeto con los datos del usuario
-      const userData = {
-        email: decodedToken.email,
-        idrol: idrol,
-        token: userToken,
-        nombre: decodedToken.unique_name|| '',
-        nivel : decodedToken.Idnivel,
-        autprof : decodedToken.Autprof,
-        idusuario: parseInt(decodedToken.idusuario, 10) 
-      };
-
-      console.log('datos del usuario::',userData);
-
-      setUser(userData);
-      
-      setManualLogin(true);
-      
-      setIsLoggingIn(true);
-
-    } catch (error) {
-      console.error('Error en submit:', error);
-      setErrors({
-        submit: 'Error al iniciar sesión. Por favor verifica tus credenciales.'
+      // Autenticación con administrador antes del login del usuario
+      const isAuthenticated = await loginAcceso(setErrors);
+      if (!isAuthenticated) {
+        throw new Error("No se pudo autenticar al administrador.");
+      }
+  
+      // Llamamos a handleLogin que ahora usa axiosInstance
+      const response = await handleLogin({
+        email: formData.email,
+        password: formData.password,
       });
+  
+      console.log("Respuesta del login:", response);
+      saveUserSession(response.token, formData.rememberMe);
+  
+      // Verificar el rol y redirigir
+      const idrol = response.value.idrol;
+      console.log("ID Rol:", idrol);
+  
+      if (idrol === 1) navigate("/profesor");
+      else if (idrol === 2) navigate("/alumno");
+      else if (idrol === 3) navigate("/administrador");
+      else navigate("/iniciarsesion");
+  
+    } catch (error) {
+      console.error("Error en submit:", error);
+      setErrors({ submit: "Error al iniciar sesión. Verifica tus credenciales." });
     } finally {
       setIsLoading(false);
     }
   };
-
-  // Redirigir al usuario según su rol
-  useEffect(() => {
-    if (isLoggingIn && user?.idrol) {
-      console.log("Redirigiendo según el rol:", user.idrol);
-      switch (user.idrol) {
-        case 1:
-          navigate("/profesor");
-          break;
-        case 2:
-          navigate("/alumno");
-          break;
-        case 3:
-          navigate("/administrador");
-          break;
-        default:
-          navigate("/iniciarsesion");
-      }
-      setIsLoggingIn(false);
-    }
-  }, [user, isLoggingIn, navigate]);
-
+  
   const togglePasswordVisibility = () => setShowPassword(prev => !prev);
 
   return (
@@ -345,16 +209,6 @@ const Login = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <label className="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="rememberMe"
-                    checked={formData.rememberMe}
-                    onChange={handleChange}
-                    className="mr-2"
-                  />
-                  <span className="text-sm text-gray-700">Recordarme</span>
-                </label>
                 <button 
                   type="button"
                   onClick={() => setShowForgotPassword(true)} 

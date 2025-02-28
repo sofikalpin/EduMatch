@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../logo/LogoInicio.png";
-import axiosInstance from "../../AxiosConfig/AxiosConfig";
-import { useUser } from "../../Context/UserContext";
+import axios from "axios";
 
 const SubirCV = () => {
   const navigate = useNavigate();
@@ -11,13 +10,8 @@ const SubirCV = () => {
   const [archivo, setArchivo] = useState(null);
   const [mensaje, setMensaje] = useState("");
   const [cvDisponible, setCvDisponible] = useState(false);
-  const { user } = useUser();
 
   useEffect(() => {
-       if (!user) {
-        navigate("/iniciarsesion"); 
-      return;
-      }
    
     const savedEmail = localStorage.getItem('professorEmail');
     if (savedEmail) {
@@ -28,7 +22,7 @@ const SubirCV = () => {
 
   const buscarUsuario = async (correo) => {
     try {
-      const response = await axiosInstance.get("Usuario/ListaUsuarios");
+      const response = await axios.get("http://localhost:5228/API/Usuario/ListaUsuarios");
   
       console.log("Respuesta de la API:", response.data); 
   
@@ -80,7 +74,8 @@ const SubirCV = () => {
     formData.append("archivo", archivo);
 
     try {
-      const response = await axiosInstance.post(`Usuario/SubirCV?idUsuario=${idUsuario}`,
+      const response = await axios.post(
+        `http://localhost:5228/API/Usuario/SubirCV?idUsuario=${idUsuario}`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

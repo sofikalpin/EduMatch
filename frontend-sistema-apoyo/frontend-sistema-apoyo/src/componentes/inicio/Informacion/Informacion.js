@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Home, Book, MessageSquare } from 'lucide-react';
+import TopBar from '../Componentes/TopBar';
 import Header from '../Componentes/Header';
 import Footer from '../Componentes/Footer';
 import logo from '../../../logo/LogoInicio.png';
@@ -205,7 +206,10 @@ const InfoPages = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      
+       <TopBar 
+        onLogin={() => navigate('/iniciarsesion')} 
+        onRegister={() => navigate('/registrarse')} 
+      />
       <Header 
         onNavigate={navigate}
         logo={logo}

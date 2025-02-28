@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import logo from '../../../logo/LogoInicio.png';
-import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 
 const ResetPassword = () => {
   const location = useLocation();
@@ -16,7 +15,6 @@ const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
-  const [error, setError] = useState(''); // Definir el estado error
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -39,7 +37,7 @@ const ResetPassword = () => {
       console.log("Token:", token);
       console.log("Nueva contraseña:", newPassword);
 
-      const response = await axiosInstance.post('Usuario/reestablecer-contrasena', {
+      const response = await fetch('http://localhost:5228/API/Usuario/reestablecer-contrasena', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -140,9 +138,6 @@ const ResetPassword = () => {
           >
             {message}
           </p>
-        )}
-        {error && (
-          <p className="mt-6 text-center text-lg text-red-600">{error}</p>
         )}
       </div>
     </div>

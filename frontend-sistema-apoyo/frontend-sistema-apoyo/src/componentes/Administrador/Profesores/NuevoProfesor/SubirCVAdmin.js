@@ -1,8 +1,7 @@
 import React, { useState } from "react"; 
 import logo from "../../../../logo/LogoInicio.png";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../../../AxiosConfig/AxiosConfig";
-import { useUser } from "../../../../Context/UserContext";
+import axios from "axios";
 
 const SubirCV = () => {
   const navigate = useNavigate();
@@ -11,11 +10,10 @@ const SubirCV = () => {
   const [archivo, setArchivo] = useState(null);
   const [archivoURL, setArchivoURL] = useState(null);
   const [mensaje, setMensaje] = useState("");
-  const { user } = useUser();
 
   const buscarUsuario = async (correo) => {
     try {
-      const response = await axiosInstance.get("Usuario/ListaUsuarios");
+      const response = await axios.get("http://localhost:5228/API/Usuario/ListaUsuarios");
       const listaUsuarios = response.data.value;
 
       if (!Array.isArray(listaUsuarios)) {
@@ -61,13 +59,8 @@ const SubirCV = () => {
     formData.append("archivo", archivo);
 
     try {
-      if (!user) {
-        navigate("/iniciarsesion"); // Redirige si no está autenticado
-        return;
-      }
-
-      const response = await axiosInstance.post(
-        `Usuario/SubirCV?idUsuario=${idUsuario}`,
+      const response = await axios.post(
+        `http://localhost:5228/API/Usuario/SubirCV?idUsuario=${idUsuario}`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

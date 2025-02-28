@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../logo/LogoInicio.png";
 import { useNavigate, useLocation } from "react-router-dom";
-import axiosInstance from "../../AxiosConfig/AxiosConfig";
 import { useUser } from "../../Context/UserContext";
+import axios from "axios";
 
 const niveles = {
     A1: 1,
@@ -25,21 +25,16 @@ export const EditarPerfil = ({ onUpdate }) => {
     const [contraseñaHash, setContraseñaHash] = useState("");
     const [mensajeActualizado, setMensajeActualizado] = useState("");
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(""); 
-
 
     const navigate = useNavigate();
 
-
-useEffect(() => {
-      if (!user) {
-        navigate("/iniciarsesion");
-        return;
-      }
+    useEffect(() => {
         const cargarAlumno = async () => {
             if (!idusuario) return;
             try {
-                const response = await axiosInstance.get(`Usuario/BuscarUsuario?idUsuario=${idusuario}`);
+                const response = await axios.get(
+                    `http://localhost:5228/API/Usuario/BuscarUsuario?idUsuario=${idusuario}`
+                );
                 
                 if (!response.data || !response.data.value) throw new Error("No se encontraron datos del perfil.");
                 const perfilData = response.data.value;
@@ -91,8 +86,8 @@ useEffect(() => {
             console.log(datosActualizados); 
             setLoading(true);
             
-            const response = await axiosInstance.put(
-                `Usuario/EditarUsuario?id=${perfil.idusuario}`,
+            const response = await axios.put(
+                `http://localhost:5228/API/Usuario/EditarUsuario?id=${perfil.idusuario}`,
                 datosActualizados
             );
             if (response.data.status) {

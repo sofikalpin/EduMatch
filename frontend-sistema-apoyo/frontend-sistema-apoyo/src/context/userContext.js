@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../AxiosConfig/AxiosConfig";
+import axios from "axios";
 
 const UserContext = createContext();
 
@@ -25,7 +25,7 @@ export const UserProvider = ({ children }) => {
 
       setIsLoggingIn(true);
 
-      const { data } = await axiosInstance.post("Usuario/IniciarSesion", {
+      const { data } = await axios.post("http://localhost:5228/API/Usuario/IniciarSesion", {
         correo: email,
         contrasenaHash: password,
       });
@@ -60,7 +60,7 @@ export const UserProvider = ({ children }) => {
       console.log("Redirigiendo según el rol:", user.idrol);
       switch (user.idrol) {
         case 1:
-          if (user.Autprof == true) {
+          if (user.autProf == true) {
             navigate("/profesor");
           }else{
             navigate("/profesor-noAutorizado");
@@ -88,9 +88,9 @@ export const UserProvider = ({ children }) => {
   }, 500);
   };
 
-return (
-  <UserContext.Provider value={{ user, setUser, login, logout, loading }}>
-    {children}
-  </UserContext.Provider>
-);
+  return (
+    <UserContext.Provider value={{ user, login, logout, loading }}>
+      {children}
+    </UserContext.Provider>
+  );
 };

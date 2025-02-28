@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import fileIcon from "../Imagenes/examen.avif";
 import deleteIcon from "../Imagenes/delete.png";
-import Header from "../../inicio/Componentes/Header.js";
-import Footer from "../../inicio/Componentes/Footer.js";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig";
+import Header from "../HeaderProfesor";
+import Footer from "../FooterProfesor";
+import axios from "axios";
 import { useUser } from "../../../Context/UserContext";
 
 const ExamenDetalle = () => {
@@ -19,13 +19,7 @@ const ExamenDetalle = () => {
     const encontrarExamen = async () => {
       try {
         setLoading(true);
-
-        if (!user) {
-          navigate("/iniciarsesion");
-          return;
-        }
-        
-        const respuesta = await axiosInstance.get(`examenes/ExamenID?id=${idexamen}`);
+        const respuesta = await axios.get(`http://localhost:5228/api/examenes/ExamenID?id=${idexamen}`);
         if (respuesta.data.status) {
           setExamen(respuesta.data.value);
         } else {
@@ -42,20 +36,15 @@ const ExamenDetalle = () => {
 
   const handleDelete = async () => {
 
-    console.log("User ID:", user.idusuario);
-    console.log("Examen User ID:", examen?.idusuario);
-
-    if (user.idusuario !== examen?.idusuario) {
+    if (user.idUsuario !== examen?.idusuario) {
       alert("No tienes permisos para eliminar este examen.");
       return; 
-  
     }
-
 
     if (window.confirm("¿Está seguro que desea eliminar este examen?")) {
       try {
         setLoading(true);
-        const respuesta = await axiosInstance.delete(`ProfeExamen/EliminarExamen?id=${idexamen}`);
+        const respuesta = await axios.delete(`http://localhost:5228/api/ProfeExamen/EliminarExamen?id=${idexamen}`);
         if (respuesta.data.status) {
           alert("Examen eliminado correctamente");
           navigate(-1);
@@ -69,8 +58,6 @@ const ExamenDetalle = () => {
       }
     }
   };
-
-  
 
   const esGoogleForm = (url) => {
     const regex = /^https:\/\/docs\.google\.com\/forms\/d\/e\/[a-zA-Z0-9_-]+\/(viewform|edit)(\?.*)?$/;
@@ -120,7 +107,7 @@ const ExamenDetalle = () => {
             <button
               onClick={handleDelete}
               className={`p-2 rounded-full transition-colors duration-200 ml-4 ${
-                user.idusuario !== examen?.idusuario
+                user.idUsuario !== examen?.idusuario
                   ? "bg-red-200 cursor-not-allowed"
                   : "bg-red-100 hover:bg-red-200"
               }`}

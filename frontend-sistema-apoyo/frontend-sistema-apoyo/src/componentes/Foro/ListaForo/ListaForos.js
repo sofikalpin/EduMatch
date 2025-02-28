@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Plus, ChevronRight, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import Header from "../../inicio/Componentes/Header.js";
-import Footer from "../../inicio/Componentes/Footer.js";
+import HeaderForo from "../HeaderForo";
+import FooterForo from "../FooterForo";
 import { useUser } from "../../../Context/UserContext";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
 
 const ListarForos = () => {
     const { user } = useUser();
@@ -39,7 +38,7 @@ const ListarForos = () => {
             try {
                 setLoading(true);
                 setError("");
-                const respuesta = await axiosInstance.get("Foro/ListarForos");
+                const respuesta = await axios.get("http://localhost:5228/API/Foro/ListarForos");
                 console.log("Foros obtenidos: ", respuesta.data.value);
                 setForos(respuesta.data.value);
             } catch (error) {
@@ -71,7 +70,7 @@ const ListarForos = () => {
     return (
         <div className="h-screen bg-gradient-to-b from-teal-50 to-white flex flex-col">
 
-            <Header/>
+            <HeaderForo/>
 
             <main className="flex-grow w-full max-w-5xl px-6 py-10 mx-auto">
 
@@ -139,7 +138,7 @@ const ListarForos = () => {
                 </div>
             </main>        
             
-            < Footer />
+            < FooterForo />
         </div>
 
     );

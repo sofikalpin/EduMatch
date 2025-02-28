@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import TablaProfesoresExterno from "./TablaProfesAutorizar/TablaProfesorAExterno.js";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
-import { useUser } from "../../../Context/UserContext.js";
+import axios from "axios";
 import { ArrowLeft } from "lucide-react";
-import Header from "../../inicio/Componentes/Header.js";
-import Footer from "../../inicio/Componentes/Footer.js";
+import Header from "../HeaderAdministrador.js";
+import Footer from "../FooteraAdministrador.js";
 import JellyJobs from "./Imagen/JellyJobs.png";
 import { useNavigate } from "react-router-dom";
 
@@ -19,10 +18,9 @@ const CargarProfesorExterno = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
     const [mensaje, setMensaje] = useState("");
-    const { user } = useUser();
 
     const navigate = useNavigate();
-      
+
     const getInitials = (name) => {
         return name
             .split(' ')
@@ -44,8 +42,8 @@ const CargarProfesorExterno = () => {
             }
     
             console.log(` Profesor encontrado con IDbolsa: ${idbolsa}, procediendo a eliminar...`);
-
-            axiosInstance.delete(`Bolsatrabajo/EliminarBolsa?id=${idbolsa}`)
+    
+            axios.delete(`http://localhost:5228/api/Bolsatrabajo/EliminarBolsa?id=${idbolsa}`)
                 .then(() => {
                     setProfesoresIngles((prevProfesores) => 
                         prevProfesores.filter((profesor) => profesor.idbolsa !== idbolsa)
@@ -62,7 +60,7 @@ const CargarProfesorExterno = () => {
     
     const handleAutorizarProfesor = (idusuario) => {
         if (window.confirm("¿Estás seguro de que deseas autorizar este profesor?")) {
-            axiosInstance.put(`AdministradorProfesor/AutorizarProfesor?id=${idusuario}`)
+            axios.put(`http://localhost:5228/API/AdministradorProfesor/AutorizarProfesor?id=${idusuario}`)
                 .then(() => {
                     setProfesoresIngles((prevProfesores) => 
                         prevProfesores.filter((profesor) => profesor.idusuario !== idusuario)
@@ -94,12 +92,7 @@ const CargarProfesorExterno = () => {
         const fetchProfesores = async () => {
             setLoading(true);
             try {
-                if (!user) {
-                    navigate("/iniciarsesion"); // Redirige si no está autenticado
-                    return;
-                }
-
-                const response = await axiosInstance.get("http://localhost:5228/api/Bolsatrabajo/ingles");
+                const response = await axios.get("http://localhost:5228/api/Bolsatrabajo/ingles");
 
                 console.log("Datos recibidos de la API:", response.data);
 

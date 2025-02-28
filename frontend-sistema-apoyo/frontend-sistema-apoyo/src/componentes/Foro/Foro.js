@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
-import Header from "../inicio/Componentes/Header.js";
+import axios from "axios";
+import HeaderForo from "./HeaderForo.js";
 import { Plus, ChevronRight, User } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useUser } from "../../Context/UserContext";
-import Footer from "../inicio/Componentes/Footer.js"
+import FooterForo from "./FooterForo.js"
 import { ArrowLeft } from 'lucide-react';
-import axiosInstance from "../../AxiosConfig/AxiosConfig.js";
 
 const Foro = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
   const { user } = useUser();
+
   const [foro, setForo] = useState(null);
   const [usuario, setUsuario] = useState([]);
   const [consultas, setConsultas] = useState([]);
@@ -51,11 +53,6 @@ const Foro = () => {
   }, [location.state]);
 
   useEffect(() => {
-    if (!user) {
-      navigate("/iniciarsesion"); 
-      return;
-     }
-    
     const fetchConsultas = async () => {
       if (!foro) return;
 
@@ -63,7 +60,8 @@ const Foro = () => {
       setError("");
       
       try {
-        const respuesta = await axiosInstance.get(`Foro/ConsultasForo?idForo=${foro.idforo}`)
+        
+        const respuesta = await axios.get(`http://localhost:5228/API/Foro/ConsultasForo?idForo=${foro.idforo}`)
       
         if (Array.isArray(respuesta.data.value)) {  
           console.log(respuesta.data.value)
@@ -76,8 +74,8 @@ const Foro = () => {
 
           const usuarioDatos = await Promise.all(
             [...idUsuario].map(async (id) => {
-              const usuarioResp = await axiosInstance.get(
-                `Usuario/BuscarUsuario?idUsuario=${id}`
+              const usuarioResp = await axios.get(
+                `http://localhost:5228/API/Usuario/BuscarUsuario?idUsuario=${id}`
               );
               return { id, ...usuarioResp.data.value };
             })
@@ -124,7 +122,7 @@ const Foro = () => {
   return (
     <div className="h-screen bg-gradient-to-b from-teal-50 to-white flex flex-col">
 
-      <Header/>
+      <HeaderForo/>
 
       <main className="flex-grow w-full max-w-3xl px-6 py-10 mx-auto">
 
@@ -192,7 +190,7 @@ const Foro = () => {
         </div>
       </main>
 
-      < Footer />
+      < FooterForo />
 
     </div>
   );

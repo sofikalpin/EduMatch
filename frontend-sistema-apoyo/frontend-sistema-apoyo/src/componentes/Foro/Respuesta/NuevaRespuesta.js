@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowLeft, Send } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 import { useUser } from "../../../Context/UserContext";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
-import Header from "../../inicio/Componentes/Header.js";
+import HeaderForo from '../HeaderForo.js';
 
 const Card = ({ children, className }) => (
   <div className={`bg-white rounded-xl shadow-lg overflow-hidden ${className}`}>
@@ -79,7 +79,8 @@ const Respuesta = () => {
 
       console.log("Datos de la respuesta:", datosRespuesta);
 
-      const response = await axiosInstance.post("Respuesta/CrearRespuesta",
+      const response = await axios.post(
+        "http://localhost:5228/API/Respuesta/CrearRespuesta",
         datosRespuesta
       );
 
@@ -100,7 +101,7 @@ const Respuesta = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
-      <Header />
+      <HeaderForo />
       <div className="flex-1 container mx-auto p-6 mb-16">
         <button
           onClick={() => navigate(-1)}

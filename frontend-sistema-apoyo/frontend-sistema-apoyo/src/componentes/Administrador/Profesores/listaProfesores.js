@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import TablaProfesoresT from "./TablaProfesores/TablaProfes.js";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react';
-import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
-import { useUser } from "../../../Context/UserContext.js";
-import Header from "../../inicio/Componentes/Header.js";
-import Footer from "../../inicio/Componentes/Footer.js";
+import axios from "axios";
+import Header from "../HeaderAdministrador.js";
+import Footer from "../FooteraAdministrador.js";
 
 const ListaProfesores = () => {
     const [profesores, setProfesores] = useState([]);
@@ -13,7 +12,6 @@ const ListaProfesores = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
     const [mensajeEliminacion, setMensaje] = useState("");
-    const { user } = useUser();
 
     const navigate = useNavigate();
 
@@ -21,12 +19,7 @@ const ListaProfesores = () => {
         const fetchProfesores = async () => {
             setLoading(true);
             try {
-                if (!user) {
-                    navigate("/iniciarsesion"); 
-                    return;
-                }
-
-                const response = await axiosInstance.get("AdministradorProfesor/ListaProfesoresAutorizados");
+                const response = await axios.get("http://localhost:5228/API/AdministradorProfesor/ListaProfesoresAutorizados");
                 if (response.data.status && Array.isArray(response.data.value)){
                     setProfesores(response.data.value);
                 } else {
@@ -49,7 +42,7 @@ const ListaProfesores = () => {
 
     const handleDeleteProfesor = (id) => {
         if (window.confirm("¿Estás seguro de que deseas eliminar este profesor?")) {
-            axiosInstance.delete(`AdministradorProfesor/EliminarProfesor?id=${id}`)
+            axios.delete(`http://localhost:5228/API/AdministradorProfesor/EliminarProfesor?id=${id}`)
                 .then(() => {
                     setProfesores((prevProfesores) => prevProfesores.filter((profesor) => profesor.idusuario !== id));
                     console.log("Profesor eliminado con éxito.");

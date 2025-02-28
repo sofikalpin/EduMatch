@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EditarProfesor from "../EditarProfesor/EditarProfesor";
-import axiosInstance from "../../../../AxiosConfig/AxiosConfig";
-import { useUser } from "../../../../Context/UserContext";
+import axios from "axios";
 
 const FilaProfesores = ({ profesor, onDelete }) => {
     const [mostrarEditar, setMostrarEditar] = useState(false);
     const [showTooltip, setShowTooltip] = useState(false);
     const navigate = useNavigate();
-    const { user } = useUser();
 
     const toggleTooltip = () => {
         setShowTooltip(prevState => !prevState)
@@ -61,12 +59,7 @@ const FilaProfesores = ({ profesor, onDelete }) => {
 
     const obtenerCV = async (idUsuario) => {
         try {
-            if (!user) {
-                navigate("/iniciarsesion"); // Redirige si no está autenticado
-                return;
-            }
-
-            const response = await axiosInstance.get(`Usuario/ObtenerCV?idUsuario=${idUsuario}`, {
+            const response = await axios.get(`http://localhost:5228/API/Usuario/ObtenerCV?idUsuario=${idUsuario}`, {
                 responseType: 'arraybuffer', 
             });
     

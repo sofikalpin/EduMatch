@@ -3,10 +3,10 @@ import { FaSearch } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react';
 import articuloImg from "../Imagenes/articulo.jpg";
-import Header from "../../inicio/Componentes/Header.js";
-import Footer from "../../inicio/Componentes/Footer.js";
+import Header from "../HeaderProfesor";
+import Footer from "../FooterProfesor";
+import axios from "axios";
 import { useUser } from "../../../Context/UserContext";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 
 const ArticulosProfesor = () => {
   const location = useLocation();
@@ -40,12 +40,7 @@ const ArticulosProfesor = () => {
           throw new Error("El ID del nivel no está disponible.");
         }
 
-        if (!user) {
-          navigate("/iniciarsesion"); 
-          return;
-        }
-
-        const response = await axiosInstance.get(`Articulo/ArticulosPorNivel?idNivel=${idNivel}`);
+        const response = await axios.get(`http://localhost:5228/API/Articulo/ArticulosPorNivel?idNivel=${idNivel}`);
         
         if (response.data.status && Array.isArray(response.data.value)) {
           setArticulos(response.data.value);

@@ -3,10 +3,9 @@ import { FaSearch } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react'; 
 import articulo from "../Imagenes/articulo.png";
-import Header from "../../inicio/Componentes/Header.js";
-import Footer from "../../inicio/Componentes/Footer.js";
-import { useUser } from "../../../Context/UserContext"; 
-import axiosInstance from "../../../AxiosConfig/AxiosConfig";
+import Header from "../HeaderAlumno";
+import Footer from "../FooterAlumno";
+import axios from "axios";
 
 const Articulos = () => {
   const location = useLocation();
@@ -17,13 +16,8 @@ const Articulos = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { user } = useUser();
 
   useEffect(() => {
-      if (!user) {
-        navigate("/iniciarsesion"); 
-    }
-
     const fetchArticulo = async () => {
       setLoading(true);
       setError("");
@@ -33,7 +27,7 @@ const Articulos = () => {
           throw new Error("El ID del alumno no está disponible.");
         }
 
-        const response = await axiosInstance.get(`Articulo/ArticulosPorNivel?idNivel=${idAlumnoNivel}`);
+        const response = await axios.get(`http://localhost:5228/API/Articulo/ArticulosPorNivel?idNivel=${idAlumnoNivel}`);
         if (response.data.status && Array.isArray(response.data.value)) {
           setAssignedArticles(response.data.value);
         } else {

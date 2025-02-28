@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import TablaAlumnos from "./TablaAlumnos/TablaAlumnos.js";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
-import { useUser } from "../../../Context/UserContext.js";
+import axios from "axios";
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
-import Header from "../../inicio/Componentes/Header.js";
-import Footer from "../../inicio/Componentes/Footer.js";
+import Header from "../HeaderAdministrador.js";
+import Footer from "../FooteraAdministrador.js";
 
 const ListaAlumnos = () => {
     const [alumnos, setAlumnos] = useState([]);
@@ -14,7 +13,6 @@ const ListaAlumnos = () => {
     const [loading, setLoading] = useState(true);
     const [mensajeEliminacion, setMensaje] = useState("");
     const [deleting, setDeleting] = useState(false);
-    const { user } = useUser()
 
     const navigate = useNavigate();
 
@@ -22,12 +20,7 @@ const ListaAlumnos = () => {
         const fetchAlumnos = async () => {
             setLoading(true);
             try {
-                if (!user) {
-                    navigate("/iniciarsesion"); 
-                    return;
-                }
-
-                const response = await axiosInstance.get("AdministradorAlumno/ListaAlumnos");
+                const response = await axios.get("http://localhost:5228/API/AdministradorAlumno/ListaAlumnos");
                 if (response.data.status && Array.isArray(response.data.value)) {
                     setAlumnos(response.data.value);
                 } else {
@@ -51,23 +44,12 @@ const ListaAlumnos = () => {
     const handleDeleteAlumno = (id) => {
         if (window.confirm("¿Estás seguro de que deseas eliminar este alumno?")) {
             setDeleting(true);
-            axiosInstance.delete(`AdministradorAlumno/EliminarAlumno?id=${id}`)
-                .then((response) => {
-                    if (response.status === 200 || response.status === 204) {
-                        return axiosInstance.get("AdministradorAlumno/ListaAlumnos");
-                    } else {
-                        throw new Error("Error al eliminar el alumno.");
-                    }
-                })
-                .then((response) => {
-                    if (response.data.status && Array.isArray(response.data.value)) {
-                        setAlumnos(response.data.value);
-                        console.log("Alumno eliminado con éxito.");
-                        setMensaje("Alumno eliminado con éxito.");
-                        setTimeout(() => setMensaje(""), 2000);
-                    } else {
-                        throw new Error("Error al cargar la lista de alumnos.");
-                    }
+            axios.delete(`http://localhost:5228/API/AdministradorAlumno/EliminarAlumno?id=${id}`)
+                .then(() => {
+                    setAlumnos((prevAlumnos) => prevAlumnos.filter((alumno) => alumno.idusuario !== id));
+                    console.log("Alumno eliminado con éxito.");
+                    setMensaje("Alumno eliminado con éxito.");
+                    setTimeout(() => setMensaje(""), 2000);
                 })
                 .catch((error) => {
                     console.error("Error al eliminar el alumno: ", error);

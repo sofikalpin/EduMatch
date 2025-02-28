@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, X } from 'lucide-react';
-import Header from "../../inicio/Componentes/Header.js";
+import Header from "../HeaderProfesor";
 import drive from "../Imagenes/google-drive.png";
 import youtube from "../Imagenes/youtube.png";
 import googleform from "../Imagenes/google-forms.png";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig";
+import axios from "axios";
 import { useUser } from "../../../Context/UserContext";
 
 const CrearExamen = () => {
@@ -66,10 +66,9 @@ const CrearExamen = () => {
         fechaCreacion: new Date().toISOString().split("T")[0],
         url: examenUrl.length > 0 ? examenUrl[0] : "",
       };
-      
       console.log(nuevoExamen);
-      const response = await axiosInstance.post(
-        "ProfeExamen/CrearExamen",
+      const response = await axios.post(
+        "http://localhost:5228/api/ProfeExamen/CrearExamen",
         nuevoExamen
       );
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Check } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../../logo/LogoInicio.png';
-
+import TopBar from '../Componentes/TopBar';
 import Header from '../Componentes/Header';
 import Footer from '../Componentes/Footer';
 
@@ -121,7 +121,10 @@ const B2CourseContentPage = () => {
 
   return (
     <div>
-  
+      <TopBar 
+        onLogin={() => navigate('/iniciarsesion')} 
+        onRegister={() => navigate('/registrarse')} 
+      />
       <Header 
         onNavigate={navigate}
         logo={logo}

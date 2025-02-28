@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, X } from 'lucide-react';
-import Header from "../../inicio/Componentes/Header.js";
+import Header from "../HeaderProfesor";
 import drive from "../Imagenes/google-drive.png";
 import youtube from "../Imagenes/youtube.png";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig";
+import axios from "axios";
 import { useUser } from "../../../Context/UserContext";
 
 const CrearArticulo = () => {
@@ -75,19 +75,12 @@ const CrearArticulo = () => {
         fechaCreacion: new Date().toISOString().split("T")[0]
       };
 
-      console.log("Nuevo Artículo:", nuevoArticulo);
-
+      console.log(nuevoArticulo);
    
-      if (!user) {
-        navigate("/iniciarsesion"); 
-        return;
-      }
-
-      const response = await axiosInstance.post(
-        "ProfesorArticulo/CrearArticulo",
+      const response = await axios.post(
+        "http://localhost:5228/API/ProfesorArticulo/CrearArticulo",
         nuevoArticulo,
       );
-      console.log("Respuesta del backend:", response);
       
       if (response.data.status) {
         alert("Artículo creado exitosamente");

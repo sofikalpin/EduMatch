@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Star } from 'lucide-react';
+import { Star, X } from 'lucide-react';
 import logo from '../../../logo/LogoInicio.png';
 import Imagen1 from '../pexels-divinetechygirl-1181534.jpg';
 import Imagen2 from '../pexels-katerina-holmes-5905709.jpg';
+import TopBar from '../Componentes/TopBar';
 import Header from '../Componentes/Header';
 import Footer from '../Componentes/Footer';
-import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 import AngryReviews from './AngryReviews.png';
 
 const socialIcons = [
@@ -16,6 +16,21 @@ const socialIcons = [
   { name: 'Youtube', color: 'hover:text-red-500' },
   { name: 'Linkedin', color: 'hover:text-blue-700' }
 ];
+
+
+const Modal = ({ title, children, onClose }) => (
+  <div className="fixed inset-0 bg-gray-700 bg-opacity-50 flex items-center justify-center z-20">
+    <div className="bg-white p-8 rounded-xl w-96">
+      <div className="flex justify-between items-center">
+        <h3 className="text-xl font-semibold">{title}</h3>
+        <button onClick={onClose}>
+          <X className="h-6 w-6 text-gray-600" />
+        </button>
+      </div>
+      {children}
+    </div>
+  </div>
+);
 
 const ReviewStars = ({ rating }) => (
   <div className="flex space-x-1">
@@ -35,6 +50,41 @@ const ReviewCard = ({ name, content, rating }) => (
   </div>
 );
 
+
+const ProgramDropdown = ({ isOpen, onClose }) => {
+  const navigate = useNavigate();
+  
+  const levels = [
+    { name: 'Nivel Básico', route: './NivelInicial', description: 'Para principiantes (A1-A2)' },
+    { name: 'Nivel Intermedio', route: './NivelIntermedio', description: 'Mejora tu fluidez (B1-B2)' },
+    { name: 'Nivel Avanzado', route: './NivelAvanzado', description: 'Perfecciona tu inglés (C1-C2)' },
+  ];
+
+  if (!isOpen) return null;
+
+  return (
+    <div 
+      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-white rounded-xl shadow-xl py-2 z-50"
+      onMouseLeave={onClose}
+    >
+      {levels.map((level, index) => (
+        <button
+          key={index}
+          onClick={() => navigate(level.route)}
+          className="w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors group"
+        >
+          <div className="text-gray-900 font-medium group-hover:text-blue-600">
+            {level.name}
+          </div>
+          <div className="text-sm text-gray-500 group-hover:text-blue-500">
+            {level.description}
+          </div>
+        </button>
+      ))}
+    </div>
+  );
+};
+
 export default function Inicio() {
   const navigate = useNavigate();
   const [reviews, setReviews] = useState([]);
@@ -43,15 +93,18 @@ export default function Inicio() {
   const [totalReviews, setTotalReviews] = useState(0);
   const [averageRating, setAverageRating] = useState(0);
   const [visibleReviews, setVisibleReviews] = useState(3);
-
+  
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        // Obtener las reseñas
-        const reviewsResponse = await axiosInstance.get('Reseña/ListaReseñas');
-        const reviewsData = reviewsResponse.data;
-
-        // Verificar si las reseñas son un arreglo
+       
+        const reviewsResponse = await fetch('http://localhost:5228/API/Reseña/ListaReseñas');
+        if (!reviewsResponse.ok) {
+          throw new Error('Failed to fetch reviews');
+        }
+        const reviewsData = await reviewsResponse.json();
+        
+        
         let reviewArray = [];
         if (Array.isArray(reviewsData)) {
           reviewArray = reviewsData;
@@ -60,12 +113,16 @@ export default function Inicio() {
         } else {
           throw new Error('Se esperaba un arreglo de reseñas, pero se recibió otro formato');
         }
+        
+      
+        const usersResponse = await fetch('http://localhost:5228/API/Usuario/ListaUsuarios');
+        if (!usersResponse.ok) {
+          throw new Error('Failed to fetch users');
+        }
+        const usersData = await usersResponse.json();
+        console.log('usersData:', usersData); 
 
-        // Obtener los usuarios 
-        const usersResponse = await axiosInstance.get('Usuario/ListaUsuarios');
-        const usersData = usersResponse.data;
-
-        // Verificar si los usuarios son un arreglo
+       
         let userArray = [];
         if (Array.isArray(usersData)) {
           userArray = usersData;
@@ -74,14 +131,12 @@ export default function Inicio() {
         } else {
           throw new Error('Se esperaba un arreglo de usuarios, pero se recibió otro formato');
         }
-
-        // Crear un mapa de usuarios para buscar nombres
+      
         const userMap = {};
         userArray.forEach(user => {
           userMap[user.idusuario] = user.nombrecompleto;
         });
-
-        // Combinar reseñas con nombres de usuarios
+          
         const combinedReviews = reviewArray.map(review => {
           const userName = userMap[review.idusuaro] || 'Usuario Desconocido';
           return {
@@ -91,13 +146,12 @@ export default function Inicio() {
             rating: review.rating
           };
         });
-
-        // Ordenar reseñas por rating
+        
         combinedReviews.sort((a, b) => b.rating - a.rating);
-
+        
         const totalRating = reviewArray.reduce((sum, review) => sum + review.rating, 0);
         const avgRating = reviewArray.length > 0 ? Math.round(totalRating / reviewArray.length) : 0;
-
+        
         setReviews(combinedReviews);
         setTotalReviews(reviewArray.length);
         setAverageRating(avgRating);
@@ -108,17 +162,23 @@ export default function Inicio() {
         setLoading(false);
       }
     };
-
+    
     fetchReviews();
   }, []);
 
   return (
     <div className="bg-gray-100">
+    
+      <TopBar 
+        onLogin={() => navigate('/iniciarsesion')} 
+        onRegister={() => navigate('/registrarse')} 
+      />
       <Header 
         onNavigate={navigate}
         logo={logo}
       />
 
+  
       <section
         className="bg-cover bg-center p-16 text-center min-h-[80vh] relative"
         style={{ backgroundImage: `url(${Imagen2})` }}
@@ -144,7 +204,34 @@ export default function Inicio() {
         </div>
       </section>
 
-      {/* Sección de reseñas */}
+      
+      <section className="p-12 bg-gray-50">
+        <h2 className="text-3xl font-semibold text-blue-900 mb-8 text-center">
+          Tres pilares de aprendizaje que garantizan tu fluidez
+        </h2>
+        <div className="flex flex-col lg:flex-row gap-8">
+          <div className="lg:flex-1 space-y-8">
+            {['Clases Grabadas', 'Clases Personalizadas', 'Clases con Profesores Nativos'].map((title, index) => (
+              <div key={index} className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                <button onClick={() => navigate('/registrarse')} className="w-full text-left">
+                  <div className="flex justify-between items-center">
+                    <div className="w-8 h-8 bg-blue-200 rounded-full"></div>
+                    <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+                  </div>
+                </button>
+              </div>
+            ))}
+          </div>
+          <div className="flex justify-center lg:justify-end lg:w-1/3">
+            <img
+              src={Imagen1}
+              alt="Image"
+              className="w-80 h-80 object-cover rounded-full shadow-md mx-auto"
+            />
+          </div>
+        </div>
+      </section>
+
       <section className="bg-white py-12 px-4 md:px-8 lg:px-16">
         <div className="text-center">
           <h1 className="text-3xl font-semibold text-blue-900 mb-6">Conoce la opinión de nuestros estudiantes sobre EduMatch en:</h1>
@@ -182,7 +269,7 @@ export default function Inicio() {
             <p className="text-gray-500">No hay opiniones disponibles en este momento.</p>
           )}
         </div>
-        {!loading && !error && reviews.length > visibleReviews && (
+        { !loading && !error && reviews.length > visibleReviews && (
           <div className="flex justify-center mt-6">
             <button 
               onClick={() => setVisibleReviews(reviews.length)}

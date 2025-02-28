@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { User, X } from "lucide-react";
+import TopBar from "../Componentes/TopBar";
 import Header from "../Componentes/Header";
 import Footer from "../Componentes/Footer";
 import logo from "../../../logo/LogoInicio.png";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 
 const footerSections = {
   section1: {
@@ -35,7 +35,7 @@ const TeacherCard = ({ teacher }) => {
         <img src={teacher.image || placeholderImage} alt={teacher.name} className="w-full h-full object-cover" />
       </div>
       <h4 className="font-semibold text-lg mt-4">{teacher.name}</h4>
-      {teacher.levelName && <p className="text-gray-500 text-sm">Nivel: {teacher.levelName}</p>}
+      <p className="text-gray-500 text-sm">Nivel: {teacher.levelName}</p>
       <p className="text-yellow-500 text-sm">
         {teacher.rating ? `${teacher.rating.toFixed(1)} estrellas` : "Sin calificación"}
       </p>
@@ -58,11 +58,12 @@ const TeacherCard = ({ teacher }) => {
             </button>
             <h3 className="text-xl font-semibold mb-4 text-gray-800">Opiniones de {teacher.name}</h3>
             <ul className="space-y-3">
-              {teacher.reviews && teacher.reviews.length > 0 ? (
+              {teacher.reviews.length > 0 ? (
                 teacher.reviews.map((review, index) => (
                   <li key={index} className="border p-3 rounded-lg shadow-sm">
                     <p className="text-sm text-gray-700">"{review.comment}"</p>
-                    <p className="text-xs text-gray-500 mt-1">— {review.userName ? review.userName.split(" ")[0] : "Usuario"}</p>
+                    <p className="text-xs text-gray-500 mt-1">— {review.userName.split(" ")[0]}</p>
+
                   </li>
                 ))
               ) : (
@@ -78,11 +79,11 @@ const TeacherCard = ({ teacher }) => {
 
 export default function InicioProfesor() {
   const navigate = useNavigate();
+  const [selectedLevel, setSelectedLevel] = useState("Todos");
   const [teachers, setTeachers] = useState([]);
+  const [levels, setLevels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState("Todos");
-  const [categories, setCategories] = useState(["Todos"]);
 
   const getPropertySafely = (obj, properties, defaultValue = "") => {
     if (!obj) return defaultValue;
@@ -97,47 +98,40 @@ export default function InicioProfesor() {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchTeachers = async () => {
       try {
         setLoading(true);
+        
+      
+        const reviewsResponse = await fetch('http://localhost:5228/API/Reseña/ListaReseñasAlumno');
+        if (!reviewsResponse.ok) throw new Error('Error al obtener las reseñas');
+        const reviewsData = await reviewsResponse.json();
 
-        const reviewsResponse = await axiosInstance.get('Reseña/ListaReseñasAlumno');
-        const reviewsData = reviewsResponse.data;
-        const reviewsList = Array.isArray(reviewsData) ? reviewsData : [];
+        const usersResponse = await fetch('http://localhost:5228/API/Usuario/ListaUsuarios');
+        if (!usersResponse.ok) throw new Error('Error al obtener los usuarios');
+        const usersRawData = await usersResponse.json();
 
-        if (!reviewsList.length) {
-          setTeachers([]);
-          setLoading(false);
-          return;
-        }
+        const reviewsList = Array.isArray(reviewsData) ? reviewsData : (reviewsData.value && Array.isArray(reviewsData.value)) ? reviewsData.value : null;
+        const usersData = Array.isArray(usersRawData) ? usersRawData : (usersRawData.value && Array.isArray(usersRawData.value)) ? usersRawData.value : null;
 
-        let usersList = [];
-        try {
-          const usersResponse = await axiosInstance.get('Usuario/ListaUsuarios');
-          usersList = Array.isArray(usersResponse.data) ? usersResponse.data : [];
-        } catch (error) {
-          console.warn("No se pudieron obtener los usuarios, se usarán valores por defecto:", error);
-        }
+        if (!reviewsList || !usersData) throw new Error('Datos no válidos para reseñas o usuarios');
 
         let teachersMap = {};
         
-        reviewsList.forEach(review => {
+        reviewsList.forEach((review) => {
           const profesorId = getPropertySafely(review, ['idProfesor', 'profesorId', 'id_profesor']);
           if (!profesorId) return;
 
           if (!teachersMap[profesorId]) {
-            const profesorUser = usersList.find(u => {
-              const userId = getPropertySafely(u, ['idusuario', 'id', 'userId']);
-              return userId == profesorId;
-            });
+            const profesorUser = usersData.find(u => getPropertySafely(u, ['idusuario', 'id', 'userId']) == profesorId);
+            if (!profesorUser) return;
 
             teachersMap[profesorId] = {
               id: profesorId,
-              name: profesorUser 
-                ? getPropertySafely(profesorUser, ['nombreCompleto', 'nombre', 'nombrecompleto', 'username', 'name'], `Profesor ${profesorId}`) 
-                : `Profesor ${profesorId}`,
-              image: profesorUser ? getPropertySafely(profesorUser, ['fotoRuta', 'foto', 'imagen', 'image']) : null,
-              category: getPropertySafely(review, ['categoria', 'category'], ''),
+              name: getPropertySafely(profesorUser, ['nombreCompleto', 'nombre', 'nombrecompleto', 'username', 'name'], "Profesor"),
+              image: getPropertySafely(profesorUser, ['fotoRuta', 'foto', 'imagen', 'image']),
+              levelId: getPropertySafely(profesorUser, ['idnivel', 'nivelId', 'id_nivel']),
+              status: "Activo",
               reviews: [],
               rating: 0,
               totalRating: 0,
@@ -146,102 +140,117 @@ export default function InicioProfesor() {
           }
 
           const alumnoId = getPropertySafely(review, ['idusuario', 'idUsuario', 'userId', 'id_usuario']);
-          const alumnoUser = usersList.find(u => {
-            const userId = getPropertySafely(u, ['idusuario', 'id', 'userId']);
-            return userId == alumnoId;
-          });
-          
-          const userName = alumnoUser 
-            ? getPropertySafely(alumnoUser, ['nombreCompleto', 'nombre', 'nombrecompleto', 'username', 'name'], 'Usuario') 
-            : 'Usuario';
+          const alumnoUser = usersData.find(u => getPropertySafely(u, ['idusuario', 'id', 'userId']) == alumnoId);
+          const userName = alumnoUser ? getPropertySafely(alumnoUser, ['nombreCompleto', 'nombre', 'nombrecompleto', 'username', 'name'], 'Usuario desconocido') : 'Usuario desconocido';
 
-          const reviewObj = {
+          teachersMap[profesorId].reviews.push({
             id: getPropertySafely(review, ['idReseña', 'id', 'reseñaId']),
             comment: getPropertySafely(review, ['comentario', 'comment', 'descripcion', 'texto'], ""),
             rating: parseFloat(getPropertySafely(review, ['rating', 'calificacion', 'puntuacion'], 0)),
             userId: alumnoId,
             userName: userName
-          };
-
-          teachersMap[profesorId].reviews.push(reviewObj);
+          });
 
           const reviewRating = parseFloat(getPropertySafely(review, ['rating', 'calificacion', 'puntuacion'], 0));
-          if (!isNaN(reviewRating)) {
-            teachersMap[profesorId].totalRating += reviewRating;
-            teachersMap[profesorId].ratingCount += 1;
-            teachersMap[profesorId].rating = teachersMap[profesorId].totalRating / teachersMap[profesorId].ratingCount;
-          }
+          teachersMap[profesorId].totalRating += reviewRating;
+          teachersMap[profesorId].ratingCount += 1;
+          teachersMap[profesorId].rating = teachersMap[profesorId].totalRating / teachersMap[profesorId].ratingCount;
         });
 
-        const teachersArray = Object.values(teachersMap);
-        setTeachers(teachersArray);
-        
-        const uniqueCategories = ['Todos', ...new Set(teachersArray.map(t => t.category).filter(Boolean))];
-        if (uniqueCategories.length > 1) {
-          setCategories(uniqueCategories);
+        let teachersArray = [];
+        const uniqueLevels = new Set();
+        for (const teacherId in teachersMap) {
+          const teacher = teachersMap[teacherId];
+
+          if (teacher.levelId) {
+            try {
+              const levelResponse = await fetch(`http://localhost:5228/API/Nivel/Nivel ID?id=${teacher.levelId}`);
+              if (levelResponse.ok) {
+                const levelData = await levelResponse.json();
+                console.log("Level data:", levelData);
+                
+                if (levelData.value && typeof levelData.value === 'object') {
+                  teacher.levelName = levelData.value.descripcion || 
+                                    levelData.value.descripción ||
+                                    levelData.value.description ||
+                                    "Nivel no especificado";
+                } else {
+                  teacher.levelName = levelData.descripcion ||
+                                    levelData.descripción ||
+                                    levelData.description ||
+                                    "Nivel no especificado";
+                }
+          
+                if (teacher.levelName !== "Nivel no especificado") {
+                  uniqueLevels.add(teacher.levelName);
+                }
+                
+                console.log("Processed level name:", teacher.levelName);
+              } else {
+                console.error(`Error en la respuesta del nivel: ${levelResponse.status}`);
+                teacher.levelName = "Nivel no especificado";
+              }
+            } catch (levelError) {
+              console.error("Error al obtener el nivel:", levelError);
+              teacher.levelName = "Nivel no especificado";
+            }
+          } else {
+            teacher.levelName = "Nivel no especificado";
+          }
+
+          teachersArray.push(teacher);
         }
 
+        setTeachers([...teachersArray]);
+        setLevels([...uniqueLevels].sort());
       } catch (err) {
-        console.error("Error al cargar datos:", err);
-        setError(err.message || "Error al cargar los datos");
+        setError(err.message);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchData();
+    fetchTeachers();
   }, []);
 
-  const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
+  const handleLevelChange = (event) => {
+    setSelectedLevel(event.target.value);
   };
 
-  const filteredTeachers = selectedCategory === "Todos"
+  const filteredTeachers = selectedLevel === "Todos"
     ? teachers
-    : teachers.filter((teacher) => teacher.category === selectedCategory);
+    : teachers.filter((teacher) => teacher.levelName === selectedLevel);
 
   return (
     <div className="bg-gray-100 flex flex-col min-h-screen">
+      <TopBar onLogin={() => navigate('/iniciarsesion')} onRegister={() => navigate('/registrarse')} />
       <Header onNavigate={navigate} logo={logo} />
       
       <div className="flex-grow">
-        {categories.length > 1 && (
-          <div className="p-4 max-w-7xl mx-auto mb-6 flex justify-end">
-            <select
-              value={selectedCategory}
-              onChange={handleCategoryChange}
-              className="px-3 py-2 text-lg border rounded focus:outline-none focus:ring-2 focus:ring-blue-400 mt-6"
-              aria-label="Filtrar por categoría"
-            >
-              {categories.map((category) => (
-                <option key={category} value={category}>
-                  {category === "Todos" ? "Todas las categorías" : category}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
+        <div className="p-4 max-w-7xl mx-auto mb-6 flex justify-end">
+          <select
+            value={selectedLevel}
+            onChange={handleLevelChange}
+            className="px-3 py-2 text-lg border rounded focus:outline-none focus:ring-2 focus:ring-blue-400 mt-6"
+            aria-label="Filtrar por nivel"
+          >
+            <option value="Todos">Todos los niveles</option>
+            {levels.map((level) => (
+              <option key={level} value={level}>
+                {level}
+              </option>
+            ))}
+          </select>
+        </div>
 
         <div className="px-6 py-6">
-          {loading ? (
-            <div className="flex justify-center items-center p-12">
-              <p className="text-xl text-gray-600">Cargando profesores...</p>
-            </div>
-          ) : error ? (
-            <div className="flex justify-center items-center p-12">
-              <p className="text-xl text-red-500">Error: {error}</p>
-            </div>
-          ) : filteredTeachers.length === 0 ? (
-            <div className="flex justify-center items-center p-12">
-              <p className="text-xl text-gray-600">No se encontraron profesores con reseñas.</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredTeachers.map((teacher) => (
-                <TeacherCard key={teacher.id} teacher={teacher} />
-              ))}
-            </div>
-          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {loading && <p>Cargando...</p>}
+            {error && <p>Error: {error}</p>}
+            {filteredTeachers.map((teacher) => (
+              <TeacherCard key={teacher.id} teacher={teacher} />
+            ))}
+          </div>
         </div>
       </div>
 

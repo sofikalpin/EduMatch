@@ -6,17 +6,15 @@ import logoB1 from "../Logos/B1.png";
 import logoB2 from "../Logos/B2.png";
 import logoC1 from "../Logos/C1.png";
 import logoC2 from "../Logos/C2.png";
-import Header from "../../inicio/Componentes/Header.js";
-import Footer from "../../inicio/Componentes/Footer.js";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig";
-import { useUser } from "../../../Context/UserContext";
+import Header from "../HeaderProfesor";
+import Footer from "../FooterProfesor";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 const MisCursos = () => {
   const navigate = useNavigate();
   const [cantidadAlumnos, setCantidadAlumnos] = useState(0);
   const [listaGeneral, setListaGeneral] = useState([]);
-  const { user } = useUser();
 
   const navegarACurso = (curso) => {
     navigate("/profesor/cursos/detalle", { state: {nivel: curso.id, nombre: curso.nombre}})
@@ -25,11 +23,7 @@ const MisCursos = () => {
  useEffect(() =>  {
     const cargarUsuarios = async () => {
     try {
-      if (!user) {
-        navigate("/iniciarsesion");
-      }
-
-      const respuesta = await axiosInstance.get('Usuario/ListaUsuarios');
+      const respuesta = await axios.get('http://localhost:5228/API/Usuario/ListaUsuarios');
       if (respuesta.data.status && Array.isArray(respuesta.data.value)) {
         setListaGeneral(respuesta.data.value);
       } else {

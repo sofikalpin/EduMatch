@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import Header from "../../inicio/Componentes/Header.js";
-import Footer from "../../inicio/Componentes/Footer.js";
+import axios from "axios";
+import HeaderForo from "../HeaderForo";
 import { Plus, ChevronRight, User } from "lucide-react";
+import FooterForo from "../FooterForo";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useUser } from "../../../Context/UserContext";
-import axiosInstance from "../../../AxiosConfig/AxiosConfig.js";
 import { ArrowLeft } from 'lucide-react';
 
 const Consulta = () => {
@@ -33,7 +33,7 @@ const Consulta = () => {
         setLoading(true);
         setError("");
 
-        const respuesta = await axiosInstance.get(`Consulta/ListaRespuestasDeConsulta?consultaId=${consulta.idconsulta}`);
+        const respuesta = await axios.get(`http://localhost:5228/API/Consulta/ListaRespuestasDeConsulta?consultaId=${consulta.idconsulta}`);
         
         if(respuesta.data.status && Array.isArray(respuesta.data.value)){
           setRespuestas(respuesta.data.value);
@@ -46,8 +46,8 @@ const Consulta = () => {
 
           const usuarioDatos = await Promise.all(
             [...idUsuario].map(async (id) => {
-              const usuarioResp = await axiosInstance.get(
-                `Usuario/BuscarUsuario?idUsuario=${id}`
+              const usuarioResp = await axios.get(
+                `http://localhost:5228/API/Usuario/BuscarUsuario?idUsuario=${id}`
               );
               return { id, ...usuarioResp.data.value };
             })
@@ -109,7 +109,7 @@ const Consulta = () => {
 
   return (
     <div className="h-screen bg-gradient-to-b from-teal-50 to-white flex flex-col">
-      <Header/>
+      <HeaderForo/>
 
       <main className="flex-grow w-full max-w-3xl px-6 py-10 mx-auto">
           <button
@@ -168,7 +168,7 @@ const Consulta = () => {
           )}
         </div>
       </main>
-        < Footer />
+        < FooterForo />
     </div>
   );
 };

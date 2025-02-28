@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FilaAlumnos from "../FilaAlumnos/FilaAlumnos";
 import { useNavigate } from "react-router-dom";
 
+
 const TablaAlumnos = ({ data, onDelete }) => {
     const navigate = useNavigate();
     const [nivelSeleccionado, setNivelSeleccionado] = useState("");

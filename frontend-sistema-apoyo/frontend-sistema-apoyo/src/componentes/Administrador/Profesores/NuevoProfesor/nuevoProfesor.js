@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import logo from "../../../../logo/LogoInicio.png";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../../../AxiosConfig/AxiosConfig";
-import { useUser } from "../../../../Context/UserContext"; 
+import axios from "axios";
 
 export const NuevoProfesor = () => {
   const [formData, setFormData] = useState({
@@ -20,7 +19,6 @@ export const NuevoProfesor = () => {
     fotoRuta: ""
   });
 
-  const { user } = useUser();
   const navigate = useNavigate();
 
   const niveles = {
@@ -30,6 +28,7 @@ export const NuevoProfesor = () => {
   const cancelar = () => {
     navigate("/administrador/listaProfesores", { replace: true })
   }
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -56,13 +55,8 @@ export const NuevoProfesor = () => {
     }
 
     try {
-      if (!user) {
-        navigate("/iniciarsesion"); // Redirige si no está autenticado
-        return;
-      }
-
-      const response = await axiosInstance.post(
-        "AdministradorProfesor/CrearProfesor",
+      const response = await axios.post(
+        "http://localhost:5228/API/AdministradorProfesor/CrearProfesor",
         formData,
         {
           headers: {

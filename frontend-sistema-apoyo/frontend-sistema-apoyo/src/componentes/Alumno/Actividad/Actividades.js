@@ -4,18 +4,36 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft } from 'lucide-react';
 import axiosInstance from "../../../AxiosConfig/AxiosConfig";
 import actividad from "../Imagenes/actividades.png";
-import Header from "../../inicio/Componentes/Header.js";
-import Footer from "../../inicio/Componentes/Footer.js";
+import Header from "../HeaderAlumno";
+import Footer from "../FooterAlumno";
 
 const Actividades = () => {
   const location = useLocation();
-  const { nivel } = location.state || {}; 
+  const { nivel } = location.state || {}; // El nivel se pasa desde la ruta anterior
   const [searchQuery, setSearchQuery] = useState("");
   const [assignedActivities, setAssignedActivities] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  // Función de login
+  const login = async () => {
+    try {
+      const response = await axiosInstance.post("Acceso/Acceso", {
+        Correo: "admin@sistema.com",
+        Clave: "Admin123" // Asegúrate de usar la contraseña correcta
+      });
+      // Verificar si el login fue exitoso
+      console.log("Login response:", response.data);
+      return true;
+    } catch (error) {
+      console.error("Login failed:", error);
+      setError("Error de autenticación. Por favor, inicie sesión nuevamente.");
+      return false;
+    }
+  };
+
 
   useEffect(() => {
     const fetchActividades = async () => {
@@ -26,6 +44,14 @@ const Actividades = () => {
         if (!idAlumnoNivel) {
           throw new Error("El ID del alumno no está disponible.");
         }
+
+          // Primero intentamos autenticarnos
+          const isAuthenticated = await login();
+          if (!isAuthenticated) {
+            throw new Error("No se pudo autenticar al usuario.");
+          }
+
+         // Realiza la solicitud a la API para obtener actividades por nivel
          const response = await axiosInstance.get(`Actividad/ActividadesPorNivel?idNivel=${nivel}`);
         if (response.data.status && Array.isArray(response.data.value)) {
           setAssignedActivities(response.data.value);
